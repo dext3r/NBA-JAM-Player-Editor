@@ -99,7 +99,7 @@ namespace nbajamTextBox
             int f = 0;
             int[] textname= new int[internal_text.Length];
 
-            byte[][] tiletest = new byte[12][];
+            byte[][] tiletest = new byte[tile_width*tile_height][];
             // Define pixel array based on number of pixels actually needed
             backArray = new int[8*tile_width, 8*tile_height];
             // Create new tiles based on amount needed

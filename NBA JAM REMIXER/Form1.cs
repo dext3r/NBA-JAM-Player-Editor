@@ -1966,7 +1966,10 @@ letters[0].SetPixel(3, 0, 0);
         {
             //int[,] backArray = new int[48, 16];
             
+            //Declaration of jagged array.
+            //This creates 12 tiletests, each tiletest is an array of 64 bytes.
             byte[][] tiletest = new byte[12][];
+
             string balls;
             int locationx=0;
             int locationy=0;
