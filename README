@@ -1,0 +1,17 @@
+			  ////////////////////////////////////////////
+			 / README for NBA JAM PLAYER EDITOR Project /
+			////////////////////////////////////////////
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+!! WARNING: BETA, HACK, UGLY AND MOST LIKELY STUPID CODE RESIDES HERE !!
+!!					CONTINUE AT YOUR OWN RISK	                 	  !!
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!	
+			
+This repository contains two Visual Studio 2010 C# Projects:
+
+1. NBAJAM REMIXER - The player editor program itself
+2. nbajamTextBox - A custom control that draws text with the NBA JAM font
+
+-dext3r
+
+
