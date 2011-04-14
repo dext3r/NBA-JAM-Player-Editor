@@ -15,17 +15,17 @@ namespace nbajamTextBox
         //font definition?
         //bit arrays?
         //palette definition?
-        private int tile_width = 1;                                                     // Width of the control in 8px*8px tiles
-        private int tile_height = 1;                                                    // Height of the control in 8px*8px tiles
-        private int scale_factor = 1;                                                   // Use the scale factor to maintain the control's physical size
+        private int tile_width= 12;                                                     // Width of the control in 8px*8px tiles
+        private int tile_height = 3;                                                    // Height of the control in 8px*8px tiles
+        private int scale_factor = 3;                                                   // Use the scale factor to maintain the control's physical size
         //private int fontColor = 1;                                                    // Color to use from the palette
-        private String internal_text = "DEMO";                                          // The text to display on the control  
+        private String internal_text = "TEST!";                                          // The text to display on the control  
         private System.Drawing.Color[] colorpalette = new System.Drawing.Color[16];     // A general Color palette
         fontTile[] letters = new fontTile[60];                                          // Object to hold the font data/color
         private Bitmap displayBitmap;                                                   // What the user sees on the control
         private Bitmap[] tiles;                                                         // create array of tiles based on known number of required tiles
         private int[,] backArray;                                                       // An array to hold raw pixel data (Need to optimise - use something instead of int...) 
-        private byte[][] tiletest;              //i have no idea??? 
+        
 
         //Methods
         //Get tile?
@@ -95,32 +95,130 @@ namespace nbajamTextBox
             InitializePalette();
             InitializeFont();
 
-            int z;
-            int f = 0;
-            int[] textname= new int[internal_text.Length];
+                        scale_factor = ScaleFactor;
+                        tile_width = TilesWide;                                                 
+            
+                       tile_height = TilesHigh; 
+                       int z;
+                       int f = 0;
+                       int[] textname= new int[internal_text.Length];
+                       int total_tiles = tile_height * tile_width;
+                       int text_size = 0;
 
-            byte[][] tiletest = new byte[tile_width*tile_height][];
-            // Define pixel array based on number of pixels actually needed
-            backArray = new int[8*tile_width, 8*tile_height];
-            // Create new tiles based on amount needed
-            tiles = new Bitmap[tile_width * tile_height];
-            // Initialize each tile in the array to the proper size based on the scale factor
-            for(int i=0;i<(tile_width * tile_height);i++)
-            {
-                tiles[i] = new Bitmap(scale_factor*tile_width, scale_factor*tile_height);
-                tiletest[i] = new byte[64];
-            }
+                       displayBitmap = new Bitmap(8*scale_factor*tile_height, 8*scale_factor*tile_height);
 
-            foreach (char c in internal_text)
-            {
-                z  = (int)(c - 32); //65 = A
-                //this offsets the array for searching
-                //       Console.WriteLine(Convert.ToInt16(z).ToString());
-                textname[f] = z;
-                f++;
-            }
+                       byte[][] tiletest = new byte[tile_width*tile_height][];
+                       // ^^ some kind of array that holds tile info...not sure why actually needed
+
+                       // Define pixel array based on number of pixels actually needed
+                       backArray = new int[8*tile_width, 8*tile_height];
+                       // Create new tiles based on amount needed
+                       tiles = new Bitmap[tile_width * tile_height];
+            
+                       // Initialize each tile in the array to the proper size based on the scale factor
+                         for(int i=0;i<(total_tiles);i++)
+                        {
+                            tiles[i] = new Bitmap(scale_factor*tile_width, scale_factor*tile_height);
+                            tiletest[i] = new byte[64];
+                        }
+
+                      //fill array "textname" with offset adjusted character values
+                        foreach (char c in internal_text)
+                        {
+                            z  = (c - 32); //65 = A
+                            textname[f] = z;
+                            f++;
+                        }
+
+                        //get the total width of the text
+                        foreach (int fu in textname)
+                        {
+                            text_size = text_size + letters[fu].Width;
+                        }
+
+                        //Center Justify
+                        //text_size = (tile_width*8 - (text_size)) / 2;
+            
+                        //Starting position in the the bitmap
+                        //locationx = text_size;
+                        //locationy = 7;
+                        int locationx = 0;
+                        int locationy = 0;
+
+                        //copy each letter into the background array
+                        foreach (int fu in textname)
+                        {
+                            for (int y = 0; y < letters[fu].Height; y++)
+                            {
+                                for (int x = 0; x < letters[fu].Width; x++)
+                                {
+                                    if (locationx + x < (8*tile_width))
+                                        backArray[locationx + x, locationy + y] = letters[fu].getPixel(x, y);
+                                }
+                            }
+                            //increase the x location after the letter is copied
+                            locationx = locationx + letters[fu].Width;
+                        }
+
+                        int rodcounter = 0;
+
+                        //get an individual tile from a background array
+                        for (int q = 0; q < (8*tile_height); q = q + 8)
+                        {
+                            for (int v = 0; v < (8*tile_width); v = v + 8)
+                            {
+                                //getTileFromArray returns a 64 byte array
+                                tiletest[rodcounter] = getTileFromArray(backArray, v, q);
+                                rodcounter++;
+                            }
+                        }
+
+                        for (int s = 0; s < total_tiles; s++)
+                        {
+
+                            // tiletest[s] = getTileFromArray(backArray, 0, 0); 
+                            tiles[s] = tile2bitmap(tiletest[s], colorpalette,scale_factor *8 , scale_factor*8);
+                        }
+                        int countur = 0;
+
+                        Rectangle rect = new Rectangle(0, 0, 8 * scale_factor, 8 * scale_factor);
+                        Bitmap temps = displayBitmap;
+                        Bitmap bmap = (Bitmap)temps.Clone();
+                        Graphics gr = Graphics.FromImage(bmap);
+
+                        for (int i = 0; i < 2; i++)
+                        {
+                            for (int j = 0; j < 6; j++)
+                            {
+                                rect.X = j * 8*scale_factor;
+                                rect.Y = i * 8*scale_factor;
+                                //Console.WriteLine(j.ToString() + "," + i.ToString() + "[" + tilecounter.ToString() + "]");
+                                // tiles[countur].RotateFlip(RotateFlipType.RotateNoneFlipX);
+
+                                gr.DrawImage(tiles[countur], rect);
+
+                                countur++;
+                            }
+                        }
+
+                        displayBitmap = (Bitmap)bmap.Clone();
+
+                        this.Image = displayBitmap;
+                       // nbajamTextBox1.Image = nametagBitmap;
+
+                        for (int q = 0; q < 16; q++)
+                        {
+                            for (int v = 0; v < 48; v++)
+                            {
+                              //  backArray2[v, q] = backArray[v, q]; //just copies this to a global variable to use in the save prodcedure. stupid as hell. 
+                                backArray[v, q] = 0; //clears background array. 
+
+                            }
+                        }
+
+
         }
-
+        
         private void InitializeFont()
         {
             //Define height and width for each letter
@@ -1370,6 +1468,50 @@ letters[0].SetPixel(3, 0, 0);
             colorpalette[14] = System.Drawing.Color.FromArgb(192, 192, 192);
             colorpalette[15] = System.Drawing.Color.FromArgb(152, 152, 152);
 
+        }
+        private byte[] getTileFromArray(int[,] backgroundArray, int startx, int starty)
+        {
+            byte[] tile = new byte[64];
+            int counter = 0;
+
+            for (int i = 0; i < 8; i++)
+            {
+                for (int j = 0; j < 8; j++)
+                {
+                    tile[counter] = (byte)backgroundArray[startx + j, starty + i];
+                    counter++;
+                }
+            }
+
+            return tile;
+        }
+        private Bitmap tile2bitmap(byte[] tile_data, Color[] palette, int tile_size_X, int tile_size_Y)
+        {
+            //tile_size_X,tile_size_Y are tile sizes generated from size of the pictureBox
+
+            int counter = 0;
+            int pixelX = tile_size_X / 8;
+            int pixelY = tile_size_Y / 8;
+
+            Bitmap tilebitmap = new Bitmap(tile_size_X, tile_size_Y);
+
+            //adjust pixel size based on bitmap size. 
+            for (int y = 0; y < 8; y++) //8 here is the original tile height
+            {
+                for (int x = 0; x < 8; x++) //8 here is the original tile width
+                {
+                    for (int q = 0; q < pixelX; q++)
+                    {
+                        tilebitmap.SetPixel((x * (pixelX)) + q, (y * pixelY), palette[tile_data[counter]]);
+                        for (int r = 0; r < pixelY; r++)
+                        {
+                            tilebitmap.SetPixel((x * (pixelX)) + q, (y * pixelY) + r, palette[tile_data[counter]]);
+                        }
+                    }
+                    counter++;
+                }
+            }
+            return tilebitmap;
         }
     }
 

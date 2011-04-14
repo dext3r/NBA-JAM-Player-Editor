@@ -1571,8 +1571,6 @@ letters[0].SetPixel(3, 0, 0);
             Bitmap nametagBitmap = new Bitmap(nametag_corrected_width * Constants.num_nametag_tilesX, nametag_corrected_width * Constants.num_nametag_tilesY);
             Bitmap[] tiles = new Bitmap[nametag_total_tiles]; //create array of tiles based on known number of required tiles
 
-
-            
             for (int i = 0; i < 12; i++)
             {
                 //each tile has to be scaled based on the parent picturebox size...
@@ -1731,11 +1729,11 @@ letters[0].SetPixel(3, 0, 0);
         }
 
 
-        private Bitmap tile2bitmap(byte[] tile_data, Color[] palette, int tile_size_X, int tile_size_Y)
+        private Bitmap  tile2bitmap(byte[] tile_data, Color[] palette, int tile_size_X, int tile_size_Y)
         {
             //tile_size_X,tile_size_Y are tile sizes generated from size of the pictureBox
 
-            int counter =0 ;
+            int counter = 0 ;
             int pixelX = tile_size_X / 8;
             int pixelY = tile_size_Y / 8;
 
@@ -2092,7 +2090,7 @@ letters[0].SetPixel(3, 0, 0);
             nametagBitmap = (Bitmap)bmap.Clone();
 
             pictureBox4.Image = nametagBitmap;
-            nbajamTextBox1.Image = nametagBitmap;
+          //  nbajamTextBox1.Image = nametagBitmap;
 
             for (int q = 0; q < 16; q++)
             {
@@ -2293,6 +2291,14 @@ letters[0].SetPixel(3, 0, 0);
         private void nbajamTextBox1_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void button12_Click(object sender, EventArgs e)
+        {
+            //pictureBox4.BackColor = System.Drawing.Color.FromArgb(255, 128, 0, 128); 
+            //nbajamTextBox1.Text = "SPAGET!";
+            //nbajamTextBox1.Invalidate();
+            nbajamTextBox1.BackColor = System.Drawing.Color.FromArgb(255, 128, 0, 128); 
         }
 
 
