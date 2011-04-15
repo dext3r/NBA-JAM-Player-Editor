@@ -81,14 +81,20 @@
             this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.label18 = new System.Windows.Forms.Label();
             this.button12 = new System.Windows.Forms.Button();
+            this.nbajamTextBox3 = new nbajamTextBox.nbajamTextBox();
+            this.nbajamTextBox2 = new nbajamTextBox.nbajamTextBox();
             this.nbajamTextBox1 = new nbajamTextBox.nbajamTextBox();
+            this.pictureBox5 = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).BeginInit();
             this.menuStrip1.SuspendLayout();
             this.statusStrip1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.nbajamTextBox3)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nbajamTextBox2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nbajamTextBox1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).BeginInit();
             this.SuspendLayout();
             // 
             // button1
@@ -482,7 +488,7 @@
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Padding = new System.Windows.Forms.Padding(8, 2, 0, 2);
-            this.menuStrip1.Size = new System.Drawing.Size(543, 28);
+            this.menuStrip1.Size = new System.Drawing.Size(593, 28);
             this.menuStrip1.TabIndex = 38;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -548,7 +554,7 @@
             this.statusStrip1.Location = new System.Drawing.Point(0, 691);
             this.statusStrip1.Name = "statusStrip1";
             this.statusStrip1.Padding = new System.Windows.Forms.Padding(1, 0, 19, 0);
-            this.statusStrip1.Size = new System.Drawing.Size(543, 22);
+            this.statusStrip1.Size = new System.Drawing.Size(593, 22);
             this.statusStrip1.SizingGrip = false;
             this.statusStrip1.TabIndex = 39;
             this.statusStrip1.Text = "statusStrip1";
@@ -562,7 +568,7 @@
             // toolStripStatusLabel2
             // 
             this.toolStripStatusLabel2.Name = "toolStripStatusLabel2";
-            this.toolStripStatusLabel2.Size = new System.Drawing.Size(523, 17);
+            this.toolStripStatusLabel2.Size = new System.Drawing.Size(573, 17);
             this.toolStripStatusLabel2.Spring = true;
             // 
             // toolStripStatusLabel3
@@ -593,35 +599,74 @@
             // 
             // button12
             // 
-            this.button12.Location = new System.Drawing.Point(300, 82);
+            this.button12.Location = new System.Drawing.Point(389, 174);
             this.button12.Name = "button12";
-            this.button12.Size = new System.Drawing.Size(75, 23);
+            this.button12.Size = new System.Drawing.Size(106, 23);
             this.button12.TabIndex = 43;
-            this.button12.Text = "button12";
+            this.button12.Text = "Spook Yo\'self";
             this.button12.UseVisualStyleBackColor = true;
             this.button12.Click += new System.EventHandler(this.button12_Click);
+            // 
+            // nbajamTextBox3
+            // 
+            this.nbajamTextBox3.BackColor = System.Drawing.Color.Purple;
+            this.nbajamTextBox3.Image = ((System.Drawing.Image)(resources.GetObject("nbajamTextBox3.Image")));
+            this.nbajamTextBox3.Location = new System.Drawing.Point(96, 128);
+            this.nbajamTextBox3.Name = "nbajamTextBox3";
+            this.nbajamTextBox3.ScaleFactor = 2;
+            this.nbajamTextBox3.Size = new System.Drawing.Size(400, 16);
+            this.nbajamTextBox3.TabIndex = 45;
+            this.nbajamTextBox3.TabStop = false;
+            this.nbajamTextBox3.Text = "LEET GREETS TO MATTRIZZLE AND THE STARVINGRUSSIAN";
+            this.nbajamTextBox3.TilesHigh = 1;
+            this.nbajamTextBox3.TilesWide = 25;
+            // 
+            // nbajamTextBox2
+            // 
+            this.nbajamTextBox2.BackColor = System.Drawing.Color.Purple;
+            this.nbajamTextBox2.Image = ((System.Drawing.Image)(resources.GetObject("nbajamTextBox2.Image")));
+            this.nbajamTextBox2.Location = new System.Drawing.Point(128, 50);
+            this.nbajamTextBox2.Name = "nbajamTextBox2";
+            this.nbajamTextBox2.ScaleFactor = 3;
+            this.nbajamTextBox2.Size = new System.Drawing.Size(336, 24);
+            this.nbajamTextBox2.TabIndex = 44;
+            this.nbajamTextBox2.TabStop = false;
+            this.nbajamTextBox2.Text = "DEXTER PRESENTS";
+            this.nbajamTextBox2.TilesHigh = 1;
+            this.nbajamTextBox2.TilesWide = 14;
             // 
             // nbajamTextBox1
             // 
             this.nbajamTextBox1.BackColor = System.Drawing.Color.Purple;
             this.nbajamTextBox1.Image = ((System.Drawing.Image)(resources.GetObject("nbajamTextBox1.Image")));
-            this.nbajamTextBox1.Location = new System.Drawing.Point(45, 82);
+            this.nbajamTextBox1.Location = new System.Drawing.Point(16, 81);
             this.nbajamTextBox1.Margin = new System.Windows.Forms.Padding(4);
             this.nbajamTextBox1.Name = "nbajamTextBox1";
-            this.nbajamTextBox1.ScaleFactor = 4;
-            this.nbajamTextBox1.Size = new System.Drawing.Size(160, 32);
+            this.nbajamTextBox1.ScaleFactor = 5;
+            this.nbajamTextBox1.Size = new System.Drawing.Size(560, 40);
             this.nbajamTextBox1.TabIndex = 42;
             this.nbajamTextBox1.TabStop = false;
-            this.nbajamTextBox1.Text = "OK";
+            this.nbajamTextBox1.Text = "NBA JAM REMIXER";
             this.nbajamTextBox1.TilesHigh = 1;
-            this.nbajamTextBox1.TilesWide = 5;
+            this.nbajamTextBox1.TilesWide = 14;
             this.nbajamTextBox1.Click += new System.EventHandler(this.nbajamTextBox1_Click);
+            // 
+            // pictureBox5
+            // 
+            this.pictureBox5.BackColor = System.Drawing.Color.Purple;
+            this.pictureBox5.Location = new System.Drawing.Point(0, 37);
+            this.pictureBox5.Name = "pictureBox5";
+            this.pictureBox5.Size = new System.Drawing.Size(593, 118);
+            this.pictureBox5.TabIndex = 46;
+            this.pictureBox5.TabStop = false;
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(543, 713);
+            this.ClientSize = new System.Drawing.Size(593, 713);
+            this.Controls.Add(this.nbajamTextBox3);
+            this.Controls.Add(this.nbajamTextBox2);
             this.Controls.Add(this.button12);
             this.Controls.Add(this.nbajamTextBox1);
             this.Controls.Add(this.label18);
@@ -665,6 +710,7 @@
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.menuStrip1);
+            this.Controls.Add(this.pictureBox5);
             this.MainMenuStrip = this.menuStrip1;
             this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "Form1";
@@ -678,7 +724,10 @@
             this.menuStrip1.PerformLayout();
             this.statusStrip1.ResumeLayout(false);
             this.statusStrip1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.nbajamTextBox3)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nbajamTextBox2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nbajamTextBox1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -737,8 +786,11 @@
         private System.Windows.Forms.ToolStripMenuItem createIPSToolStripMenuItem;
         private System.Windows.Forms.ComboBox comboBox1;
         private System.Windows.Forms.Label label18;
-        private nbajamTextBox.nbajamTextBox nbajamTextBox1;
         private System.Windows.Forms.Button button12;
+        private nbajamTextBox.nbajamTextBox nbajamTextBox1;
+        private nbajamTextBox.nbajamTextBox nbajamTextBox2;
+        private nbajamTextBox.nbajamTextBox nbajamTextBox3;
+        private System.Windows.Forms.PictureBox pictureBox5;
     }
 }
 

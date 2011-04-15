@@ -77,7 +77,7 @@ namespace nbajamTextBox
         }
 
         [Browsable(true)]
-     //   [DefaultValue("JAM")]
+        [DefaultValue("JAM")]
         public override String Text
         {
             // Retrieves the value of the private variable internal_text
