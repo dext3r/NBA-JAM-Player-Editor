@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.button1 = new System.Windows.Forms.Button();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
@@ -79,8 +80,8 @@
             this.toolStripStatusLabel3 = new System.Windows.Forms.ToolStripStatusLabel();
             this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.label18 = new System.Windows.Forms.Label();
-            this.nbajamTextBox1 = new nbajamTextBox.nbajamTextBox();
             this.button12 = new System.Windows.Forms.Button();
+            this.nbajamTextBox1 = new nbajamTextBox.nbajamTextBox();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
@@ -590,21 +591,6 @@
             this.label18.TabIndex = 41;
             this.label18.Text = "Player";
             // 
-            // nbajamTextBox1
-            // 
-            this.nbajamTextBox1.BackColor = System.Drawing.SystemColors.Control;
-            this.nbajamTextBox1.Location = new System.Drawing.Point(300, 199);
-            this.nbajamTextBox1.Margin = new System.Windows.Forms.Padding(4);
-            this.nbajamTextBox1.Name = "nbajamTextBox1";
-            this.nbajamTextBox1.ScaleFactor = 3;
-            this.nbajamTextBox1.Size = new System.Drawing.Size(144, 48);
-            this.nbajamTextBox1.TabIndex = 42;
-            this.nbajamTextBox1.TabStop = false;
-            this.nbajamTextBox1.Text = "DEMO";
-            this.nbajamTextBox1.TilesHigh = 2;
-            this.nbajamTextBox1.TilesWide = 6;
-            this.nbajamTextBox1.Click += new System.EventHandler(this.nbajamTextBox1_Click);
-            // 
             // button12
             // 
             this.button12.Location = new System.Drawing.Point(344, 80);
@@ -614,6 +600,22 @@
             this.button12.Text = "button12";
             this.button12.UseVisualStyleBackColor = true;
             this.button12.Click += new System.EventHandler(this.button12_Click);
+            // 
+            // nbajamTextBox1
+            // 
+            this.nbajamTextBox1.BackColor = System.Drawing.SystemColors.Control;
+            this.nbajamTextBox1.Image = ((System.Drawing.Image)(resources.GetObject("nbajamTextBox1.Image")));
+            this.nbajamTextBox1.Location = new System.Drawing.Point(327, 170);
+            this.nbajamTextBox1.Margin = new System.Windows.Forms.Padding(4);
+            this.nbajamTextBox1.Name = "nbajamTextBox1";
+            this.nbajamTextBox1.ScaleFactor = 3;
+            this.nbajamTextBox1.Size = new System.Drawing.Size(109, 111);
+            this.nbajamTextBox1.TabIndex = 42;
+            this.nbajamTextBox1.TabStop = false;
+            this.nbajamTextBox1.Text = "DEMO";
+            this.nbajamTextBox1.TilesHigh = 2;
+            this.nbajamTextBox1.TilesWide = 6;
+            this.nbajamTextBox1.Click += new System.EventHandler(this.nbajamTextBox1_Click);
             // 
             // Form1
             // 

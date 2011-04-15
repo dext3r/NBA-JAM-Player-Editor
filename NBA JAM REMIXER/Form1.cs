@@ -2298,7 +2298,7 @@ letters[0].SetPixel(3, 0, 0);
             //pictureBox4.BackColor = System.Drawing.Color.FromArgb(255, 128, 0, 128); 
             //nbajamTextBox1.Text = "SPAGET!";
             //nbajamTextBox1.Invalidate();
-            nbajamTextBox1.BackColor = System.Drawing.Color.FromArgb(255, 128, 0, 128); 
+            nbajamTextBox1.BackColor = System.Drawing.Color.FromArgb(255, 128, 0, 0); 
         }
 
 
