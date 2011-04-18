@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.button1 = new System.Windows.Forms.Button();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
@@ -83,6 +84,7 @@
             this.pictureBox5 = new System.Windows.Forms.PictureBox();
             this.pictureBox6 = new System.Windows.Forms.PictureBox();
             this.pictureBox4 = new System.Windows.Forms.PictureBox();
+            this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.nbajamTextBox19 = new nbajamTextBox.nbajamTextBox();
             this.nbajamTextBox18 = new nbajamTextBox.nbajamTextBox();
             this.nbajamTextBox17 = new nbajamTextBox.nbajamTextBox();
@@ -133,9 +135,10 @@
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(230, 187);
+            this.button1.Location = new System.Drawing.Point(307, 230);
+            this.button1.Margin = new System.Windows.Forms.Padding(4);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(169, 23);
+            this.button1.Size = new System.Drawing.Size(225, 28);
             this.button1.TabIndex = 0;
             this.button1.Text = "Load Portrait";
             this.button1.UseVisualStyleBackColor = true;
@@ -144,9 +147,10 @@
             // pictureBox1
             // 
             this.pictureBox1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.pictureBox1.Location = new System.Drawing.Point(59, 202);
+            this.pictureBox1.Location = new System.Drawing.Point(79, 249);
+            this.pictureBox1.Margin = new System.Windows.Forms.Padding(4);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(72, 81);
+            this.pictureBox1.Size = new System.Drawing.Size(96, 100);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox1.TabIndex = 1;
             this.pictureBox1.TabStop = false;
@@ -154,24 +158,27 @@
             // 
             // pictureBox2
             // 
-            this.pictureBox2.Location = new System.Drawing.Point(32, 169);
+            this.pictureBox2.Location = new System.Drawing.Point(43, 208);
+            this.pictureBox2.Margin = new System.Windows.Forms.Padding(4);
             this.pictureBox2.Name = "pictureBox2";
-            this.pictureBox2.Size = new System.Drawing.Size(128, 28);
+            this.pictureBox2.Size = new System.Drawing.Size(171, 34);
             this.pictureBox2.TabIndex = 2;
             this.pictureBox2.TabStop = false;
             // 
             // textBox1
             // 
-            this.textBox1.Location = new System.Drawing.Point(230, 161);
+            this.textBox1.Location = new System.Drawing.Point(307, 198);
+            this.textBox1.Margin = new System.Windows.Forms.Padding(4);
             this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(87, 20);
+            this.textBox1.Size = new System.Drawing.Size(115, 22);
             this.textBox1.TabIndex = 3;
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(364, 158);
+            this.button2.Location = new System.Drawing.Point(485, 194);
+            this.button2.Margin = new System.Windows.Forms.Padding(4);
             this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(35, 23);
+            this.button2.Size = new System.Drawing.Size(47, 28);
             this.button2.TabIndex = 4;
             this.button2.Text = "\\/";
             this.button2.UseVisualStyleBackColor = true;
@@ -179,9 +186,10 @@
             // 
             // button3
             // 
-            this.button3.Location = new System.Drawing.Point(323, 158);
+            this.button3.Location = new System.Drawing.Point(431, 194);
+            this.button3.Margin = new System.Windows.Forms.Padding(4);
             this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(35, 23);
+            this.button3.Size = new System.Drawing.Size(47, 28);
             this.button3.TabIndex = 5;
             this.button3.Text = "/\\";
             this.button3.UseVisualStyleBackColor = true;
@@ -189,9 +197,10 @@
             // 
             // button4
             // 
-            this.button4.Location = new System.Drawing.Point(230, 330);
+            this.button4.Location = new System.Drawing.Point(307, 406);
+            this.button4.Margin = new System.Windows.Forms.Padding(4);
             this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(87, 23);
+            this.button4.Size = new System.Drawing.Size(116, 28);
             this.button4.TabIndex = 6;
             this.button4.Text = "Load Nametag";
             this.button4.UseVisualStyleBackColor = true;
@@ -200,24 +209,27 @@
             // pictureBox3
             // 
             this.pictureBox3.BackColor = System.Drawing.SystemColors.Control;
-            this.pictureBox3.Location = new System.Drawing.Point(47, 289);
+            this.pictureBox3.Location = new System.Drawing.Point(63, 356);
+            this.pictureBox3.Margin = new System.Windows.Forms.Padding(4);
             this.pictureBox3.Name = "pictureBox3";
-            this.pictureBox3.Size = new System.Drawing.Size(96, 32);
+            this.pictureBox3.Size = new System.Drawing.Size(128, 39);
             this.pictureBox3.TabIndex = 7;
             this.pictureBox3.TabStop = false;
             // 
             // textBox2
             // 
-            this.textBox2.Location = new System.Drawing.Point(230, 304);
+            this.textBox2.Location = new System.Drawing.Point(307, 374);
+            this.textBox2.Margin = new System.Windows.Forms.Padding(4);
             this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(87, 20);
+            this.textBox2.Size = new System.Drawing.Size(115, 22);
             this.textBox2.TabIndex = 8;
             // 
             // button5
             // 
-            this.button5.Location = new System.Drawing.Point(364, 301);
+            this.button5.Location = new System.Drawing.Point(485, 370);
+            this.button5.Margin = new System.Windows.Forms.Padding(4);
             this.button5.Name = "button5";
-            this.button5.Size = new System.Drawing.Size(35, 23);
+            this.button5.Size = new System.Drawing.Size(47, 28);
             this.button5.TabIndex = 9;
             this.button5.Text = "\\/";
             this.button5.UseVisualStyleBackColor = true;
@@ -225,9 +237,10 @@
             // 
             // button6
             // 
-            this.button6.Location = new System.Drawing.Point(323, 301);
+            this.button6.Location = new System.Drawing.Point(431, 370);
+            this.button6.Margin = new System.Windows.Forms.Padding(4);
             this.button6.Name = "button6";
-            this.button6.Size = new System.Drawing.Size(35, 23);
+            this.button6.Size = new System.Drawing.Size(47, 28);
             this.button6.TabIndex = 10;
             this.button6.Text = "/\\";
             this.button6.UseVisualStyleBackColor = true;
@@ -236,9 +249,10 @@
             // checkBox2
             // 
             this.checkBox2.AutoSize = true;
-            this.checkBox2.Location = new System.Drawing.Point(331, 334);
+            this.checkBox2.Location = new System.Drawing.Point(441, 411);
+            this.checkBox2.Margin = new System.Windows.Forms.Padding(4);
             this.checkBox2.Name = "checkBox2";
-            this.checkBox2.Size = new System.Drawing.Size(68, 17);
+            this.checkBox2.Size = new System.Drawing.Size(87, 21);
             this.checkBox2.TabIndex = 12;
             this.checkBox2.Text = "Color BG";
             this.checkBox2.UseVisualStyleBackColor = true;
@@ -246,17 +260,19 @@
             // 
             // textBox3
             // 
-            this.textBox3.Location = new System.Drawing.Point(414, 234);
+            this.textBox3.Location = new System.Drawing.Point(552, 288);
+            this.textBox3.Margin = new System.Windows.Forms.Padding(4);
             this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(87, 20);
+            this.textBox3.Size = new System.Drawing.Size(115, 22);
             this.textBox3.TabIndex = 13;
             this.textBox3.Text = "2079291";
             // 
             // button7
             // 
-            this.button7.Location = new System.Drawing.Point(507, 231);
+            this.button7.Location = new System.Drawing.Point(676, 284);
+            this.button7.Margin = new System.Windows.Forms.Padding(4);
             this.button7.Name = "button7";
-            this.button7.Size = new System.Drawing.Size(35, 23);
+            this.button7.Size = new System.Drawing.Size(47, 28);
             this.button7.TabIndex = 14;
             this.button7.Text = "/\\";
             this.button7.UseVisualStyleBackColor = true;
@@ -264,9 +280,10 @@
             // 
             // button8
             // 
-            this.button8.Location = new System.Drawing.Point(548, 231);
+            this.button8.Location = new System.Drawing.Point(731, 284);
+            this.button8.Margin = new System.Windows.Forms.Padding(4);
             this.button8.Name = "button8";
-            this.button8.Size = new System.Drawing.Size(35, 23);
+            this.button8.Size = new System.Drawing.Size(47, 28);
             this.button8.TabIndex = 15;
             this.button8.Text = "\\/";
             this.button8.UseVisualStyleBackColor = true;
@@ -274,9 +291,10 @@
             // 
             // button9
             // 
-            this.button9.Location = new System.Drawing.Point(414, 260);
+            this.button9.Location = new System.Drawing.Point(552, 320);
+            this.button9.Margin = new System.Windows.Forms.Padding(4);
             this.button9.Name = "button9";
-            this.button9.Size = new System.Drawing.Size(169, 23);
+            this.button9.Size = new System.Drawing.Size(225, 28);
             this.button9.TabIndex = 16;
             this.button9.Text = "Load Stats";
             this.button9.UseVisualStyleBackColor = true;
@@ -285,9 +303,10 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(417, 158);
+            this.label1.Location = new System.Drawing.Point(556, 194);
+            this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(41, 13);
+            this.label1.Size = new System.Drawing.Size(53, 17);
             this.label1.TabIndex = 17;
             this.label1.Text = "Speed:";
             this.label1.Visible = false;
@@ -295,9 +314,10 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(417, 171);
+            this.label2.Location = new System.Drawing.Point(556, 210);
+            this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(30, 13);
+            this.label2.Size = new System.Drawing.Size(39, 17);
             this.label2.TabIndex = 18;
             this.label2.Text = "3pts:";
             this.label2.Visible = false;
@@ -305,9 +325,10 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(417, 184);
+            this.label3.Location = new System.Drawing.Point(556, 226);
+            this.label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(36, 13);
+            this.label3.Size = new System.Drawing.Size(45, 17);
             this.label3.TabIndex = 19;
             this.label3.Text = "Dunk:";
             this.label3.Visible = false;
@@ -315,9 +336,10 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(417, 197);
+            this.label4.Location = new System.Drawing.Point(556, 242);
+            this.label4.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(33, 13);
+            this.label4.Size = new System.Drawing.Size(43, 17);
             this.label4.TabIndex = 20;
             this.label4.Text = "Pass:";
             this.label4.Visible = false;
@@ -325,9 +347,10 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(496, 158);
+            this.label5.Location = new System.Drawing.Point(661, 194);
+            this.label5.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(40, 13);
+            this.label5.Size = new System.Drawing.Size(51, 17);
             this.label5.TabIndex = 21;
             this.label5.Text = "Power:";
             this.label5.Visible = false;
@@ -335,9 +358,10 @@
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(496, 171);
+            this.label6.Location = new System.Drawing.Point(661, 210);
+            this.label6.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(34, 13);
+            this.label6.Size = new System.Drawing.Size(44, 17);
             this.label6.TabIndex = 22;
             this.label6.Text = "Steal:";
             this.label6.Visible = false;
@@ -345,9 +369,10 @@
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(496, 184);
+            this.label7.Location = new System.Drawing.Point(661, 226);
+            this.label7.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(37, 13);
+            this.label7.Size = new System.Drawing.Size(46, 17);
             this.label7.TabIndex = 23;
             this.label7.Text = "Block:";
             this.label7.Visible = false;
@@ -355,9 +380,10 @@
             // label8
             // 
             this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(496, 197);
+            this.label8.Location = new System.Drawing.Point(661, 242);
+            this.label8.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(40, 13);
+            this.label8.Size = new System.Drawing.Size(51, 17);
             this.label8.TabIndex = 24;
             this.label8.Text = "Clutch:";
             this.label8.Visible = false;
@@ -365,9 +391,10 @@
             // label9
             // 
             this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(465, 159);
+            this.label9.Location = new System.Drawing.Point(620, 196);
+            this.label9.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(25, 13);
+            this.label9.Size = new System.Drawing.Size(32, 17);
             this.label9.TabIndex = 25;
             this.label9.Text = "???";
             this.label9.Visible = false;
@@ -375,9 +402,10 @@
             // label10
             // 
             this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(465, 171);
+            this.label10.Location = new System.Drawing.Point(620, 210);
+            this.label10.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(25, 13);
+            this.label10.Size = new System.Drawing.Size(32, 17);
             this.label10.TabIndex = 26;
             this.label10.Text = "???";
             this.label10.Visible = false;
@@ -385,9 +413,10 @@
             // label11
             // 
             this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(465, 184);
+            this.label11.Location = new System.Drawing.Point(620, 226);
+            this.label11.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(25, 13);
+            this.label11.Size = new System.Drawing.Size(32, 17);
             this.label11.TabIndex = 27;
             this.label11.Text = "???";
             this.label11.Visible = false;
@@ -395,9 +424,10 @@
             // label12
             // 
             this.label12.AutoSize = true;
-            this.label12.Location = new System.Drawing.Point(465, 197);
+            this.label12.Location = new System.Drawing.Point(620, 242);
+            this.label12.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(25, 13);
+            this.label12.Size = new System.Drawing.Size(32, 17);
             this.label12.TabIndex = 28;
             this.label12.Text = "???";
             this.label12.Visible = false;
@@ -405,9 +435,10 @@
             // label13
             // 
             this.label13.AutoSize = true;
-            this.label13.Location = new System.Drawing.Point(543, 158);
+            this.label13.Location = new System.Drawing.Point(724, 194);
+            this.label13.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(25, 13);
+            this.label13.Size = new System.Drawing.Size(32, 17);
             this.label13.TabIndex = 29;
             this.label13.Text = "???";
             this.label13.Visible = false;
@@ -415,9 +446,10 @@
             // label14
             // 
             this.label14.AutoSize = true;
-            this.label14.Location = new System.Drawing.Point(543, 171);
+            this.label14.Location = new System.Drawing.Point(724, 210);
+            this.label14.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(25, 13);
+            this.label14.Size = new System.Drawing.Size(32, 17);
             this.label14.TabIndex = 30;
             this.label14.Text = "???";
             this.label14.Visible = false;
@@ -425,9 +457,10 @@
             // label15
             // 
             this.label15.AutoSize = true;
-            this.label15.Location = new System.Drawing.Point(543, 184);
+            this.label15.Location = new System.Drawing.Point(724, 226);
+            this.label15.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label15.Name = "label15";
-            this.label15.Size = new System.Drawing.Size(25, 13);
+            this.label15.Size = new System.Drawing.Size(32, 17);
             this.label15.TabIndex = 31;
             this.label15.Text = "???";
             this.label15.Visible = false;
@@ -435,9 +468,10 @@
             // label16
             // 
             this.label16.AutoSize = true;
-            this.label16.Location = new System.Drawing.Point(543, 197);
+            this.label16.Location = new System.Drawing.Point(724, 242);
+            this.label16.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label16.Name = "label16";
-            this.label16.Size = new System.Drawing.Size(25, 13);
+            this.label16.Size = new System.Drawing.Size(32, 17);
             this.label16.TabIndex = 32;
             this.label16.Text = "???";
             this.label16.Visible = false;
@@ -447,27 +481,30 @@
             // 
             this.textBox4.AcceptsTab = true;
             this.textBox4.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
-            this.textBox4.Location = new System.Drawing.Point(288, 359);
+            this.textBox4.Location = new System.Drawing.Point(384, 442);
+            this.textBox4.Margin = new System.Windows.Forms.Padding(4);
             this.textBox4.MaxLength = 12;
             this.textBox4.Name = "textBox4";
-            this.textBox4.Size = new System.Drawing.Size(100, 20);
+            this.textBox4.Size = new System.Drawing.Size(132, 22);
             this.textBox4.TabIndex = 33;
             this.textBox4.TextChanged += new System.EventHandler(this.textBox4_TextChanged);
             // 
             // label17
             // 
             this.label17.AutoSize = true;
-            this.label17.Location = new System.Drawing.Point(241, 362);
+            this.label17.Location = new System.Drawing.Point(321, 446);
+            this.label17.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label17.Name = "label17";
-            this.label17.Size = new System.Drawing.Size(38, 13);
+            this.label17.Size = new System.Drawing.Size(49, 17);
             this.label17.TabIndex = 34;
             this.label17.Text = "Name:";
             // 
             // button10
             // 
-            this.button10.Location = new System.Drawing.Point(230, 385);
+            this.button10.Location = new System.Drawing.Point(307, 474);
+            this.button10.Margin = new System.Windows.Forms.Padding(4);
             this.button10.Name = "button10";
-            this.button10.Size = new System.Drawing.Size(169, 23);
+            this.button10.Size = new System.Drawing.Size(225, 28);
             this.button10.TabIndex = 35;
             this.button10.Text = "Generate Nametag";
             this.button10.UseVisualStyleBackColor = true;
@@ -476,9 +513,10 @@
             // button11
             // 
             this.button11.Enabled = false;
-            this.button11.Location = new System.Drawing.Point(15, 599);
+            this.button11.Location = new System.Drawing.Point(20, 737);
+            this.button11.Margin = new System.Windows.Forms.Padding(4);
             this.button11.Name = "button11";
-            this.button11.Size = new System.Drawing.Size(169, 23);
+            this.button11.Size = new System.Drawing.Size(225, 28);
             this.button11.TabIndex = 37;
             this.button11.Text = "Save Nametag";
             this.button11.UseVisualStyleBackColor = true;
@@ -491,7 +529,8 @@
             this.helpToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(594, 24);
+            this.menuStrip1.Padding = new System.Windows.Forms.Padding(8, 2, 0, 2);
+            this.menuStrip1.Size = new System.Drawing.Size(803, 28);
             this.menuStrip1.TabIndex = 38;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -503,20 +542,20 @@
             this.createIPSToolStripMenuItem,
             this.exitToolStripMenuItem});
             this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
-            this.fileToolStripMenuItem.Size = new System.Drawing.Size(37, 20);
+            this.fileToolStripMenuItem.Size = new System.Drawing.Size(44, 24);
             this.fileToolStripMenuItem.Text = "&File";
             // 
             // openToolStripMenuItem
             // 
             this.openToolStripMenuItem.Name = "openToolStripMenuItem";
-            this.openToolStripMenuItem.Size = new System.Drawing.Size(149, 22);
+            this.openToolStripMenuItem.Size = new System.Drawing.Size(170, 24);
             this.openToolStripMenuItem.Text = "&Open File...";
             this.openToolStripMenuItem.Click += new System.EventHandler(this.openToolStripMenuItem_Click);
             // 
             // saveAsToolStripMenuItem
             // 
             this.saveAsToolStripMenuItem.Name = "saveAsToolStripMenuItem";
-            this.saveAsToolStripMenuItem.Size = new System.Drawing.Size(149, 22);
+            this.saveAsToolStripMenuItem.Size = new System.Drawing.Size(170, 24);
             this.saveAsToolStripMenuItem.Text = "Save As...";
             this.saveAsToolStripMenuItem.Click += new System.EventHandler(this.saveAsToolStripMenuItem_Click);
             // 
@@ -524,13 +563,13 @@
             // 
             this.createIPSToolStripMenuItem.Enabled = false;
             this.createIPSToolStripMenuItem.Name = "createIPSToolStripMenuItem";
-            this.createIPSToolStripMenuItem.Size = new System.Drawing.Size(149, 22);
+            this.createIPSToolStripMenuItem.Size = new System.Drawing.Size(170, 24);
             this.createIPSToolStripMenuItem.Text = "Export Patch...";
             // 
             // exitToolStripMenuItem
             // 
             this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
-            this.exitToolStripMenuItem.Size = new System.Drawing.Size(149, 22);
+            this.exitToolStripMenuItem.Size = new System.Drawing.Size(170, 24);
             this.exitToolStripMenuItem.Text = "E&xit";
             this.exitToolStripMenuItem.Click += new System.EventHandler(this.exitToolStripMenuItem_Click);
             // 
@@ -539,13 +578,13 @@
             this.helpToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.aboutToolStripMenuItem});
             this.helpToolStripMenuItem.Name = "helpToolStripMenuItem";
-            this.helpToolStripMenuItem.Size = new System.Drawing.Size(44, 20);
+            this.helpToolStripMenuItem.Size = new System.Drawing.Size(53, 24);
             this.helpToolStripMenuItem.Text = "Help";
             // 
             // aboutToolStripMenuItem
             // 
             this.aboutToolStripMenuItem.Name = "aboutToolStripMenuItem";
-            this.aboutToolStripMenuItem.Size = new System.Drawing.Size(107, 22);
+            this.aboutToolStripMenuItem.Size = new System.Drawing.Size(119, 24);
             this.aboutToolStripMenuItem.Text = "About";
             // 
             // statusStrip1
@@ -554,9 +593,10 @@
             this.toolStripStatusLabel1,
             this.toolStripStatusLabel2,
             this.toolStripStatusLabel3});
-            this.statusStrip1.Location = new System.Drawing.Point(0, 420);
+            this.statusStrip1.Location = new System.Drawing.Point(0, 604);
             this.statusStrip1.Name = "statusStrip1";
-            this.statusStrip1.Size = new System.Drawing.Size(594, 22);
+            this.statusStrip1.Padding = new System.Windows.Forms.Padding(1, 0, 19, 0);
+            this.statusStrip1.Size = new System.Drawing.Size(803, 22);
             this.statusStrip1.SizingGrip = false;
             this.statusStrip1.TabIndex = 39;
             this.statusStrip1.Text = "statusStrip1";
@@ -570,7 +610,7 @@
             // toolStripStatusLabel2
             // 
             this.toolStripStatusLabel2.Name = "toolStripStatusLabel2";
-            this.toolStripStatusLabel2.Size = new System.Drawing.Size(579, 17);
+            this.toolStripStatusLabel2.Size = new System.Drawing.Size(783, 17);
             this.toolStripStatusLabel2.Spring = true;
             // 
             // toolStripStatusLabel3
@@ -582,27 +622,29 @@
             // comboBox1
             // 
             this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(32, 141);
+            this.comboBox1.Location = new System.Drawing.Point(43, 174);
+            this.comboBox1.Margin = new System.Windows.Forms.Padding(4);
             this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(147, 21);
+            this.comboBox1.Size = new System.Drawing.Size(195, 24);
             this.comboBox1.TabIndex = 40;
             this.comboBox1.Text = "34 (Armstrong) ";
             // 
             // label18
             // 
             this.label18.AutoSize = true;
-            this.label18.Location = new System.Drawing.Point(32, 126);
+            this.label18.Location = new System.Drawing.Point(43, 155);
+            this.label18.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label18.Name = "label18";
-            this.label18.Size = new System.Drawing.Size(36, 13);
+            this.label18.Size = new System.Drawing.Size(48, 17);
             this.label18.TabIndex = 41;
             this.label18.Text = "Player";
             // 
             // button12
             // 
-            this.button12.Location = new System.Drawing.Point(319, 240);
-            this.button12.Margin = new System.Windows.Forms.Padding(2);
+            this.button12.Location = new System.Drawing.Point(425, 295);
+            this.button12.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.button12.Name = "button12";
-            this.button12.Size = new System.Drawing.Size(80, 19);
+            this.button12.Size = new System.Drawing.Size(107, 23);
             this.button12.TabIndex = 43;
             this.button12.Text = "Spook Yo\'self";
             this.button12.UseVisualStyleBackColor = true;
@@ -611,39 +653,46 @@
             // pictureBox5
             // 
             this.pictureBox5.BackColor = System.Drawing.Color.Purple;
-            this.pictureBox5.Location = new System.Drawing.Point(0, 30);
-            this.pictureBox5.Margin = new System.Windows.Forms.Padding(2);
+            this.pictureBox5.Location = new System.Drawing.Point(98, 47);
+            this.pictureBox5.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.pictureBox5.Name = "pictureBox5";
-            this.pictureBox5.Size = new System.Drawing.Size(594, 96);
+            this.pictureBox5.Size = new System.Drawing.Size(607, 78);
             this.pictureBox5.TabIndex = 46;
             this.pictureBox5.TabStop = false;
             // 
             // pictureBox6
             // 
             this.pictureBox6.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
-            this.pictureBox6.Location = new System.Drawing.Point(11, 326);
-            this.pictureBox6.Margin = new System.Windows.Forms.Padding(2);
+            this.pictureBox6.Location = new System.Drawing.Point(15, 401);
+            this.pictureBox6.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.pictureBox6.Name = "pictureBox6";
-            this.pictureBox6.Size = new System.Drawing.Size(180, 82);
+            this.pictureBox6.Size = new System.Drawing.Size(240, 101);
             this.pictureBox6.TabIndex = 49;
             this.pictureBox6.TabStop = false;
             // 
             // pictureBox4
             // 
             this.pictureBox4.BackColor = System.Drawing.SystemColors.Control;
-            this.pictureBox4.Location = new System.Drawing.Point(230, 240);
+            this.pictureBox4.Location = new System.Drawing.Point(307, 295);
+            this.pictureBox4.Margin = new System.Windows.Forms.Padding(4);
             this.pictureBox4.Name = "pictureBox4";
-            this.pictureBox4.Size = new System.Drawing.Size(48, 16);
+            this.pictureBox4.Size = new System.Drawing.Size(64, 20);
             this.pictureBox4.TabIndex = 36;
             this.pictureBox4.TabStop = false;
+            // 
+            // timer1
+            // 
+            this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
             // 
             // nbajamTextBox19
             // 
             this.nbajamTextBox19.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
-            this.nbajamTextBox19.FontColor = 3;
+            this.nbajamTextBox19.ClockForeColor = System.Drawing.Color.Empty;
+            this.nbajamTextBox19.FontColor = nbajamTextBox.nbajamTextBox.FontColorOptions.Pallete_0;
             this.nbajamTextBox19.FontNumber = 0;
             this.nbajamTextBox19.Image = ((System.Drawing.Image)(resources.GetObject("nbajamTextBox19.Image")));
-            this.nbajamTextBox19.Location = new System.Drawing.Point(175, 392);
+            this.nbajamTextBox19.Location = new System.Drawing.Point(233, 482);
+            this.nbajamTextBox19.Margin = new System.Windows.Forms.Padding(4);
             this.nbajamTextBox19.Name = "nbajamTextBox19";
             this.nbajamTextBox19.ScaleFactor = 2;
             this.nbajamTextBox19.Size = new System.Drawing.Size(16, 16);
@@ -656,10 +705,12 @@
             // nbajamTextBox18
             // 
             this.nbajamTextBox18.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
-            this.nbajamTextBox18.FontColor = 3;
+            this.nbajamTextBox18.ClockForeColor = System.Drawing.Color.Empty;
+            this.nbajamTextBox18.FontColor = nbajamTextBox.nbajamTextBox.FontColorOptions.Pallete_0;
             this.nbajamTextBox18.FontNumber = 0;
             this.nbajamTextBox18.Image = ((System.Drawing.Image)(resources.GetObject("nbajamTextBox18.Image")));
-            this.nbajamTextBox18.Location = new System.Drawing.Point(175, 370);
+            this.nbajamTextBox18.Location = new System.Drawing.Point(233, 455);
+            this.nbajamTextBox18.Margin = new System.Windows.Forms.Padding(4);
             this.nbajamTextBox18.Name = "nbajamTextBox18";
             this.nbajamTextBox18.ScaleFactor = 2;
             this.nbajamTextBox18.Size = new System.Drawing.Size(16, 16);
@@ -672,10 +723,12 @@
             // nbajamTextBox17
             // 
             this.nbajamTextBox17.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
-            this.nbajamTextBox17.FontColor = 3;
+            this.nbajamTextBox17.ClockForeColor = System.Drawing.Color.Empty;
+            this.nbajamTextBox17.FontColor = nbajamTextBox.nbajamTextBox.FontColorOptions.Pallete_0;
             this.nbajamTextBox17.FontNumber = 0;
             this.nbajamTextBox17.Image = ((System.Drawing.Image)(resources.GetObject("nbajamTextBox17.Image")));
-            this.nbajamTextBox17.Location = new System.Drawing.Point(175, 348);
+            this.nbajamTextBox17.Location = new System.Drawing.Point(233, 428);
+            this.nbajamTextBox17.Margin = new System.Windows.Forms.Padding(4);
             this.nbajamTextBox17.Name = "nbajamTextBox17";
             this.nbajamTextBox17.ScaleFactor = 2;
             this.nbajamTextBox17.Size = new System.Drawing.Size(16, 16);
@@ -688,10 +741,12 @@
             // nbajamTextBox16
             // 
             this.nbajamTextBox16.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
-            this.nbajamTextBox16.FontColor = 3;
+            this.nbajamTextBox16.ClockForeColor = System.Drawing.Color.Empty;
+            this.nbajamTextBox16.FontColor = nbajamTextBox.nbajamTextBox.FontColorOptions.Pallete_0;
             this.nbajamTextBox16.FontNumber = 0;
             this.nbajamTextBox16.Image = ((System.Drawing.Image)(resources.GetObject("nbajamTextBox16.Image")));
-            this.nbajamTextBox16.Location = new System.Drawing.Point(175, 326);
+            this.nbajamTextBox16.Location = new System.Drawing.Point(233, 401);
+            this.nbajamTextBox16.Margin = new System.Windows.Forms.Padding(4);
             this.nbajamTextBox16.Name = "nbajamTextBox16";
             this.nbajamTextBox16.ScaleFactor = 2;
             this.nbajamTextBox16.Size = new System.Drawing.Size(16, 16);
@@ -704,10 +759,12 @@
             // nbajamTextBox15
             // 
             this.nbajamTextBox15.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
-            this.nbajamTextBox15.FontColor = 3;
+            this.nbajamTextBox15.ClockForeColor = System.Drawing.Color.Empty;
+            this.nbajamTextBox15.FontColor = nbajamTextBox.nbajamTextBox.FontColorOptions.Pallete_0;
             this.nbajamTextBox15.FontNumber = 0;
             this.nbajamTextBox15.Image = ((System.Drawing.Image)(resources.GetObject("nbajamTextBox15.Image")));
-            this.nbajamTextBox15.Location = new System.Drawing.Point(65, 392);
+            this.nbajamTextBox15.Location = new System.Drawing.Point(87, 482);
+            this.nbajamTextBox15.Margin = new System.Windows.Forms.Padding(4);
             this.nbajamTextBox15.Name = "nbajamTextBox15";
             this.nbajamTextBox15.ScaleFactor = 2;
             this.nbajamTextBox15.Size = new System.Drawing.Size(16, 16);
@@ -720,10 +777,12 @@
             // nbajamTextBox14
             // 
             this.nbajamTextBox14.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
-            this.nbajamTextBox14.FontColor = 3;
+            this.nbajamTextBox14.ClockForeColor = System.Drawing.Color.Empty;
+            this.nbajamTextBox14.FontColor = nbajamTextBox.nbajamTextBox.FontColorOptions.Pallete_0;
             this.nbajamTextBox14.FontNumber = 0;
             this.nbajamTextBox14.Image = ((System.Drawing.Image)(resources.GetObject("nbajamTextBox14.Image")));
-            this.nbajamTextBox14.Location = new System.Drawing.Point(65, 370);
+            this.nbajamTextBox14.Location = new System.Drawing.Point(87, 455);
+            this.nbajamTextBox14.Margin = new System.Windows.Forms.Padding(4);
             this.nbajamTextBox14.Name = "nbajamTextBox14";
             this.nbajamTextBox14.ScaleFactor = 2;
             this.nbajamTextBox14.Size = new System.Drawing.Size(16, 16);
@@ -736,10 +795,12 @@
             // nbajamTextBox13
             // 
             this.nbajamTextBox13.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
-            this.nbajamTextBox13.FontColor = 3;
+            this.nbajamTextBox13.ClockForeColor = System.Drawing.Color.Empty;
+            this.nbajamTextBox13.FontColor = nbajamTextBox.nbajamTextBox.FontColorOptions.Pallete_0;
             this.nbajamTextBox13.FontNumber = 0;
             this.nbajamTextBox13.Image = ((System.Drawing.Image)(resources.GetObject("nbajamTextBox13.Image")));
-            this.nbajamTextBox13.Location = new System.Drawing.Point(121, 392);
+            this.nbajamTextBox13.Location = new System.Drawing.Point(161, 482);
+            this.nbajamTextBox13.Margin = new System.Windows.Forms.Padding(4);
             this.nbajamTextBox13.Name = "nbajamTextBox13";
             this.nbajamTextBox13.ScaleFactor = 2;
             this.nbajamTextBox13.Size = new System.Drawing.Size(48, 16);
@@ -752,10 +813,12 @@
             // nbajamTextBox12
             // 
             this.nbajamTextBox12.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
-            this.nbajamTextBox12.FontColor = 3;
+            this.nbajamTextBox12.ClockForeColor = System.Drawing.Color.Empty;
+            this.nbajamTextBox12.FontColor = nbajamTextBox.nbajamTextBox.FontColorOptions.Pallete_0;
             this.nbajamTextBox12.FontNumber = 0;
             this.nbajamTextBox12.Image = ((System.Drawing.Image)(resources.GetObject("nbajamTextBox12.Image")));
-            this.nbajamTextBox12.Location = new System.Drawing.Point(121, 370);
+            this.nbajamTextBox12.Location = new System.Drawing.Point(161, 455);
+            this.nbajamTextBox12.Margin = new System.Windows.Forms.Padding(4);
             this.nbajamTextBox12.Name = "nbajamTextBox12";
             this.nbajamTextBox12.ScaleFactor = 2;
             this.nbajamTextBox12.Size = new System.Drawing.Size(48, 16);
@@ -768,10 +831,12 @@
             // nbajamTextBox11
             // 
             this.nbajamTextBox11.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
-            this.nbajamTextBox11.FontColor = 3;
-            this.nbajamTextBox11.FontNumber = 0;
+            this.nbajamTextBox11.ClockForeColor = System.Drawing.Color.Empty;
+            this.nbajamTextBox11.FontColor = nbajamTextBox.nbajamTextBox.FontColorOptions.Pallete_0;
+            this.nbajamTextBox11.FontNumber = 1;
             this.nbajamTextBox11.Image = ((System.Drawing.Image)(resources.GetObject("nbajamTextBox11.Image")));
-            this.nbajamTextBox11.Location = new System.Drawing.Point(121, 348);
+            this.nbajamTextBox11.Location = new System.Drawing.Point(161, 428);
+            this.nbajamTextBox11.Margin = new System.Windows.Forms.Padding(4);
             this.nbajamTextBox11.Name = "nbajamTextBox11";
             this.nbajamTextBox11.ScaleFactor = 2;
             this.nbajamTextBox11.Size = new System.Drawing.Size(48, 16);
@@ -784,10 +849,12 @@
             // nbajamTextBox10
             // 
             this.nbajamTextBox10.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
-            this.nbajamTextBox10.FontColor = 3;
+            this.nbajamTextBox10.ClockForeColor = System.Drawing.Color.Empty;
+            this.nbajamTextBox10.FontColor = nbajamTextBox.nbajamTextBox.FontColorOptions.Pallete_0;
             this.nbajamTextBox10.FontNumber = 0;
             this.nbajamTextBox10.Image = ((System.Drawing.Image)(resources.GetObject("nbajamTextBox10.Image")));
-            this.nbajamTextBox10.Location = new System.Drawing.Point(121, 326);
+            this.nbajamTextBox10.Location = new System.Drawing.Point(161, 401);
+            this.nbajamTextBox10.Margin = new System.Windows.Forms.Padding(4);
             this.nbajamTextBox10.Name = "nbajamTextBox10";
             this.nbajamTextBox10.ScaleFactor = 2;
             this.nbajamTextBox10.Size = new System.Drawing.Size(48, 16);
@@ -800,10 +867,12 @@
             // nbajamTextBox9
             // 
             this.nbajamTextBox9.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
-            this.nbajamTextBox9.FontColor = 3;
+            this.nbajamTextBox9.ClockForeColor = System.Drawing.Color.Empty;
+            this.nbajamTextBox9.FontColor = nbajamTextBox.nbajamTextBox.FontColorOptions.Pallete_0;
             this.nbajamTextBox9.FontNumber = 0;
             this.nbajamTextBox9.Image = ((System.Drawing.Image)(resources.GetObject("nbajamTextBox9.Image")));
-            this.nbajamTextBox9.Location = new System.Drawing.Point(11, 392);
+            this.nbajamTextBox9.Location = new System.Drawing.Point(15, 482);
+            this.nbajamTextBox9.Margin = new System.Windows.Forms.Padding(4);
             this.nbajamTextBox9.Name = "nbajamTextBox9";
             this.nbajamTextBox9.ScaleFactor = 2;
             this.nbajamTextBox9.Size = new System.Drawing.Size(48, 16);
@@ -816,10 +885,12 @@
             // nbajamTextBox8
             // 
             this.nbajamTextBox8.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
-            this.nbajamTextBox8.FontColor = 3;
+            this.nbajamTextBox8.ClockForeColor = System.Drawing.Color.Empty;
+            this.nbajamTextBox8.FontColor = nbajamTextBox.nbajamTextBox.FontColorOptions.Pallete_0;
             this.nbajamTextBox8.FontNumber = 0;
             this.nbajamTextBox8.Image = ((System.Drawing.Image)(resources.GetObject("nbajamTextBox8.Image")));
-            this.nbajamTextBox8.Location = new System.Drawing.Point(11, 370);
+            this.nbajamTextBox8.Location = new System.Drawing.Point(15, 455);
+            this.nbajamTextBox8.Margin = new System.Windows.Forms.Padding(4);
             this.nbajamTextBox8.Name = "nbajamTextBox8";
             this.nbajamTextBox8.ScaleFactor = 2;
             this.nbajamTextBox8.Size = new System.Drawing.Size(48, 16);
@@ -832,10 +903,12 @@
             // nbajamTextBox7
             // 
             this.nbajamTextBox7.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
-            this.nbajamTextBox7.FontColor = 3;
+            this.nbajamTextBox7.ClockForeColor = System.Drawing.Color.Empty;
+            this.nbajamTextBox7.FontColor = nbajamTextBox.nbajamTextBox.FontColorOptions.Pallete_8;
             this.nbajamTextBox7.FontNumber = 0;
             this.nbajamTextBox7.Image = ((System.Drawing.Image)(resources.GetObject("nbajamTextBox7.Image")));
-            this.nbajamTextBox7.Location = new System.Drawing.Point(65, 348);
+            this.nbajamTextBox7.Location = new System.Drawing.Point(87, 428);
+            this.nbajamTextBox7.Margin = new System.Windows.Forms.Padding(4);
             this.nbajamTextBox7.Name = "nbajamTextBox7";
             this.nbajamTextBox7.ScaleFactor = 2;
             this.nbajamTextBox7.Size = new System.Drawing.Size(16, 16);
@@ -848,26 +921,30 @@
             // nbajamTextBox6
             // 
             this.nbajamTextBox6.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
-            this.nbajamTextBox6.FontColor = 3;
-            this.nbajamTextBox6.FontNumber = 0;
+            this.nbajamTextBox6.ClockForeColor = System.Drawing.Color.Empty;
+            this.nbajamTextBox6.FontColor = nbajamTextBox.nbajamTextBox.FontColorOptions.Pallete_7;
+            this.nbajamTextBox6.FontNumber = 1;
             this.nbajamTextBox6.Image = ((System.Drawing.Image)(resources.GetObject("nbajamTextBox6.Image")));
-            this.nbajamTextBox6.Location = new System.Drawing.Point(15, 342);
+            this.nbajamTextBox6.Location = new System.Drawing.Point(13, 343);
+            this.nbajamTextBox6.Margin = new System.Windows.Forms.Padding(4);
             this.nbajamTextBox6.Name = "nbajamTextBox6";
             this.nbajamTextBox6.ScaleFactor = 2;
             this.nbajamTextBox6.Size = new System.Drawing.Size(48, 16);
             this.nbajamTextBox6.TabIndex = 50;
             this.nbajamTextBox6.TabStop = false;
-            this.nbajamTextBox6.Text = "3PTS:";
+            this.nbajamTextBox6.Text = "A";
             this.nbajamTextBox6.TilesHigh = 1;
             this.nbajamTextBox6.TilesWide = 3;
             // 
             // nbajamTextBox5
             // 
             this.nbajamTextBox5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
-            this.nbajamTextBox5.FontColor = 3;
+            this.nbajamTextBox5.ClockForeColor = System.Drawing.Color.Empty;
+            this.nbajamTextBox5.FontColor = nbajamTextBox.nbajamTextBox.FontColorOptions.Pallete_8;
             this.nbajamTextBox5.FontNumber = 0;
             this.nbajamTextBox5.Image = ((System.Drawing.Image)(resources.GetObject("nbajamTextBox5.Image")));
-            this.nbajamTextBox5.Location = new System.Drawing.Point(65, 326);
+            this.nbajamTextBox5.Location = new System.Drawing.Point(87, 401);
+            this.nbajamTextBox5.Margin = new System.Windows.Forms.Padding(4);
             this.nbajamTextBox5.Name = "nbajamTextBox5";
             this.nbajamTextBox5.ScaleFactor = 2;
             this.nbajamTextBox5.Size = new System.Drawing.Size(16, 16);
@@ -880,27 +957,30 @@
             // nbajamTextBox4
             // 
             this.nbajamTextBox4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
-            this.nbajamTextBox4.FontColor = 3;
-            this.nbajamTextBox4.FontNumber = 0;
+            this.nbajamTextBox4.ClockForeColor = System.Drawing.Color.Empty;
+            this.nbajamTextBox4.FontColor = nbajamTextBox.nbajamTextBox.FontColorOptions.Pallete_6;
+            this.nbajamTextBox4.FontNumber = 1;
             this.nbajamTextBox4.Image = ((System.Drawing.Image)(resources.GetObject("nbajamTextBox4.Image")));
-            this.nbajamTextBox4.Location = new System.Drawing.Point(11, 326);
+            this.nbajamTextBox4.Location = new System.Drawing.Point(13, 332);
+            this.nbajamTextBox4.Margin = new System.Windows.Forms.Padding(4);
             this.nbajamTextBox4.Name = "nbajamTextBox4";
             this.nbajamTextBox4.ScaleFactor = 2;
             this.nbajamTextBox4.Size = new System.Drawing.Size(48, 16);
             this.nbajamTextBox4.TabIndex = 47;
             this.nbajamTextBox4.TabStop = false;
-            this.nbajamTextBox4.Text = "SPEED:";
+            this.nbajamTextBox4.Text = "A";
             this.nbajamTextBox4.TilesHigh = 1;
             this.nbajamTextBox4.TilesWide = 3;
             // 
             // nbajamTextBox3
             // 
             this.nbajamTextBox3.BackColor = System.Drawing.Color.Purple;
-            this.nbajamTextBox3.FontColor = 3;
+            this.nbajamTextBox3.ClockForeColor = System.Drawing.Color.Empty;
+            this.nbajamTextBox3.FontColor = nbajamTextBox.nbajamTextBox.FontColorOptions.Pallete_14;
             this.nbajamTextBox3.FontNumber = 0;
             this.nbajamTextBox3.Image = ((System.Drawing.Image)(resources.GetObject("nbajamTextBox3.Image")));
-            this.nbajamTextBox3.Location = new System.Drawing.Point(197, 38);
-            this.nbajamTextBox3.Margin = new System.Windows.Forms.Padding(2);
+            this.nbajamTextBox3.Location = new System.Drawing.Point(301, 49);
+            this.nbajamTextBox3.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.nbajamTextBox3.Name = "nbajamTextBox3";
             this.nbajamTextBox3.ScaleFactor = 1;
             this.nbajamTextBox3.Size = new System.Drawing.Size(200, 8);
@@ -913,11 +993,12 @@
             // nbajamTextBox2
             // 
             this.nbajamTextBox2.BackColor = System.Drawing.Color.Purple;
-            this.nbajamTextBox2.FontColor = 3;
+            this.nbajamTextBox2.ClockForeColor = System.Drawing.Color.Empty;
+            this.nbajamTextBox2.FontColor = nbajamTextBox.nbajamTextBox.FontColorOptions.Pallete_3;
             this.nbajamTextBox2.FontNumber = 0;
             this.nbajamTextBox2.Image = ((System.Drawing.Image)(resources.GetObject("nbajamTextBox2.Image")));
-            this.nbajamTextBox2.Location = new System.Drawing.Point(17, 96);
-            this.nbajamTextBox2.Margin = new System.Windows.Forms.Padding(2);
+            this.nbajamTextBox2.Location = new System.Drawing.Point(121, 109);
+            this.nbajamTextBox2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.nbajamTextBox2.Name = "nbajamTextBox2";
             this.nbajamTextBox2.ScaleFactor = 2;
             this.nbajamTextBox2.Size = new System.Drawing.Size(560, 16);
@@ -930,25 +1011,27 @@
             // nbajamTextBox1
             // 
             this.nbajamTextBox1.BackColor = System.Drawing.Color.Indigo;
-            this.nbajamTextBox1.FontColor = 3;
+            this.nbajamTextBox1.ClockForeColor = System.Drawing.Color.White;
+            this.nbajamTextBox1.FontColor = nbajamTextBox.nbajamTextBox.FontColorOptions.Pallete_9;
             this.nbajamTextBox1.FontNumber = 0;
             this.nbajamTextBox1.Image = ((System.Drawing.Image)(resources.GetObject("nbajamTextBox1.Image")));
-            this.nbajamTextBox1.Location = new System.Drawing.Point(17, 51);
+            this.nbajamTextBox1.Location = new System.Drawing.Point(121, 63);
+            this.nbajamTextBox1.Margin = new System.Windows.Forms.Padding(4);
             this.nbajamTextBox1.Name = "nbajamTextBox1";
             this.nbajamTextBox1.ScaleFactor = 5;
             this.nbajamTextBox1.Size = new System.Drawing.Size(560, 40);
             this.nbajamTextBox1.TabIndex = 42;
             this.nbajamTextBox1.TabStop = false;
-            this.nbajamTextBox1.Text = "NBA JAM REMIXER";
+            this.nbajamTextBox1.Text = "NBA JAM T.E. REMIXER";
             this.nbajamTextBox1.TilesHigh = 1;
             this.nbajamTextBox1.TilesWide = 14;
             this.nbajamTextBox1.Click += new System.EventHandler(this.nbajamTextBox1_Click);
             // 
             // Form1
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(594, 442);
+            this.ClientSize = new System.Drawing.Size(803, 626);
             this.Controls.Add(this.nbajamTextBox19);
             this.Controls.Add(this.nbajamTextBox18);
             this.Controls.Add(this.nbajamTextBox17);
@@ -1013,6 +1096,7 @@
             this.Controls.Add(this.pictureBox5);
             this.Controls.Add(this.pictureBox6);
             this.MainMenuStrip = this.menuStrip1;
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "Form1";
             this.Text = "(^_^)";
             this.Load += new System.EventHandler(this.Form1_Load);
@@ -1125,6 +1209,7 @@
         private nbajamTextBox.nbajamTextBox nbajamTextBox18;
         private nbajamTextBox.nbajamTextBox nbajamTextBox19;
         public System.Windows.Forms.PictureBox pictureBox4;
+        private System.Windows.Forms.Timer timer1;
     }
 }
 

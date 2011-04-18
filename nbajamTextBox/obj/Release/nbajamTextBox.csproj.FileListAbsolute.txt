@@ -3,3 +3,8 @@ C:\Users\dext3r\Documents\Visual Studio 2010\Projects\NBA JAM REMIXER\nbajamText
 C:\Users\dext3r\Documents\Visual Studio 2010\Projects\NBA JAM REMIXER\nbajamTextBox\bin\Release\nbajamTextBox.pdb
 C:\Users\dext3r\Documents\Visual Studio 2010\Projects\NBA JAM REMIXER\nbajamTextBox\obj\Release\nbajamTextBox.dll
 C:\Users\dext3r\Documents\Visual Studio 2010\Projects\NBA JAM REMIXER\nbajamTextBox\obj\Release\nbajamTextBox.pdb
+C:\Users\bkaminski\Documents\Visual Studio 2010\Projects\NBA JAM REMIXER\nbajamTextBox\bin\Release\nbajamTextBox.dll
+C:\Users\bkaminski\Documents\Visual Studio 2010\Projects\NBA JAM REMIXER\nbajamTextBox\bin\Release\nbajamTextBox.pdb
+C:\Users\bkaminski\Documents\Visual Studio 2010\Projects\NBA JAM REMIXER\nbajamTextBox\obj\Release\ResolveAssemblyReference.cache
+C:\Users\bkaminski\Documents\Visual Studio 2010\Projects\NBA JAM REMIXER\nbajamTextBox\obj\Release\nbajamTextBox.dll
+C:\Users\bkaminski\Documents\Visual Studio 2010\Projects\NBA JAM REMIXER\nbajamTextBox\obj\Release\nbajamTextBox.pdb

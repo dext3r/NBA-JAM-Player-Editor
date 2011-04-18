@@ -15,11 +15,12 @@ namespace nbajamTextBox
         //font definition?
         //bit arrays?
         //palette definition?
+        public enum FontColorOptions { Pallete_0, Pallete_1, Pallete_2, Pallete_3, Pallete_4, Pallete_5, Pallete_6, Pallete_7, Pallete_8, Pallete_9, Pallete_10, Pallete_11, Pallete_12, Pallete_13, Pallete_14, Pallete_15 };
         private int tile_width=14;                                                     // Width of the control in 8px*8px tiles
         private int tile_height = 1;                                                    // Height of the control in 8px*8px tiles
         private int scale_factor = 4;                                                   // Use the scale factor to maintain the control's physical size
         //private int fontColor = 1;                                                    // Color to use from the palette
-        private String internal_text;                                          // The text to display on the control  
+        private String internal_text="";                                          // The text to display on the control  
         private System.Drawing.Color[] colorpalette = new System.Drawing.Color[16];     // A general Color palette
         fontTile[] letters = new fontTile[60];                                          // Object to hold the font data/color
         fontTile[] small_font = new fontTile[60];                                       // Smaller Font
@@ -28,9 +29,10 @@ namespace nbajamTextBox
         private int[,] backArray;                                                       // An array to hold raw pixel data (Need to optimise - use something instead of int...) 
         private bool redrawFlag = false;
         private int fontIndex = 0;
-        private int fontColor = 3;
-
-
+      //  private int fontColor = 3;
+        private Color colFColor; //experimental
+        private FontColorOptions theFontColorOptions;
+            
         //Methods
         //Get tile?
         //Get 4bpp array?
@@ -48,6 +50,7 @@ namespace nbajamTextBox
             {
                 tile_width = value;
                 redrawFlag = true;
+                this.Invalidate();
             }
         }
         public int FontNumber
@@ -60,6 +63,7 @@ namespace nbajamTextBox
             {
                 fontIndex = value; 
                 redrawFlag = true;
+                this.Invalidate();
             }
         }
         public int TilesHigh
@@ -74,6 +78,7 @@ namespace nbajamTextBox
             {
                 tile_height= value;
                 redrawFlag = true;
+                this.Invalidate();
             }
         }
         public int ScaleFactor
@@ -88,26 +93,41 @@ namespace nbajamTextBox
             set
             {
                 scale_factor = value;
-                redrawFlag = true;    
+                redrawFlag = true;
+                this.Invalidate();
             }
         }
-        public int FontColor
+        public FontColorOptions FontColor
         {
             // Retrieves the value of the private variable tile_width
             get
             {
-                return fontColor;
+                return theFontColorOptions;
+                
             }
             // Stores the value of number of tiles wide in variable tile_width
             set
             {
-                fontColor = value;
+                theFontColorOptions = value;
+            //    fontColor = value;
                 redrawFlag = true;
+                this.Invalidate();
+            }
+        }
+        public Color ClockForeColor
+        {
+            get
+            {
+                return colFColor;
+            }
+            set
+            {
+                             colFColor = value;            
             }
         }
 
         [Browsable(true)]
-        [DefaultValue("JAM")]
+        [DefaultValue("NBAJAM")]
         public override String Text
         {
             // Retrieves the value of the private variable internal_text
@@ -125,15 +145,18 @@ namespace nbajamTextBox
         }
 
         public nbajamTextBox()
-        {
+        { 
+            scale_factor= ScaleFactor;
+            tile_width=TilesWide ;                                                 
+            tile_height=  TilesHigh ;
+            internal_text = this.Text;
+            theFontColorOptions = FontColorOptions.Pallete_3; 
+
             InitializeComponent();
             InitializePalette();
             InitializeFont();
 
-            scale_factor= ScaleFactor ;
-            tile_width=TilesWide ;                                                 
-            tile_height=  TilesHigh ;
-            internal_text = this.Text;
+           
         }
 
         protected override void OnPaint(PaintEventArgs pe)
@@ -191,7 +214,7 @@ namespace nbajamTextBox
                     if (fontIndex == 1)
                     {
                         if (small_font[fu] != null)
-                            text_size = text_size + small_font[fu].Width;
+                            text_size = text_size + small_font[fu].Width+1;
                     }
                 }
 
@@ -2098,24 +2121,24 @@ letters[0].SetPixel(3, 0, 0);
             #endregion
 
             #region A
-            small_font[33].SetPixel(0, 0, 0);
+            small_font[33].SetPixel(0, 0, 3);
             small_font[33].SetPixel(1, 0, 3);
-            small_font[33].SetPixel(2, 0, 0);
+            small_font[33].SetPixel(2, 0, 3);
 
             small_font[33].SetPixel(0, 1, 3);
-            small_font[33].SetPixel(1, 1, 3);
+            small_font[33].SetPixel(1, 1, 0);
             small_font[33].SetPixel(2, 1, 3);
        
             small_font[33].SetPixel(0, 2, 3);
-            small_font[33].SetPixel(1, 2, 10);
+            small_font[33].SetPixel(1, 2, 3);
             small_font[33].SetPixel(2, 2, 3);
            
             small_font[33].SetPixel(0, 3, 3);
-            small_font[33].SetPixel(1, 3, 10);
+            small_font[33].SetPixel(1, 3, 0);
             small_font[33].SetPixel(2, 3, 3);
           
             small_font[33].SetPixel(0, 4, 3);
-            small_font[33].SetPixel(1, 4, 3);
+            small_font[33].SetPixel(1, 4, 0);
             small_font[33].SetPixel(2, 4, 3);
             #endregion
             #region B
@@ -2748,7 +2771,7 @@ letters[0].SetPixel(3, 0, 0);
             colorpalette[3] = System.Drawing.Color.FromArgb(0, 208, 0);
             colorpalette[4] = System.Drawing.Color.FromArgb(248, 0, 00);
             colorpalette[5] = System.Drawing.Color.FromArgb(0, 248, 00);
-            colorpalette[6] = System.Drawing.Color.FromArgb(0, 0, 192);
+            colorpalette[6] = System.Drawing.Color.FromArgb(255, 255, 0);
             colorpalette[7] = System.Drawing.Color.FromArgb(248, 248, 248);
             colorpalette[8] = System.Drawing.Color.FromArgb(0, 192, 00);
             colorpalette[9] = System.Drawing.Color.FromArgb(216, 200, 00);
@@ -2760,7 +2783,6 @@ letters[0].SetPixel(3, 0, 0);
             colorpalette[15] = System.Drawing.Color.FromArgb(152, 152, 152);
 
         }
-
         private byte[] getTileFromArray(int[,] backgroundArray, int startx, int starty)
         {
             byte[] tile = new byte[64];
@@ -2784,6 +2806,7 @@ letters[0].SetPixel(3, 0, 0);
             int counter = 0;
             int pixelX = tile_size_X / 8;
             int pixelY = tile_size_Y / 8;
+            int palette_color = 0;
 
             Bitmap tilebitmap = new Bitmap(tile_size_X, tile_size_Y);
 
@@ -2794,16 +2817,30 @@ letters[0].SetPixel(3, 0, 0);
                 {
                     for (int q = 0; q < pixelX; q++)
                     {
-                        tilebitmap.SetPixel((x * (pixelX)) + q, (y * pixelY), palette[tile_data[counter]]);
+                        if (tile_data[counter] == 3)
+                            //palette_color = fontColor;
+                            palette_color = (int)theFontColorOptions;
+                        else
+                            palette_color = tile_data[counter];
+
+                        tilebitmap.SetPixel((x * (pixelX)) + q, (y * pixelY), palette[palette_color]);
                         for (int r = 0; r < pixelY; r++)
                         {
-                            tilebitmap.SetPixel((x * (pixelX)) + q, (y * pixelY) + r, palette[tile_data[counter]]);
+                            tilebitmap.SetPixel((x * (pixelX)) + q, (y * pixelY) + r, palette[palette_color]);
                         }
                     }
                     counter++;
                 }
             }
             return tilebitmap;
+        }
+        
+        public void setFontColorbyIndex(int color)
+        {
+            FontColorOptions test = (FontColorOptions)color;
+            theFontColorOptions = test;
+            redrawFlag = true;
+            this.Invalidate();
         }
     }
 

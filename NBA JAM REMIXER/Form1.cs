@@ -21,7 +21,8 @@ namespace WindowsFormsApplication1
         int[,] backArray = new int[48, 16];  //array for nametag data
         int[,] backArray2 = new int[48, 16];  //array for nametag data
         List<playerData> nbajam_players = new List<playerData>();
-
+        int timerthing = 0;
+        public enum FontColorOptions { Pallete_0, Pallete_1, Pallete_2, Pallete_3, Pallete_4, Pallete_5, Pallete_6, Pallete_7, Pallete_8, Pallete_9, Pallete_10, Pallete_11, Pallete_12, Pallete_13, Pallete_14, Pallete_15 };
 
         byte[] fileBuffer;
 
@@ -2304,10 +2305,24 @@ letters[0].SetPixel(3, 0, 0);
         private void button12_Click(object sender, EventArgs e)
         {
             //pictureBox4.BackColor = System.Drawing.Color.FromArgb(255, 128, 0, 128); 
-            nbajamTextBox1.Text = "SPAGET!";
+          //  nbajamTextBox1.Text = nbajamTextBox1.Text;
+            nbajamTextBox1.setFontColorbyIndex(14);
+            
+           timer1.Start();
+
            
             
            //bajamTextBox1.BackColor = System.Drawing.Color.FromArgb(255, 128, 0, 0); 
+        }
+
+        private void timer1_Tick(object sender, EventArgs e)
+        {
+
+
+           nbajamTextBox1.setFontColorbyIndex(timerthing);
+            timerthing++;
+            if (timerthing == 15)
+                timerthing = 0;
         }
 
 

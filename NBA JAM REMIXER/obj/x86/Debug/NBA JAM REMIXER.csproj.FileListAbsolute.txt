@@ -9,17 +9,6 @@ C:\Users\dext3r\Documents\Visual Studio 2010\Projects\NBA JAM REMIXER\NBA JAM RE
 C:\Users\dext3r\Documents\Visual Studio 2010\Projects\NBA JAM REMIXER\NBA JAM REMIXER\bin\Debug\nbajamTextBox.pdb
 C:\Users\dext3r\Documents\Visual Studio 2010\Projects\NBA JAM REMIXER\NBA JAM REMIXER\obj\x86\Debug\NBA JAM REMIXER.exe
 C:\Users\dext3r\Documents\Visual Studio 2010\Projects\NBA JAM REMIXER\NBA JAM REMIXER\obj\x86\Debug\NBA JAM REMIXER.pdb
-C:\Users\bkaminski\Documents\Visual Studio 2010\Projects\NBA JAM REMIXER\NBA JAM REMIXER\bin\Debug\NBA JAM REMIXER.exe
-C:\Users\bkaminski\Documents\Visual Studio 2010\Projects\NBA JAM REMIXER\NBA JAM REMIXER\bin\Debug\NBA JAM REMIXER.pdb
-C:\Users\bkaminski\Documents\Visual Studio 2010\Projects\NBA JAM REMIXER\NBA JAM REMIXER\bin\Debug\nbajamTextBox.dll
-C:\Users\bkaminski\Documents\Visual Studio 2010\Projects\NBA JAM REMIXER\NBA JAM REMIXER\bin\Debug\nbajamTextBox.pdb
-C:\Users\bkaminski\Documents\Visual Studio 2010\Projects\NBA JAM REMIXER\NBA JAM REMIXER\obj\x86\Debug\ResolveAssemblyReference.cache
-C:\Users\bkaminski\Documents\Visual Studio 2010\Projects\NBA JAM REMIXER\NBA JAM REMIXER\obj\x86\Debug\WindowsFormsApplication1.Form1.resources
-C:\Users\bkaminski\Documents\Visual Studio 2010\Projects\NBA JAM REMIXER\NBA JAM REMIXER\obj\x86\Debug\WindowsFormsApplication1.Properties.Resources.resources
-C:\Users\bkaminski\Documents\Visual Studio 2010\Projects\NBA JAM REMIXER\NBA JAM REMIXER\obj\x86\Debug\GenerateResource.read.1.tlog
-C:\Users\bkaminski\Documents\Visual Studio 2010\Projects\NBA JAM REMIXER\NBA JAM REMIXER\obj\x86\Debug\GenerateResource.write.1.tlog
-C:\Users\bkaminski\Documents\Visual Studio 2010\Projects\NBA JAM REMIXER\NBA JAM REMIXER\obj\x86\Debug\NBA JAM REMIXER.exe
-C:\Users\bkaminski\Documents\Visual Studio 2010\Projects\NBA JAM REMIXER\NBA JAM REMIXER\obj\x86\Debug\NBA JAM REMIXER.pdb
 C:\Users\dext3r\Documents\Visual Studio 2010\Projects Under Source Control\NBA JAM REMIXER\bin\Debug\NBA JAM REMIXER.exe
 C:\Users\dext3r\Documents\Visual Studio 2010\Projects Under Source Control\NBA JAM REMIXER\bin\Debug\NBA JAM REMIXER.pdb
 C:\Users\dext3r\Documents\Visual Studio 2010\Projects Under Source Control\NBA JAM REMIXER\bin\Debug\nbajamTextBox.dll
@@ -31,3 +20,14 @@ C:\Users\dext3r\Documents\Visual Studio 2010\Projects Under Source Control\NBA J
 C:\Users\dext3r\Documents\Visual Studio 2010\Projects Under Source Control\NBA JAM REMIXER\obj\x86\Debug\GenerateResource.write.1.tlog
 C:\Users\dext3r\Documents\Visual Studio 2010\Projects Under Source Control\NBA JAM REMIXER\obj\x86\Debug\NBA JAM REMIXER.exe
 C:\Users\dext3r\Documents\Visual Studio 2010\Projects Under Source Control\NBA JAM REMIXER\obj\x86\Debug\NBA JAM REMIXER.pdb
+C:\Users\bkaminski\Documents\Visual Studio 2010\Projects\NBA JAM REMIXER\NBA JAM REMIXER\bin\Debug\NBA JAM REMIXER.exe
+C:\Users\bkaminski\Documents\Visual Studio 2010\Projects\NBA JAM REMIXER\NBA JAM REMIXER\bin\Debug\NBA JAM REMIXER.pdb
+C:\Users\bkaminski\Documents\Visual Studio 2010\Projects\NBA JAM REMIXER\NBA JAM REMIXER\bin\Debug\nbajamTextBox.dll
+C:\Users\bkaminski\Documents\Visual Studio 2010\Projects\NBA JAM REMIXER\NBA JAM REMIXER\bin\Debug\nbajamTextBox.pdb
+C:\Users\bkaminski\Documents\Visual Studio 2010\Projects\NBA JAM REMIXER\NBA JAM REMIXER\obj\x86\Debug\ResolveAssemblyReference.cache
+C:\Users\bkaminski\Documents\Visual Studio 2010\Projects\NBA JAM REMIXER\NBA JAM REMIXER\obj\x86\Debug\WindowsFormsApplication1.Form1.resources
+C:\Users\bkaminski\Documents\Visual Studio 2010\Projects\NBA JAM REMIXER\NBA JAM REMIXER\obj\x86\Debug\WindowsFormsApplication1.Properties.Resources.resources
+C:\Users\bkaminski\Documents\Visual Studio 2010\Projects\NBA JAM REMIXER\NBA JAM REMIXER\obj\x86\Debug\GenerateResource.read.1.tlog
+C:\Users\bkaminski\Documents\Visual Studio 2010\Projects\NBA JAM REMIXER\NBA JAM REMIXER\obj\x86\Debug\GenerateResource.write.1.tlog
+C:\Users\bkaminski\Documents\Visual Studio 2010\Projects\NBA JAM REMIXER\NBA JAM REMIXER\obj\x86\Debug\NBA JAM REMIXER.exe
+C:\Users\bkaminski\Documents\Visual Studio 2010\Projects\NBA JAM REMIXER\NBA JAM REMIXER\obj\x86\Debug\NBA JAM REMIXER.pdb
