@@ -1910,20 +1910,28 @@ letters[0].SetPixel(3, 0, 0);
             }
             //3s
             label10.Text = threeptRating.ToString();
+            nbajamTextBox7.Text = threeptRating.ToString();
             //speed
             label9.Text = speedRating.ToString();
+            nbajamTextBox5.Text = speedRating.ToString();
             //dunk
             label11.Text = dunkRating.ToString();
+            nbajamTextBox14.Text = dunkRating.ToString();
             //pass
             label12.Text = passRating.ToString();
+            nbajamTextBox15.Text = passRating.ToString();
             //power
             label13.Text = powerRating.ToString();
+            nbajamTextBox16.Text = powerRating.ToString();
             //steal
             label14.Text = stealRating.ToString();
+            nbajamTextBox17.Text = stealRating.ToString();
             //block
             label15.Text = blockRating.ToString();
+            nbajamTextBox18.Text = blockRating.ToString();
             //clutch
             label16.Text = clutchRating.ToString();
+            nbajamTextBox19.Text = clutchRating.ToString();
 
         } //end of function
 
