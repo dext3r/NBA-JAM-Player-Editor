@@ -614,7 +614,7 @@
             this.pictureBox5.Location = new System.Drawing.Point(0, 30);
             this.pictureBox5.Margin = new System.Windows.Forms.Padding(2);
             this.pictureBox5.Name = "pictureBox5";
-            this.pictureBox5.Size = new System.Drawing.Size(583, 96);
+            this.pictureBox5.Size = new System.Drawing.Size(594, 96);
             this.pictureBox5.TabIndex = 46;
             this.pictureBox5.TabStop = false;
             // 
@@ -633,7 +633,7 @@
             this.pictureBox4.BackColor = System.Drawing.SystemColors.Control;
             this.pictureBox4.Location = new System.Drawing.Point(230, 240);
             this.pictureBox4.Name = "pictureBox4";
-            this.pictureBox4.Size = new System.Drawing.Size(72, 26);
+            this.pictureBox4.Size = new System.Drawing.Size(48, 16);
             this.pictureBox4.TabIndex = 36;
             this.pictureBox4.TabStop = false;
             // 
@@ -851,7 +851,7 @@
             this.nbajamTextBox6.FontColor = 3;
             this.nbajamTextBox6.FontNumber = 0;
             this.nbajamTextBox6.Image = ((System.Drawing.Image)(resources.GetObject("nbajamTextBox6.Image")));
-            this.nbajamTextBox6.Location = new System.Drawing.Point(11, 348);
+            this.nbajamTextBox6.Location = new System.Drawing.Point(15, 342);
             this.nbajamTextBox6.Name = "nbajamTextBox6";
             this.nbajamTextBox6.ScaleFactor = 2;
             this.nbajamTextBox6.Size = new System.Drawing.Size(48, 16);
@@ -923,13 +923,13 @@
             this.nbajamTextBox2.Size = new System.Drawing.Size(560, 16);
             this.nbajamTextBox2.TabIndex = 44;
             this.nbajamTextBox2.TabStop = false;
-            this.nbajamTextBox2.Text = "FOR YOUR SUPER NINTENDO ENTERTAINING SYSTEM ";
+            this.nbajamTextBox2.Text = "VERSION 1.0";
             this.nbajamTextBox2.TilesHigh = 1;
             this.nbajamTextBox2.TilesWide = 35;
             // 
             // nbajamTextBox1
             // 
-            this.nbajamTextBox1.BackColor = System.Drawing.Color.MediumPurple;
+            this.nbajamTextBox1.BackColor = System.Drawing.Color.Indigo;
             this.nbajamTextBox1.FontColor = 3;
             this.nbajamTextBox1.FontNumber = 0;
             this.nbajamTextBox1.Image = ((System.Drawing.Image)(resources.GetObject("nbajamTextBox1.Image")));
@@ -939,7 +939,7 @@
             this.nbajamTextBox1.Size = new System.Drawing.Size(560, 40);
             this.nbajamTextBox1.TabIndex = 42;
             this.nbajamTextBox1.TabStop = false;
-            this.nbajamTextBox1.Text = "DAVID STERN BASKETBALL EDITOR";
+            this.nbajamTextBox1.Text = "NBA JAM REMIXER";
             this.nbajamTextBox1.TilesHigh = 1;
             this.nbajamTextBox1.TilesWide = 14;
             this.nbajamTextBox1.Click += new System.EventHandler(this.nbajamTextBox1_Click);

@@ -1250,7 +1250,7 @@ namespace nbajamTextBox
 
             letters[54].SetPixel(0, 5,0);
             letters[54].SetPixel(1, 5, 3);
-            letters[54].SetPixel(2, 5, 0);
+            letters[54].SetPixel(2, 5, 10);
             letters[54].SetPixel(3, 5, 10);
 
             letters[54].SetPixel(0, 6, 0);
