@@ -114,9 +114,9 @@ namespace nbajamTextBox
                 this.Invalidate();
             }
         }
-        public Color ClockForeColor
+   /*     public Color ClockForeColor
         {
-            get
+           get
             {
                 return colFColor;
             }
@@ -124,7 +124,7 @@ namespace nbajamTextBox
             {
                              colFColor = value;            
             }
-        }
+        }*/
 
         [Browsable(true)]
         [DefaultValue("NBAJAM")]
@@ -2091,6 +2091,22 @@ letters[0].SetPixel(3, 0, 0);
             #endregion
             #region Small Font
             #region Height and Width Definitions
+            //punctuation
+            small_font[0] = new fontTile(4, 5);
+            small_font[1] = new fontTile(2, 5);
+            small_font[14] = new fontTile(2, 5);
+            small_font[26] = new fontTile(1, 5);
+            //numbers
+            small_font[16] = new fontTile(3, 5);
+            small_font[17] = new fontTile(3, 5);
+            small_font[18] = new fontTile(3, 5);
+            small_font[19] = new fontTile(3, 5);
+            small_font[20] = new fontTile(3, 5);
+            small_font[21] = new fontTile(3, 5);
+            small_font[22] = new fontTile(3, 5);
+            small_font[23] = new fontTile(3, 5);
+            small_font[24] = new fontTile(3, 5);
+            small_font[25] = new fontTile(3, 5); 
             //letters
             small_font[33] = new fontTile(3, 5);
             small_font[34] = new fontTile(3, 5);
@@ -2144,48 +2160,48 @@ letters[0].SetPixel(3, 0, 0);
             #region B
             small_font[34].SetPixel(0, 0, 3);
             small_font[34].SetPixel(1, 0, 3);
-            small_font[34].SetPixel(2, 0, 0);
+            small_font[34].SetPixel(2, 0, 3);
           
 
             small_font[34].SetPixel(0, 1, 3);
-            small_font[34].SetPixel(1, 1, 3);
+            small_font[34].SetPixel(1, 1, 0);
             small_font[34].SetPixel(2, 1, 3);
           
 
             small_font[34].SetPixel(0, 2, 3);
-            small_font[34].SetPixel(1, 2, 10);
+            small_font[34].SetPixel(1, 2, 3);
             small_font[34].SetPixel(2, 2, 3);
            
 
             small_font[34].SetPixel(0, 3, 3);
-            small_font[34].SetPixel(1, 3, 3);
-            small_font[34].SetPixel(2, 3, 0);
+            small_font[34].SetPixel(1, 3, 0);
+            small_font[34].SetPixel(2, 3, 3);
             
 
             small_font[34].SetPixel(0, 4, 3);
-            small_font[34].SetPixel(1, 4, 10);
+            small_font[34].SetPixel(1, 4, 3);
             small_font[34].SetPixel(2, 4, 3);
             #endregion
             #region C
-            small_font[35].SetPixel(0, 0, 0);
+            small_font[35].SetPixel(0, 0, 3);
             small_font[35].SetPixel(1, 0, 3);
             small_font[35].SetPixel(2, 0, 3);
           
             small_font[35].SetPixel(0, 1, 3);
-            small_font[35].SetPixel(1, 1, 3);
-            small_font[35].SetPixel(2, 1, 3);
+            small_font[35].SetPixel(1, 1, 0);
+            small_font[35].SetPixel(2, 1, 0);
           
             small_font[35].SetPixel(0, 2, 3);
-            small_font[35].SetPixel(1, 2, 10);
-            small_font[35].SetPixel(2, 2, 10);
+            small_font[35].SetPixel(1, 2, 0);
+            small_font[35].SetPixel(2, 2, 0);
           
             small_font[35].SetPixel(0, 3, 3);
-            small_font[35].SetPixel(1, 3, 10);
+            small_font[35].SetPixel(1, 3, 0);
             small_font[35].SetPixel(2, 3, 0);
      
             small_font[35].SetPixel(0, 4, 3);
-            small_font[35].SetPixel(1, 4, 10);
-            small_font[35].SetPixel(2, 4, 0);
+            small_font[35].SetPixel(1, 4, 3);
+            small_font[35].SetPixel(2, 4, 3);
             #endregion
             #region D
             small_font[36].SetPixel(0, 0, 3);
@@ -2193,20 +2209,20 @@ letters[0].SetPixel(3, 0, 0);
             small_font[36].SetPixel(2, 0, 0);        
 
             small_font[36].SetPixel(0, 1, 3);
-            small_font[36].SetPixel(1, 1, 3);
+            small_font[36].SetPixel(1, 1, 0);
             small_font[36].SetPixel(2, 1, 3);
           
             small_font[36].SetPixel(0, 2, 3);
-            small_font[36].SetPixel(1, 2, 10);
+            small_font[36].SetPixel(1, 2, 0);
             small_font[36].SetPixel(2, 2, 3);
             
             small_font[36].SetPixel(0, 3, 3);
-            small_font[36].SetPixel(1, 3, 10);
+            small_font[36].SetPixel(1, 3, 0);
             small_font[36].SetPixel(2, 3, 3);
           
             small_font[36].SetPixel(0, 4, 3);
-            small_font[36].SetPixel(1, 4, 10);
-            small_font[36].SetPixel(2, 4, 3);     
+            small_font[36].SetPixel(1, 4, 3);
+            small_font[36].SetPixel(2, 4, 0);     
             #endregion
             #region E
             small_font[37].SetPixel(0, 0, 3);
@@ -2215,23 +2231,23 @@ letters[0].SetPixel(3, 0, 0);
             
 
             small_font[37].SetPixel(0, 1, 3);
-            small_font[37].SetPixel(1, 1, 3);
-            small_font[37].SetPixel(2, 1, 3);
+            small_font[37].SetPixel(1, 1, 0);
+            small_font[37].SetPixel(2, 1, 0);
            
 
             small_font[37].SetPixel(0, 2, 3);
-            small_font[37].SetPixel(1, 2, 10);
-            small_font[37].SetPixel(2, 2, 10);
+            small_font[37].SetPixel(1, 2, 3);
+            small_font[37].SetPixel(2, 2, 0);
             
 
             small_font[37].SetPixel(0, 3, 3);
-            small_font[37].SetPixel(1, 3, 3);
-            small_font[37].SetPixel(2, 3, 3);
+            small_font[37].SetPixel(1, 3, 0);
+            small_font[37].SetPixel(2, 3, 0);
            
 
             small_font[37].SetPixel(0, 4, 3);
-            small_font[37].SetPixel(1, 4, 10);
-            small_font[37].SetPixel(2, 4, 10);
+            small_font[37].SetPixel(1, 4, 3);
+            small_font[37].SetPixel(2, 4, 3);
             #endregion
             #region F
             small_font[38].SetPixel(0, 0, 3);
@@ -2290,22 +2306,22 @@ letters[0].SetPixel(3, 0, 0);
           
 
             small_font[40].SetPixel(0, 1, 3);
-            small_font[40].SetPixel(1, 1, 10);
+            small_font[40].SetPixel(1, 1, 0);
             small_font[40].SetPixel(2, 1, 3);
            
 
             small_font[40].SetPixel(0, 2, 3);
-            small_font[40].SetPixel(1, 2, 10);
+            small_font[40].SetPixel(1, 2, 3);
             small_font[40].SetPixel(2, 2, 3);
            
 
             small_font[40].SetPixel(0, 3, 3);
-            small_font[40].SetPixel(1, 3, 3);
+            small_font[40].SetPixel(1, 3, 0);
             small_font[40].SetPixel(2, 3, 3);
         
 
             small_font[40].SetPixel(0, 4, 3);
-            small_font[40].SetPixel(1, 4, 10);
+            small_font[40].SetPixel(1, 4, 0);
             small_font[40].SetPixel(2, 4, 3);
             #endregion
             #region I
@@ -2361,22 +2377,22 @@ letters[0].SetPixel(3, 0, 0);
      
 
             small_font[43].SetPixel(0, 1, 3);
-            small_font[43].SetPixel(1, 1, 10);
+            small_font[43].SetPixel(1, 1, 0);
             small_font[43].SetPixel(2, 1, 3);
          
 
             small_font[43].SetPixel(0, 2, 3);
-            small_font[43].SetPixel(1, 2, 10);
-            small_font[43].SetPixel(2, 2, 3);
+            small_font[43].SetPixel(1, 2, 3);
+            small_font[43].SetPixel(2, 2, 0);
 
 
             small_font[43].SetPixel(0, 3, 3);
-            small_font[43].SetPixel(1, 3, 3);
-            small_font[43].SetPixel(2, 3, 0);
+            small_font[43].SetPixel(1, 3, 0);
+            small_font[43].SetPixel(2, 3, 3);
      
 
             small_font[43].SetPixel(0, 4, 3);
-            small_font[43].SetPixel(1, 4, 10);
+            small_font[43].SetPixel(1, 4, 0);
             small_font[43].SetPixel(2, 4, 3);
             #endregion
             #region L
@@ -2386,22 +2402,22 @@ letters[0].SetPixel(3, 0, 0);
           
 
             small_font[44].SetPixel(0, 1, 3);
-            small_font[44].SetPixel(1, 1, 10);
+            small_font[44].SetPixel(1, 1, 0);
             small_font[44].SetPixel(2, 1, 0);
        
 
             small_font[44].SetPixel(0, 2, 3);
-            small_font[44].SetPixel(1, 2, 10);
+            small_font[44].SetPixel(1, 2, 0);
             small_font[44].SetPixel(2, 2, 0);
            
             small_font[44].SetPixel(0, 3, 3);
-            small_font[44].SetPixel(1, 3, 10);
+            small_font[44].SetPixel(1, 3, 0);
             small_font[44].SetPixel(2, 3, 0);
          
 
             small_font[44].SetPixel(0, 4, 3);
-            small_font[44].SetPixel(1, 4, 10);
-            small_font[44].SetPixel(2, 4, 0);      
+            small_font[44].SetPixel(1, 4, 3);
+            small_font[44].SetPixel(2, 4, 3);      
             #endregion
             #region M
             small_font[45].SetPixel(0, 0, 3);
@@ -2433,72 +2449,72 @@ letters[0].SetPixel(3, 0, 0);
             #region N
             small_font[46].SetPixel(0, 0, 3);
             small_font[46].SetPixel(1, 0, 3);
-            small_font[46].SetPixel(2, 0, 0);
+            small_font[46].SetPixel(2, 0, 3);
         
             small_font[46].SetPixel(0, 1, 3);
-            small_font[46].SetPixel(1, 1, 3);
+            small_font[46].SetPixel(1, 1, 0);
             small_font[46].SetPixel(2, 1, 3);
             
 
             small_font[46].SetPixel(0, 2, 3);
-            small_font[46].SetPixel(1, 2, 10);
+            small_font[46].SetPixel(1, 2, 0);
             small_font[46].SetPixel(2, 2, 3);
            
 
             small_font[46].SetPixel(0, 3, 3);
-            small_font[46].SetPixel(1, 3, 10);
+            small_font[46].SetPixel(1, 3, 0);
             small_font[46].SetPixel(2, 3, 3);
            
             small_font[46].SetPixel(0, 4, 3);
-            small_font[46].SetPixel(1, 4, 10);
+            small_font[46].SetPixel(1, 4, 0);
             small_font[46].SetPixel(2, 4, 3);  
             #endregion
             #region O
-            small_font[47].SetPixel(0, 0, 0);
+            small_font[47].SetPixel(0, 0, 3);
             small_font[47].SetPixel(1, 0, 3);
-            small_font[47].SetPixel(2, 0, 0);
+            small_font[47].SetPixel(2, 0, 3);
            
             small_font[47].SetPixel(0, 1, 3);
-            small_font[47].SetPixel(1, 1, 3);
+            small_font[47].SetPixel(1, 1, 0);
             small_font[47].SetPixel(2, 1, 3);
             
 
             small_font[47].SetPixel(0, 2, 3);
-            small_font[47].SetPixel(1, 2, 10);
+            small_font[47].SetPixel(1, 2, 0);
             small_font[47].SetPixel(2, 2, 3);
           
             small_font[47].SetPixel(0, 3, 3);
-            small_font[47].SetPixel(1, 3, 10);
+            small_font[47].SetPixel(1, 3, 0);
             small_font[47].SetPixel(2, 3, 3);
        
 
             small_font[47].SetPixel(0, 4, 3);
-            small_font[47].SetPixel(1, 4, 10);
+            small_font[47].SetPixel(1, 4, 3);
             small_font[47].SetPixel(2, 4, 3);         
             #endregion
             #region P
             small_font[48].SetPixel(0, 0, 3);
             small_font[48].SetPixel(1, 0, 3);
-            small_font[48].SetPixel(2, 0, 0);
+            small_font[48].SetPixel(2, 0, 3);
          
             small_font[48].SetPixel(0, 1, 3);
-            small_font[48].SetPixel(1, 1, 3);
+            small_font[48].SetPixel(1, 1, 0);
             small_font[48].SetPixel(2, 1, 3);
           
 
             small_font[48].SetPixel(0, 2, 3);
-            small_font[48].SetPixel(1, 2, 10);
+            small_font[48].SetPixel(1, 2, 3);
             small_font[48].SetPixel(2, 2, 3);
            
 
             small_font[48].SetPixel(0, 3, 3);
-            small_font[48].SetPixel(1, 3, 3);
-            small_font[48].SetPixel(2, 3, 3);
+            small_font[48].SetPixel(1, 3, 0);
+            small_font[48].SetPixel(2, 3, 0);
            
 
             small_font[48].SetPixel(0, 4, 3);
-            small_font[48].SetPixel(1, 4, 3);
-            small_font[48].SetPixel(2, 4, 10);
+            small_font[48].SetPixel(1, 4, 0);
+            small_font[48].SetPixel(2, 4, 0);
             #endregion
             #region Q
             small_font[49].SetPixel(0, 0, 0);
@@ -2534,48 +2550,48 @@ letters[0].SetPixel(3, 0, 0);
           
 
             small_font[50].SetPixel(0, 1, 3);
-            small_font[50].SetPixel(1, 1, 3);
+            small_font[50].SetPixel(1, 1, 0);
             small_font[50].SetPixel(2, 1, 3);
          
             small_font[50].SetPixel(0, 2, 3);
-            small_font[50].SetPixel(1, 2, 10);
-            small_font[50].SetPixel(2, 2, 3);
+            small_font[50].SetPixel(1, 2, 3);
+            small_font[50].SetPixel(2, 2, 0);
            
 
             small_font[50].SetPixel(0, 3, 3);
-            small_font[50].SetPixel(1, 3, 3);
-            small_font[50].SetPixel(2, 3, 0);
+            small_font[50].SetPixel(1, 3, 0);
+            small_font[50].SetPixel(2, 3, 3);
            
 
             small_font[50].SetPixel(0, 4, 3);
-            small_font[50].SetPixel(1, 4, 3);
+            small_font[50].SetPixel(1, 4, 0);
             small_font[50].SetPixel(2, 4, 3);
             
 
             #endregion
             #region S
-            small_font[51].SetPixel(0, 0, 0);
+            small_font[51].SetPixel(0, 0, 3);
             small_font[51].SetPixel(1, 0, 3);
             small_font[51].SetPixel(2, 0, 3);
            
 
             small_font[51].SetPixel(0, 1, 3);
-            small_font[51].SetPixel(1, 1, 3);
-            small_font[51].SetPixel(2, 1, 3);
+            small_font[51].SetPixel(1, 1, 0);
+            small_font[51].SetPixel(2, 1, 0);
          
 
             small_font[51].SetPixel(0, 2, 3);
-            small_font[51].SetPixel(1, 2, 10);
-            small_font[51].SetPixel(2, 2, 10);
+            small_font[51].SetPixel(1, 2, 3);
+            small_font[51].SetPixel(2, 2, 3);
           
 
             small_font[51].SetPixel(0, 3, 0);
-            small_font[51].SetPixel(1, 3, 3);
-            small_font[51].SetPixel(2, 3, 0);
+            small_font[51].SetPixel(1, 3, 0);
+            small_font[51].SetPixel(2, 3, 3);
            
 
-            small_font[51].SetPixel(0, 4, 0);
-            small_font[51].SetPixel(1, 4, 0);
+            small_font[51].SetPixel(0, 4, 3);
+            small_font[51].SetPixel(1, 4, 3);
             small_font[51].SetPixel(2, 4, 3);
             #endregion
             #region T
@@ -2583,24 +2599,24 @@ letters[0].SetPixel(3, 0, 0);
             small_font[52].SetPixel(1, 0, 3);
             small_font[52].SetPixel(2, 0, 3);
          
-            small_font[52].SetPixel(0, 1, 3);
+            small_font[52].SetPixel(0, 1, 0);
             small_font[52].SetPixel(1, 1, 3);
-            small_font[52].SetPixel(2, 1, 3);
+            small_font[52].SetPixel(2, 1, 0);
             
 
             small_font[52].SetPixel(0, 2, 0);
             small_font[52].SetPixel(1, 2, 3);
-            small_font[52].SetPixel(2, 2, 10);
+            small_font[52].SetPixel(2, 2, 0);
          
 
             small_font[52].SetPixel(0, 3, 0);
             small_font[52].SetPixel(1, 3, 3);
-            small_font[52].SetPixel(2, 3, 10);
+            small_font[52].SetPixel(2, 3, 0);
             
 
             small_font[52].SetPixel(0, 4, 0);
             small_font[52].SetPixel(1, 4, 3);
-            small_font[52].SetPixel(2, 4, 10);
+            small_font[52].SetPixel(2, 4, 0);
         
          
             #endregion
@@ -2611,22 +2627,22 @@ letters[0].SetPixel(3, 0, 0);
           
 
             small_font[53].SetPixel(0, 1, 3);
-            small_font[53].SetPixel(1, 1, 10);
+            small_font[53].SetPixel(1, 1, 0);
             small_font[53].SetPixel(2, 1, 3);
            
 
             small_font[53].SetPixel(0, 2, 3);
-            small_font[53].SetPixel(1, 2, 10);
+            small_font[53].SetPixel(1, 2, 0);
             small_font[53].SetPixel(2, 2, 3);
             
 
             small_font[53].SetPixel(0, 3, 3);
-            small_font[53].SetPixel(1, 3, 10);
+            small_font[53].SetPixel(1, 3, 0);
             small_font[53].SetPixel(2, 3, 3);
           
 
             small_font[53].SetPixel(0, 4, 3);
-            small_font[53].SetPixel(1, 4, 10);
+            small_font[53].SetPixel(1, 4, 3);
             small_font[53].SetPixel(2, 4, 3);
             
 
@@ -2665,22 +2681,22 @@ letters[0].SetPixel(3, 0, 0);
             small_font[55].SetPixel(2, 0, 3);
           
             small_font[55].SetPixel(0, 1, 3);
-            small_font[55].SetPixel(1, 1, 10);
+            small_font[55].SetPixel(1, 1, 0);
             small_font[55].SetPixel(2, 1, 3);
             
 
             small_font[55].SetPixel(0, 2, 3);
-            small_font[55].SetPixel(1, 2, 10);
+            small_font[55].SetPixel(1, 2, 0);
             small_font[55].SetPixel(2, 2, 3);
           
 
             small_font[55].SetPixel(0, 3, 3);
-            small_font[55].SetPixel(1, 3, 10);
+            small_font[55].SetPixel(1, 3, 3);
             small_font[55].SetPixel(2, 3, 3);
            
 
             small_font[55].SetPixel(0, 4, 3);
-            small_font[55].SetPixel(1, 4, 10);
+            small_font[55].SetPixel(1, 4, 0);
             small_font[55].SetPixel(2, 4, 3);
 
             #endregion
@@ -2759,6 +2775,235 @@ letters[0].SetPixel(3, 0, 0);
             small_font[58].SetPixel(2, 4, 10);
    
             #endregion
+            #region 0
+            small_font[16].SetPixel(0, 0, 3);
+            small_font[16].SetPixel(1, 0, 3);
+            small_font[16].SetPixel(2, 0, 3);
+          
+
+            small_font[16].SetPixel(0, 1, 3);
+            small_font[16].SetPixel(1, 1, 0);
+            small_font[16].SetPixel(2, 1, 3);
+            
+
+            small_font[16].SetPixel(0, 2, 3);
+            small_font[16].SetPixel(1, 2, 0);
+            small_font[16].SetPixel(2, 2, 3);
+           
+
+            small_font[16].SetPixel(0, 3, 3);
+            small_font[16].SetPixel(1, 3, 0);
+            small_font[16].SetPixel(2, 3, 3);
+         
+
+            small_font[16].SetPixel(0, 4, 3);
+            small_font[16].SetPixel(1, 4, 3);
+            small_font[16].SetPixel(2, 4, 3);
+            #endregion
+            #region 1
+            small_font[17].SetPixel(0, 0, 0);
+            small_font[17].SetPixel(1, 0, 0);
+            small_font[17].SetPixel(2, 0, 3);
+            
+
+            small_font[17].SetPixel(0, 1, 0);
+            small_font[17].SetPixel(1, 1, 0);
+            small_font[17].SetPixel(2, 1, 3);
+            
+
+            small_font[17].SetPixel(0, 2, 0);
+            small_font[17].SetPixel(1, 2, 0);
+            small_font[17].SetPixel(2, 2, 3);
+          
+
+            small_font[17].SetPixel(0, 3, 0);
+            small_font[17].SetPixel(1, 3, 0);
+            small_font[17].SetPixel(2, 3, 3);
+           
+
+            small_font[17].SetPixel(0, 4, 0);
+            small_font[17].SetPixel(1, 4, 0);
+            small_font[17].SetPixel(2, 4, 3);
+            #endregion
+            #region 2
+            small_font[18].SetPixel(0, 0, 3);
+            small_font[18].SetPixel(1, 0, 3);
+            small_font[18].SetPixel(2, 0, 3);
+            
+            small_font[18].SetPixel(0, 1, 0);
+            small_font[18].SetPixel(1, 1, 0);
+            small_font[18].SetPixel(2, 1, 3);
+
+            small_font[18].SetPixel(0, 2, 3);
+            small_font[18].SetPixel(1, 2, 3);
+            small_font[18].SetPixel(2, 2, 3);
+          
+            small_font[18].SetPixel(0, 3, 3);
+            small_font[18].SetPixel(1, 3, 0);
+            small_font[18].SetPixel(2, 3, 0);
+      
+            small_font[18].SetPixel(0, 4, 3);
+            small_font[18].SetPixel(1, 4, 3);
+            small_font[18].SetPixel(2, 4, 3);
+            #endregion
+            #region 3
+            small_font[19].SetPixel(0, 0, 3);
+            small_font[19].SetPixel(1, 0, 3);
+            small_font[19].SetPixel(2, 0, 3);
+
+            small_font[19].SetPixel(0, 1, 0);
+            small_font[19].SetPixel(1, 1, 0);
+            small_font[19].SetPixel(2, 1, 3);
+           
+            small_font[19].SetPixel(0, 2, 0);
+            small_font[19].SetPixel(1, 2, 3);
+            small_font[19].SetPixel(2, 2, 3);
+            
+            small_font[19].SetPixel(0, 3, 0);
+            small_font[19].SetPixel(1, 3, 0);
+            small_font[19].SetPixel(2, 3, 3);
+           
+            small_font[19].SetPixel(0, 4, 3);
+            small_font[19].SetPixel(1, 4, 3);
+            small_font[19].SetPixel(2, 4, 3);
+            
+            #endregion
+            #region 4
+            small_font[20].SetPixel(0, 0, 3);
+            small_font[20].SetPixel(1, 0, 0);
+            small_font[20].SetPixel(2, 0, 3);
+          
+            small_font[20].SetPixel(0, 1, 3);
+            small_font[20].SetPixel(1, 1, 0);
+            small_font[20].SetPixel(2, 1, 3);
+           
+            small_font[20].SetPixel(0, 2, 3);
+            small_font[20].SetPixel(1, 2, 3);
+            small_font[20].SetPixel(2, 2, 3);
+           
+            small_font[20].SetPixel(0, 3, 0);
+            small_font[20].SetPixel(1, 3, 0);
+            small_font[20].SetPixel(2, 3, 3);
+           
+            small_font[20].SetPixel(0, 4, 0);
+            small_font[20].SetPixel(1, 4, 0);
+            small_font[20].SetPixel(2, 4, 3);
+            #endregion
+            #region 5
+            small_font[21].SetPixel(0, 0, 3);
+            small_font[21].SetPixel(1, 0, 3);
+            small_font[21].SetPixel(2, 0, 3);
+           
+            small_font[21].SetPixel(0, 1, 3);
+            small_font[21].SetPixel(1, 1, 0);
+            small_font[21].SetPixel(2, 1, 0);
+          
+            small_font[21].SetPixel(0, 2, 3);
+            small_font[21].SetPixel(1, 2, 3);
+            small_font[21].SetPixel(2, 2, 3);
+           
+            small_font[21].SetPixel(0, 3, 0);
+            small_font[21].SetPixel(1, 3, 0);
+            small_font[21].SetPixel(2, 3, 3);
+          
+            small_font[21].SetPixel(0, 4, 3);
+            small_font[21].SetPixel(1, 4, 3);
+            small_font[21].SetPixel(2, 4, 3);
+           
+            #endregion
+            #region 6
+            small_font[22].SetPixel(0, 0, 3);
+            small_font[22].SetPixel(1, 0, 3);
+            small_font[22].SetPixel(2, 0, 3);
+          
+            small_font[22].SetPixel(0, 1, 3);
+            small_font[22].SetPixel(1, 1, 0);
+            small_font[22].SetPixel(2, 1, 0);
+          
+            small_font[22].SetPixel(0, 2, 3);
+            small_font[22].SetPixel(1, 2, 3);
+            small_font[22].SetPixel(2, 2, 3);
+           
+
+            small_font[22].SetPixel(0, 3, 3);
+            small_font[22].SetPixel(1, 3, 0);
+            small_font[22].SetPixel(2, 3, 3);
+            
+
+            small_font[22].SetPixel(0, 4, 3);
+            small_font[22].SetPixel(1, 4, 3);
+            small_font[22].SetPixel(2, 4, 3);
+            #endregion
+            #region 7
+            small_font[23].SetPixel(0, 0, 3);
+            small_font[23].SetPixel(1, 0, 3);
+            small_font[23].SetPixel(2, 0, 3);
+            
+            small_font[23].SetPixel(0, 1, 0);
+            small_font[23].SetPixel(1, 1, 0);
+            small_font[23].SetPixel(2, 1, 3);
+           
+            small_font[23].SetPixel(0, 2, 0);
+            small_font[23].SetPixel(1, 2, 0);
+            small_font[23].SetPixel(2, 2, 3);
+           
+            small_font[23].SetPixel(0, 3, 0);
+            small_font[23].SetPixel(1, 3, 0);
+            small_font[23].SetPixel(2, 3, 3);
+          
+            small_font[23].SetPixel(0, 4, 0);
+            small_font[23].SetPixel(1, 4, 0);
+            small_font[23].SetPixel(2, 4, 3);
+            #endregion
+            #region 8
+            small_font[24].SetPixel(0, 0, 3);
+            small_font[24].SetPixel(1, 0, 3);
+            small_font[24].SetPixel(2, 0, 3);
+           
+            small_font[24].SetPixel(0, 1, 3);
+            small_font[24].SetPixel(1, 1, 0);
+            small_font[24].SetPixel(2, 1, 3);
+            
+            small_font[24].SetPixel(0, 2, 3);
+            small_font[24].SetPixel(1, 2, 3);
+            small_font[24].SetPixel(2, 2, 3);
+         
+            small_font[24].SetPixel(0, 3, 3);
+            small_font[24].SetPixel(1, 3, 0);
+            small_font[24].SetPixel(2, 3, 3);
+           
+            small_font[24].SetPixel(0, 4, 3);
+            small_font[24].SetPixel(1, 4, 3);
+            small_font[24].SetPixel(2, 4, 3);
+            #endregion
+            #region 9
+            small_font[25].SetPixel(0, 0, 3);
+            small_font[25].SetPixel(1, 0, 3);
+            small_font[25].SetPixel(2, 0, 3);
+           
+            small_font[25].SetPixel(0, 1, 3);
+            small_font[25].SetPixel(1, 1, 0);
+            small_font[25].SetPixel(2, 1, 3);
+           
+            small_font[25].SetPixel(0, 2, 3);
+            small_font[25].SetPixel(1, 2, 3);
+            small_font[25].SetPixel(2, 2, 3);
+           
+            small_font[25].SetPixel(0, 3, 0);
+            small_font[25].SetPixel(1, 3, 0);
+            small_font[25].SetPixel(2, 3, 3);
+           
+            small_font[25].SetPixel(0, 4, 3);
+            small_font[25].SetPixel(1, 4, 3);
+            small_font[25].SetPixel(2, 4, 3);
+            #endregion
+            #region Colon
+            small_font[26].SetPixel(0, 0, 0);
+            small_font[26].SetPixel(0, 1, 3);
+           small_font[26].SetPixel(0, 2, 0);
+           small_font[26].SetPixel(0, 3, 3);
+          small_font[26].SetPixel(0, 4, 0);
+               #endregion
             #endregion
         }
         private void InitializePalette()

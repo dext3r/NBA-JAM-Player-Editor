@@ -2305,7 +2305,7 @@ letters[0].SetPixel(3, 0, 0);
         private void button12_Click(object sender, EventArgs e)
         {
             //pictureBox4.BackColor = System.Drawing.Color.FromArgb(255, 128, 0, 128); 
-          //  nbajamTextBox1.Text = nbajamTextBox1.Text;
+            nbajamTextBox1.Text = "Spaget!";
             nbajamTextBox1.setFontColorbyIndex(14);
             
            timer1.Start();
@@ -2323,6 +2323,13 @@ letters[0].SetPixel(3, 0, 0);
             timerthing++;
             if (timerthing == 15)
                 timerthing = 0;
+        }
+
+        private void button13_Click(object sender, EventArgs e)
+        {
+            timer1.Stop();
+            nbajamTextBox1.Text = "Not scary: just abnormal";
+            nbajamTextBox1.setFontColorbyIndex(3);
         }
 
 
