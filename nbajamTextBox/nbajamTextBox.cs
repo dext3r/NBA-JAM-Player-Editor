@@ -16,6 +16,7 @@ namespace nbajamTextBox
         //bit arrays?
         //palette definition?
         public enum FontColorOptions { Pallete_0, Pallete_1, Pallete_2, Pallete_3, Pallete_4, Pallete_5, Pallete_6, Pallete_7, Pallete_8, Pallete_9, Pallete_10, Pallete_11, Pallete_12, Pallete_13, Pallete_14, Pallete_15 };
+        public enum TextJustifyOptions { Left, Right, Center, Manual };
         private int tile_width=14;                                                     // Width of the control in 8px*8px tiles
         private int tile_height = 1;                                                    // Height of the control in 8px*8px tiles
         private int scale_factor = 4;                                                   // Use the scale factor to maintain the control's physical size
@@ -29,9 +30,12 @@ namespace nbajamTextBox
         private int[,] backArray;                                                       // An array to hold raw pixel data (Need to optimise - use something instead of int...) 
         private bool redrawFlag = false;
         private int fontIndex = 0;
+        private int offsetx = 0;
+        private int offsety = 0;
       //  private int fontColor = 3;
         private Color colFColor; //experimental
         private FontColorOptions theFontColorOptions;
+        private TextJustifyOptions theJustifyOptions;
             
         //Methods
         //Get tile?
@@ -114,17 +118,55 @@ namespace nbajamTextBox
                 this.Invalidate();
             }
         }
-   /*     public Color ClockForeColor
+        public int TextOffsetX
         {
-           get
+            // Retrieves the value of the private variable offsetx
+            get
             {
-                return colFColor;
+                return offsetx;
+
             }
+            // Stores the value of the text offset x
             set
             {
-                             colFColor = value;            
+                offsetx = value;
+                redrawFlag = true;
+                this.Invalidate();
             }
-        }*/
+        }
+        public int TextOffsetY
+        {
+            // Retrieves the value of the private variable offsetx
+            get
+            {
+                return offsety;
+
+            }
+            // Stores the value of the text offset y
+            set
+            {
+                offsety = value;
+                redrawFlag = true;
+                this.Invalidate();
+            }
+        }
+        public TextJustifyOptions TextJustify
+        {
+            // Retrieves the value of the private variable tile_width
+            get
+            {
+                return theJustifyOptions;
+
+            }
+            // Stores the value of number of tiles wide in variable tile_width
+            set
+            {
+                theJustifyOptions = value;
+                //    fontColor = value;
+                redrawFlag = true;
+                this.Invalidate();
+            }
+        }
 
         [Browsable(true)]
         [DefaultValue("NBAJAM")]
@@ -218,14 +260,33 @@ namespace nbajamTextBox
                     }
                 }
 
-                //Center Justify
-                text_size = (tile_width * 8 - (text_size)) / 2;
-                int locationx = text_size;
-                //locationy = 7;
-                //Starting position in the the bitmap
-
-                // int locationx = 0;
+                int locationx = 0;
                 int locationy = 0;
+
+                switch (theJustifyOptions)
+                {
+                        
+                    case TextJustifyOptions.Left:
+                        // I guess don't really do anything...
+                        break;
+                        //right
+                    case TextJustifyOptions.Right:
+                        text_size = tile_width * 8 - (text_size);
+                        locationx = text_size;
+                        break;
+                    case TextJustifyOptions.Center:
+                        if(fontIndex==0)
+                            text_size = (tile_width * 8 - (text_size)) / 2;
+                        if(fontIndex==1)
+                            text_size = ((tile_width * 8 - (text_size)) / 2)+1;
+                        locationx = text_size;
+                        break;
+                    case TextJustifyOptions.Manual:
+                        locationx = offsetx;
+                        locationy = offsety;
+                        break;
+                        
+                }
 
                 //copy each letter into the background array
                 foreach (int fu in textname)
@@ -239,6 +300,7 @@ namespace nbajamTextBox
                                 for (int x = 0; x < letters[fu].Width; x++)
                                 {
                                     if (locationx + x < (8 * tile_width))
+                                        if(locationy + y < (8 * tile_height))
                                         backArray[locationx + x, locationy + y] = letters[fu].getPixel(x, y);
                                 }
                             }
@@ -257,6 +319,7 @@ namespace nbajamTextBox
                                 for (int x = 0; x < small_font[fu].Width; x++)
                                 {
                                     if (locationx + x < (8 * tile_width))
+                                        if (locationy + y < (8 * tile_height))
                                         backArray[locationx + x, locationy + y] = small_font[fu].getPixel(x, y);
                                 }
                             }
@@ -3079,7 +3142,21 @@ letters[0].SetPixel(3, 0, 0);
             }
             return tilebitmap;
         }
-        
+
+        public void setOffsetX(int x)
+        {
+            offsetx = x;
+            redrawFlag = true;
+            this.Invalidate();
+        }
+
+        public void setOffsetY(int y)
+        {
+            offsety = y;
+            redrawFlag = true;
+            this.Invalidate();
+        }
+
         public void setFontColorbyIndex(int color)
         {
             FontColorOptions test = (FontColorOptions)color;

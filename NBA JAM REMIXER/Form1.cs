@@ -22,6 +22,7 @@ namespace WindowsFormsApplication1
         int[,] backArray2 = new int[48, 16];  //array for nametag data
         List<playerData> nbajam_players = new List<playerData>();
         int timerthing = 0;
+        int animator = 0;
         public enum FontColorOptions { Pallete_0, Pallete_1, Pallete_2, Pallete_3, Pallete_4, Pallete_5, Pallete_6, Pallete_7, Pallete_8, Pallete_9, Pallete_10, Pallete_11, Pallete_12, Pallete_13, Pallete_14, Pallete_15 };
 
         byte[] fileBuffer;
@@ -2318,9 +2319,13 @@ letters[0].SetPixel(3, 0, 0);
         private void timer1_Tick(object sender, EventArgs e)
         {
 
-
+            nbajamTextBox1.TextJustify = nbajamTextBox.nbajamTextBox.TextJustifyOptions.Manual;
            nbajamTextBox1.setFontColorbyIndex(timerthing);
+          nbajamTextBox1.setOffsetX(animator);
             timerthing++;
+           animator+=2;
+            if (animator == 8*nbajamTextBox1.TilesWide)
+                animator = 0;
             if (timerthing == 15)
                 timerthing = 0;
         }
@@ -2328,6 +2333,8 @@ letters[0].SetPixel(3, 0, 0);
         private void button13_Click(object sender, EventArgs e)
         {
             timer1.Stop();
+
+            nbajamTextBox1.TextJustify = nbajamTextBox.nbajamTextBox.TextJustifyOptions.Center;
             nbajamTextBox1.Text = "Not scary: just abnormal";
             nbajamTextBox1.setFontColorbyIndex(3);
         }

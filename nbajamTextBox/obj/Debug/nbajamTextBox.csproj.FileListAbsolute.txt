@@ -3,13 +3,13 @@ C:\Users\dext3r\Documents\Visual Studio 2010\Projects\NBA JAM REMIXER\nbajamText
 C:\Users\dext3r\Documents\Visual Studio 2010\Projects\NBA JAM REMIXER\nbajamTextBox\bin\Debug\nbajamTextBox.pdb
 C:\Users\dext3r\Documents\Visual Studio 2010\Projects\NBA JAM REMIXER\nbajamTextBox\obj\Debug\nbajamTextBox.dll
 C:\Users\dext3r\Documents\Visual Studio 2010\Projects\NBA JAM REMIXER\nbajamTextBox\obj\Debug\nbajamTextBox.pdb
-C:\Users\dext3r\Documents\Visual Studio 2010\Projects Under Source Control\nbajamTextBox\bin\Debug\nbajamTextBox.dll
-C:\Users\dext3r\Documents\Visual Studio 2010\Projects Under Source Control\nbajamTextBox\bin\Debug\nbajamTextBox.pdb
-C:\Users\dext3r\Documents\Visual Studio 2010\Projects Under Source Control\nbajamTextBox\obj\Debug\ResolveAssemblyReference.cache
-C:\Users\dext3r\Documents\Visual Studio 2010\Projects Under Source Control\nbajamTextBox\obj\Debug\nbajamTextBox.dll
-C:\Users\dext3r\Documents\Visual Studio 2010\Projects Under Source Control\nbajamTextBox\obj\Debug\nbajamTextBox.pdb
 C:\Users\bkaminski\Documents\Visual Studio 2010\Projects\NBA JAM REMIXER\nbajamTextBox\bin\Debug\nbajamTextBox.dll
 C:\Users\bkaminski\Documents\Visual Studio 2010\Projects\NBA JAM REMIXER\nbajamTextBox\bin\Debug\nbajamTextBox.pdb
 C:\Users\bkaminski\Documents\Visual Studio 2010\Projects\NBA JAM REMIXER\nbajamTextBox\obj\Debug\ResolveAssemblyReference.cache
 C:\Users\bkaminski\Documents\Visual Studio 2010\Projects\NBA JAM REMIXER\nbajamTextBox\obj\Debug\nbajamTextBox.dll
 C:\Users\bkaminski\Documents\Visual Studio 2010\Projects\NBA JAM REMIXER\nbajamTextBox\obj\Debug\nbajamTextBox.pdb
+C:\Users\dext3r\Documents\Visual Studio 2010\Projects Under Source Control\nbajamTextBox\bin\Debug\nbajamTextBox.dll
+C:\Users\dext3r\Documents\Visual Studio 2010\Projects Under Source Control\nbajamTextBox\bin\Debug\nbajamTextBox.pdb
+C:\Users\dext3r\Documents\Visual Studio 2010\Projects Under Source Control\nbajamTextBox\obj\Debug\ResolveAssemblyReference.cache
+C:\Users\dext3r\Documents\Visual Studio 2010\Projects Under Source Control\nbajamTextBox\obj\Debug\nbajamTextBox.dll
+C:\Users\dext3r\Documents\Visual Studio 2010\Projects Under Source Control\nbajamTextBox\obj\Debug\nbajamTextBox.pdb
