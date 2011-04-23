@@ -169,7 +169,6 @@ namespace nbajamTextBox
         }
 
         [Browsable(true)]
-        [DefaultValue("NBAJAM")]
         public override String Text
         {
             // Retrieves the value of the private variable internal_text
@@ -3142,27 +3141,29 @@ letters[0].SetPixel(3, 0, 0);
             }
             return tilebitmap;
         }
-
         public void setOffsetX(int x)
         {
             offsetx = x;
             redrawFlag = true;
             this.Invalidate();
         }
-
         public void setOffsetY(int y)
         {
             offsety = y;
             redrawFlag = true;
             this.Invalidate();
         }
-
         public void setFontColorbyIndex(int color)
         {
             FontColorOptions test = (FontColorOptions)color;
             theFontColorOptions = test;
             redrawFlag = true;
             this.Invalidate();
+        }
+        public int getLinearArraySize()
+        {
+            //32 bytes per tile
+            return 32 * tile_height * tile_width;
         }
     }
 

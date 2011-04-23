@@ -2339,6 +2339,62 @@ letters[0].SetPixel(3, 0, 0);
             nbajamTextBox1.setFontColorbyIndex(3);
         }
 
+        private void button14_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show(nbajamTextBox20.getLinearArraySize().ToString());
+        }
+
+        private void listBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            switch (listBox1.SelectedIndex)
+            {
+                case 0:
+                    nbajamTextBox1.Text = "chicago bulls";
+                     nbajamTextBox1.FontColor = nbajamTextBox.nbajamTextBox.FontColorOptions.Pallete_7;
+                    nbajamTextBox1.BackColor = Color.FromKnownColor(KnownColor.Maroon);
+                    pictureBox5.BackColor = Color.FromKnownColor(KnownColor.Black);
+                    break;
+                case 1:
+                    nbajamTextBox1.Text = "dallas mavericks";
+                      nbajamTextBox1.FontColor = nbajamTextBox.nbajamTextBox.FontColorOptions.Pallete_14;
+                    nbajamTextBox1.BackColor = Color.FromKnownColor(KnownColor.MediumBlue);
+                    pictureBox5.BackColor = Color.FromKnownColor(KnownColor.ForestGreen );
+
+                    break;
+                case 2:  
+                    nbajamTextBox1.Text = "seattle supersonics";
+                    nbajamTextBox1.FontColor = nbajamTextBox.nbajamTextBox.FontColorOptions.Pallete_8;
+                    nbajamTextBox1.BackColor = Color.FromKnownColor(KnownColor.DarkGreen);
+                    pictureBox5.BackColor = Color.FromKnownColor(KnownColor.Gold);
+                    break;
+            }
+           
+              
+        }
+
+        private void tabControl1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            switch (tabControl1.SelectedIndex)
+            {
+                case 0:
+            
+                    panel2.Visible = true;
+                    panel2.BringToFront();
+                    panel1.SendToBack();
+                  //  panel1.Visible = false;
+                    
+                    break;
+                case 1: 
+                        panel1.BringToFront();
+                    panel2.SendToBack();
+                 //   panel1.Visible = true;
+                  panel2.Visible = false;
+                    break;
+                case 2:   
+                    break;
+            }
+        }
+
 
         
     }
