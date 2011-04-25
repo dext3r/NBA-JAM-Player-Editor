@@ -17,17 +17,19 @@ namespace nbajamTextBox
         //palette definition?
         public enum FontColorOptions { Pallete_0, Pallete_1, Pallete_2, Pallete_3, Pallete_4, Pallete_5, Pallete_6, Pallete_7, Pallete_8, Pallete_9, Pallete_10, Pallete_11, Pallete_12, Pallete_13, Pallete_14, Pallete_15 };
         public enum TextJustifyOptions { Left, Right, Center, Manual };
-        private int tile_width=14;                                                     // Width of the control in 8px*8px tiles
+        public enum TextAlignOptions { Top, Middle, Bottom, Manual };
+        private int tile_width=14;                                                      // Width of the control in 8px*8px tiles
         private int tile_height = 1;                                                    // Height of the control in 8px*8px tiles
         private int scale_factor = 4;                                                   // Use the scale factor to maintain the control's physical size
         //private int fontColor = 1;                                                    // Color to use from the palette
-        private String internal_text="";                                          // The text to display on the control  
+        private String internal_text="";                                                // The text to display on the control  
         private System.Drawing.Color[] colorpalette = new System.Drawing.Color[16];     // A general Color palette
         fontTile[] letters = new fontTile[60];                                          // Object to hold the font data/color
         fontTile[] small_font = new fontTile[60];                                       // Smaller Font
         private Bitmap displayBitmap;                                                   // What the user sees on the control
         private Bitmap[] tiles;                                                         // create array of tiles based on known number of required tiles
         private int[,] backArray;                                                       // An array to hold raw pixel data (Need to optimise - use something instead of int...) 
+        private int[,] savedbackArray;
         private bool redrawFlag = false;
         private int fontIndex = 0;
         private int offsetx = 0;
@@ -36,6 +38,7 @@ namespace nbajamTextBox
         private Color colFColor; //experimental
         private FontColorOptions theFontColorOptions;
         private TextJustifyOptions theJustifyOptions;
+        private TextAlignOptions theAlignOptions;
             
         //Methods
         //Get tile?
@@ -167,6 +170,22 @@ namespace nbajamTextBox
                 this.Invalidate();
             }
         }
+        public TextAlignOptions TextAlign
+        {
+            // Retrieves the value of the private variable tile_width
+            get
+            {
+                return theAlignOptions;
+
+            }
+            // Stores the value of number of tiles wide in variable tile_width
+            set
+            {
+                theAlignOptions  = value;
+                redrawFlag = true;
+                this.Invalidate();
+            }
+        }
 
         [Browsable(true)]
         public override String Text
@@ -210,13 +229,11 @@ namespace nbajamTextBox
                 int totalPixelsWide = (8 * scale_factor * tile_width);
                 int totalPixelsHigh = (8 * scale_factor * tile_height);
 
-
-
-
                 // Create new bitmap to hold the final displayed bitmap
                 displayBitmap = new Bitmap(totalPixelsWide, totalPixelsHigh);
                 // Define pixel array based on number of pixels actually needed
                 backArray = new int[8 * tile_width, 8 * tile_height];
+                savedbackArray = new int[8 * tile_width, 8 * tile_height];
                 // Create new tiles based on amount needed
                 tiles = new Bitmap[tile_width * tile_height];
 
@@ -262,6 +279,7 @@ namespace nbajamTextBox
                 int locationx = 0;
                 int locationy = 0;
 
+                //take care of X coord
                 switch (theJustifyOptions)
                 {
                         
@@ -282,10 +300,35 @@ namespace nbajamTextBox
                         break;
                     case TextJustifyOptions.Manual:
                         locationx = offsetx;
+                  //      locationy = offsety;
+                        break;         
+                }
+
+                //take care of Y coord
+                switch (theAlignOptions)
+                {
+                    case TextAlignOptions.Top:
+                        //nothin
+                        break;
+                    case TextAlignOptions.Middle:
+                        if (fontIndex == 0)
+                            text_size = (tile_height * 8 - 8) / 2;
+                        if (fontIndex == 1)
+                            text_size = ((tile_height * 8 - 5) / 2);
+                        locationy = text_size;
+                        break;
+                    case TextAlignOptions.Bottom:
+                        if (fontIndex == 0)
+                            text_size = (tile_height * 8 - 8);
+                        if (fontIndex == 1)
+                            text_size = (tile_height * 8 - 5);
+                        locationy = text_size;
+                        break;
+                    case TextAlignOptions.Manual:
                         locationy = offsety;
                         break;
-                        
                 }
+
 
                 //copy each letter into the background array
                 foreach (int fu in textname)
@@ -378,7 +421,7 @@ namespace nbajamTextBox
                 {
                     for (int v = 0; v < 8 * tile_width; v++)
                     {
-                        //  backArray2[v, q] = backArray[v, q]; //just copies this to a global variable to use in the save prodcedure. stupid as hell. 
+                        savedbackArray[v, q] = backArray[v, q]; 
                         backArray[v, q] = 0; //clears background array. 
 
                     }
@@ -3153,6 +3196,8 @@ letters[0].SetPixel(3, 0, 0);
             redrawFlag = true;
             this.Invalidate();
         }
+
+        //sets the font color from the palette (0-15)
         public void setFontColorbyIndex(int color)
         {
             FontColorOptions test = (FontColorOptions)color;
@@ -3160,10 +3205,94 @@ letters[0].SetPixel(3, 0, 0);
             redrawFlag = true;
             this.Invalidate();
         }
+        
+        //returns the size of the linear array 
         public int getLinearArraySize()
         {
             //32 bytes per tile
             return 32 * tile_height * tile_width;
+        }
+        
+        //returns the linear, flattened array (size based on image size)
+        public byte[] getLinearArray()
+        {
+            byte[] flat_4bpp_array = new byte[getLinearArraySize()];
+            byte[] tile = new byte[32];
+
+            int locationx = 0;
+            int locationy = 0;
+            int counter = 0;
+            int offset = 0;
+
+            for (int z = 0; z < tile_height; z++)
+            {
+                for (int j = 0; j < tile_width; j++)
+                {
+                    tile = get4bpp(0, locationx, locationy);
+
+                    for (int i = 0; i < 8; i++)
+                    {
+                        flat_4bpp_array[offset] = tile[(counter)];
+                        flat_4bpp_array[offset + 1] = tile[(counter + 1)];
+                        flat_4bpp_array[offset + 16] = tile[(counter + 2)];
+                        flat_4bpp_array[offset + 17] = tile[(counter + 3)];
+
+                        offset = offset + 2;
+                        counter = counter + 4;
+                    }
+                    locationx = locationx + 8;
+                    counter = 0;
+                    offset = offset + 16;
+                }
+                locationx = 0;
+                locationy = locationy + 8;
+            }
+
+            return flat_4bpp_array;
+        }
+        
+        //returns byte[32] array
+        private byte[] get4bpp(int address, int startx, int starty)
+        {
+            int offset = address;
+            byte[] layers = new byte[4];
+            byte[] temp = new byte[4];
+            byte[] pixels = new byte[8];
+            int counter = 0;
+
+            byte[] tile = new byte[32];
+
+            for (int y = 0; y < 8; y++)
+            {
+                for (int i = 0; i < 8; i++)
+                {
+                    pixels[i] = (byte)savedbackArray[startx + i, starty + y];
+
+                    temp[0] = (byte)((pixels[i] >> 0) & 1);
+                    temp[1] = (byte)((pixels[i] >> 1) & 1);
+                    temp[2] = (byte)((pixels[i] >> 2) & 1);
+                    temp[3] = (byte)((pixels[i] >> 3) & 1);
+
+                    layers[0] = (byte)(layers[0] << 1);
+                    layers[0] = (byte)(layers[0] | temp[0]);
+                    layers[1] = (byte)(layers[1] << 1);
+                    layers[1] = (byte)(layers[1] | temp[1]);
+                    layers[2] = (byte)(layers[2] << 1);
+                    layers[2] = (byte)(layers[2] | temp[2]);
+                    layers[3] = (byte)(layers[3] << 1);
+                    layers[3] = (byte)(layers[3] | temp[3]);
+
+                    tile[counter] = layers[0];
+                    tile[counter + 1] = layers[1];
+                    tile[counter + 2] = layers[2];
+                    tile[counter + 3] = layers[3];
+                }
+
+                counter = counter + 4;
+            }
+
+            return tile;
+
         }
     }
 

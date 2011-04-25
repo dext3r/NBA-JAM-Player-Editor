@@ -1790,6 +1790,12 @@ letters[0].SetPixel(3, 0, 0);
 
         private void button9_Click(object sender, EventArgs e)
         {
+            //player stat graphics display start at 0x930C8 ROM
+
+            // 12b0c9 RAM
+
+            //4ce79f - ROM where player names are stored IN ASCII
+
            // string balls = "C:\\Users\\dext3r\\Desktop\\NBA Jam - Tournament Edition (U) [!].smc";
            // byte[] buffer;
             byte[] stats = new byte[26];
@@ -1911,28 +1917,34 @@ letters[0].SetPixel(3, 0, 0);
                     threeptRating = j;
             }
             //3s
-            label10.Text = threeptRating.ToString();
+           // label10.Text = threeptRating.ToString();
+            threeptsUpDown.Value = threeptRating;
             nbajamTextBox7.Text = threeptRating.ToString();
             //speed
-            label9.Text = speedRating.ToString();
+            speedUpDown.Value = speedRating;
             nbajamTextBox5.Text = speedRating.ToString();
             //dunk
-            label11.Text = dunkRating.ToString();
+           // label11.Text = dunkRating.ToString();
+            dunkUpDown.Value = dunkRating;
             nbajamTextBox14.Text = dunkRating.ToString();
             //pass
-            label12.Text = passRating.ToString();
+          //  label12.Text = passRating.ToString();
+            passUpDown.Value = passRating;
             nbajamTextBox15.Text = passRating.ToString();
             //power
-            label13.Text = powerRating.ToString();
+            powerUpDown.Value = powerRating;
             nbajamTextBox16.Text = powerRating.ToString();
             //steal
-            label14.Text = stealRating.ToString();
+          //  label14.Text = stealRating.ToString();
+            stealUpDown.Value = stealRating;
             nbajamTextBox17.Text = stealRating.ToString();
             //block
-            label15.Text = blockRating.ToString();
+          //  label15.Text = blockRating.ToString();
+            blockUpDown.Value = blockRating;
             nbajamTextBox18.Text = blockRating.ToString();
             //clutch
-            label16.Text = clutchRating.ToString();
+          //  label16.Text = clutchRating.ToString();
+            clutchUpDown.Value = clutchRating;
             nbajamTextBox19.Text = clutchRating.ToString();
 
         } //end of function
@@ -2224,7 +2236,8 @@ letters[0].SetPixel(3, 0, 0);
 
         private void textBox4_TextChanged(object sender, EventArgs e)
         {
-            button10_Click(sender, e);
+            //button10_Click(sender, e);
+            nbajamTextBox20.Text = textBox4.Text;
         }
 
         private void openToolStripMenuItem_Click(object sender, EventArgs e)
@@ -2311,7 +2324,6 @@ letters[0].SetPixel(3, 0, 0);
             
            timer1.Start();
 
-           
             
            //bajamTextBox1.BackColor = System.Drawing.Color.FromArgb(255, 128, 0, 0); 
         }
@@ -2323,7 +2335,7 @@ letters[0].SetPixel(3, 0, 0);
            nbajamTextBox1.setFontColorbyIndex(timerthing);
           nbajamTextBox1.setOffsetX(animator);
             timerthing++;
-           animator+=2;
+           animator+=1;
             if (animator == 8*nbajamTextBox1.TilesWide)
                 animator = 0;
             if (timerthing == 15)
@@ -2342,6 +2354,18 @@ letters[0].SetPixel(3, 0, 0);
         private void button14_Click(object sender, EventArgs e)
         {
             MessageBox.Show(nbajamTextBox20.getLinearArraySize().ToString());
+            byte[] localByteArray = new byte[nbajamTextBox20.getLinearArraySize()];
+
+            localByteArray = nbajamTextBox20.getLinearArray();
+            int nameOffset = Convert.ToInt32(textBox2.Text);
+
+
+            for (int i = 0; i < Constants.nametagSize; i++)
+            {
+                fileBuffer[nameOffset] = localByteArray[i];
+                nameOffset++;
+            }
+
         }
 
         private void listBox1_SelectedIndexChanged(object sender, EventArgs e)
@@ -2393,6 +2417,41 @@ letters[0].SetPixel(3, 0, 0);
                 case 2:   
                     break;
             }
+        }
+
+        private void label2_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label8_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label3_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label4_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label6_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label7_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void tabPage1_Click(object sender, EventArgs e)
+        {
+
         }
 
 
