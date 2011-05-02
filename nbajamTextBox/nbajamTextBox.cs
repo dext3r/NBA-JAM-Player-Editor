@@ -223,6 +223,7 @@ namespace nbajamTextBox
         {
             base.OnPaint(pe);
             this.Size = new Size(8 * tile_width * scale_factor, 8 * tile_height * scale_factor);
+
             if (redrawFlag)
             {
                 // Precalculate these values for future use

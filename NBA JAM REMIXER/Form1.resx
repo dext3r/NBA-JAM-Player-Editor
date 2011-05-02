@@ -127,6 +127,17 @@
     <value>265, 17</value>
   </metadata>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  <data name="nbajamTextBox21.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAAGAAAAAgCAYAAADtwH1UAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
+        YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAEeSURBVGhD7ZfRDoMwCEX7/1/nH0030zjpCBDp6MMx8cGV
+        Xuy5lNXWuCAAAQhAAAIQgAAEIAABCEAAAhCAAAQgAAEIQCCTwNZe7fuW2n2s/+6Nl/O0+VH9zLUvoeUF
+        igGT7JIGaBXZjp3yvr3xmrH6fJ/+JAx1sl6gGDDJo6vi7xUogc967rpe/UkY6mQxoI79J7O3J9styOrh
+        1vgJwiqIYlz56TEgn2lIcTytnJVq9WRZqdoOsXq8NT7mCS1v/WAMKPZIq2T54aXtiKuCf/dwbdz6TtDz
+        FQPLTo8B2USDelaPjZ5KvHpa64vmCy53vXAvMG9L8OphwFAL/eSjFYkcj8ZL3ftpS/5X2M/rFfPDN4oC
+        jcZjwEODmA6B/xHYAQL2LUYYqNjYAAAAAElFTkSuQmCC
+</value>
+  </data>
   <data name="nbajamTextBox1.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAAWAAAAAgCAYAAAAsTqKUAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
@@ -158,12 +169,13 @@
   </data>
   <data name="nbajamTextBox20.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
-        iVBORw0KGgoAAAANSUhEUgAAADAAAAAQCAYAAABQrvyxAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
-        YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAADPSURBVEhL7VRBDsMwCMv/X7cfbeqQhXFJSLteJlGpSiIK
-        xcbOGP00A81AM9AMPMbAa7y/tXg99nrmH2ocMeSgHp+zhmdxrl8CtSJo2FYvoGcDqnHkZ8DrJo3AGQm3
-        ABwN4c0A7sQ1bz6BHACTtASxnoAzbkWi3Fx6cYI6UeRpI/h3Js+fACjDmSajd54HwCRsy2im5coj57wz
-        oKsSuglgbVJuVD3CctqRULwM/BaMNxi8WM7A9e1a52QYjVc2X7WPRvV2/LJgj8Uetpr/q48+Vec3LM7v
-        5zIAAAAASUVORK5CYII=
+        iVBORw0KGgoAAAANSUhEUgAAAGAAAAAgCAYAAADtwH1UAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
+        YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAETSURBVGhD7ZhhDoMgDEa5/+l2oy2EMLZqbQGRMZ8JP6S0
+        6PtaQEPgggAEIAABCEAAAhCAAAQgAAEIQAACEIAABCAAgREEHuEZYpOX1d9qz/P0+o9gMSWmBUITxvLT
+        7AggiBZQsQpSNew1CU6Ouco+JUtHTooAI+k6YmsCxGr4rIhfuXe80lpDEGCyXq0CbDfZaypmMq7zp0eA
+        85lWRewVQFaCN972FOWroKqXW2GwF5jchK1jqLVp31YA/ZxvfQf4MtQb3xJIs6+Q1IfP6AXUmqHe+Ajw
+        /geUMru0pJ9cmmqB9frfpgK+4Zefcr0Ae/3/VoCyPu1n/nb9yuOkRfZr973+eV4tzrK7AgIsKx0PDoFR
+        BF5U72VeOcuuJAAAAABJRU5ErkJggg==
 </value>
   </data>
   <data name="nbajamTextBox4.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
@@ -319,4 +331,7 @@
         TivoCUzg5wh8ABsJ3K0vJGflAAAAAElFTkSuQmCC
 </value>
   </data>
+  <metadata name="$this.TrayHeight" type="System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>35</value>
+  </metadata>
 </root>

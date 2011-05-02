@@ -79,12 +79,27 @@
             this.button14 = new System.Windows.Forms.Button();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.label7 = new System.Windows.Forms.Label();
+            this.label6 = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.label5 = new System.Windows.Forms.Label();
+            this.clutchUpDown = new System.Windows.Forms.NumericUpDown();
+            this.passUpDown = new System.Windows.Forms.NumericUpDown();
+            this.blockUpDown = new System.Windows.Forms.NumericUpDown();
+            this.dunkUpDown = new System.Windows.Forms.NumericUpDown();
+            this.stealUpDown = new System.Windows.Forms.NumericUpDown();
+            this.threeptsUpDown = new System.Windows.Forms.NumericUpDown();
             this.label1 = new System.Windows.Forms.Label();
+            this.powerUpDown = new System.Windows.Forms.NumericUpDown();
             this.label19 = new System.Windows.Forms.Label();
+            this.speedUpDown = new System.Windows.Forms.NumericUpDown();
             this.tabPage3 = new System.Windows.Forms.TabPage();
             this.listBox1 = new System.Windows.Forms.ListBox();
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.nbajamTextBox21 = new nbajamTextBox.nbajamTextBox();
             this.nbajamTextBox1 = new nbajamTextBox.nbajamTextBox();
             this.nbajamTextBox20 = new nbajamTextBox.nbajamTextBox();
             this.panel2 = new System.Windows.Forms.Panel();
@@ -105,23 +120,10 @@
             this.nbajamTextBox8 = new nbajamTextBox.nbajamTextBox();
             this.nbajamTextBox11 = new nbajamTextBox.nbajamTextBox();
             this.nbajamTextBox9 = new nbajamTextBox.nbajamTextBox();
+            this.label13 = new System.Windows.Forms.Label();
             this.nbajamTextBox3 = new nbajamTextBox.nbajamTextBox();
             this.nbajamTextBox2 = new nbajamTextBox.nbajamTextBox();
-            this.label13 = new System.Windows.Forms.Label();
-            this.speedUpDown = new System.Windows.Forms.NumericUpDown();
-            this.powerUpDown = new System.Windows.Forms.NumericUpDown();
-            this.threeptsUpDown = new System.Windows.Forms.NumericUpDown();
-            this.stealUpDown = new System.Windows.Forms.NumericUpDown();
-            this.dunkUpDown = new System.Windows.Forms.NumericUpDown();
-            this.blockUpDown = new System.Windows.Forms.NumericUpDown();
-            this.passUpDown = new System.Windows.Forms.NumericUpDown();
-            this.clutchUpDown = new System.Windows.Forms.NumericUpDown();
-            this.label5 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
-            this.label6 = new System.Windows.Forms.Label();
-            this.label7 = new System.Windows.Forms.Label();
+            this.nbajamPictureBox1 = new nbajamPictureBox.nbajamPictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
@@ -131,8 +133,17 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).BeginInit();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.clutchUpDown)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.passUpDown)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.blockUpDown)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dunkUpDown)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.stealUpDown)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.threeptsUpDown)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.powerUpDown)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.speedUpDown)).BeginInit();
             this.tabPage3.SuspendLayout();
             this.panel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.nbajamTextBox21)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nbajamTextBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nbajamTextBox20)).BeginInit();
             this.panel2.SuspendLayout();
@@ -155,14 +166,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.nbajamTextBox9)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nbajamTextBox3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nbajamTextBox2)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.speedUpDown)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.powerUpDown)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.threeptsUpDown)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.stealUpDown)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dunkUpDown)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.blockUpDown)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.passUpDown)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.clutchUpDown)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nbajamPictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // button1
@@ -178,9 +182,9 @@
             // pictureBox1
             // 
             this.pictureBox1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.pictureBox1.Location = new System.Drawing.Point(109, 22);
+            this.pictureBox1.Location = new System.Drawing.Point(946, 139);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(143, 179);
+            this.pictureBox1.Size = new System.Drawing.Size(51, 82);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox1.TabIndex = 1;
             this.pictureBox1.TabStop = false;
@@ -234,7 +238,7 @@
             // pictureBox3
             // 
             this.pictureBox3.BackColor = System.Drawing.SystemColors.Control;
-            this.pictureBox3.Location = new System.Drawing.Point(84, 177);
+            this.pictureBox3.Location = new System.Drawing.Point(99, 169);
             this.pictureBox3.Name = "pictureBox3";
             this.pictureBox3.Size = new System.Drawing.Size(192, 64);
             this.pictureBox3.TabIndex = 7;
@@ -543,7 +547,7 @@
             // 
             // button12
             // 
-            this.button12.Location = new System.Drawing.Point(1003, 183);
+            this.button12.Location = new System.Drawing.Point(1027, 157);
             this.button12.Margin = new System.Windows.Forms.Padding(2);
             this.button12.Name = "button12";
             this.button12.Size = new System.Drawing.Size(169, 22);
@@ -565,7 +569,7 @@
             // pictureBox4
             // 
             this.pictureBox4.BackColor = System.Drawing.SystemColors.Control;
-            this.pictureBox4.Location = new System.Drawing.Point(35, 100);
+            this.pictureBox4.Location = new System.Drawing.Point(965, 68);
             this.pictureBox4.Name = "pictureBox4";
             this.pictureBox4.Size = new System.Drawing.Size(48, 16);
             this.pictureBox4.TabIndex = 36;
@@ -577,7 +581,7 @@
             // 
             // button13
             // 
-            this.button13.Location = new System.Drawing.Point(993, 156);
+            this.button13.Location = new System.Drawing.Point(1027, 130);
             this.button13.Margin = new System.Windows.Forms.Padding(2);
             this.button13.Name = "button13";
             this.button13.Size = new System.Drawing.Size(169, 23);
@@ -588,7 +592,7 @@
             // 
             // button14
             // 
-            this.button14.Location = new System.Drawing.Point(1040, 245);
+            this.button14.Location = new System.Drawing.Point(1027, 183);
             this.button14.Name = "button14";
             this.button14.Size = new System.Drawing.Size(134, 23);
             this.button14.TabIndex = 66;
@@ -656,6 +660,132 @@
             this.tabPage1.UseVisualStyleBackColor = true;
             this.tabPage1.Click += new System.EventHandler(this.tabPage1_Click);
             // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(100, 177);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(40, 13);
+            this.label7.TabIndex = 91;
+            this.label7.Text = "Clutch:";
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(22, 177);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(33, 13);
+            this.label6.TabIndex = 90;
+            this.label6.Text = "Pass:";
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(103, 152);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(37, 13);
+            this.label4.TabIndex = 89;
+            this.label4.Text = "Block:";
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(19, 152);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(36, 13);
+            this.label3.TabIndex = 88;
+            this.label3.Text = "Dunk:";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(106, 125);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(34, 13);
+            this.label2.TabIndex = 87;
+            this.label2.Text = "Steal:";
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(24, 125);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(31, 13);
+            this.label5.TabIndex = 86;
+            this.label5.Text = "3Pts:";
+            // 
+            // clutchUpDown
+            // 
+            this.clutchUpDown.Location = new System.Drawing.Point(146, 175);
+            this.clutchUpDown.Maximum = new decimal(new int[] {
+            10,
+            0,
+            0,
+            0});
+            this.clutchUpDown.Name = "clutchUpDown";
+            this.clutchUpDown.Size = new System.Drawing.Size(32, 20);
+            this.clutchUpDown.TabIndex = 79;
+            // 
+            // passUpDown
+            // 
+            this.passUpDown.Location = new System.Drawing.Point(61, 175);
+            this.passUpDown.Maximum = new decimal(new int[] {
+            10,
+            0,
+            0,
+            0});
+            this.passUpDown.Name = "passUpDown";
+            this.passUpDown.Size = new System.Drawing.Size(32, 20);
+            this.passUpDown.TabIndex = 78;
+            // 
+            // blockUpDown
+            // 
+            this.blockUpDown.Location = new System.Drawing.Point(146, 149);
+            this.blockUpDown.Maximum = new decimal(new int[] {
+            10,
+            0,
+            0,
+            0});
+            this.blockUpDown.Name = "blockUpDown";
+            this.blockUpDown.Size = new System.Drawing.Size(32, 20);
+            this.blockUpDown.TabIndex = 77;
+            // 
+            // dunkUpDown
+            // 
+            this.dunkUpDown.Location = new System.Drawing.Point(61, 149);
+            this.dunkUpDown.Maximum = new decimal(new int[] {
+            10,
+            0,
+            0,
+            0});
+            this.dunkUpDown.Name = "dunkUpDown";
+            this.dunkUpDown.Size = new System.Drawing.Size(32, 20);
+            this.dunkUpDown.TabIndex = 76;
+            // 
+            // stealUpDown
+            // 
+            this.stealUpDown.Location = new System.Drawing.Point(146, 123);
+            this.stealUpDown.Maximum = new decimal(new int[] {
+            10,
+            0,
+            0,
+            0});
+            this.stealUpDown.Name = "stealUpDown";
+            this.stealUpDown.Size = new System.Drawing.Size(32, 20);
+            this.stealUpDown.TabIndex = 75;
+            // 
+            // threeptsUpDown
+            // 
+            this.threeptsUpDown.Location = new System.Drawing.Point(61, 123);
+            this.threeptsUpDown.Maximum = new decimal(new int[] {
+            10,
+            0,
+            0,
+            0});
+            this.threeptsUpDown.Name = "threeptsUpDown";
+            this.threeptsUpDown.Size = new System.Drawing.Size(32, 20);
+            this.threeptsUpDown.TabIndex = 74;
+            // 
             // label1
             // 
             this.label1.AutoSize = true;
@@ -665,6 +795,18 @@
             this.label1.TabIndex = 73;
             this.label1.Text = "Power:";
             // 
+            // powerUpDown
+            // 
+            this.powerUpDown.Location = new System.Drawing.Point(146, 97);
+            this.powerUpDown.Maximum = new decimal(new int[] {
+            10,
+            0,
+            0,
+            0});
+            this.powerUpDown.Name = "powerUpDown";
+            this.powerUpDown.Size = new System.Drawing.Size(32, 20);
+            this.powerUpDown.TabIndex = 72;
+            // 
             // label19
             // 
             this.label19.AutoSize = true;
@@ -673,6 +815,18 @@
             this.label19.Size = new System.Drawing.Size(41, 13);
             this.label19.TabIndex = 71;
             this.label19.Text = "Speed:";
+            // 
+            // speedUpDown
+            // 
+            this.speedUpDown.Location = new System.Drawing.Point(61, 97);
+            this.speedUpDown.Maximum = new decimal(new int[] {
+            10,
+            0,
+            0,
+            0});
+            this.speedUpDown.Name = "speedUpDown";
+            this.speedUpDown.Size = new System.Drawing.Size(32, 20);
+            this.speedUpDown.TabIndex = 70;
             // 
             // tabPage3
             // 
@@ -735,14 +889,33 @@
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.SystemColors.ControlDark;
+            this.panel1.Controls.Add(this.nbajamTextBox21);
             this.panel1.Controls.Add(this.nbajamTextBox1);
             this.panel1.Controls.Add(this.pictureBox5);
-            this.panel1.Controls.Add(this.pictureBox4);
             this.panel1.Controls.Add(this.nbajamTextBox20);
             this.panel1.Location = new System.Drawing.Point(202, 27);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(361, 398);
             this.panel1.TabIndex = 68;
+            // 
+            // nbajamTextBox21
+            // 
+            this.nbajamTextBox21.FontColor = nbajamTextBox.nbajamTextBox.FontColorOptions.Pallete_3;
+            this.nbajamTextBox21.FontNumber = 0;
+            this.nbajamTextBox21.Image = ((System.Drawing.Image)(resources.GetObject("nbajamTextBox21.Image")));
+            this.nbajamTextBox21.Location = new System.Drawing.Point(197, 153);
+            this.nbajamTextBox21.Name = "nbajamTextBox21";
+            this.nbajamTextBox21.ScaleFactor = 2;
+            this.nbajamTextBox21.Size = new System.Drawing.Size(96, 32);
+            this.nbajamTextBox21.TabIndex = 66;
+            this.nbajamTextBox21.TabStop = false;
+            this.nbajamTextBox21.Text = "PIPPEN";
+            this.nbajamTextBox21.TextAlign = nbajamTextBox.nbajamTextBox.TextAlignOptions.Manual;
+            this.nbajamTextBox21.TextJustify = nbajamTextBox.nbajamTextBox.TextJustifyOptions.Center;
+            this.nbajamTextBox21.TextOffsetX = 4;
+            this.nbajamTextBox21.TextOffsetY = 7;
+            this.nbajamTextBox21.TilesHigh = 2;
+            this.nbajamTextBox21.TilesWide = 6;
             // 
             // nbajamTextBox1
             // 
@@ -770,13 +943,13 @@
             this.nbajamTextBox20.FontColor = nbajamTextBox.nbajamTextBox.FontColorOptions.Pallete_3;
             this.nbajamTextBox20.FontNumber = 0;
             this.nbajamTextBox20.Image = ((System.Drawing.Image)(resources.GetObject("nbajamTextBox20.Image")));
-            this.nbajamTextBox20.Location = new System.Drawing.Point(98, 100);
+            this.nbajamTextBox20.Location = new System.Drawing.Point(56, 153);
             this.nbajamTextBox20.Name = "nbajamTextBox20";
-            this.nbajamTextBox20.ScaleFactor = 1;
-            this.nbajamTextBox20.Size = new System.Drawing.Size(48, 16);
+            this.nbajamTextBox20.ScaleFactor = 2;
+            this.nbajamTextBox20.Size = new System.Drawing.Size(96, 32);
             this.nbajamTextBox20.TabIndex = 65;
             this.nbajamTextBox20.TabStop = false;
-            this.nbajamTextBox20.Text = "VERSION 1.0";
+            this.nbajamTextBox20.Text = "JORDAN";
             this.nbajamTextBox20.TextAlign = nbajamTextBox.nbajamTextBox.TextAlignOptions.Manual;
             this.nbajamTextBox20.TextJustify = nbajamTextBox.nbajamTextBox.TextJustifyOptions.Center;
             this.nbajamTextBox20.TextOffsetX = 4;
@@ -787,10 +960,9 @@
             // panel2
             // 
             this.panel2.BackColor = System.Drawing.SystemColors.ControlDark;
-            this.panel2.Controls.Add(this.pictureBox1);
+            this.panel2.Controls.Add(this.pictureBox2);
             this.panel2.Controls.Add(this.groupBox1);
             this.panel2.Controls.Add(this.pictureBox3);
-            this.panel2.Controls.Add(this.pictureBox2);
             this.panel2.Location = new System.Drawing.Point(569, 27);
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(361, 398);
@@ -1142,6 +1314,16 @@
             this.nbajamTextBox9.TilesHigh = 1;
             this.nbajamTextBox9.TilesWide = 3;
             // 
+            // label13
+            // 
+            this.label13.AutoSize = true;
+            this.label13.Location = new System.Drawing.Point(1080, 310);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(25, 13);
+            this.label13.TabIndex = 29;
+            this.label13.Text = "???";
+            this.label13.Visible = false;
+            // 
             // nbajamTextBox3
             // 
             this.nbajamTextBox3.BackColor = System.Drawing.Color.Purple;
@@ -1169,7 +1351,7 @@
             this.nbajamTextBox2.FontColor = nbajamTextBox.nbajamTextBox.FontColorOptions.Pallete_3;
             this.nbajamTextBox2.FontNumber = 0;
             this.nbajamTextBox2.Image = ((System.Drawing.Image)(resources.GetObject("nbajamTextBox2.Image")));
-            this.nbajamTextBox2.Location = new System.Drawing.Point(1027, 368);
+            this.nbajamTextBox2.Location = new System.Drawing.Point(1027, 211);
             this.nbajamTextBox2.Margin = new System.Windows.Forms.Padding(2);
             this.nbajamTextBox2.Name = "nbajamTextBox2";
             this.nbajamTextBox2.ScaleFactor = 2;
@@ -1184,172 +1366,28 @@
             this.nbajamTextBox2.TilesHigh = 2;
             this.nbajamTextBox2.TilesWide = 6;
             // 
-            // label13
+            // nbajamPictureBox1
             // 
-            this.label13.AutoSize = true;
-            this.label13.Location = new System.Drawing.Point(1080, 310);
-            this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(25, 13);
-            this.label13.TabIndex = 29;
-            this.label13.Text = "???";
-            this.label13.Visible = false;
-            // 
-            // speedUpDown
-            // 
-            this.speedUpDown.Location = new System.Drawing.Point(61, 97);
-            this.speedUpDown.Maximum = new decimal(new int[] {
-            10,
-            0,
-            0,
-            0});
-            this.speedUpDown.Name = "speedUpDown";
-            this.speedUpDown.Size = new System.Drawing.Size(32, 20);
-            this.speedUpDown.TabIndex = 70;
-            // 
-            // powerUpDown
-            // 
-            this.powerUpDown.Location = new System.Drawing.Point(146, 97);
-            this.powerUpDown.Maximum = new decimal(new int[] {
-            10,
-            0,
-            0,
-            0});
-            this.powerUpDown.Name = "powerUpDown";
-            this.powerUpDown.Size = new System.Drawing.Size(32, 20);
-            this.powerUpDown.TabIndex = 72;
-            // 
-            // threeptsUpDown
-            // 
-            this.threeptsUpDown.Location = new System.Drawing.Point(61, 123);
-            this.threeptsUpDown.Maximum = new decimal(new int[] {
-            10,
-            0,
-            0,
-            0});
-            this.threeptsUpDown.Name = "threeptsUpDown";
-            this.threeptsUpDown.Size = new System.Drawing.Size(32, 20);
-            this.threeptsUpDown.TabIndex = 74;
-            // 
-            // stealUpDown
-            // 
-            this.stealUpDown.Location = new System.Drawing.Point(146, 123);
-            this.stealUpDown.Maximum = new decimal(new int[] {
-            10,
-            0,
-            0,
-            0});
-            this.stealUpDown.Name = "stealUpDown";
-            this.stealUpDown.Size = new System.Drawing.Size(32, 20);
-            this.stealUpDown.TabIndex = 75;
-            // 
-            // dunkUpDown
-            // 
-            this.dunkUpDown.Location = new System.Drawing.Point(61, 149);
-            this.dunkUpDown.Maximum = new decimal(new int[] {
-            10,
-            0,
-            0,
-            0});
-            this.dunkUpDown.Name = "dunkUpDown";
-            this.dunkUpDown.Size = new System.Drawing.Size(32, 20);
-            this.dunkUpDown.TabIndex = 76;
-            // 
-            // blockUpDown
-            // 
-            this.blockUpDown.Location = new System.Drawing.Point(146, 149);
-            this.blockUpDown.Maximum = new decimal(new int[] {
-            10,
-            0,
-            0,
-            0});
-            this.blockUpDown.Name = "blockUpDown";
-            this.blockUpDown.Size = new System.Drawing.Size(32, 20);
-            this.blockUpDown.TabIndex = 77;
-            // 
-            // passUpDown
-            // 
-            this.passUpDown.Location = new System.Drawing.Point(61, 175);
-            this.passUpDown.Maximum = new decimal(new int[] {
-            10,
-            0,
-            0,
-            0});
-            this.passUpDown.Name = "passUpDown";
-            this.passUpDown.Size = new System.Drawing.Size(32, 20);
-            this.passUpDown.TabIndex = 78;
-            // 
-            // clutchUpDown
-            // 
-            this.clutchUpDown.Location = new System.Drawing.Point(146, 175);
-            this.clutchUpDown.Maximum = new decimal(new int[] {
-            10,
-            0,
-            0,
-            0});
-            this.clutchUpDown.Name = "clutchUpDown";
-            this.clutchUpDown.Size = new System.Drawing.Size(32, 20);
-            this.clutchUpDown.TabIndex = 79;
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(24, 125);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(31, 13);
-            this.label5.TabIndex = 86;
-            this.label5.Text = "3Pts:";
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(106, 125);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(34, 13);
-            this.label2.TabIndex = 87;
-            this.label2.Text = "Steal:";
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(19, 152);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(36, 13);
-            this.label3.TabIndex = 88;
-            this.label3.Text = "Dunk:";
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(103, 152);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(37, 13);
-            this.label4.TabIndex = 89;
-            this.label4.Text = "Block:";
-            // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(22, 177);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(33, 13);
-            this.label6.TabIndex = 90;
-            this.label6.Text = "Pass:";
-            // 
-            // label7
-            // 
-            this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(100, 177);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(40, 13);
-            this.label7.TabIndex = 91;
-            this.label7.Text = "Clutch:";
+            this.nbajamPictureBox1.DataSize = 0;
+            this.nbajamPictureBox1.Location = new System.Drawing.Point(975, 276);
+            this.nbajamPictureBox1.Name = "nbajamPictureBox1";
+            this.nbajamPictureBox1.PaletteSize = 0;
+            this.nbajamPictureBox1.ScaleFactor = 2;
+            this.nbajamPictureBox1.Size = new System.Drawing.Size(96, 112);
+            this.nbajamPictureBox1.TabIndex = 70;
+            this.nbajamPictureBox1.TabStop = false;
+            this.nbajamPictureBox1.TilesHigh = 7;
+            this.nbajamPictureBox1.TilesWide = 6;
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1247, 471);
+            this.Controls.Add(this.pictureBox1);
+            this.Controls.Add(this.nbajamPictureBox1);
             this.Controls.Add(this.panel2);
+            this.Controls.Add(this.pictureBox4);
             this.Controls.Add(this.tabControl1);
             this.Controls.Add(this.button14);
             this.Controls.Add(this.button13);
@@ -1384,8 +1422,17 @@
             this.tabControl1.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
             this.tabPage1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.clutchUpDown)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.passUpDown)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.blockUpDown)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dunkUpDown)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.stealUpDown)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.threeptsUpDown)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.powerUpDown)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.speedUpDown)).EndInit();
             this.tabPage3.ResumeLayout(false);
             this.panel1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.nbajamTextBox21)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nbajamTextBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nbajamTextBox20)).EndInit();
             this.panel2.ResumeLayout(false);
@@ -1408,14 +1455,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.nbajamTextBox9)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nbajamTextBox3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nbajamTextBox2)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.speedUpDown)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.powerUpDown)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.threeptsUpDown)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.stealUpDown)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dunkUpDown)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.blockUpDown)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.passUpDown)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.clutchUpDown)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nbajamPictureBox1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1515,6 +1555,8 @@
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label3;
+        private nbajamPictureBox.nbajamPictureBox nbajamPictureBox1;
+        private nbajamTextBox.nbajamTextBox nbajamTextBox21;
     }
 }
 

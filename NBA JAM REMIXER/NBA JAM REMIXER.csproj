@@ -77,6 +77,10 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\nbajamPictureBox\nbajamPictureBox.csproj">
+      <Project>{825474FB-B548-4D10-99CE-969EE1348683}</Project>
+      <Name>nbajamPictureBox</Name>
+    </ProjectReference>
     <ProjectReference Include="..\nbajamTextBox\nbajamTextBox.csproj">
       <Project>{C2958694-C743-4A4D-97F6-F38F108FD207}</Project>
       <Name>nbajamTextBox</Name>

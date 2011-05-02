@@ -31,3 +31,5 @@ C:\Users\dext3r\Documents\Visual Studio 2010\Projects Under Source Control\NBA J
 C:\Users\dext3r\Documents\Visual Studio 2010\Projects Under Source Control\NBA JAM REMIXER\obj\x86\Debug\GenerateResource.write.1.tlog
 C:\Users\dext3r\Documents\Visual Studio 2010\Projects Under Source Control\NBA JAM REMIXER\obj\x86\Debug\NBA JAM REMIXER.exe
 C:\Users\dext3r\Documents\Visual Studio 2010\Projects Under Source Control\NBA JAM REMIXER\obj\x86\Debug\NBA JAM REMIXER.pdb
+C:\Users\dext3r\Documents\Visual Studio 2010\Projects Under Source Control\NBA JAM REMIXER\bin\Debug\nbajamPictureBox.dll
+C:\Users\dext3r\Documents\Visual Studio 2010\Projects Under Source Control\NBA JAM REMIXER\bin\Debug\nbajamPictureBox.pdb

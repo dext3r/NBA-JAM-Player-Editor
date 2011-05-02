@@ -60,6 +60,8 @@ namespace WindowsFormsApplication1
                 Bitmap portraitBitmap = new Bitmap(48,56);
                 Bitmap[,] tile = new Bitmap[6,7];
                 Bitmap[] tiles = new Bitmap[42];
+                byte[] full_data = new byte[Constants.portraitBitmapSize + Constants.portraitPaletteSize];
+                int balls = 0;
 
                 for (int i = 0; i < 42; i++)
                 {
@@ -86,13 +88,16 @@ namespace WindowsFormsApplication1
                */
                 start_address = Convert.ToInt32(textBox1.Text);
                 count = 0;
+            balls = 0;
             //    Console.WriteLine("PORTRAIT DATA:");
                 for (int i = 0; i < Constants.portraitBitmapSize; i++)
                 {
                     portrait[i] = fileBuffer[start_address];
+                    full_data[balls] = fileBuffer[start_address];
                //     Console.Write(portrait[i].ToString("X2"));
                     start_address++;
                     count++;
+                    balls++;
                 }
             //    Console.WriteLine("Count: " + count.ToString());
             //    Console.WriteLine();
@@ -101,9 +106,11 @@ namespace WindowsFormsApplication1
                 for (int j = 0; j < Constants.portraitPaletteSize; j++)
                 {
                     palette[j] = fileBuffer[start_address];
+                    full_data[balls] = fileBuffer[start_address];
              //       Console.Write(palette[j].ToString("X2"));
                     start_address++;
                     count++;
+                    balls++;
                 }
              //   Console.WriteLine("Count: " + count.ToString());
               //  Console.WriteLine();
@@ -132,7 +139,8 @@ namespace WindowsFormsApplication1
                     palette_swatch[counto] = System.Drawing.Color.FromArgb(red, green, blue);
                     counto++;
                 }
-       //palette drawing hack
+                #region Palette Hack
+            //palette drawing hack
                 for (int f = 0; f < 16; f++)
                 {
                     for (int i = 0; i < 14; i++)
@@ -164,8 +172,8 @@ namespace WindowsFormsApplication1
 
                 pictureBox2.Image = paletteBitmap;
 
-        
-                
+                #endregion
+
                 int initial_offset = 0;
                 int secondary_offset = initial_offset + 32;
 
@@ -249,8 +257,14 @@ namespace WindowsFormsApplication1
            
            // pictureBox1.Image = tiles[15];
             pictureBox1.Image = portraitBitmap;
-             
-            
+
+
+            nbajamPictureBox1.DataSize = 1744;
+            nbajamPictureBox1.PaletteSize = 32;
+            nbajamPictureBox1.isPortrait = true;
+            nbajamPictureBox1.loadImageData(full_data);
+            //nbajamPictureBox1.Invalidate();
+        //    nbajamPictureBox1.Image = portraitBitmap;         
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -2347,7 +2361,7 @@ letters[0].SetPixel(3, 0, 0);
             timer1.Stop();
 
             nbajamTextBox1.TextJustify = nbajamTextBox.nbajamTextBox.TextJustifyOptions.Center;
-            nbajamTextBox1.Text = "Not scary: just abnormal";
+            nbajamTextBox1.Text = "FUCK YOU!";
             nbajamTextBox1.setFontColorbyIndex(3);
         }
 
