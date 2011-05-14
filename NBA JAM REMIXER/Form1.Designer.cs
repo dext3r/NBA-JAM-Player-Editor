@@ -99,9 +99,9 @@
             this.listBox1 = new System.Windows.Forms.ListBox();
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.nbajamTextBox20 = new nbajamTextBox.nbajamTextBox();
             this.nbajamTextBox21 = new nbajamTextBox.nbajamTextBox();
             this.nbajamTextBox1 = new nbajamTextBox.nbajamTextBox();
-            this.nbajamTextBox20 = new nbajamTextBox.nbajamTextBox();
             this.panel2 = new System.Windows.Forms.Panel();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.nbajamTextBox4 = new nbajamTextBox.nbajamTextBox();
@@ -143,9 +143,9 @@
             ((System.ComponentModel.ISupportInitialize)(this.speedUpDown)).BeginInit();
             this.tabPage3.SuspendLayout();
             this.panel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.nbajamTextBox20)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nbajamTextBox21)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nbajamTextBox1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.nbajamTextBox20)).BeginInit();
             this.panel2.SuspendLayout();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nbajamTextBox4)).BeginInit();
@@ -182,9 +182,9 @@
             // pictureBox1
             // 
             this.pictureBox1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.pictureBox1.Location = new System.Drawing.Point(946, 139);
+            this.pictureBox1.Location = new System.Drawing.Point(866, 84);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(51, 82);
+            this.pictureBox1.Size = new System.Drawing.Size(128, 176);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox1.TabIndex = 1;
             this.pictureBox1.TabStop = false;
@@ -889,27 +889,48 @@
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.SystemColors.ControlDark;
+            this.panel1.Controls.Add(this.nbajamTextBox20);
             this.panel1.Controls.Add(this.nbajamTextBox21);
             this.panel1.Controls.Add(this.nbajamTextBox1);
             this.panel1.Controls.Add(this.pictureBox5);
-            this.panel1.Controls.Add(this.nbajamTextBox20);
             this.panel1.Location = new System.Drawing.Point(202, 27);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(361, 398);
             this.panel1.TabIndex = 68;
             // 
+            // nbajamTextBox20
+            // 
+            this.nbajamTextBox20.BackColor = System.Drawing.SystemColors.HotTrack;
+            this.nbajamTextBox20.FontColor = nbajamTextBox.nbajamTextBox.FontColorOptions.Pallete_3;
+            this.nbajamTextBox20.FontNumber = 0;
+            this.nbajamTextBox20.Image = ((System.Drawing.Image)(resources.GetObject("nbajamTextBox20.Image")));
+            this.nbajamTextBox20.Location = new System.Drawing.Point(81, 147);
+            this.nbajamTextBox20.Name = "nbajamTextBox20";
+            this.nbajamTextBox20.ScaleFactor = 2;
+            this.nbajamTextBox20.Size = new System.Drawing.Size(96, 32);
+            this.nbajamTextBox20.TabIndex = 65;
+            this.nbajamTextBox20.TabStop = false;
+            this.nbajamTextBox20.Text = "NBA JAM";
+            this.nbajamTextBox20.TextAlign = nbajamTextBox.nbajamTextBox.TextAlignOptions.Manual;
+            this.nbajamTextBox20.TextJustify = nbajamTextBox.nbajamTextBox.TextJustifyOptions.Center;
+            this.nbajamTextBox20.TextOffsetX = 4;
+            this.nbajamTextBox20.TextOffsetY = 7;
+            this.nbajamTextBox20.TilesHigh = 2;
+            this.nbajamTextBox20.TilesWide = 6;
+            // 
             // nbajamTextBox21
             // 
+            this.nbajamTextBox21.BackColor = System.Drawing.SystemColors.HotTrack;
             this.nbajamTextBox21.FontColor = nbajamTextBox.nbajamTextBox.FontColorOptions.Pallete_3;
             this.nbajamTextBox21.FontNumber = 0;
             this.nbajamTextBox21.Image = ((System.Drawing.Image)(resources.GetObject("nbajamTextBox21.Image")));
-            this.nbajamTextBox21.Location = new System.Drawing.Point(197, 153);
+            this.nbajamTextBox21.Location = new System.Drawing.Point(183, 147);
             this.nbajamTextBox21.Name = "nbajamTextBox21";
             this.nbajamTextBox21.ScaleFactor = 2;
             this.nbajamTextBox21.Size = new System.Drawing.Size(96, 32);
             this.nbajamTextBox21.TabIndex = 66;
             this.nbajamTextBox21.TabStop = false;
-            this.nbajamTextBox21.Text = "PIPPEN";
+            this.nbajamTextBox21.Text = "LULULZ";
             this.nbajamTextBox21.TextAlign = nbajamTextBox.nbajamTextBox.TextAlignOptions.Manual;
             this.nbajamTextBox21.TextJustify = nbajamTextBox.nbajamTextBox.TextJustifyOptions.Center;
             this.nbajamTextBox21.TextOffsetX = 4;
@@ -937,25 +958,6 @@
             this.nbajamTextBox1.TilesHigh = 1;
             this.nbajamTextBox1.TilesWide = 11;
             this.nbajamTextBox1.Click += new System.EventHandler(this.nbajamTextBox1_Click);
-            // 
-            // nbajamTextBox20
-            // 
-            this.nbajamTextBox20.FontColor = nbajamTextBox.nbajamTextBox.FontColorOptions.Pallete_3;
-            this.nbajamTextBox20.FontNumber = 0;
-            this.nbajamTextBox20.Image = ((System.Drawing.Image)(resources.GetObject("nbajamTextBox20.Image")));
-            this.nbajamTextBox20.Location = new System.Drawing.Point(56, 153);
-            this.nbajamTextBox20.Name = "nbajamTextBox20";
-            this.nbajamTextBox20.ScaleFactor = 2;
-            this.nbajamTextBox20.Size = new System.Drawing.Size(96, 32);
-            this.nbajamTextBox20.TabIndex = 65;
-            this.nbajamTextBox20.TabStop = false;
-            this.nbajamTextBox20.Text = "JORDAN";
-            this.nbajamTextBox20.TextAlign = nbajamTextBox.nbajamTextBox.TextAlignOptions.Manual;
-            this.nbajamTextBox20.TextJustify = nbajamTextBox.nbajamTextBox.TextJustifyOptions.Center;
-            this.nbajamTextBox20.TextOffsetX = 4;
-            this.nbajamTextBox20.TextOffsetY = 7;
-            this.nbajamTextBox20.TilesHigh = 2;
-            this.nbajamTextBox20.TilesWide = 6;
             // 
             // panel2
             // 
@@ -1369,10 +1371,10 @@
             // nbajamPictureBox1
             // 
             this.nbajamPictureBox1.DataSize = 0;
-            this.nbajamPictureBox1.Location = new System.Drawing.Point(975, 276);
+            this.nbajamPictureBox1.Location = new System.Drawing.Point(936, 296);
             this.nbajamPictureBox1.Name = "nbajamPictureBox1";
             this.nbajamPictureBox1.PaletteSize = 0;
-            this.nbajamPictureBox1.ScaleFactor = 2;
+            this.nbajamPictureBox1.ScaleFactor = 1;
             this.nbajamPictureBox1.Size = new System.Drawing.Size(96, 112);
             this.nbajamPictureBox1.TabIndex = 70;
             this.nbajamPictureBox1.TabStop = false;
@@ -1385,8 +1387,8 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1247, 471);
             this.Controls.Add(this.pictureBox1);
-            this.Controls.Add(this.nbajamPictureBox1);
             this.Controls.Add(this.panel2);
+            this.Controls.Add(this.nbajamPictureBox1);
             this.Controls.Add(this.pictureBox4);
             this.Controls.Add(this.tabControl1);
             this.Controls.Add(this.button14);
@@ -1432,9 +1434,9 @@
             ((System.ComponentModel.ISupportInitialize)(this.speedUpDown)).EndInit();
             this.tabPage3.ResumeLayout(false);
             this.panel1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.nbajamTextBox20)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nbajamTextBox21)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nbajamTextBox1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.nbajamTextBox20)).EndInit();
             this.panel2.ResumeLayout(false);
             this.groupBox1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.nbajamTextBox4)).EndInit();
