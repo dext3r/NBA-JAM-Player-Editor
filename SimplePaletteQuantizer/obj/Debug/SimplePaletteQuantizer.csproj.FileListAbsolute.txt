@@ -1,0 +1,9 @@
+C:\Users\dext3r\Documents\SimplePaletteQuantizerVS2008v2\SimplePaletteQuantizer\bin\Debug\SimplePaletteQuantizer.exe
+C:\Users\dext3r\Documents\SimplePaletteQuantizerVS2008v2\SimplePaletteQuantizer\bin\Debug\SimplePaletteQuantizer.pdb
+C:\Users\dext3r\Documents\SimplePaletteQuantizerVS2008v2\SimplePaletteQuantizer\obj\Debug\ResolveAssemblyReference.cache
+C:\Users\dext3r\Documents\SimplePaletteQuantizerVS2008v2\SimplePaletteQuantizer\obj\Debug\SimplePaletteQuantizer.MainForm.resources
+C:\Users\dext3r\Documents\SimplePaletteQuantizerVS2008v2\SimplePaletteQuantizer\obj\Debug\SimplePaletteQuantizer.Properties.Resources.resources
+C:\Users\dext3r\Documents\SimplePaletteQuantizerVS2008v2\SimplePaletteQuantizer\obj\Debug\ResGen.read.1.tlog
+C:\Users\dext3r\Documents\SimplePaletteQuantizerVS2008v2\SimplePaletteQuantizer\obj\Debug\ResGen.write.1.tlog
+C:\Users\dext3r\Documents\SimplePaletteQuantizerVS2008v2\SimplePaletteQuantizer\obj\Debug\SimplePaletteQuantizer.exe
+C:\Users\dext3r\Documents\SimplePaletteQuantizerVS2008v2\SimplePaletteQuantizer\obj\Debug\SimplePaletteQuantizer.pdb
