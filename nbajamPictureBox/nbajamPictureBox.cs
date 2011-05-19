@@ -338,16 +338,14 @@ namespace nbajamPictureBox
                        for (int x_tiles2 = 0; x_tiles2 < 8*tile_width;  x_tiles2++)
                        {
                            Console.Write("{0:X2}",backArray[x_tiles2, y_tiles2]);
-                            portraitBitmap.SetPixel(x_tiles2, y_tiles2, palette[backArray[x_tiles2,y_tiles2]]);
+
+                           //i know this \/ \/ \/ \/ \/  is slow. dont care right now.
+                            portraitBitmap.SetPixel(x_tiles2, y_tiles2, palette[backArray[x_tiles2,y_tiles2]] );
                        }
                         Console.WriteLine();
                     }
 
-                //    for (int fuck = 0; fuck < 42; fuck++)
-                  //  {
-               //   /  /    tiles[fuck].SetPixel(
-                  //  }
-
+             
                     Console.WriteLine();
                     Console.WriteLine();
 

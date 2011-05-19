@@ -9,7 +9,15 @@ using System.Drawing.Imaging;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
-
+//NOT MY CODE \/ \/ \/ \/ \/ \/ 
+using SimplePaletteQuantizer.Quantizers;
+using SimplePaletteQuantizer.Quantizers.HSB;
+using SimplePaletteQuantizer.Quantizers.Median;
+using SimplePaletteQuantizer.Quantizers.Octree;
+using SimplePaletteQuantizer.Quantizers.Popularity;
+using SimplePaletteQuantizer.Quantizers.Uniform;
+//NOT MY CODE /\ /\ /\ /\ /\ /\
+//Awesome project from here: http://www.codeproject.com/KB/recipes/SimplePaletteQuantizer.aspx
 
 
 namespace WindowsFormsApplication1
@@ -27,7 +35,15 @@ namespace WindowsFormsApplication1
 
         byte[] fileBuffer;
 
-     
+        /// <summary>
+        /// Palette Quantizing stuff
+        /// </summary>
+        private Image sourceImage;
+        private FileInfo sourceFileInfo;
+        private IColorQuantizer the_quantizer = new PaletteQuantizer();
+        private Color[] optimized_palette = new Color[32];
+        private byte[,] new_back_array = new byte[48, 56];
+
         public Form1()
         {
             InitializeComponent();
@@ -2468,9 +2484,344 @@ letters[0].SetPixel(3, 0, 0);
 
         }
 
+        private void button15_Click(object sender, EventArgs e)
+        {
+            int pal_index=0;
+            byte[] new_color_pal = new byte[64]; //32 color @ 2 bytes/col
+            int q = 0;
+ 
+            if (dialogOpenFile.ShowDialog() == DialogResult.OK)
+            {
+                sourceFileInfo = new FileInfo(dialogOpenFile.FileName);
+                sourceImage = Image.FromFile(dialogOpenFile.FileName);
+          
+                //prepare the quantizer
+                the_quantizer.Clear();
 
+                Image targetImage = GetQuantizedImage(sourceImage);
+                Bitmap gayness = (Bitmap)targetImage;
+                pictureBox6.Image = targetImage;
+
+                List<Color> yourColorList = the_quantizer.GetPalette(32);
+
+                foreach (Color color in yourColorList)
+                {
+                    optimized_palette[pal_index] = color;
+                      pal_index++;
+                    Console.WriteLine("Win Color: " + color.ToString());
+                    Console.WriteLine(toSNESColor(color).ToString("X4"));
+                }   
+                
+                
+                //swap pal 5 and 0, cuz we be hackin all night long
+                Color temp = optimized_palette[0];
+                optimized_palette[0] = optimized_palette[5];
+                optimized_palette[5] = temp;
+
+
+                 foreach (Color color in optimized_palette)
+                {
+                   
+                
+                        new_color_pal[q] = (byte)(toSNESColor(color));
+                        new_color_pal[q+1] = (byte)(toSNESColor(color) >> 8);
+                        Console.WriteLine("Snes: " + new_color_pal[q].ToString("X2") + new_color_pal[q + 1].ToString("X2"));
+                        q = q + 2;
+                    
+                }
+           
+
+                //load array with palette values
+                for (int y = 0; y < 56; y++)
+                {
+                    for (int x = 0; x < 48; x++)
+                    {
+                       new_back_array[x,y]= (byte)colorIndexLookup(gayness.GetPixel(x, y));
+                    }
+                }
+
+
+                for (int y_tiles2 = 0; y_tiles2 < 56; y_tiles2++)
+                {
+                    for (int x_tiles2 = 0; x_tiles2 < 48; x_tiles2++)
+                    {
+                        Console.Write("{0:X2}", new_back_array[x_tiles2, y_tiles2]);          
+                    }
+                    Console.WriteLine();
+                }
+
+                byte[] localByteArray = new byte[1680];
+
+                localByteArray = getLinearArray();
+               int nameOffset = Convert.ToInt32(textBox1.Text);
+
+
+               for (int i = 0; i < 1680; i++)
+                {
+                    fileBuffer[nameOffset] = localByteArray[i];
+                    nameOffset++;
+                }
+
+               for (int ugh = 0; ugh < 64; ugh++)
+               {
+                   fileBuffer[nameOffset] = new_color_pal[ugh];
+                   nameOffset++;
+               }
+            
+
+
+
+            }
+        }
+
+        public byte[] getLinearArray()
+        {
+            byte[] flat_5bpp_array = new byte[1680];
+            byte[] tile = new byte[40];
+
+            int locationx = 0;
+            int locationy = 0;
+            int counter = 0;
+            int offset = 0;
+            int sec_offset = 32;
+
+            for (int z = 0; z <7; z++)
+            {
+                for (int j = 0; j < 6; j++)
+                {
+                    tile = get5bpp(0, locationx, locationy);
+
+                    for (int i = 0; i < 8; i++)
+                    {
+                        flat_5bpp_array[offset] = tile[(counter)];
+                        flat_5bpp_array[offset + 1] = tile[(counter + 1)];
+                        flat_5bpp_array[offset + 16] = tile[(counter + 2)];
+                        flat_5bpp_array[offset + 17] = tile[(counter + 3)];
+                        flat_5bpp_array[sec_offset] = tile[(counter + 4)];
+
+                        offset = offset + 2;
+                        sec_offset = sec_offset + 1;
+                        counter = counter + 5;
+                    }
+                    locationx = locationx + 8;
+                    counter = 0;
+                    offset = offset + 24;
+                    sec_offset = offset + 32;
+                }
+                locationx = 0;
+                locationy = locationy + 8;
+            }
+
+            return flat_5bpp_array;
+        }
+        
+        //returns byte[40] array
+        private byte[] get5bpp(int address, int startx, int starty)
+        {
+            int offset = address;
+            byte[] layers = new byte[5];
+            byte[] temp = new byte[5];
+            byte[] pixels = new byte[8];
+            int counter = 0;
+
+            byte[] tile = new byte[40];
+
+            for (int y = 0; y < 8; y++)
+            {
+                for (int i = 0; i < 8; i++)
+                {
+                    pixels[i] = (byte)new_back_array[startx + i, starty + y];
+
+                    temp[0] = (byte)((pixels[i] >> 0) & 1);
+                    temp[1] = (byte)((pixels[i] >> 1) & 1);
+                    temp[2] = (byte)((pixels[i] >> 2) & 1);
+                    temp[3] = (byte)((pixels[i] >> 3) & 1);
+                    temp[4] = (byte)((pixels[i] >> 4) & 1);
+
+                    layers[0] = (byte)(layers[0] << 1);
+                    layers[0] = (byte)(layers[0] | temp[0]);
+                    layers[1] = (byte)(layers[1] << 1);
+                    layers[1] = (byte)(layers[1] | temp[1]);
+                    layers[2] = (byte)(layers[2] << 1);
+                    layers[2] = (byte)(layers[2] | temp[2]);
+                    layers[3] = (byte)(layers[3] << 1);
+                    layers[3] = (byte)(layers[3] | temp[3]);
+                    layers[4] = (byte)(layers[4] << 1);
+                    layers[4] = (byte)(layers[4] | temp[4]);
+
+
+                    tile[counter] = layers[0];
+                    tile[counter + 1] = layers[1];
+                    tile[counter + 2] = layers[2];
+                    tile[counter + 3] = layers[3];
+                    tile[counter + 4] = layers[4];
+                }
+
+                counter = counter + 5;
+            }
+
+            return tile;
+
+        }
+    
+
+        private int colorIndexLookup(Color input)
+        {
+            int the_one=0;
+
+            for (int x = 0; x < 32; x++)
+            {
+                if (input == optimized_palette[x])
+                the_one = x;
+            }
+
+            return the_one;
+        }
+
+
+        private UInt16 toSNESColor(Color inputColor)
+        {
+            UInt16 output = 0;
+            int r,g,b;
+
+            r = (int)inputColor.R / 8;
+            g = (int)inputColor.G / 8;
+            b = (int)inputColor.B / 8;
+
+            output = (UInt16)(b * 1024 + g * 32 + r);
+
+            return output;
+        }
+
+        private Image GetQuantizedImage(Image image)
+        {
+            // checks whether a source image is valid
+            if (image == null)
+            {
+                const String message = "Cannot quantize a null image.";
+                throw new ArgumentNullException(message);
+            }
+
+            // locks the source image data
+            Bitmap bitmap = (Bitmap)image;
+            Rectangle bounds = Rectangle.FromLTRB(0, 0, bitmap.Width, bitmap.Height);
+            BitmapData sourceData = bitmap.LockBits(bounds, ImageLockMode.ReadOnly, PixelFormat.Format32bppArgb);
+
+            // prepares time statistics variables
+            TimeSpan duration = new TimeSpan(0);
+            DateTime before;
+
+            try
+            {
+                // initalizes the pixel read buffer
+                Int32[] sourceBuffer = new Int32[image.Width];
+
+                // sets the offset to the first pixel in the image
+                Int64 sourceOffset = sourceData.Scan0.ToInt64();
+
+                for (Int32 row = 0; row < image.Height; row++)
+                {
+                    // copies the whole row of pixels to the buffer
+                    Marshal.Copy(new IntPtr(sourceOffset), sourceBuffer, 0, image.Width);
+
+                    // scans all the colors in the buffer
+                    foreach (Color color in sourceBuffer.Select(argb => Color.FromArgb(argb)))
+                    {
+                        before = DateTime.Now;
+                        the_quantizer.AddColor(color);
+                        duration += DateTime.Now - before;
+                    }
+
+                    // increases a source offset by a row
+                    sourceOffset += sourceData.Stride;
+                }
+
+            //    editTargetInfo.Text = string.Format("Quantized: {0} colors (duration {1})", 256, duration); // TODO
+            }
+            catch
+            {
+                bitmap.UnlockBits(sourceData);
+                throw;
+            }
+
+            Bitmap result = new Bitmap(image.Width, image.Height, PixelFormat.Format8bppIndexed);
+
+            // calculates the palette
+            try
+            {
+                before = DateTime.Now;
+                Int32 colorCount = 32; //GetColorCount();
+                List<Color> palette = the_quantizer.GetPalette(colorCount);
+
+                // sets our newly calculated palette to the target image
+                ColorPalette imagePalette = result.Palette;
+                duration += DateTime.Now - before;
+
+                for (Int32 index = 0; index < palette.Count; index++)
+                {
+                    imagePalette.Entries[index] = palette[index];
+                }
+
+                result.Palette = imagePalette;
+
+            }
+            catch (Exception)
+            {
+                bitmap.UnlockBits(sourceData);
+                throw;
+            }
+
+            // locks the target image data
+            BitmapData targetData = result.LockBits(bounds, ImageLockMode.WriteOnly, PixelFormat.Format8bppIndexed);
+
+            try
+            {
+                // initializes read/write buffers
+                Byte[] targetBuffer = new Byte[result.Width];
+                Int32[] sourceBuffer = new Int32[image.Width];
+
+                // sets the offsets on the beginning of both source and target image
+                Int64 sourceOffset = sourceData.Scan0.ToInt64();
+                Int64 targetOffset = targetData.Scan0.ToInt64();
+
+                for (Int32 row = 0; row < image.Height; row++)
+                {
+                    // reads the pixel row from the source image
+                    Marshal.Copy(new IntPtr(sourceOffset), sourceBuffer, 0, image.Width);
+
+                    // goes thru all the pixels, reads the color on the source image, and writes calculated palette index on the target
+                    for (Int32 index = 0; index < image.Width; index++)
+                    {
+                        Color color = Color.FromArgb(sourceBuffer[index]);
+                        before = DateTime.Now;
+                        targetBuffer[index] = (Byte)the_quantizer.GetPaletteIndex(color);
+                        duration += DateTime.Now - before;
+                    }
+
+                    // writes the pixel row to the target image
+                    Marshal.Copy(targetBuffer, 0, new IntPtr(targetOffset), result.Width);
+
+                    // increases the offsets (on both images) by a row
+                    sourceOffset += sourceData.Stride;
+                    targetOffset += targetData.Stride;
+                }
+            }
+            finally
+            {
+                // releases the locks on both images
+                bitmap.UnlockBits(sourceData);
+                result.UnlockBits(targetData);
+            }
+
+            // spits some duration statistics (those actually slow the processing quite a bit, turn them off to make it quicker)
+           // editSourceInfo.Text = string.Format("Original: {0} colors ({1} x {2})", activeQuantizer.GetColorCount(), image.Width, image.Height);
+
+            // returns the quantized image
+            return result;
+        }
         
     }
+
 
     static class Constants
     {

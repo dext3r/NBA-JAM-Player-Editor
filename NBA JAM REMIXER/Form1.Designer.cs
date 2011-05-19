@@ -124,6 +124,9 @@
             this.nbajamTextBox3 = new nbajamTextBox.nbajamTextBox();
             this.nbajamTextBox2 = new nbajamTextBox.nbajamTextBox();
             this.nbajamPictureBox1 = new nbajamPictureBox.nbajamPictureBox();
+            this.pictureBox6 = new System.Windows.Forms.PictureBox();
+            this.button15 = new System.Windows.Forms.Button();
+            this.dialogOpenFile = new System.Windows.Forms.OpenFileDialog();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
@@ -167,6 +170,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.nbajamTextBox3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nbajamTextBox2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nbajamPictureBox1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox6)).BeginInit();
             this.SuspendLayout();
             // 
             // button1
@@ -323,7 +327,7 @@
             // label9
             // 
             this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(1049, 305);
+            this.label9.Location = new System.Drawing.Point(1167, 268);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(25, 13);
             this.label9.TabIndex = 25;
@@ -333,7 +337,7 @@
             // label10
             // 
             this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(1120, 306);
+            this.label10.Location = new System.Drawing.Point(1198, 211);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(25, 13);
             this.label10.TabIndex = 26;
@@ -343,7 +347,7 @@
             // label11
             // 
             this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(1120, 319);
+            this.label11.Location = new System.Drawing.Point(1198, 224);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(25, 13);
             this.label11.TabIndex = 27;
@@ -353,7 +357,7 @@
             // label12
             // 
             this.label12.AutoSize = true;
-            this.label12.Location = new System.Drawing.Point(1120, 332);
+            this.label12.Location = new System.Drawing.Point(1198, 237);
             this.label12.Name = "label12";
             this.label12.Size = new System.Drawing.Size(25, 13);
             this.label12.TabIndex = 28;
@@ -383,7 +387,7 @@
             // label16
             // 
             this.label16.AutoSize = true;
-            this.label16.Location = new System.Drawing.Point(1147, 370);
+            this.label16.Location = new System.Drawing.Point(1167, 295);
             this.label16.Name = "label16";
             this.label16.Size = new System.Drawing.Size(25, 13);
             this.label16.TabIndex = 32;
@@ -1319,7 +1323,7 @@
             // label13
             // 
             this.label13.AutoSize = true;
-            this.label13.Location = new System.Drawing.Point(1080, 310);
+            this.label13.Location = new System.Drawing.Point(1198, 273);
             this.label13.Name = "label13";
             this.label13.Size = new System.Drawing.Size(25, 13);
             this.label13.TabIndex = 29;
@@ -1375,17 +1379,41 @@
             this.nbajamPictureBox1.Name = "nbajamPictureBox1";
             this.nbajamPictureBox1.PaletteSize = 0;
             this.nbajamPictureBox1.ScaleFactor = 1;
-            this.nbajamPictureBox1.Size = new System.Drawing.Size(96, 112);
+            this.nbajamPictureBox1.Size = new System.Drawing.Size(48, 56);
             this.nbajamPictureBox1.TabIndex = 70;
             this.nbajamPictureBox1.TabStop = false;
             this.nbajamPictureBox1.TilesHigh = 7;
             this.nbajamPictureBox1.TilesWide = 6;
+            // 
+            // pictureBox6
+            // 
+            this.pictureBox6.Location = new System.Drawing.Point(1014, 296);
+            this.pictureBox6.Name = "pictureBox6";
+            this.pictureBox6.Size = new System.Drawing.Size(48, 56);
+            this.pictureBox6.TabIndex = 71;
+            this.pictureBox6.TabStop = false;
+            // 
+            // button15
+            // 
+            this.button15.Location = new System.Drawing.Point(1086, 339);
+            this.button15.Name = "button15";
+            this.button15.Size = new System.Drawing.Size(75, 23);
+            this.button15.TabIndex = 72;
+            this.button15.Text = "Load Image";
+            this.button15.UseVisualStyleBackColor = true;
+            this.button15.Click += new System.EventHandler(this.button15_Click);
+            // 
+            // dialogOpenFile
+            // 
+            this.dialogOpenFile.FileName = "openFileDialog1";
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1247, 471);
+            this.Controls.Add(this.button15);
+            this.Controls.Add(this.pictureBox6);
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.nbajamPictureBox1);
@@ -1458,6 +1486,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.nbajamTextBox3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nbajamTextBox2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nbajamPictureBox1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox6)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1559,6 +1588,9 @@
         private System.Windows.Forms.Label label3;
         private nbajamPictureBox.nbajamPictureBox nbajamPictureBox1;
         private nbajamTextBox.nbajamTextBox nbajamTextBox21;
+        private System.Windows.Forms.PictureBox pictureBox6;
+        private System.Windows.Forms.Button button15;
+        private System.Windows.Forms.OpenFileDialog dialogOpenFile;
     }
 }
 
