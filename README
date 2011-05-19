@@ -7,10 +7,14 @@
 !!					CONTINUE AT YOUR OWN RISK	       !!
 !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!	
 			
-This repository contains two *unfinished* Visual Studio 2010 C# Projects:
+This repository contains a couple *unfinished* Visual Studio 2010 C# Projects:
 
 1. NBAJAM REMIXER - The player editor program itself
 2. nbajamTextBox - A custom control that draws text with the NBA JAM font
+3. nabjamPortraitBox - A custom control to display images. Real hack right now. 
+4. SimplePaletteQuantizer - Not my code! Check out this awesome project here: http://www.codeproject.com/KB/recipes/SimplePaletteQuantizer.aspx
+
+View a copy of the CPOL license here: http://www.codeproject.com/info/cpol10.aspx
 
 -dext3r
-4/13/2011
+5/18/2011
