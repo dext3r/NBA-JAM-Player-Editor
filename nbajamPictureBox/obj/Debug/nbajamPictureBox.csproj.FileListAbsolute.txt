@@ -1,5 +1,7 @@
+C:\Users\dext3r\Documents\Visual Studio 2010\Projects Under Source Control\nbajamPictureBox\obj\Debug\ResolveAssemblyReference.cache
 C:\Users\dext3r\Documents\Visual Studio 2010\Projects Under Source Control\nbajamPictureBox\bin\Debug\nbajamPictureBox.dll
 C:\Users\dext3r\Documents\Visual Studio 2010\Projects Under Source Control\nbajamPictureBox\bin\Debug\nbajamPictureBox.pdb
-C:\Users\dext3r\Documents\Visual Studio 2010\Projects Under Source Control\nbajamPictureBox\obj\Debug\ResolveAssemblyReference.cache
+C:\Users\dext3r\Documents\Visual Studio 2010\Projects Under Source Control\nbajamPictureBox\bin\Debug\SimplePaletteQuantizer.exe
+C:\Users\dext3r\Documents\Visual Studio 2010\Projects Under Source Control\nbajamPictureBox\bin\Debug\SimplePaletteQuantizer.pdb
 C:\Users\dext3r\Documents\Visual Studio 2010\Projects Under Source Control\nbajamPictureBox\obj\Debug\nbajamPictureBox.dll
 C:\Users\dext3r\Documents\Visual Studio 2010\Projects Under Source Control\nbajamPictureBox\obj\Debug\nbajamPictureBox.pdb

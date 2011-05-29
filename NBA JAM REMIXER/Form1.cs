@@ -2567,10 +2567,6 @@ letters[0].SetPixel(3, 0, 0);
                    fileBuffer[nameOffset] = new_color_pal[ugh];
                    nameOffset++;
                }
-            
-
-
-
             }
         }
 
@@ -2818,6 +2814,40 @@ letters[0].SetPixel(3, 0, 0);
 
             // returns the quantized image
             return result;
+        }
+
+        private void pictureBox6_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button16_Click(object sender, EventArgs e)
+        {
+            if (dialogOpenFile.ShowDialog() == DialogResult.OK)
+            {
+    
+                nbajamPictureBox1.loadNewImage(Image.FromFile(dialogOpenFile.FileName));
+
+                byte[] localByteArray = new byte[1680];
+                byte[] localPalette = new byte[64];
+
+                localByteArray = nbajamPictureBox1.get5bppLinearArray();
+                localPalette = nbajamPictureBox1.getPortraitPalette();
+
+                int nameOffset = Convert.ToInt32(textBox1.Text);
+
+                for (int i = 0; i < 1680; i++)
+                {
+                    fileBuffer[nameOffset] = localByteArray[i];
+                    nameOffset++;
+                }
+
+                for (int ugh = 0; ugh < 64; ugh++)
+                {
+                    fileBuffer[nameOffset] = localPalette[ugh];
+                    nameOffset++;
+                }
+            }
         }
         
     }

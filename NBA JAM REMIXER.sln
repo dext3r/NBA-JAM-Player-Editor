@@ -9,6 +9,9 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "nbajamTextBox", "nbajamTextBox\nbajamTextBox.csproj", "{C2958694-C743-4A4D-97F6-F38F108FD207}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "nbajamPictureBox", "nbajamPictureBox\nbajamPictureBox.csproj", "{825474FB-B548-4D10-99CE-969EE1348683}"
+	ProjectSection(ProjectDependencies) = postProject
+		{37812A22-91F3-4220-891E-5C26DA64A975} = {37812A22-91F3-4220-891E-5C26DA64A975}
+	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SimplePaletteQuantizer", "SimplePaletteQuantizer\SimplePaletteQuantizer.csproj", "{37812A22-91F3-4220-891E-5C26DA64A975}"
 EndProject

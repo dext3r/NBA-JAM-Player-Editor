@@ -50,6 +50,12 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Service Include="{94E38DFF-614B-4cbd-B67C-F211BB35CE8B}" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\SimplePaletteQuantizer\SimplePaletteQuantizer.csproj">
+      <Project>{37812A22-91F3-4220-891E-5C26DA64A975}</Project>
+      <Name>SimplePaletteQuantizer</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

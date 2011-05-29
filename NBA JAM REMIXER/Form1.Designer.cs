@@ -123,10 +123,11 @@
             this.label13 = new System.Windows.Forms.Label();
             this.nbajamTextBox3 = new nbajamTextBox.nbajamTextBox();
             this.nbajamTextBox2 = new nbajamTextBox.nbajamTextBox();
-            this.nbajamPictureBox1 = new nbajamPictureBox.nbajamPictureBox();
             this.pictureBox6 = new System.Windows.Forms.PictureBox();
             this.button15 = new System.Windows.Forms.Button();
             this.dialogOpenFile = new System.Windows.Forms.OpenFileDialog();
+            this.nbajamPictureBox1 = new nbajamPictureBox.nbajamPictureBox();
+            this.button16 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
@@ -169,8 +170,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.nbajamTextBox9)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nbajamTextBox3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nbajamTextBox2)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.nbajamPictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox6)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nbajamPictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // button1
@@ -1046,7 +1047,7 @@
             this.nbajamTextBox10.FontColor = nbajamTextBox.nbajamTextBox.FontColorOptions.Pallete_6;
             this.nbajamTextBox10.FontNumber = 1;
             this.nbajamTextBox10.Image = ((System.Drawing.Image)(resources.GetObject("nbajamTextBox10.Image")));
-            this.nbajamTextBox10.Location = new System.Drawing.Point(184, 35);
+            this.nbajamTextBox10.Location = new System.Drawing.Point(184, 36);
             this.nbajamTextBox10.Name = "nbajamTextBox10";
             this.nbajamTextBox10.ScaleFactor = 3;
             this.nbajamTextBox10.Size = new System.Drawing.Size(72, 24);
@@ -1066,7 +1067,7 @@
             this.nbajamTextBox18.FontColor = nbajamTextBox.nbajamTextBox.FontColorOptions.Pallete_4;
             this.nbajamTextBox18.FontNumber = 1;
             this.nbajamTextBox18.Image = ((System.Drawing.Image)(resources.GetObject("nbajamTextBox18.Image")));
-            this.nbajamTextBox18.Location = new System.Drawing.Point(247, 95);
+            this.nbajamTextBox18.Location = new System.Drawing.Point(262, 95);
             this.nbajamTextBox18.Name = "nbajamTextBox18";
             this.nbajamTextBox18.ScaleFactor = 3;
             this.nbajamTextBox18.Size = new System.Drawing.Size(24, 24);
@@ -1086,7 +1087,7 @@
             this.nbajamTextBox17.FontColor = nbajamTextBox.nbajamTextBox.FontColorOptions.Pallete_7;
             this.nbajamTextBox17.FontNumber = 1;
             this.nbajamTextBox17.Image = ((System.Drawing.Image)(resources.GetObject("nbajamTextBox17.Image")));
-            this.nbajamTextBox17.Location = new System.Drawing.Point(262, 59);
+            this.nbajamTextBox17.Location = new System.Drawing.Point(262, 66);
             this.nbajamTextBox17.Name = "nbajamTextBox17";
             this.nbajamTextBox17.ScaleFactor = 3;
             this.nbajamTextBox17.Size = new System.Drawing.Size(24, 24);
@@ -1094,7 +1095,7 @@
             this.nbajamTextBox17.TabStop = false;
             this.nbajamTextBox17.Text = "4";
             this.nbajamTextBox17.TextAlign = nbajamTextBox.nbajamTextBox.TextAlignOptions.Top;
-            this.nbajamTextBox17.TextJustify = nbajamTextBox.nbajamTextBox.TextJustifyOptions.Left;
+            this.nbajamTextBox17.TextJustify = nbajamTextBox.nbajamTextBox.TextJustifyOptions.Right;
             this.nbajamTextBox17.TextOffsetX = 0;
             this.nbajamTextBox17.TextOffsetY = 0;
             this.nbajamTextBox17.TilesHigh = 1;
@@ -1106,7 +1107,7 @@
             this.nbajamTextBox19.FontColor = nbajamTextBox.nbajamTextBox.FontColorOptions.Pallete_5;
             this.nbajamTextBox19.FontNumber = 1;
             this.nbajamTextBox19.Image = ((System.Drawing.Image)(resources.GetObject("nbajamTextBox19.Image")));
-            this.nbajamTextBox19.Location = new System.Drawing.Point(247, 119);
+            this.nbajamTextBox19.Location = new System.Drawing.Point(262, 119);
             this.nbajamTextBox19.Name = "nbajamTextBox19";
             this.nbajamTextBox19.ScaleFactor = 3;
             this.nbajamTextBox19.Size = new System.Drawing.Size(24, 24);
@@ -1226,7 +1227,7 @@
             this.nbajamTextBox7.FontColor = nbajamTextBox.nbajamTextBox.FontColorOptions.Pallete_8;
             this.nbajamTextBox7.FontNumber = 1;
             this.nbajamTextBox7.Image = ((System.Drawing.Image)(resources.GetObject("nbajamTextBox7.Image")));
-            this.nbajamTextBox7.Location = new System.Drawing.Point(247, 35);
+            this.nbajamTextBox7.Location = new System.Drawing.Point(262, 36);
             this.nbajamTextBox7.Name = "nbajamTextBox7";
             this.nbajamTextBox7.ScaleFactor = 3;
             this.nbajamTextBox7.Size = new System.Drawing.Size(24, 24);
@@ -1286,7 +1287,7 @@
             this.nbajamTextBox11.FontColor = nbajamTextBox.nbajamTextBox.FontColorOptions.Pallete_6;
             this.nbajamTextBox11.FontNumber = 1;
             this.nbajamTextBox11.Image = ((System.Drawing.Image)(resources.GetObject("nbajamTextBox11.Image")));
-            this.nbajamTextBox11.Location = new System.Drawing.Point(184, 65);
+            this.nbajamTextBox11.Location = new System.Drawing.Point(184, 66);
             this.nbajamTextBox11.Name = "nbajamTextBox11";
             this.nbajamTextBox11.ScaleFactor = 3;
             this.nbajamTextBox11.Size = new System.Drawing.Size(72, 24);
@@ -1357,7 +1358,7 @@
             this.nbajamTextBox2.FontColor = nbajamTextBox.nbajamTextBox.FontColorOptions.Pallete_3;
             this.nbajamTextBox2.FontNumber = 0;
             this.nbajamTextBox2.Image = ((System.Drawing.Image)(resources.GetObject("nbajamTextBox2.Image")));
-            this.nbajamTextBox2.Location = new System.Drawing.Point(1027, 211);
+            this.nbajamTextBox2.Location = new System.Drawing.Point(1050, 211);
             this.nbajamTextBox2.Margin = new System.Windows.Forms.Padding(2);
             this.nbajamTextBox2.Name = "nbajamTextBox2";
             this.nbajamTextBox2.ScaleFactor = 2;
@@ -1372,19 +1373,6 @@
             this.nbajamTextBox2.TilesHigh = 2;
             this.nbajamTextBox2.TilesWide = 6;
             // 
-            // nbajamPictureBox1
-            // 
-            this.nbajamPictureBox1.DataSize = 0;
-            this.nbajamPictureBox1.Location = new System.Drawing.Point(936, 296);
-            this.nbajamPictureBox1.Name = "nbajamPictureBox1";
-            this.nbajamPictureBox1.PaletteSize = 0;
-            this.nbajamPictureBox1.ScaleFactor = 1;
-            this.nbajamPictureBox1.Size = new System.Drawing.Size(48, 56);
-            this.nbajamPictureBox1.TabIndex = 70;
-            this.nbajamPictureBox1.TabStop = false;
-            this.nbajamPictureBox1.TilesHigh = 7;
-            this.nbajamPictureBox1.TilesWide = 6;
-            // 
             // pictureBox6
             // 
             this.pictureBox6.Location = new System.Drawing.Point(1014, 296);
@@ -1392,6 +1380,7 @@
             this.pictureBox6.Size = new System.Drawing.Size(48, 56);
             this.pictureBox6.TabIndex = 71;
             this.pictureBox6.TabStop = false;
+            this.pictureBox6.Click += new System.EventHandler(this.pictureBox6_Click);
             // 
             // button15
             // 
@@ -1407,11 +1396,35 @@
             // 
             this.dialogOpenFile.FileName = "openFileDialog1";
             // 
+            // nbajamPictureBox1
+            // 
+            this.nbajamPictureBox1.DataSize = 0;
+            this.nbajamPictureBox1.Location = new System.Drawing.Point(936, 296);
+            this.nbajamPictureBox1.Name = "nbajamPictureBox1";
+            this.nbajamPictureBox1.PaletteSize = 0;
+            this.nbajamPictureBox1.ScaleFactor = 1;
+            this.nbajamPictureBox1.Size = new System.Drawing.Size(48, 56);
+            this.nbajamPictureBox1.TabIndex = 70;
+            this.nbajamPictureBox1.TabStop = false;
+            this.nbajamPictureBox1.TilesHigh = 7;
+            this.nbajamPictureBox1.TilesWide = 6;
+            // 
+            // button16
+            // 
+            this.button16.Location = new System.Drawing.Point(1062, 392);
+            this.button16.Name = "button16";
+            this.button16.Size = new System.Drawing.Size(75, 23);
+            this.button16.TabIndex = 73;
+            this.button16.Text = "fuck shit up";
+            this.button16.UseVisualStyleBackColor = true;
+            this.button16.Click += new System.EventHandler(this.button16_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1247, 471);
+            this.Controls.Add(this.button16);
             this.Controls.Add(this.button15);
             this.Controls.Add(this.pictureBox6);
             this.Controls.Add(this.pictureBox1);
@@ -1485,8 +1498,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.nbajamTextBox9)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nbajamTextBox3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nbajamTextBox2)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.nbajamPictureBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox6)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nbajamPictureBox1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1591,6 +1604,7 @@
         private System.Windows.Forms.PictureBox pictureBox6;
         private System.Windows.Forms.Button button15;
         private System.Windows.Forms.OpenFileDialog dialogOpenFile;
+        private System.Windows.Forms.Button button16;
     }
 }
 
