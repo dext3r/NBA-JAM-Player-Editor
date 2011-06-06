@@ -8,7 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using System.Runtime.InteropServices;
-//NOT MY CODE \/ \/ \/ \/ \/ \/ 
+//NOT MY CODE \/ \/ \/ \/ \/ \/
 using SimplePaletteQuantizer.Quantizers;
 using SimplePaletteQuantizer.Quantizers.HSB;
 using SimplePaletteQuantizer.Quantizers.Median;
@@ -24,8 +24,8 @@ namespace nbajamPictureBox
 {
     public partial class nbajamPictureBox : PictureBox
     {
-        private IColorQuantizer the_quantizer = new PaletteQuantizer();         // Color quantizer object
-        private Image sourceImage;  //load form function method
+        private IColorQuantizer the_quantizer = new PaletteQuantizer(); // Color quantizer object
+        private Image sourceImage; //load form function method
 
 
         // heres how it goes down
@@ -37,24 +37,24 @@ namespace nbajamPictureBox
         // - thank you
 
 
-        private int data_size = 0;                                              // Length of raw data array
-        private int palette_size = 0;                                           // Number of colors in the image
-        private byte[] raw_data_bytes;                                          // Array of byte data which holds image data
-        private Color[] palette;                                                // The color palette for the image
+        private int data_size = 0; // Length of raw data array
+        private int palette_size = 0; // Number of colors in the image
+        private byte[] raw_data_bytes; // Array of byte data which holds image data
+        private Color[] palette; // The color palette for the image
 
-        private byte[,] backArray;                                              // An array to hold raw pixel data  
-        private byte[,] new_back_array; //                                      // An array which holds the image data by palette value
-        private Color[] optimized_palette = new Color[32];                      // Holds the converted image palette
+        private byte[,] backArray; // An array to hold raw pixel data
+        private byte[,] new_back_array; // // An array which holds the image data by palette value
+        private Color[] optimized_palette = new Color[32]; // Holds the converted image palette
         private byte[] new_color_pal = new byte[64]; //32 color @ 2 bytes/col
-     //   private int[,] savedbackArray;
+        // private int[,] savedbackArray;
 
-        private int tile_width = 6;                                             // Width of the control in 8px*8px tiles
-        private int tile_height = 7;                                            // Height of the control in 8px*8px tiles
-        private int scale_factor = 1; 
+        private int tile_width = 6; // Width of the control in 8px*8px tiles
+        private int tile_height = 7; // Height of the control in 8px*8px tiles
+        private int scale_factor = 1;
 
-        public bool is4bpp = false;                                             // FOR FUTURE USE to pick between 4bpp and 5bpp de/encoding
-                                                                                // assume 5bpp for now... (Other graphics, like team logos, may use 4bpp)
-        public bool isPortrait = true;                                          // The data for a portrait contains an emebedded palette: provide for ability to process this data.
+        public bool is4bpp = false; // FOR FUTURE USE to pick between 4bpp and 5bpp de/encoding
+        // assume 5bpp for now... (Other graphics, like team logos, may use 4bpp)
+        public bool isPortrait = true; // The data for a portrait contains an emebedded palette: provide for ability to process this data.
 
         private byte[,] single_tile;
 
@@ -68,7 +68,7 @@ namespace nbajamPictureBox
             {
                 return data_size;
             }
-          
+
             set
             {
                 data_size = value;
@@ -85,7 +85,7 @@ namespace nbajamPictureBox
             set
             {
                 palette_size = value;
-              //  palette = new Color[palette_size];
+                // palette = new Color[palette_size];
             }
         }
         public int TilesWide
@@ -102,7 +102,7 @@ namespace nbajamPictureBox
                 redrawFlag = true;
                 this.Invalidate();
             }
-        } 
+        }
         public int TilesHigh
         {
             // Retrieves the value of the private variable tile_height
@@ -139,8 +139,8 @@ namespace nbajamPictureBox
         public nbajamPictureBox()
         {
             //raw_data_bytes = new byte[400];
-           // palette = new Color[1];
-        
+            // palette = new Color[1];
+
             InitializeComponent();
         }
         //Base control class OnPaint override
@@ -151,9 +151,12 @@ namespace nbajamPictureBox
             byte[] pixelbuilder = new byte[5];
             byte[] teh_pixels = new byte[64];
             Bitmap[] tiles = new Bitmap[42];
-            Bitmap portraitBitmap = new Bitmap(scale_factor * 8 * tile_width , scale_factor*8*tile_height);
-
+            Bitmap portraitBitmap = new Bitmap(scale_factor * 8 * tile_width, scale_factor * 8 * tile_height);
             Tile[] the_tiles = new Tile[tile_height * tile_width];
+
+            // Resize the control based on the scale factor
+            this.Width = scale_factor * 8 * tile_width;
+            this.Height = scale_factor * 8 * tile_height;
 
             for (int whocares = 0; whocares < tile_height * tile_width; whocares++)
             {
@@ -162,180 +165,73 @@ namespace nbajamPictureBox
 
             int v = 0;
             int dumbcounter = 0;
-    
-          //  int pixelcounter = 0;
+
+            // int pixelcounter = 0;
             int initial_offset = 0;
             int secondary_offset = initial_offset + 32;
 
             if (redrawFlag & raw_data_bytes != null)
             {
-            
+
                 backArray = new byte[8 * tile_width, 8 * tile_height];
                 new_back_array = new byte[8 * tile_width, 8 * tile_height];
 
                 if (raw_data_bytes.Length > 0)
                 {
 
-                    //    
+                    //
                     for (int z = 0; z < (data_size - 64); z = z + 40)
                     {
-                        the_tiles[v]  = get5bpptile(z);
+                        the_tiles[v] = get5bpptile(z);
                         v++;
                         //for (int y_tiles = 0; y_tiles < 8 * tile_height; y_tiles++)
-                       // {
-                         //   for (int x_tiles = 0; x_tiles < 8 * tile_width; x_tiles++)
-                         //   {
-                         // //      copyTiletoBackground(single_tile, (byte)x_tiles, (byte)y_tiles);
-                         //   }
-                       // }
+                        // {
+                        // for (int x_tiles = 0; x_tiles < 8 * tile_width; x_tiles++)
+                        // {
+                        // // copyTiletoBackground(single_tile, (byte)x_tiles, (byte)y_tiles);
+                        // }
+                        // }
                     }
 
-                    for (int y = 0; y < 8* tile_height; y=y+8)
+                    for (int y = 0; y < 8 * tile_height; y = y + 8)
                     {
-                        for (int x = 0; x < 8*tile_width; x=x+8)
+                        for (int x = 0; x < 8 * tile_width; x = x + 8)
                         {
 
-                            copyTiletoBackground(the_tiles[dumbcounter],(byte)x,(byte)y);
+                            copyTiletoBackground(the_tiles[dumbcounter], (byte)x, (byte)y);
                             dumbcounter++;
                         }
                     }
                 }
 
-                #region BLAST THIS GARBAGE OUT
-                //         
-                       // }
-                 //   }
- 
-              //  }
-                /* backArray = new byte[8 * tile_width, 8 * tile_height];
-                savedbackArray = new int[8 * tile_width, 8 * tile_height];
-
-                 this.Size = new Size(8 * tile_width * scale_factor, 8 * tile_height * scale_factor);
-
-                for (int z = 0; z < 42; z++)
+                //////////////////////////////////////////////////////////////////////////////
+                /// This code segment draws the bitmap from the background array information
+                /// 
+                for (int y_tiles2 = 0; y_tiles2 < 8 * tile_height; y_tiles2++)
                 {
-                    //each tile has to be scaled based on the parent picturebox size...
-                    tiles[z] = new Bitmap(8, 8);
-                }
-                //this gets 42 tiles
-
-                if (raw_data_bytes.Length > 0)
-                {
-                 //   for (int total_tiles = 0; total_tiles < (tile_height * tile_width); total_tiles++)
-                 //   {
-  #region source
-                        //the secondary_offset is 32 away from the initial_offset
-                        //but only increments by 1 every loop pass
-                       // secondary_offset = initial_offset + 32;
-
-                        //debug
-                        // Console.WriteLine("Tile #" + total_tiles.ToString());
-
-                        //this gets a tiles worth of data
-#endregion
-                    for (int y_tiles = 0; y_tiles < tile_width; y_tiles++)
+                    for (int x_tiles2 = 0; x_tiles2 < 8 * tile_width; x_tiles2++)
                     {
-                        for (int x_tiles = 0; y_tiles < tile_height; x_tiles++)
+                        //TODO: Rewrite with LockBits for better performance
+                        for (int x = 0; x < scale_factor; x++)
                         {
-                        //   single_tile = get5bpptile(initial_offset);
-                            //copyTiletoBackground(single_tile, (byte)x_tiles, (byte)y_tiles);
-                        }
-                    }
- #region source
-                        /*     for (int i = 0; i < 8; i++)
-                        {
-                            //debug
-                            //Console.WriteLine(initial_offset.ToString() + "," + (initial_offset + 1).ToString() + "," + (initial_offset + 16).ToString() + "," + (initial_offset + 17).ToString() + "," + secondary_offset.ToString());
-
-                            //this should go into loaddata
-                            //drop in the initial offset, get a tile containing palette entries  (array of 64 bytes)
-                            //increase initial offset by 2. repeat 
-                            //just drop into the greater backArray
-
-                            
-
-                            //this should go into onpaint
-                            //to draw, read from the backarray
-                            //scale as neccesary (create bitmap sized as necessary, draw on it)
-                         
-                            layer[0] = raw_data_bytes[initial_offset];
-                            layer[0] = (byte)(ReverseByteBits(layer[0]));
-                            layer[1] = raw_data_bytes[initial_offset + 1];
-                            layer[1] = (byte)(ReverseByteBits(layer[1]));
-                            layer[2] = raw_data_bytes[initial_offset + 16];
-                            layer[2] = (byte)(ReverseByteBits(layer[2]));
-                            layer[3] = raw_data_bytes[initial_offset + 17];
-                            layer[3] = (byte)(ReverseByteBits(layer[3]));
-                            layer[4] = raw_data_bytes[secondary_offset];
-                            layer[4] = (byte)(ReverseByteBits(layer[4]));
-
-
-                            //flatten the layers here
-                            for (int a = 0; a < 8; a++)
+                            for (int y = 0; y < scale_factor; y++)
                             {
-                                //these shifts allow us to just get the bit we are interested in
-                                pixelbuilder[0] = (byte)((layer[0] >> a) & 1);
-                                pixelbuilder[1] = (byte)((layer[1] >> a) & 1);
-                                pixelbuilder[2] = (byte)((layer[2] >> a) & 1);
-                                pixelbuilder[3] = (byte)((layer[3] >> a) & 1);
-                                pixelbuilder[4] = (byte)((layer[4] >> a) & 1);
-                                //this OR operation 'sandwiches' the layers into one color palette value
-                                teh_pixels[pixelcounter] = (byte)((pixelbuilder[0]) | (pixelbuilder[1] << 1 | (pixelbuilder[2] << 2) | (pixelbuilder[3] << 3) | (pixelbuilder[4] << 4)));
-
-                                //transfers pixels into a tile
-                                //  tiles[total_tiles].SetPixel(a, i,Color.FromArgb(255,255,255) );
-                                palette[0] = System.Drawing.Color.FromArgb(0, 0, 0, 0);
-                                tiles[total_tiles].SetPixel(a, i, palette[teh_pixels[pixelcounter]]);
-                                pixelcounter++;
+                                portraitBitmap.SetPixel(x_tiles2 * scale_factor + x, y_tiles2 * scale_factor + y, palette[backArray[x_tiles2, y_tiles2]]);
                             }
-
-
-                            initial_offset = initial_offset + 2;
-                            secondary_offset++; //only increment this by 1 
-
                         }
-
-                        //need to start right after last secondary_offset value
-                        //and its already incremented for us, so just set
-                        //the next starting position to the value of secondary_offset
-                        initial_offset = secondary_offset;
-
-                        //reset the pixel counter so it won't overflow pixel buffer bounds
-                        pixelcounter = 0;
-                  
-#endregion  */
-                //    }
-
-                #endregion
-
-                for (int y_tiles2 = 0; y_tiles2 < 8*tile_height; y_tiles2++)
-                   {
-                       for (int x_tiles2 = 0; x_tiles2 < 8*tile_width;  x_tiles2++)
-                       {
-                           Console.Write("{0:X2}",backArray[x_tiles2, y_tiles2]);
-                           // this is also retarded /\/\/\/\ loluls
-                           //i know this \/ \/ \/ \/ \/  is slow. dont care right now.
-                           //TODO: Rewrite with LockBits
-                            portraitBitmap.SetPixel(x_tiles2, y_tiles2, palette[backArray[x_tiles2,y_tiles2]] );
-                       }
-                        Console.WriteLine();
-                    }
-             
-                    Console.WriteLine();
-                    Console.WriteLine();              
-                 
-                    this.Image = portraitBitmap;
-
+                    }      
                 }
 
-                redrawFlag = false;
-                
+                this.Image = portraitBitmap;
             }
+
+            redrawFlag = false;
+        }
 
         ////////////////////////////////////////////////
         // SNEStoRGB
         // Convert 15bit SNES BGR color to RGB color
-        // 
+        //
         private Color SNEStoRGB(UInt16 snescolordata)
         {
             int red, green, blue;
@@ -369,10 +265,10 @@ namespace nbajamPictureBox
             int rgb_color = new UInt16();
             int palette_count = 0;
 
-            single_tile = new byte[8,8];
+            single_tile = new byte[8, 8];
 
             raw_data_bytes = new byte[data_size];
-          //  backArray = new byte[8,8];
+            // backArray = new byte[8,8];
 
             if (raw_data_bytes != null)
             {
@@ -387,7 +283,7 @@ namespace nbajamPictureBox
                 // ?? lol why only if portrait? load a palette automatically
                 // if not a portrait, load some random 32 colors??
 
-                //ok if only portrait that means...something to do with the inital data. 
+                //ok if only portrait that means...something to do with the inital data.
                 //you werent really wrong here..
                 palette = new Color[32];
 
@@ -395,7 +291,7 @@ namespace nbajamPictureBox
                 if (isPortrait & (palette != null))
                 {
                     //offset j to get the last 64 bytes of the data buffer
-                    for (int j = 0x690; j < (64+0x690); j=j+2)
+                    for (int j = 0x690; j < (64 + 0x690); j = j + 2)
                     {
 
                         rgb_color = raw_data_bytes[j + 1];
@@ -406,9 +302,6 @@ namespace nbajamPictureBox
                         palette_count++;
                     }
                 }
-
-
-
             }
 
             redrawFlag = true;
@@ -420,7 +313,7 @@ namespace nbajamPictureBox
         //Utility function to swap nibbles of a byte
         private byte swapByte(byte input)
         {
-            byte output =0;
+            byte output = 0;
             byte copy;
 
             copy = input;
@@ -430,11 +323,11 @@ namespace nbajamPictureBox
             copy = (byte)(copy & (0xF0)); // get rid of any potential garbage
 
             //get top 4 bytes
-            output =(byte)(input >> 4);
-            output =(byte)(output & (byte)0x0F);
-            
+            output = (byte)(input >> 4);
+            output = (byte)(output & (byte)0x0F);
+
             //sammich time
-            output = (byte)(copy |output );
+            output = (byte)(copy | output);
 
             return output;
         }
@@ -451,9 +344,9 @@ namespace nbajamPictureBox
         //Copy Tile object data to the background array
         private void copyTiletoBackground(Tile sourceTile, byte x_pos, byte y_pos)
         {
-            for(int y=0;y<8;y++)
+            for (int y = 0; y < 8; y++)
             {
-                for (int x = 0; x<8 ; x++)
+                for (int x = 0; x < 8; x++)
                 {
                     backArray[x_pos + x, y_pos + y] = (byte)sourceTile.getPixel(x, y);
                 }
@@ -472,7 +365,7 @@ namespace nbajamPictureBox
 
             for (int i = 0; i < 8; i++)
             {
-                          
+
                 layer[0] = raw_data_bytes[initial_offset];
                 layer[0] = (byte)(ReverseByteBits(layer[0]));
                 layer[1] = raw_data_bytes[initial_offset + 1];
@@ -494,19 +387,19 @@ namespace nbajamPictureBox
                     pixelbuilder[4] = (byte)((layer[4] >> a) & 1);
                     //this OR operation 'sandwiches' the layers into one color palette value
                     the_tile.SetPixel(a, i, (byte)((pixelbuilder[0]) | (pixelbuilder[1] << 1 | (pixelbuilder[2] << 2) | (pixelbuilder[3] << 3) | (pixelbuilder[4] << 4))));
-                   // tile[a,i] = (byte)((pixelbuilder[0]) | (pixelbuilder[1] << 1 | (pixelbuilder[2] << 2) | (pixelbuilder[3] << 3) | (pixelbuilder[4] << 4)));
- 
+                    // tile[a,i] = (byte)((pixelbuilder[0]) | (pixelbuilder[1] << 1 | (pixelbuilder[2] << 2) | (pixelbuilder[3] << 3) | (pixelbuilder[4] << 4)));
+
                 }
-                         
+
                 initial_offset = initial_offset + 2;
-                secondary_offset++; //only increment this by 1 
+                secondary_offset++; //only increment this by 1
             }
 
             //need to start right after last secondary_offset value
             //and its already incremented for us, so just set
             //the next starting position to the value of secondary_offset
             initial_offset = secondary_offset;
-                    
+
             return the_tile;
         }
 
@@ -547,12 +440,12 @@ namespace nbajamPictureBox
                     foreach (Color color in sourceBuffer.Select(argb => Color.FromArgb(argb)))
                     {
                         before = DateTime.Now;
-                     
-                        //Ideas  to do the transparent color:
+
+                        //Ideas to do the transparent color:
                         // make a mask
-                        // AND the bytes 
-                       the_quantizer.AddColor(color);
-                        
+                        // AND the bytes
+                        the_quantizer.AddColor(color);
+
                         duration += DateTime.Now - before;
                     }
 
@@ -560,7 +453,7 @@ namespace nbajamPictureBox
                     sourceOffset += sourceData.Stride;
                 }
 
-                //    editTargetInfo.Text = string.Format("Quantized: {0} colors (duration {1})", 256, duration); // TODO
+                // editTargetInfo.Text = string.Format("Quantized: {0} colors (duration {1})", 256, duration); // TODO
             }
             catch
             {
@@ -574,7 +467,7 @@ namespace nbajamPictureBox
             try
             {
                 before = DateTime.Now;
-                Int32 colorCount = 31; //GetColorCount();
+                Int32 colorCount = 32; //GetColorCount();
                 List<Color> palette = the_quantizer.GetPalette(colorCount);
 
                 // sets our newly calculated palette to the target image
@@ -649,27 +542,27 @@ namespace nbajamPictureBox
         {
             int pal_index = 0;
             int q = 0;
-         
 
 
-            sourceImage = input;        //copy the image, dont really need. TODO: Change
 
-            the_quantizer.Clear();       //clear the quantizer
+            sourceImage = input; //copy the image, dont really need. TODO: Change
+
+            the_quantizer.Clear(); //clear the quantizer
             this.Image = this.GetQuantizedImage(sourceImage);
             Bitmap gayness = (Bitmap)this.Image; // uber temporary hack thing to basically let us redraw the image using palette values
 
             List<Color> yourColorList = the_quantizer.GetPalette(32); // Get a list of the optimized color palette...
-            ///... and copy it into an array? 
-            foreach (Color color in yourColorList)   
+            ///... and copy it into an array?
+            foreach (Color color in yourColorList)
             {
                 optimized_palette[pal_index] = color;
                 pal_index++;
             }
 
-            // horrible hack because i know what to swap ... 
+            // horrible hack because i know what to swap ...
             Color temp = optimized_palette[0];
-            optimized_palette[0] = optimized_palette[23];
-            optimized_palette[23] = temp;
+            optimized_palette[0] = optimized_palette[13];
+            optimized_palette[13] = temp;
             // please fix this shit!
 
             //converts the palette to a SNES palette
@@ -677,18 +570,18 @@ namespace nbajamPictureBox
             {
                 new_color_pal[q] = (byte)(RGBtoSNES(color));
                 new_color_pal[q + 1] = (byte)(RGBtoSNES(color) >> 8);
-            //    Console.WriteLine("Snes: " + new_color_pal[q].ToString("X2") + new_color_pal[q + 1].ToString("X2"));
+                // Console.WriteLine("Snes: " + new_color_pal[q].ToString("X2") + new_color_pal[q + 1].ToString("X2"));
                 q = q + 2;
             }
 
-            for (int y = 0; y < (8*tile_height); y++)
+            for (int y = 0; y < (8 * tile_height); y++)
             {
-                for (int x = 0; x < (8*tile_width); x++)
+                for (int x = 0; x < (8 * tile_width); x++)
                 {
                     new_back_array[x, y] = (byte)colorIndexLookup(gayness.GetPixel(x, y)); // uber temporary hack thing to basically let us redraw the image using palette values
                 }
             }
-                
+
 
 
         }
@@ -709,7 +602,7 @@ namespace nbajamPictureBox
         // maybe add something to return all the linear array IF PORTRAIT = picture+pallete? or who gives a fuck
         public byte[] get5bppLinearArray()
         {
-            byte[] flat_5bpp_array = new byte[tile_height*tile_width*40]; //fix this kinda...i mean 40 is here because we know 5bpp but what if not 5bpp?
+            byte[] flat_5bpp_array = new byte[tile_height * tile_width * 40]; //fix this kinda...i mean 40 is here because we know 5bpp but what if not 5bpp?
             byte[] tile = new byte[40];
 
             int locationx = 0;
@@ -828,4 +721,3 @@ namespace nbajamPictureBox
         }
     }
 }
-      

@@ -131,8 +131,7 @@ namespace WindowsFormsApplication1
              //   Console.WriteLine("Count: " + count.ToString());
               //  Console.WriteLine();
               
-                int offset_x = 0;
-                int offset_y = 0; 
+                
                 int counto = 0;
                 int pixelcounter = 0;
                 //getting colors here
@@ -155,8 +154,10 @@ namespace WindowsFormsApplication1
                     palette_swatch[counto] = System.Drawing.Color.FromArgb(red, green, blue);
                     counto++;
                 }
+              
                 #region Palette Hack
             //palette drawing hack
+                int offset_x=0, offset_y =0;
                 for (int f = 0; f < 16; f++)
                 {
                     for (int i = 0; i < 14; i++)
@@ -189,7 +190,7 @@ namespace WindowsFormsApplication1
                 pictureBox2.Image = paletteBitmap;
 
                 #endregion
-
+            /*
                 int initial_offset = 0;
                 int secondary_offset = initial_offset + 32;
 
@@ -274,11 +275,22 @@ namespace WindowsFormsApplication1
            // pictureBox1.Image = tiles[15];
             pictureBox1.Image = portraitBitmap;
 
-
+            */
             nbajamPictureBox1.DataSize = 1744;
             nbajamPictureBox1.PaletteSize = 32;
             nbajamPictureBox1.isPortrait = true;
             nbajamPictureBox1.loadImageData(full_data);
+
+            nbajamPictureBox2.DataSize = 1744;
+            nbajamPictureBox2.PaletteSize = 32;
+            nbajamPictureBox2.isPortrait = true;
+            nbajamPictureBox2.loadImageData(full_data);
+
+            nbajamPictureBox3.DataSize = 1744;
+            nbajamPictureBox3.PaletteSize = 32;
+            nbajamPictureBox3.isPortrait = true;
+            nbajamPictureBox3.loadImageData(full_data);
+
             //nbajamPictureBox1.Invalidate();
         //    nbajamPictureBox1.Image = portraitBitmap;         
         }
@@ -293,7 +305,13 @@ namespace WindowsFormsApplication1
             initializePalette();
             initializeFont();
             initializePlayers();
-          
+
+            panel1.Visible = false;
+
+            panel2.Visible = true;
+            panel1.SendToBack();
+            panel2.BringToFront();
+            
          
            
         }
@@ -2432,19 +2450,22 @@ letters[0].SetPixel(3, 0, 0);
             {
                 case 0:
             
+                    panel1.Visible = false;
                     panel2.Visible = true;
+
                     panel2.BringToFront();
                     panel1.SendToBack();
                   //  panel1.Visible = false;
                     
                     break;
                 case 1: 
-                        panel1.BringToFront();
+                    panel1.BringToFront();
                     panel2.SendToBack();
-                 //   panel1.Visible = true;
+                 panel1.Visible = true;
                   panel2.Visible = false;
                     break;
-                case 2:   
+                case 2:
+                    MessageBox.Show("Not Implemented Yet!");
                     break;
             }
         }
@@ -2827,12 +2848,17 @@ letters[0].SetPixel(3, 0, 0);
             {
     
                 nbajamPictureBox1.loadNewImage(Image.FromFile(dialogOpenFile.FileName));
+                
 
                 byte[] localByteArray = new byte[1680];
                 byte[] localPalette = new byte[64];
 
                 localByteArray = nbajamPictureBox1.get5bppLinearArray();
+                localByteArray = nbajamPictureBox3.get5bppLinearArray();
+
                 localPalette = nbajamPictureBox1.getPortraitPalette();
+                localPalette = nbajamPictureBox3.getPortraitPalette();
+                
 
                 int nameOffset = Convert.ToInt32(textBox1.Text);
 
@@ -2848,6 +2874,26 @@ letters[0].SetPixel(3, 0, 0);
                     nameOffset++;
                 }
             }
+        }
+
+        private void panel2_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void aboutToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show("This is an editor for the SNES version of NBA JAM: Tournament Edition\n\nBig thanks to Mattrizzle for all the game info.\n\nI am not associated with the NBA or EA or whoever owns the NBA JAM trademark nowadays. Please don't sue. ");
+        }
+
+        private void nbajamPictureBox3_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void nbajamPictureBox3_MouseDown(object sender, MouseEventArgs e)
+        {
+            MessageBox.Show("X:" + e.X.ToString() + ",Y:" + e.Y.ToString());
         }
         
     }
