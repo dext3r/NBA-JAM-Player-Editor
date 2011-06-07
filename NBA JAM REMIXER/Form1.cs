@@ -2507,7 +2507,7 @@ letters[0].SetPixel(3, 0, 0);
 
         private void button15_Click(object sender, EventArgs e)
         {
-            int pal_index=0;
+            int pal_index=1;
             byte[] new_color_pal = new byte[64]; //32 color @ 2 bytes/col
             int q = 0;
  
@@ -2535,9 +2535,9 @@ letters[0].SetPixel(3, 0, 0);
                 
                 
                 //swap pal 5 and 0, cuz we be hackin all night long
-                Color temp = optimized_palette[0];
-                optimized_palette[0] = optimized_palette[5];
-                optimized_palette[5] = temp;
+           //     Color temp = optimized_palette[0];
+            //    optimized_palette[0] = optimized_palette[5];
+            //    optimized_palette[5] = temp;
 
 
                  foreach (Color color in optimized_palette)
@@ -2848,16 +2848,16 @@ letters[0].SetPixel(3, 0, 0);
             {
     
                 nbajamPictureBox1.loadNewImage(Image.FromFile(dialogOpenFile.FileName));
-                
+               
 
                 byte[] localByteArray = new byte[1680];
                 byte[] localPalette = new byte[64];
 
                 localByteArray = nbajamPictureBox1.get5bppLinearArray();
-                localByteArray = nbajamPictureBox3.get5bppLinearArray();
+          //      localByteArray = nbajamPictureBox3.get5bppLinearArray();
 
                 localPalette = nbajamPictureBox1.getPortraitPalette();
-                localPalette = nbajamPictureBox3.getPortraitPalette();
+             //   localPalette = nbajamPictureBox3.getPortraitPalette();
                 
 
                 int nameOffset = Convert.ToInt32(textBox1.Text);

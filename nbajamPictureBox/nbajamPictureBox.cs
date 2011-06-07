@@ -444,7 +444,8 @@ namespace nbajamPictureBox
                         //Ideas to do the transparent color:
                         // make a mask
                         // AND the bytes
-                        the_quantizer.AddColor(color);
+                        if(color != System.Drawing.Color.FromArgb(255,255,0,255))
+                                 the_quantizer.AddColor(color);
 
                         duration += DateTime.Now - before;
                     }
@@ -467,14 +468,16 @@ namespace nbajamPictureBox
             try
             {
                 before = DateTime.Now;
-                Int32 colorCount = 32; //GetColorCount();
+                Int32 colorCount = 31; //GetColorCount();
                 List<Color> palette = the_quantizer.GetPalette(colorCount);
 
                 // sets our newly calculated palette to the target image
                 ColorPalette imagePalette = result.Palette;
                 duration += DateTime.Now - before;
 
-                for (Int32 index = 0; index < palette.Count; index++)
+                imagePalette.Entries[0] = System.Drawing.Color.FromArgb(255, 255, 0, 255);
+
+                for (Int32 index = 1; index < palette.Count; index++)
                 {
                     imagePalette.Entries[index] = palette[index];
                 }
@@ -509,9 +512,16 @@ namespace nbajamPictureBox
                     // goes thru all the pixels, reads the color on the source image, and writes calculated palette index on the target
                     for (Int32 index = 0; index < image.Width; index++)
                     {
+                        
                         Color color = Color.FromArgb(sourceBuffer[index]);
+
+                        if (color == System.Drawing.Color.FromArgb(255,255,0,255))
+                             targetBuffer[index] = 0;
+                        else
+                          targetBuffer[index] = (Byte)the_quantizer.GetPaletteIndex(color);
+
+                        
                         before = DateTime.Now;
-                        targetBuffer[index] = (Byte)the_quantizer.GetPaletteIndex(color);
                         duration += DateTime.Now - before;
                     }
 
@@ -540,7 +550,7 @@ namespace nbajamPictureBox
         //load an image file (JPG,PNG,etc) to quantize, convert 5bpp etc
         public void loadNewImage(Image input)
         {
-            int pal_index = 0;
+            int pal_index = 1;
             int q = 0;
 
 
@@ -551,8 +561,12 @@ namespace nbajamPictureBox
             this.Image = this.GetQuantizedImage(sourceImage);
             Bitmap gayness = (Bitmap)this.Image; // uber temporary hack thing to basically let us redraw the image using palette values
 
-            List<Color> yourColorList = the_quantizer.GetPalette(32); // Get a list of the optimized color palette...
+            List<Color> yourColorList = the_quantizer.GetPalette(31); // Get a list of the optimized color palette...
             ///... and copy it into an array?
+            ///
+
+            optimized_palette[0] = System.Drawing.Color.FromArgb(255,255, 0, 255);
+
             foreach (Color color in yourColorList)
             {
                 optimized_palette[pal_index] = color;
@@ -560,9 +574,9 @@ namespace nbajamPictureBox
             }
 
             // horrible hack because i know what to swap ...
-            Color temp = optimized_palette[0];
-            optimized_palette[0] = optimized_palette[13];
-            optimized_palette[13] = temp;
+          //  Color temp = optimized_palette[0];
+         //   optimized_palette[0] = optimized_palette[13];
+          //  optimized_palette[13] = temp;
             // please fix this shit!
 
             //converts the palette to a SNES palette
