@@ -5,3 +5,10 @@ C:\Users\dext3r\Documents\Visual Studio 2010\Projects Under Source Control\nbaja
 C:\Users\dext3r\Documents\Visual Studio 2010\Projects Under Source Control\nbajamPictureBox\obj\Debug\ResolveAssemblyReference.cache
 C:\Users\dext3r\Documents\Visual Studio 2010\Projects Under Source Control\nbajamPictureBox\obj\Debug\nbajamPictureBox.dll
 C:\Users\dext3r\Documents\Visual Studio 2010\Projects Under Source Control\nbajamPictureBox\obj\Debug\nbajamPictureBox.pdb
+C:\Users\bkaminski\Documents\Visual Studio 2010\Projects\NBA JAM REMIXER\nbajamPictureBox\bin\Debug\nbajamPictureBox.dll
+C:\Users\bkaminski\Documents\Visual Studio 2010\Projects\NBA JAM REMIXER\nbajamPictureBox\bin\Debug\nbajamPictureBox.pdb
+C:\Users\bkaminski\Documents\Visual Studio 2010\Projects\NBA JAM REMIXER\nbajamPictureBox\bin\Debug\SimplePaletteQuantizer.exe
+C:\Users\bkaminski\Documents\Visual Studio 2010\Projects\NBA JAM REMIXER\nbajamPictureBox\bin\Debug\SimplePaletteQuantizer.pdb
+C:\Users\bkaminski\Documents\Visual Studio 2010\Projects\NBA JAM REMIXER\nbajamPictureBox\obj\Debug\ResolveAssemblyReference.cache
+C:\Users\bkaminski\Documents\Visual Studio 2010\Projects\NBA JAM REMIXER\nbajamPictureBox\obj\Debug\nbajamPictureBox.dll
+C:\Users\bkaminski\Documents\Visual Studio 2010\Projects\NBA JAM REMIXER\nbajamPictureBox\obj\Debug\nbajamPictureBox.pdb
