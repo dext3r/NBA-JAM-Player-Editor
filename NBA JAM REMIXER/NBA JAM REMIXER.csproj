@@ -13,6 +13,7 @@
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <TargetFrameworkProfile>Client</TargetFrameworkProfile>
     <FileAlignment>512</FileAlignment>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
     <PublishUrl>publish\</PublishUrl>
     <Install>true</Install>
     <InstallFrom>Disk</InstallFrom>
@@ -25,7 +26,6 @@
     <MapFileExtensions>true</MapFileExtensions>
     <ApplicationRevision>0</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
-    <IsWebBootstrapper>false</IsWebBootstrapper>
     <UseApplicationTrust>false</UseApplicationTrust>
     <BootstrapperEnabled>true</BootstrapperEnabled>
   </PropertyGroup>
@@ -99,6 +99,10 @@
     <ProjectReference Include="..\nbajamTextBox\nbajamTextBox.csproj">
       <Project>{C2958694-C743-4A4D-97F6-F38F108FD207}</Project>
       <Name>nbajamTextBox</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\playerPairing\playerPairing.csproj">
+      <Project>{EE1B0270-3A08-4A7C-8DCD-6BEF85BD3AEE}</Project>
+      <Name>playerPairing</Name>
     </ProjectReference>
     <ProjectReference Include="..\SimplePaletteQuantizer\SimplePaletteQuantizer.csproj">
       <Project>{37812A22-91F3-4220-891E-5C26DA64A975}</Project>

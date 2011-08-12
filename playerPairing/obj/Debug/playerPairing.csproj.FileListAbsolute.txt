@@ -1,0 +1,14 @@
+C:\Users\dext3r\Documents\Visual Studio 2010\Projects Under Source Control\playerPairing\obj\Debug\ResolveAssemblyReference.cache
+C:\Users\dext3r\Documents\Visual Studio 2010\Projects Under Source Control\playerPairing\bin\Debug\playerPairing.dll
+C:\Users\dext3r\Documents\Visual Studio 2010\Projects Under Source Control\playerPairing\bin\Debug\playerPairing.pdb
+C:\Users\dext3r\Documents\Visual Studio 2010\Projects Under Source Control\playerPairing\obj\Debug\playerPairing.dll
+C:\Users\dext3r\Documents\Visual Studio 2010\Projects Under Source Control\playerPairing\obj\Debug\playerPairing.pdb
+C:\Users\dext3r\Documents\Visual Studio 2010\Projects Under Source Control\playerPairing\bin\Debug\nbajamPictureBox.dll
+C:\Users\dext3r\Documents\Visual Studio 2010\Projects Under Source Control\playerPairing\bin\Debug\nbajamTextBox.dll
+C:\Users\dext3r\Documents\Visual Studio 2010\Projects Under Source Control\playerPairing\bin\Debug\SimplePaletteQuantizer.exe
+C:\Users\dext3r\Documents\Visual Studio 2010\Projects Under Source Control\playerPairing\bin\Debug\nbajamPictureBox.pdb
+C:\Users\dext3r\Documents\Visual Studio 2010\Projects Under Source Control\playerPairing\bin\Debug\nbajamTextBox.pdb
+C:\Users\dext3r\Documents\Visual Studio 2010\Projects Under Source Control\playerPairing\bin\Debug\SimplePaletteQuantizer.pdb
+C:\Users\dext3r\Documents\Visual Studio 2010\Projects Under Source Control\playerPairing\obj\Debug\playerPairing.playerPairing.resources
+C:\Users\dext3r\Documents\Visual Studio 2010\Projects Under Source Control\playerPairing\obj\Debug\GenerateResource.read.1.tlog
+C:\Users\dext3r\Documents\Visual Studio 2010\Projects Under Source Control\playerPairing\obj\Debug\GenerateResource.write.1.tlog

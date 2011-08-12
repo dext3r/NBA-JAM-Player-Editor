@@ -20,6 +20,14 @@ using SimplePaletteQuantizer.Quantizers.Uniform;
 //Awesome project from here: http://www.codeproject.com/KB/recipes/SimplePaletteQuantizer.aspx
 
 
+// 8/1/2011:    Start keeping notes because you don't remember shit
+//              Palette Quantizer seems to be OK, needs work. Loading procedure: Load ROM. Click Load Image, it writes it to the ROM.
+//              Will attempt the roster editor. Proposed idea is to use listview with custom listviewitem. under investigation.
+//              Added custom User Control - playerPairing - needs functionality code implemented
+//              Something might be fucked up with the project - might need to make again.
+//              Need to implement sqlite database
+
+
 namespace WindowsFormsApplication1
 {
     public partial class Form1 : Form
@@ -290,6 +298,17 @@ namespace WindowsFormsApplication1
             nbajamPictureBox3.PaletteSize = 32;
             nbajamPictureBox3.isPortrait = true;
             nbajamPictureBox3.loadImageData(full_data);
+
+            playerPairing1.setName1("LENNON");
+            playerPairing1.setName2("MCCARTNEY");
+            playerPairing1.setPortrait1(full_data);
+            playerPairing1.setPortrait2(full_data);
+
+            playerPairing2.isExpandedRoster = true;
+            playerPairing2.setName1("LENNON");
+            playerPairing2.setName2("MCCARTNEY");
+            playerPairing2.setPortrait1(full_data);
+            playerPairing2.setPortrait2(full_data);
 
             //nbajamPictureBox1.Invalidate();
         //    nbajamPictureBox1.Image = portraitBitmap;         
@@ -2523,7 +2542,7 @@ letters[0].SetPixel(3, 0, 0);
                 Bitmap gayness = (Bitmap)targetImage;
                 pictureBox6.Image = targetImage;
 
-                List<Color> yourColorList = the_quantizer.GetPalette(32);
+                List<Color> yourColorList = the_quantizer.GetPalette(31);
 
                 foreach (Color color in yourColorList)
                 {
@@ -2894,6 +2913,11 @@ letters[0].SetPixel(3, 0, 0);
         private void nbajamPictureBox3_MouseDown(object sender, MouseEventArgs e)
         {
             MessageBox.Show("X:" + e.X.ToString() + ",Y:" + e.Y.ToString());
+        }
+
+        private void listBox2_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
         }
         
     }

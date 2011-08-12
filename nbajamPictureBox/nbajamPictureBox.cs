@@ -25,6 +25,8 @@ namespace nbajamPictureBox
     public partial class nbajamPictureBox : PictureBox
     {
         private IColorQuantizer the_quantizer = new PaletteQuantizer(); // Color quantizer object
+        private IColorQuantizer quantizer2 = new PopularityQuantizer();
+
         private Image sourceImage; //load form function method
 
 
@@ -59,9 +61,23 @@ namespace nbajamPictureBox
         private byte[,] single_tile;
 
         private bool redrawFlag = false;
+        private bool flippedFlag= false;
+
 
         //methods
         //set/gets
+        public bool isFlipped
+        {
+            get
+            {
+                return flippedFlag;
+            }
+            set
+            {
+                flippedFlag = value;
+            }
+        }
+
         public int DataSize
         {
             get
@@ -221,6 +237,9 @@ namespace nbajamPictureBox
                         }
                     }      
                 }
+
+                if(flippedFlag)
+                  portraitBitmap.RotateFlip(RotateFlipType.Rotate180FlipY);
 
                 this.Image = portraitBitmap;
             }

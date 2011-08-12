@@ -39,3 +39,5 @@ C:\Users\bkaminski\Documents\Visual Studio 2010\Projects\NBA JAM REMIXER\NBA JAM
 C:\Users\bkaminski\Documents\Visual Studio 2010\Projects\NBA JAM REMIXER\NBA JAM REMIXER\bin\Debug\SimplePaletteQuantizer.exe
 C:\Users\bkaminski\Documents\Visual Studio 2010\Projects\NBA JAM REMIXER\NBA JAM REMIXER\bin\Debug\nbajamPictureBox.pdb
 C:\Users\bkaminski\Documents\Visual Studio 2010\Projects\NBA JAM REMIXER\NBA JAM REMIXER\bin\Debug\SimplePaletteQuantizer.pdb
+C:\Users\dext3r\Documents\Visual Studio 2010\Projects Under Source Control\NBA JAM REMIXER\bin\Debug\playerPairing.dll
+C:\Users\dext3r\Documents\Visual Studio 2010\Projects Under Source Control\NBA JAM REMIXER\bin\Debug\playerPairing.pdb
