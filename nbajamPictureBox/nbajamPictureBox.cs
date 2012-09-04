@@ -565,7 +565,7 @@ namespace nbajamPictureBox
         }
 
         //load an image file (JPG,PNG,etc) to quantize, convert 5bpp etc
-        //The palette quantization here needs to be fixed...
+        //The palette quantization here needs to be fixed... 9/4/2012
         public void loadNewImage(Image input)
         {
             int pal_index = 1;

@@ -9,8 +9,34 @@ using System.Windows.Forms;
 
 namespace nbajamTextBox
 {
+    public delegate void TextChangedEventHandler(object sender, TextChangedEventArgs e);
+
+    public class TextChangedEventArgs : EventArgs
+    {
+
+         public String NewValue { get; set; }
+
+         public TextChangedEventArgs(String newValue)
+        {
+            NewValue = newValue;
+        } 
+
+       
+    }
+       
     public partial class nbajamTextBox : PictureBox
     {
+        //event handler for changing text
+        [Category("Action")]
+        [Description("Fires when the text changes.")]
+        public event TextChangedEventHandler textChanged;
+
+        protected virtual void OntextChanged(TextChangedEventArgs e)
+        {
+            if (textChanged != null)
+                textChanged(this, e);
+        } 
+
         //Properties
         //font definition?
         //bit arrays?
@@ -198,7 +224,22 @@ namespace nbajamTextBox
             // Stores the text to display on the control in internal_text variable
             set
             {
+                String newValue = value.ToUpper();
+                String oldValue = internal_text;
+                if (oldValue != newValue)
+                {
+                    OntextChanged(new TextChangedEventArgs(newValue));
+                  //  Console.WriteLine("CHANGED from" + oldValue + " to " + newValue +" -Obama");
+                   //extChangedEventArgs textChanged = new TextChangedEventArgs(oldValue, newValue);
+                  //textChanged(this,txt);
+                  // 
+                 //   Change(this, textChanged);
+                }
                 internal_text = value.ToUpper();
+                
+             //   String oldValue = internal_text;
+             //   if (oldValue != internal_text)
+              //      OnTextChanged(new TextChangedEventArgs(oldValue, internal_text));
                 redrawFlag = true;
                 this.Invalidate();
             }

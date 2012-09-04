@@ -85,6 +85,7 @@
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
+            this.nbajamTextBox20 = new nbajamTextBox.nbajamTextBox();
             this.clutchUpDown = new System.Windows.Forms.NumericUpDown();
             this.passUpDown = new System.Windows.Forms.NumericUpDown();
             this.blockUpDown = new System.Windows.Forms.NumericUpDown();
@@ -98,25 +99,26 @@
             this.panel1 = new System.Windows.Forms.Panel();
             this.button17 = new System.Windows.Forms.Button();
             this.nbajamTextBox1 = new nbajamTextBox.nbajamTextBox();
-            this.playerPairing1 = new playerPairing.playerPairing();
             this.panel2 = new System.Windows.Forms.Panel();
-            this.nbajamTextBox4 = new nbajamTextBox.nbajamTextBox();
-            this.nbajamTextBox5 = new nbajamTextBox.nbajamTextBox();
-            this.nbajamTextBox10 = new nbajamTextBox.nbajamTextBox();
-            this.nbajamTextBox18 = new nbajamTextBox.nbajamTextBox();
-            this.nbajamTextBox17 = new nbajamTextBox.nbajamTextBox();
-            this.nbajamTextBox19 = new nbajamTextBox.nbajamTextBox();
-            this.nbajamTextBox16 = new nbajamTextBox.nbajamTextBox();
-            this.nbajamTextBox6 = new nbajamTextBox.nbajamTextBox();
-            this.nbajamTextBox15 = new nbajamTextBox.nbajamTextBox();
-            this.nbajamTextBox14 = new nbajamTextBox.nbajamTextBox();
-            this.nbajamTextBox13 = new nbajamTextBox.nbajamTextBox();
-            this.nbajamTextBox7 = new nbajamTextBox.nbajamTextBox();
-            this.nbajamTextBox12 = new nbajamTextBox.nbajamTextBox();
-            this.nbajamTextBox8 = new nbajamTextBox.nbajamTextBox();
-            this.nbajamTextBox11 = new nbajamTextBox.nbajamTextBox();
-            this.nbajamTextBox9 = new nbajamTextBox.nbajamTextBox();
+            this.nbajamPictureBox2 = new nbajamPictureBox.nbajamPictureBox();
+            this.stats_blockNum = new nbajamTextBox.nbajamTextBox();
+            this.stats_powerText = new nbajamTextBox.nbajamTextBox();
+            this.nbajamPictureBox3 = new nbajamPictureBox.nbajamPictureBox();
+            this.stats_stealNum = new nbajamTextBox.nbajamTextBox();
+            this.stats_speedText = new nbajamTextBox.nbajamTextBox();
+            this.stats_clutchNum = new nbajamTextBox.nbajamTextBox();
+            this.stats_clutchText = new nbajamTextBox.nbajamTextBox();
+            this.stats_speedNum = new nbajamTextBox.nbajamTextBox();
+            this.stats_3ptsNum = new nbajamTextBox.nbajamTextBox();
+            this.stats_blockText = new nbajamTextBox.nbajamTextBox();
+            this.stats_passNum = new nbajamTextBox.nbajamTextBox();
+            this.stats_stealText = new nbajamTextBox.nbajamTextBox();
+            this.stats_dunkNum = new nbajamTextBox.nbajamTextBox();
+            this.stats_powerNum = new nbajamTextBox.nbajamTextBox();
             this.nbajamPictureBox1 = new nbajamPictureBox.nbajamPictureBox();
+            this.stats_3ptsText = new nbajamTextBox.nbajamTextBox();
+            this.stats_dunkText = new nbajamTextBox.nbajamTextBox();
+            this.stats_passText = new nbajamTextBox.nbajamTextBox();
             this.label13 = new System.Windows.Forms.Label();
             this.pictureBox6 = new System.Windows.Forms.PictureBox();
             this.button15 = new System.Windows.Forms.Button();
@@ -124,12 +126,9 @@
             this.button16 = new System.Windows.Forms.Button();
             this.listView1 = new System.Windows.Forms.ListView();
             this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.nbajamPictureBox2 = new nbajamPictureBox.nbajamPictureBox();
-            this.nbajamPictureBox3 = new nbajamPictureBox.nbajamPictureBox();
             this.nbajamTextBox3 = new nbajamTextBox.nbajamTextBox();
             this.nbajamTextBox2 = new nbajamTextBox.nbajamTextBox();
             this.nbajamTextBox21 = new nbajamTextBox.nbajamTextBox();
-            this.nbajamTextBox20 = new nbajamTextBox.nbajamTextBox();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
@@ -139,6 +138,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).BeginInit();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.nbajamTextBox20)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.clutchUpDown)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.passUpDown)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.blockUpDown)).BeginInit();
@@ -150,30 +150,29 @@
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nbajamTextBox1)).BeginInit();
             this.panel2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.nbajamTextBox4)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.nbajamTextBox5)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.nbajamTextBox10)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.nbajamTextBox18)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.nbajamTextBox17)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.nbajamTextBox19)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.nbajamTextBox16)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.nbajamTextBox6)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.nbajamTextBox15)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.nbajamTextBox14)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.nbajamTextBox13)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.nbajamTextBox7)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.nbajamTextBox12)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.nbajamTextBox8)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.nbajamTextBox11)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.nbajamTextBox9)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.nbajamPictureBox1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox6)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nbajamPictureBox2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.stats_blockNum)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.stats_powerText)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nbajamPictureBox3)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.stats_stealNum)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.stats_speedText)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.stats_clutchNum)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.stats_clutchText)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.stats_speedNum)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.stats_3ptsNum)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.stats_blockText)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.stats_passNum)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.stats_stealText)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.stats_dunkNum)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.stats_powerNum)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nbajamPictureBox1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.stats_3ptsText)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.stats_dunkText)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.stats_passText)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox6)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nbajamTextBox3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nbajamTextBox2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nbajamTextBox21)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.nbajamTextBox20)).BeginInit();
             this.SuspendLayout();
             // 
             // button1
@@ -201,7 +200,7 @@
             // 
             // pictureBox2
             // 
-            this.pictureBox2.Location = new System.Drawing.Point(276, 81);
+            this.pictureBox2.Location = new System.Drawing.Point(289, 267);
             this.pictureBox2.Margin = new System.Windows.Forms.Padding(4);
             this.pictureBox2.Name = "pictureBox2";
             this.pictureBox2.Size = new System.Drawing.Size(192, 34);
@@ -251,11 +250,11 @@
             // 
             // pictureBox3
             // 
-            this.pictureBox3.BackColor = System.Drawing.SystemColors.Control;
-            this.pictureBox3.Location = new System.Drawing.Point(-53, 332);
+            this.pictureBox3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
+            this.pictureBox3.Location = new System.Drawing.Point(184, 330);
             this.pictureBox3.Margin = new System.Windows.Forms.Padding(4);
             this.pictureBox3.Name = "pictureBox3";
-            this.pictureBox3.Size = new System.Drawing.Size(96, 32);
+            this.pictureBox3.Size = new System.Drawing.Size(144, 48);
             this.pictureBox3.TabIndex = 7;
             this.pictureBox3.TabStop = false;
             // 
@@ -445,7 +444,7 @@
             // 
             // button10
             // 
-            this.button10.Location = new System.Drawing.Point(9, 431);
+            this.button10.Location = new System.Drawing.Point(9, 480);
             this.button10.Margin = new System.Windows.Forms.Padding(4);
             this.button10.Name = "button10";
             this.button10.Size = new System.Drawing.Size(225, 28);
@@ -474,7 +473,7 @@
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Padding = new System.Windows.Forms.Padding(8, 2, 0, 2);
-            this.menuStrip1.Size = new System.Drawing.Size(771, 28);
+            this.menuStrip1.Size = new System.Drawing.Size(767, 28);
             this.menuStrip1.TabIndex = 38;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -538,10 +537,10 @@
             this.toolStripStatusLabel1,
             this.toolStripStatusLabel2,
             this.toolStripStatusLabel3});
-            this.statusStrip1.Location = new System.Drawing.Point(0, 1145);
+            this.statusStrip1.Location = new System.Drawing.Point(0, 582);
             this.statusStrip1.Name = "statusStrip1";
             this.statusStrip1.Padding = new System.Windows.Forms.Padding(1, 0, 19, 0);
-            this.statusStrip1.Size = new System.Drawing.Size(771, 22);
+            this.statusStrip1.Size = new System.Drawing.Size(767, 22);
             this.statusStrip1.SizingGrip = false;
             this.statusStrip1.TabIndex = 39;
             this.statusStrip1.Text = "statusStrip1";
@@ -555,7 +554,7 @@
             // toolStripStatusLabel2
             // 
             this.toolStripStatusLabel2.Name = "toolStripStatusLabel2";
-            this.toolStripStatusLabel2.Size = new System.Drawing.Size(1073, 17);
+            this.toolStripStatusLabel2.Size = new System.Drawing.Size(747, 17);
             this.toolStripStatusLabel2.Spring = true;
             // 
             // toolStripStatusLabel3
@@ -608,7 +607,7 @@
             // pictureBox4
             // 
             this.pictureBox4.BackColor = System.Drawing.SystemColors.Control;
-            this.pictureBox4.Location = new System.Drawing.Point(1287, 84);
+            this.pictureBox4.Location = new System.Drawing.Point(1358, 334);
             this.pictureBox4.Margin = new System.Windows.Forms.Padding(4);
             this.pictureBox4.Name = "pictureBox4";
             this.pictureBox4.Size = new System.Drawing.Size(64, 20);
@@ -650,7 +649,7 @@
             this.tabControl1.Margin = new System.Windows.Forms.Padding(4);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(267, 517);
+            this.tabControl1.Size = new System.Drawing.Size(267, 545);
             this.tabControl1.TabIndex = 67;
             this.tabControl1.SelectedIndexChanged += new System.EventHandler(this.tabControl1_SelectedIndexChanged);
             // 
@@ -663,6 +662,7 @@
             this.tabPage1.Controls.Add(this.label3);
             this.tabPage1.Controls.Add(this.label2);
             this.tabPage1.Controls.Add(this.label5);
+            this.tabPage1.Controls.Add(this.nbajamTextBox20);
             this.tabPage1.Controls.Add(this.clutchUpDown);
             this.tabPage1.Controls.Add(this.passUpDown);
             this.tabPage1.Controls.Add(this.blockUpDown);
@@ -695,7 +695,7 @@
             this.tabPage1.Margin = new System.Windows.Forms.Padding(4);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(4);
-            this.tabPage1.Size = new System.Drawing.Size(259, 488);
+            this.tabPage1.Size = new System.Drawing.Size(259, 516);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Players";
             this.tabPage1.UseVisualStyleBackColor = true;
@@ -760,6 +760,27 @@
             this.label5.Size = new System.Drawing.Size(40, 17);
             this.label5.TabIndex = 86;
             this.label5.Text = "3Pts:";
+            // 
+            // nbajamTextBox20
+            // 
+            this.nbajamTextBox20.BackColor = System.Drawing.Color.Purple;
+            this.nbajamTextBox20.FontColor = nbajamTextBox.nbajamTextBox.FontColorOptions.Pallete_3;
+            this.nbajamTextBox20.FontNumber = 0;
+            this.nbajamTextBox20.Image = ((System.Drawing.Image)(resources.GetObject("nbajamTextBox20.Image")));
+            this.nbajamTextBox20.Location = new System.Drawing.Point(54, 424);
+            this.nbajamTextBox20.Margin = new System.Windows.Forms.Padding(4);
+            this.nbajamTextBox20.Name = "nbajamTextBox20";
+            this.nbajamTextBox20.ScaleFactor = 3;
+            this.nbajamTextBox20.Size = new System.Drawing.Size(144, 48);
+            this.nbajamTextBox20.TabIndex = 65;
+            this.nbajamTextBox20.TabStop = false;
+            this.nbajamTextBox20.Text = "PLAYER NAME";
+            this.nbajamTextBox20.TextAlign = nbajamTextBox.nbajamTextBox.TextAlignOptions.Manual;
+            this.nbajamTextBox20.TextJustify = nbajamTextBox.nbajamTextBox.TextJustifyOptions.Center;
+            this.nbajamTextBox20.TextOffsetX = 4;
+            this.nbajamTextBox20.TextOffsetY = 7;
+            this.nbajamTextBox20.TilesHigh = 2;
+            this.nbajamTextBox20.TilesWide = 6;
             // 
             // clutchUpDown
             // 
@@ -891,8 +912,6 @@
             this.panel1.Controls.Add(this.button17);
             this.panel1.Controls.Add(this.nbajamTextBox1);
             this.panel1.Controls.Add(this.pictureBox5);
-            this.panel1.Controls.Add(this.playerPairing1);
-            this.panel1.Controls.Add(this.pictureBox3);
             this.panel1.Location = new System.Drawing.Point(833, 33);
             this.panel1.Margin = new System.Windows.Forms.Padding(4);
             this.panel1.Name = "panel1";
@@ -932,391 +951,355 @@
             this.nbajamTextBox1.TilesWide = 11;
             this.nbajamTextBox1.Click += new System.EventHandler(this.nbajamTextBox1_Click);
             // 
-            // playerPairing1
-            // 
-            this.playerPairing1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
-            this.playerPairing1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.playerPairing1.isExpandedRoster = false;
-            this.playerPairing1.Location = new System.Drawing.Point(16, 81);
-            this.playerPairing1.Margin = new System.Windows.Forms.Padding(5);
-            this.playerPairing1.MaximumSize = new System.Drawing.Size(422, 272);
-            this.playerPairing1.MinimumSize = new System.Drawing.Size(422, 272);
-            this.playerPairing1.Name = "playerPairing1";
-            this.playerPairing1.Size = new System.Drawing.Size(422, 272);
-            this.playerPairing1.TabIndex = 74;
-            // 
             // panel2
             // 
             this.panel2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
             this.panel2.Controls.Add(this.pictureBox2);
             this.panel2.Controls.Add(this.nbajamPictureBox2);
-            this.panel2.Controls.Add(this.nbajamTextBox18);
-            this.panel2.Controls.Add(this.nbajamTextBox10);
+            this.panel2.Controls.Add(this.stats_blockNum);
+            this.panel2.Controls.Add(this.stats_powerText);
+            this.panel2.Controls.Add(this.pictureBox3);
             this.panel2.Controls.Add(this.nbajamPictureBox3);
-            this.panel2.Controls.Add(this.nbajamTextBox20);
-            this.panel2.Controls.Add(this.nbajamTextBox17);
-            this.panel2.Controls.Add(this.nbajamTextBox4);
-            this.panel2.Controls.Add(this.nbajamTextBox19);
-            this.panel2.Controls.Add(this.nbajamTextBox13);
-            this.panel2.Controls.Add(this.nbajamTextBox5);
-            this.panel2.Controls.Add(this.nbajamTextBox7);
-            this.panel2.Controls.Add(this.nbajamTextBox12);
-            this.panel2.Controls.Add(this.nbajamTextBox15);
-            this.panel2.Controls.Add(this.nbajamTextBox11);
-            this.panel2.Controls.Add(this.nbajamTextBox16);
-            this.panel2.Controls.Add(this.nbajamTextBox14);
+            this.panel2.Controls.Add(this.stats_stealNum);
+            this.panel2.Controls.Add(this.stats_speedText);
+            this.panel2.Controls.Add(this.stats_clutchNum);
+            this.panel2.Controls.Add(this.stats_clutchText);
+            this.panel2.Controls.Add(this.stats_speedNum);
+            this.panel2.Controls.Add(this.stats_3ptsNum);
+            this.panel2.Controls.Add(this.stats_blockText);
+            this.panel2.Controls.Add(this.stats_passNum);
+            this.panel2.Controls.Add(this.stats_stealText);
+            this.panel2.Controls.Add(this.stats_dunkNum);
+            this.panel2.Controls.Add(this.stats_powerNum);
             this.panel2.Controls.Add(this.nbajamPictureBox1);
-            this.panel2.Controls.Add(this.nbajamTextBox6);
-            this.panel2.Controls.Add(this.nbajamTextBox8);
-            this.panel2.Controls.Add(this.nbajamTextBox9);
+            this.panel2.Controls.Add(this.stats_3ptsText);
+            this.panel2.Controls.Add(this.stats_dunkText);
+            this.panel2.Controls.Add(this.stats_passText);
             this.panel2.Location = new System.Drawing.Point(275, 33);
             this.panel2.Margin = new System.Windows.Forms.Padding(4);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(481, 490);
+            this.panel2.Size = new System.Drawing.Size(481, 545);
             this.panel2.TabIndex = 69;
             this.panel2.Paint += new System.Windows.Forms.PaintEventHandler(this.panel2_Paint);
             // 
-            // nbajamTextBox4
+            // nbajamPictureBox2
             // 
-            this.nbajamTextBox4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
-            this.nbajamTextBox4.FontColor = nbajamTextBox.nbajamTextBox.FontColorOptions.Pallete_6;
-            this.nbajamTextBox4.FontNumber = 1;
-            this.nbajamTextBox4.Image = ((System.Drawing.Image)(resources.GetObject("nbajamTextBox4.Image")));
-            this.nbajamTextBox4.Location = new System.Drawing.Point(86, 358);
-            this.nbajamTextBox4.Margin = new System.Windows.Forms.Padding(4);
-            this.nbajamTextBox4.Name = "nbajamTextBox4";
-            this.nbajamTextBox4.ScaleFactor = 3;
-            this.nbajamTextBox4.Size = new System.Drawing.Size(72, 24);
-            this.nbajamTextBox4.TabIndex = 61;
-            this.nbajamTextBox4.TabStop = false;
-            this.nbajamTextBox4.Text = "SPD:";
-            this.nbajamTextBox4.TextAlign = nbajamTextBox.nbajamTextBox.TextAlignOptions.Top;
-            this.nbajamTextBox4.TextJustify = nbajamTextBox.nbajamTextBox.TextJustifyOptions.Manual;
-            this.nbajamTextBox4.TextOffsetX = 10;
-            this.nbajamTextBox4.TextOffsetY = 1;
-            this.nbajamTextBox4.TilesHigh = 1;
-            this.nbajamTextBox4.TilesWide = 3;
+            this.nbajamPictureBox2.DataSize = 0;
+            this.nbajamPictureBox2.isFlipped = false;
+            this.nbajamPictureBox2.Location = new System.Drawing.Point(289, 147);
+            this.nbajamPictureBox2.Margin = new System.Windows.Forms.Padding(4);
+            this.nbajamPictureBox2.Name = "nbajamPictureBox2";
+            this.nbajamPictureBox2.PaletteSize = 0;
+            this.nbajamPictureBox2.ScaleFactor = 2;
+            this.nbajamPictureBox2.Size = new System.Drawing.Size(96, 112);
+            this.nbajamPictureBox2.TabIndex = 71;
+            this.nbajamPictureBox2.TabStop = false;
+            this.nbajamPictureBox2.TilesHigh = 7;
+            this.nbajamPictureBox2.TilesWide = 6;
             // 
-            // nbajamTextBox5
+            // stats_blockNum
             // 
-            this.nbajamTextBox5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
-            this.nbajamTextBox5.FontColor = nbajamTextBox.nbajamTextBox.FontColorOptions.Pallete_8;
-            this.nbajamTextBox5.FontNumber = 1;
-            this.nbajamTextBox5.Image = ((System.Drawing.Image)(resources.GetObject("nbajamTextBox5.Image")));
-            this.nbajamTextBox5.Location = new System.Drawing.Point(181, 358);
-            this.nbajamTextBox5.Margin = new System.Windows.Forms.Padding(4);
-            this.nbajamTextBox5.Name = "nbajamTextBox5";
-            this.nbajamTextBox5.ScaleFactor = 3;
-            this.nbajamTextBox5.Size = new System.Drawing.Size(24, 24);
-            this.nbajamTextBox5.TabIndex = 62;
-            this.nbajamTextBox5.TabStop = false;
-            this.nbajamTextBox5.Text = "8";
-            this.nbajamTextBox5.TextAlign = nbajamTextBox.nbajamTextBox.TextAlignOptions.Top;
-            this.nbajamTextBox5.TextJustify = nbajamTextBox.nbajamTextBox.TextJustifyOptions.Manual;
-            this.nbajamTextBox5.TextOffsetX = 3;
-            this.nbajamTextBox5.TextOffsetY = 1;
-            this.nbajamTextBox5.TilesHigh = 1;
-            this.nbajamTextBox5.TilesWide = 1;
+            this.stats_blockNum.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
+            this.stats_blockNum.FontColor = nbajamTextBox.nbajamTextBox.FontColorOptions.Pallete_4;
+            this.stats_blockNum.FontNumber = 1;
+            this.stats_blockNum.Image = ((System.Drawing.Image)(resources.GetObject("stats_blockNum.Image")));
+            this.stats_blockNum.Location = new System.Drawing.Point(371, 462);
+            this.stats_blockNum.Margin = new System.Windows.Forms.Padding(4);
+            this.stats_blockNum.Name = "stats_blockNum";
+            this.stats_blockNum.ScaleFactor = 3;
+            this.stats_blockNum.Size = new System.Drawing.Size(24, 24);
+            this.stats_blockNum.TabIndex = 62;
+            this.stats_blockNum.TabStop = false;
+            this.stats_blockNum.Text = "0";
+            this.stats_blockNum.TextAlign = nbajamTextBox.nbajamTextBox.TextAlignOptions.Top;
+            this.stats_blockNum.TextJustify = nbajamTextBox.nbajamTextBox.TextJustifyOptions.Center;
+            this.stats_blockNum.TextOffsetX = 0;
+            this.stats_blockNum.TextOffsetY = 0;
+            this.stats_blockNum.TilesHigh = 1;
+            this.stats_blockNum.TilesWide = 1;
+            this.stats_blockNum.textChanged += new nbajamTextBox.TextChangedEventHandler(this.stats_speedNum_textChanged);
             // 
-            // nbajamTextBox10
+            // stats_powerText
             // 
-            this.nbajamTextBox10.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
-            this.nbajamTextBox10.FontColor = nbajamTextBox.nbajamTextBox.FontColorOptions.Pallete_6;
-            this.nbajamTextBox10.FontNumber = 1;
-            this.nbajamTextBox10.Image = ((System.Drawing.Image)(resources.GetObject("nbajamTextBox10.Image")));
-            this.nbajamTextBox10.Location = new System.Drawing.Point(276, 358);
-            this.nbajamTextBox10.Margin = new System.Windows.Forms.Padding(4);
-            this.nbajamTextBox10.Name = "nbajamTextBox10";
-            this.nbajamTextBox10.ScaleFactor = 3;
-            this.nbajamTextBox10.Size = new System.Drawing.Size(72, 24);
-            this.nbajamTextBox10.TabIndex = 54;
-            this.nbajamTextBox10.TabStop = false;
-            this.nbajamTextBox10.Text = "POWER:";
-            this.nbajamTextBox10.TextAlign = nbajamTextBox.nbajamTextBox.TextAlignOptions.Top;
-            this.nbajamTextBox10.TextJustify = nbajamTextBox.nbajamTextBox.TextJustifyOptions.Manual;
-            this.nbajamTextBox10.TextOffsetX = 2;
-            this.nbajamTextBox10.TextOffsetY = 1;
-            this.nbajamTextBox10.TilesHigh = 1;
-            this.nbajamTextBox10.TilesWide = 3;
+            this.stats_powerText.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
+            this.stats_powerText.FontColor = nbajamTextBox.nbajamTextBox.FontColorOptions.Pallete_6;
+            this.stats_powerText.FontNumber = 1;
+            this.stats_powerText.Image = ((System.Drawing.Image)(resources.GetObject("stats_powerText.Image")));
+            this.stats_powerText.Location = new System.Drawing.Point(280, 402);
+            this.stats_powerText.Margin = new System.Windows.Forms.Padding(4);
+            this.stats_powerText.Name = "stats_powerText";
+            this.stats_powerText.ScaleFactor = 3;
+            this.stats_powerText.Size = new System.Drawing.Size(72, 24);
+            this.stats_powerText.TabIndex = 54;
+            this.stats_powerText.TabStop = false;
+            this.stats_powerText.Text = "POWER:";
+            this.stats_powerText.TextAlign = nbajamTextBox.nbajamTextBox.TextAlignOptions.Top;
+            this.stats_powerText.TextJustify = nbajamTextBox.nbajamTextBox.TextJustifyOptions.Right;
+            this.stats_powerText.TextOffsetX = 2;
+            this.stats_powerText.TextOffsetY = 1;
+            this.stats_powerText.TilesHigh = 1;
+            this.stats_powerText.TilesWide = 3;
             // 
-            // nbajamTextBox18
+            // nbajamPictureBox3
             // 
-            this.nbajamTextBox18.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
-            this.nbajamTextBox18.FontColor = nbajamTextBox.nbajamTextBox.FontColorOptions.Pallete_4;
-            this.nbajamTextBox18.FontNumber = 1;
-            this.nbajamTextBox18.Image = ((System.Drawing.Image)(resources.GetObject("nbajamTextBox18.Image")));
-            this.nbajamTextBox18.Location = new System.Drawing.Point(368, 418);
-            this.nbajamTextBox18.Margin = new System.Windows.Forms.Padding(4);
-            this.nbajamTextBox18.Name = "nbajamTextBox18";
-            this.nbajamTextBox18.ScaleFactor = 3;
-            this.nbajamTextBox18.Size = new System.Drawing.Size(24, 24);
-            this.nbajamTextBox18.TabIndex = 62;
-            this.nbajamTextBox18.TabStop = false;
-            this.nbajamTextBox18.Text = "0";
-            this.nbajamTextBox18.TextAlign = nbajamTextBox.nbajamTextBox.TextAlignOptions.Top;
-            this.nbajamTextBox18.TextJustify = nbajamTextBox.nbajamTextBox.TextJustifyOptions.Center;
-            this.nbajamTextBox18.TextOffsetX = 0;
-            this.nbajamTextBox18.TextOffsetY = 0;
-            this.nbajamTextBox18.TilesHigh = 1;
-            this.nbajamTextBox18.TilesWide = 1;
+            this.nbajamPictureBox3.DataSize = 0;
+            this.nbajamPictureBox3.isFlipped = false;
+            this.nbajamPictureBox3.Location = new System.Drawing.Point(289, 83);
+            this.nbajamPictureBox3.Margin = new System.Windows.Forms.Padding(4);
+            this.nbajamPictureBox3.Name = "nbajamPictureBox3";
+            this.nbajamPictureBox3.PaletteSize = 0;
+            this.nbajamPictureBox3.ScaleFactor = 1;
+            this.nbajamPictureBox3.Size = new System.Drawing.Size(48, 56);
+            this.nbajamPictureBox3.TabIndex = 72;
+            this.nbajamPictureBox3.TabStop = false;
+            this.nbajamPictureBox3.TilesHigh = 7;
+            this.nbajamPictureBox3.TilesWide = 6;
+            this.nbajamPictureBox3.Click += new System.EventHandler(this.nbajamPictureBox3_Click);
+            this.nbajamPictureBox3.MouseDown += new System.Windows.Forms.MouseEventHandler(this.nbajamPictureBox3_MouseDown);
             // 
-            // nbajamTextBox17
+            // stats_stealNum
             // 
-            this.nbajamTextBox17.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
-            this.nbajamTextBox17.FontColor = nbajamTextBox.nbajamTextBox.FontColorOptions.Pallete_7;
-            this.nbajamTextBox17.FontNumber = 1;
-            this.nbajamTextBox17.Image = ((System.Drawing.Image)(resources.GetObject("nbajamTextBox17.Image")));
-            this.nbajamTextBox17.Location = new System.Drawing.Point(368, 388);
-            this.nbajamTextBox17.Margin = new System.Windows.Forms.Padding(4);
-            this.nbajamTextBox17.Name = "nbajamTextBox17";
-            this.nbajamTextBox17.ScaleFactor = 3;
-            this.nbajamTextBox17.Size = new System.Drawing.Size(24, 24);
-            this.nbajamTextBox17.TabIndex = 61;
-            this.nbajamTextBox17.TabStop = false;
-            this.nbajamTextBox17.Text = "4";
-            this.nbajamTextBox17.TextAlign = nbajamTextBox.nbajamTextBox.TextAlignOptions.Top;
-            this.nbajamTextBox17.TextJustify = nbajamTextBox.nbajamTextBox.TextJustifyOptions.Center;
-            this.nbajamTextBox17.TextOffsetX = 0;
-            this.nbajamTextBox17.TextOffsetY = 0;
-            this.nbajamTextBox17.TilesHigh = 1;
-            this.nbajamTextBox17.TilesWide = 1;
+            this.stats_stealNum.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
+            this.stats_stealNum.FontColor = nbajamTextBox.nbajamTextBox.FontColorOptions.Pallete_4;
+            this.stats_stealNum.FontNumber = 1;
+            this.stats_stealNum.Image = ((System.Drawing.Image)(resources.GetObject("stats_stealNum.Image")));
+            this.stats_stealNum.Location = new System.Drawing.Point(371, 432);
+            this.stats_stealNum.Margin = new System.Windows.Forms.Padding(4);
+            this.stats_stealNum.Name = "stats_stealNum";
+            this.stats_stealNum.ScaleFactor = 3;
+            this.stats_stealNum.Size = new System.Drawing.Size(24, 24);
+            this.stats_stealNum.TabIndex = 61;
+            this.stats_stealNum.TabStop = false;
+            this.stats_stealNum.Text = "0";
+            this.stats_stealNum.TextAlign = nbajamTextBox.nbajamTextBox.TextAlignOptions.Top;
+            this.stats_stealNum.TextJustify = nbajamTextBox.nbajamTextBox.TextJustifyOptions.Center;
+            this.stats_stealNum.TextOffsetX = 0;
+            this.stats_stealNum.TextOffsetY = 0;
+            this.stats_stealNum.TilesHigh = 1;
+            this.stats_stealNum.TilesWide = 1;
+            this.stats_stealNum.textChanged += new nbajamTextBox.TextChangedEventHandler(this.stats_speedNum_textChanged);
             // 
-            // nbajamTextBox19
+            // stats_speedText
             // 
-            this.nbajamTextBox19.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
-            this.nbajamTextBox19.FontColor = nbajamTextBox.nbajamTextBox.FontColorOptions.Pallete_5;
-            this.nbajamTextBox19.FontNumber = 1;
-            this.nbajamTextBox19.Image = ((System.Drawing.Image)(resources.GetObject("nbajamTextBox19.Image")));
-            this.nbajamTextBox19.Location = new System.Drawing.Point(368, 450);
-            this.nbajamTextBox19.Margin = new System.Windows.Forms.Padding(4);
-            this.nbajamTextBox19.Name = "nbajamTextBox19";
-            this.nbajamTextBox19.ScaleFactor = 3;
-            this.nbajamTextBox19.Size = new System.Drawing.Size(24, 24);
-            this.nbajamTextBox19.TabIndex = 63;
-            this.nbajamTextBox19.TabStop = false;
-            this.nbajamTextBox19.Text = "9";
-            this.nbajamTextBox19.TextAlign = nbajamTextBox.nbajamTextBox.TextAlignOptions.Top;
-            this.nbajamTextBox19.TextJustify = nbajamTextBox.nbajamTextBox.TextJustifyOptions.Center;
-            this.nbajamTextBox19.TextOffsetX = 0;
-            this.nbajamTextBox19.TextOffsetY = 0;
-            this.nbajamTextBox19.TilesHigh = 1;
-            this.nbajamTextBox19.TilesWide = 1;
+            this.stats_speedText.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
+            this.stats_speedText.FontColor = nbajamTextBox.nbajamTextBox.FontColorOptions.Pallete_6;
+            this.stats_speedText.FontNumber = 1;
+            this.stats_speedText.Image = ((System.Drawing.Image)(resources.GetObject("stats_speedText.Image")));
+            this.stats_speedText.Location = new System.Drawing.Point(90, 402);
+            this.stats_speedText.Margin = new System.Windows.Forms.Padding(4);
+            this.stats_speedText.Name = "stats_speedText";
+            this.stats_speedText.ScaleFactor = 3;
+            this.stats_speedText.Size = new System.Drawing.Size(72, 24);
+            this.stats_speedText.TabIndex = 61;
+            this.stats_speedText.TabStop = false;
+            this.stats_speedText.Text = "SPD:";
+            this.stats_speedText.TextAlign = nbajamTextBox.nbajamTextBox.TextAlignOptions.Top;
+            this.stats_speedText.TextJustify = nbajamTextBox.nbajamTextBox.TextJustifyOptions.Manual;
+            this.stats_speedText.TextOffsetX = 10;
+            this.stats_speedText.TextOffsetY = 1;
+            this.stats_speedText.TilesHigh = 1;
+            this.stats_speedText.TilesWide = 3;
             // 
-            // nbajamTextBox16
+            // stats_clutchNum
             // 
-            this.nbajamTextBox16.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
-            this.nbajamTextBox16.FontColor = nbajamTextBox.nbajamTextBox.FontColorOptions.Pallete_4;
-            this.nbajamTextBox16.FontNumber = 1;
-            this.nbajamTextBox16.Image = ((System.Drawing.Image)(resources.GetObject("nbajamTextBox16.Image")));
-            this.nbajamTextBox16.Location = new System.Drawing.Point(181, 418);
-            this.nbajamTextBox16.Margin = new System.Windows.Forms.Padding(4);
-            this.nbajamTextBox16.Name = "nbajamTextBox16";
-            this.nbajamTextBox16.ScaleFactor = 3;
-            this.nbajamTextBox16.Size = new System.Drawing.Size(24, 24);
-            this.nbajamTextBox16.TabIndex = 68;
-            this.nbajamTextBox16.TabStop = false;
-            this.nbajamTextBox16.Text = "0";
-            this.nbajamTextBox16.TextAlign = nbajamTextBox.nbajamTextBox.TextAlignOptions.Top;
-            this.nbajamTextBox16.TextJustify = nbajamTextBox.nbajamTextBox.TextJustifyOptions.Manual;
-            this.nbajamTextBox16.TextOffsetX = 3;
-            this.nbajamTextBox16.TextOffsetY = 1;
-            this.nbajamTextBox16.TilesHigh = 1;
-            this.nbajamTextBox16.TilesWide = 1;
+            this.stats_clutchNum.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
+            this.stats_clutchNum.FontColor = nbajamTextBox.nbajamTextBox.FontColorOptions.Pallete_4;
+            this.stats_clutchNum.FontNumber = 1;
+            this.stats_clutchNum.Image = ((System.Drawing.Image)(resources.GetObject("stats_clutchNum.Image")));
+            this.stats_clutchNum.Location = new System.Drawing.Point(371, 494);
+            this.stats_clutchNum.Margin = new System.Windows.Forms.Padding(4);
+            this.stats_clutchNum.Name = "stats_clutchNum";
+            this.stats_clutchNum.ScaleFactor = 3;
+            this.stats_clutchNum.Size = new System.Drawing.Size(24, 24);
+            this.stats_clutchNum.TabIndex = 63;
+            this.stats_clutchNum.TabStop = false;
+            this.stats_clutchNum.Text = "0";
+            this.stats_clutchNum.TextAlign = nbajamTextBox.nbajamTextBox.TextAlignOptions.Top;
+            this.stats_clutchNum.TextJustify = nbajamTextBox.nbajamTextBox.TextJustifyOptions.Center;
+            this.stats_clutchNum.TextOffsetX = 0;
+            this.stats_clutchNum.TextOffsetY = 0;
+            this.stats_clutchNum.TilesHigh = 1;
+            this.stats_clutchNum.TilesWide = 1;
+            this.stats_clutchNum.textChanged += new nbajamTextBox.TextChangedEventHandler(this.stats_speedNum_textChanged);
             // 
-            // nbajamTextBox6
+            // stats_clutchText
             // 
-            this.nbajamTextBox6.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
-            this.nbajamTextBox6.FontColor = nbajamTextBox.nbajamTextBox.FontColorOptions.Pallete_6;
-            this.nbajamTextBox6.FontNumber = 1;
-            this.nbajamTextBox6.Image = ((System.Drawing.Image)(resources.GetObject("nbajamTextBox6.Image")));
-            this.nbajamTextBox6.Location = new System.Drawing.Point(86, 388);
-            this.nbajamTextBox6.Margin = new System.Windows.Forms.Padding(4);
-            this.nbajamTextBox6.Name = "nbajamTextBox6";
-            this.nbajamTextBox6.ScaleFactor = 3;
-            this.nbajamTextBox6.Size = new System.Drawing.Size(72, 24);
-            this.nbajamTextBox6.TabIndex = 63;
-            this.nbajamTextBox6.TabStop = false;
-            this.nbajamTextBox6.Text = "3PTS:";
-            this.nbajamTextBox6.TextAlign = nbajamTextBox.nbajamTextBox.TextAlignOptions.Top;
-            this.nbajamTextBox6.TextJustify = nbajamTextBox.nbajamTextBox.TextJustifyOptions.Manual;
-            this.nbajamTextBox6.TextOffsetX = 6;
-            this.nbajamTextBox6.TextOffsetY = 1;
-            this.nbajamTextBox6.TilesHigh = 1;
-            this.nbajamTextBox6.TilesWide = 3;
+            this.stats_clutchText.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
+            this.stats_clutchText.FontColor = nbajamTextBox.nbajamTextBox.FontColorOptions.Pallete_6;
+            this.stats_clutchText.FontNumber = 1;
+            this.stats_clutchText.Image = ((System.Drawing.Image)(resources.GetObject("stats_clutchText.Image")));
+            this.stats_clutchText.Location = new System.Drawing.Point(279, 494);
+            this.stats_clutchText.Margin = new System.Windows.Forms.Padding(4);
+            this.stats_clutchText.Name = "stats_clutchText";
+            this.stats_clutchText.ScaleFactor = 3;
+            this.stats_clutchText.Size = new System.Drawing.Size(72, 24);
+            this.stats_clutchText.TabIndex = 57;
+            this.stats_clutchText.TabStop = false;
+            this.stats_clutchText.Text = "CLTCH:";
+            this.stats_clutchText.TextAlign = nbajamTextBox.nbajamTextBox.TextAlignOptions.Top;
+            this.stats_clutchText.TextJustify = nbajamTextBox.nbajamTextBox.TextJustifyOptions.Right;
+            this.stats_clutchText.TextOffsetX = 0;
+            this.stats_clutchText.TextOffsetY = 0;
+            this.stats_clutchText.TilesHigh = 1;
+            this.stats_clutchText.TilesWide = 3;
             // 
-            // nbajamTextBox15
+            // stats_speedNum
             // 
-            this.nbajamTextBox15.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
-            this.nbajamTextBox15.FontColor = nbajamTextBox.nbajamTextBox.FontColorOptions.Pallete_7;
-            this.nbajamTextBox15.FontNumber = 1;
-            this.nbajamTextBox15.Image = ((System.Drawing.Image)(resources.GetObject("nbajamTextBox15.Image")));
-            this.nbajamTextBox15.Location = new System.Drawing.Point(181, 450);
-            this.nbajamTextBox15.Margin = new System.Windows.Forms.Padding(4);
-            this.nbajamTextBox15.Name = "nbajamTextBox15";
-            this.nbajamTextBox15.ScaleFactor = 3;
-            this.nbajamTextBox15.Size = new System.Drawing.Size(24, 24);
-            this.nbajamTextBox15.TabIndex = 67;
-            this.nbajamTextBox15.TabStop = false;
-            this.nbajamTextBox15.Text = "5";
-            this.nbajamTextBox15.TextAlign = nbajamTextBox.nbajamTextBox.TextAlignOptions.Top;
-            this.nbajamTextBox15.TextJustify = nbajamTextBox.nbajamTextBox.TextJustifyOptions.Manual;
-            this.nbajamTextBox15.TextOffsetX = 3;
-            this.nbajamTextBox15.TextOffsetY = 1;
-            this.nbajamTextBox15.TilesHigh = 1;
-            this.nbajamTextBox15.TilesWide = 1;
+            this.stats_speedNum.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
+            this.stats_speedNum.FontColor = nbajamTextBox.nbajamTextBox.FontColorOptions.Pallete_4;
+            this.stats_speedNum.FontNumber = 1;
+            this.stats_speedNum.Image = ((System.Drawing.Image)(resources.GetObject("stats_speedNum.Image")));
+            this.stats_speedNum.Location = new System.Drawing.Point(185, 402);
+            this.stats_speedNum.Margin = new System.Windows.Forms.Padding(4);
+            this.stats_speedNum.Name = "stats_speedNum";
+            this.stats_speedNum.ScaleFactor = 3;
+            this.stats_speedNum.Size = new System.Drawing.Size(24, 24);
+            this.stats_speedNum.TabIndex = 62;
+            this.stats_speedNum.TabStop = false;
+            this.stats_speedNum.Text = "0";
+            this.stats_speedNum.TextAlign = nbajamTextBox.nbajamTextBox.TextAlignOptions.Top;
+            this.stats_speedNum.TextJustify = nbajamTextBox.nbajamTextBox.TextJustifyOptions.Manual;
+            this.stats_speedNum.TextOffsetX = 3;
+            this.stats_speedNum.TextOffsetY = 1;
+            this.stats_speedNum.TilesHigh = 1;
+            this.stats_speedNum.TilesWide = 1;
+            this.stats_speedNum.textChanged += new nbajamTextBox.TextChangedEventHandler(this.stats_speedNum_textChanged);
             // 
-            // nbajamTextBox14
+            // stats_3ptsNum
             // 
-            this.nbajamTextBox14.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
-            this.nbajamTextBox14.FontColor = nbajamTextBox.nbajamTextBox.FontColorOptions.Pallete_4;
-            this.nbajamTextBox14.FontNumber = 1;
-            this.nbajamTextBox14.Image = ((System.Drawing.Image)(resources.GetObject("nbajamTextBox14.Image")));
-            this.nbajamTextBox14.Location = new System.Drawing.Point(368, 358);
-            this.nbajamTextBox14.Margin = new System.Windows.Forms.Padding(4);
-            this.nbajamTextBox14.Name = "nbajamTextBox14";
-            this.nbajamTextBox14.ScaleFactor = 3;
-            this.nbajamTextBox14.Size = new System.Drawing.Size(24, 24);
-            this.nbajamTextBox14.TabIndex = 66;
-            this.nbajamTextBox14.TabStop = false;
-            this.nbajamTextBox14.Text = "0";
-            this.nbajamTextBox14.TextAlign = nbajamTextBox.nbajamTextBox.TextAlignOptions.Top;
-            this.nbajamTextBox14.TextJustify = nbajamTextBox.nbajamTextBox.TextJustifyOptions.Manual;
-            this.nbajamTextBox14.TextOffsetX = 3;
-            this.nbajamTextBox14.TextOffsetY = 1;
-            this.nbajamTextBox14.TilesHigh = 1;
-            this.nbajamTextBox14.TilesWide = 1;
+            this.stats_3ptsNum.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
+            this.stats_3ptsNum.FontColor = nbajamTextBox.nbajamTextBox.FontColorOptions.Pallete_4;
+            this.stats_3ptsNum.FontNumber = 1;
+            this.stats_3ptsNum.Image = ((System.Drawing.Image)(resources.GetObject("stats_3ptsNum.Image")));
+            this.stats_3ptsNum.Location = new System.Drawing.Point(184, 432);
+            this.stats_3ptsNum.Margin = new System.Windows.Forms.Padding(4);
+            this.stats_3ptsNum.Name = "stats_3ptsNum";
+            this.stats_3ptsNum.ScaleFactor = 3;
+            this.stats_3ptsNum.Size = new System.Drawing.Size(24, 24);
+            this.stats_3ptsNum.TabIndex = 51;
+            this.stats_3ptsNum.TabStop = false;
+            this.stats_3ptsNum.Text = "0";
+            this.stats_3ptsNum.TextAlign = nbajamTextBox.nbajamTextBox.TextAlignOptions.Top;
+            this.stats_3ptsNum.TextJustify = nbajamTextBox.nbajamTextBox.TextJustifyOptions.Manual;
+            this.stats_3ptsNum.TextOffsetX = 3;
+            this.stats_3ptsNum.TextOffsetY = 1;
+            this.stats_3ptsNum.TilesHigh = 1;
+            this.stats_3ptsNum.TilesWide = 1;
+            this.stats_3ptsNum.textChanged += new nbajamTextBox.TextChangedEventHandler(this.stats_speedNum_textChanged);
             // 
-            // nbajamTextBox13
+            // stats_blockText
             // 
-            this.nbajamTextBox13.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
-            this.nbajamTextBox13.FontColor = nbajamTextBox.nbajamTextBox.FontColorOptions.Pallete_6;
-            this.nbajamTextBox13.FontNumber = 1;
-            this.nbajamTextBox13.Image = ((System.Drawing.Image)(resources.GetObject("nbajamTextBox13.Image")));
-            this.nbajamTextBox13.Location = new System.Drawing.Point(276, 450);
-            this.nbajamTextBox13.Margin = new System.Windows.Forms.Padding(4);
-            this.nbajamTextBox13.Name = "nbajamTextBox13";
-            this.nbajamTextBox13.ScaleFactor = 3;
-            this.nbajamTextBox13.Size = new System.Drawing.Size(72, 24);
-            this.nbajamTextBox13.TabIndex = 57;
-            this.nbajamTextBox13.TabStop = false;
-            this.nbajamTextBox13.Text = "CLTCH:";
-            this.nbajamTextBox13.TextAlign = nbajamTextBox.nbajamTextBox.TextAlignOptions.Top;
-            this.nbajamTextBox13.TextJustify = nbajamTextBox.nbajamTextBox.TextJustifyOptions.Left;
-            this.nbajamTextBox13.TextOffsetX = 0;
-            this.nbajamTextBox13.TextOffsetY = 0;
-            this.nbajamTextBox13.TilesHigh = 1;
-            this.nbajamTextBox13.TilesWide = 3;
+            this.stats_blockText.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
+            this.stats_blockText.FontColor = nbajamTextBox.nbajamTextBox.FontColorOptions.Pallete_6;
+            this.stats_blockText.FontNumber = 1;
+            this.stats_blockText.Image = ((System.Drawing.Image)(resources.GetObject("stats_blockText.Image")));
+            this.stats_blockText.Location = new System.Drawing.Point(279, 462);
+            this.stats_blockText.Margin = new System.Windows.Forms.Padding(4);
+            this.stats_blockText.Name = "stats_blockText";
+            this.stats_blockText.ScaleFactor = 3;
+            this.stats_blockText.Size = new System.Drawing.Size(72, 24);
+            this.stats_blockText.TabIndex = 56;
+            this.stats_blockText.TabStop = false;
+            this.stats_blockText.Text = "BLOCK:";
+            this.stats_blockText.TextAlign = nbajamTextBox.nbajamTextBox.TextAlignOptions.Top;
+            this.stats_blockText.TextJustify = nbajamTextBox.nbajamTextBox.TextJustifyOptions.Right;
+            this.stats_blockText.TextOffsetX = 0;
+            this.stats_blockText.TextOffsetY = 0;
+            this.stats_blockText.TilesHigh = 1;
+            this.stats_blockText.TilesWide = 3;
             // 
-            // nbajamTextBox7
+            // stats_passNum
             // 
-            this.nbajamTextBox7.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
-            this.nbajamTextBox7.FontColor = nbajamTextBox.nbajamTextBox.FontColorOptions.Pallete_8;
-            this.nbajamTextBox7.FontNumber = 1;
-            this.nbajamTextBox7.Image = ((System.Drawing.Image)(resources.GetObject("nbajamTextBox7.Image")));
-            this.nbajamTextBox7.Location = new System.Drawing.Point(181, 388);
-            this.nbajamTextBox7.Margin = new System.Windows.Forms.Padding(4);
-            this.nbajamTextBox7.Name = "nbajamTextBox7";
-            this.nbajamTextBox7.ScaleFactor = 3;
-            this.nbajamTextBox7.Size = new System.Drawing.Size(24, 24);
-            this.nbajamTextBox7.TabIndex = 51;
-            this.nbajamTextBox7.TabStop = false;
-            this.nbajamTextBox7.Text = "9";
-            this.nbajamTextBox7.TextAlign = nbajamTextBox.nbajamTextBox.TextAlignOptions.Top;
-            this.nbajamTextBox7.TextJustify = nbajamTextBox.nbajamTextBox.TextJustifyOptions.Manual;
-            this.nbajamTextBox7.TextOffsetX = 3;
-            this.nbajamTextBox7.TextOffsetY = 1;
-            this.nbajamTextBox7.TilesHigh = 1;
-            this.nbajamTextBox7.TilesWide = 1;
+            this.stats_passNum.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
+            this.stats_passNum.FontColor = nbajamTextBox.nbajamTextBox.FontColorOptions.Pallete_4;
+            this.stats_passNum.FontNumber = 1;
+            this.stats_passNum.Image = ((System.Drawing.Image)(resources.GetObject("stats_passNum.Image")));
+            this.stats_passNum.Location = new System.Drawing.Point(184, 494);
+            this.stats_passNum.Margin = new System.Windows.Forms.Padding(4);
+            this.stats_passNum.Name = "stats_passNum";
+            this.stats_passNum.ScaleFactor = 3;
+            this.stats_passNum.Size = new System.Drawing.Size(24, 24);
+            this.stats_passNum.TabIndex = 67;
+            this.stats_passNum.TabStop = false;
+            this.stats_passNum.Text = "0";
+            this.stats_passNum.TextAlign = nbajamTextBox.nbajamTextBox.TextAlignOptions.Top;
+            this.stats_passNum.TextJustify = nbajamTextBox.nbajamTextBox.TextJustifyOptions.Manual;
+            this.stats_passNum.TextOffsetX = 3;
+            this.stats_passNum.TextOffsetY = 1;
+            this.stats_passNum.TilesHigh = 1;
+            this.stats_passNum.TilesWide = 1;
+            this.stats_passNum.textChanged += new nbajamTextBox.TextChangedEventHandler(this.stats_speedNum_textChanged);
             // 
-            // nbajamTextBox12
+            // stats_stealText
             // 
-            this.nbajamTextBox12.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
-            this.nbajamTextBox12.FontColor = nbajamTextBox.nbajamTextBox.FontColorOptions.Pallete_6;
-            this.nbajamTextBox12.FontNumber = 1;
-            this.nbajamTextBox12.Image = ((System.Drawing.Image)(resources.GetObject("nbajamTextBox12.Image")));
-            this.nbajamTextBox12.Location = new System.Drawing.Point(276, 418);
-            this.nbajamTextBox12.Margin = new System.Windows.Forms.Padding(4);
-            this.nbajamTextBox12.Name = "nbajamTextBox12";
-            this.nbajamTextBox12.ScaleFactor = 3;
-            this.nbajamTextBox12.Size = new System.Drawing.Size(72, 24);
-            this.nbajamTextBox12.TabIndex = 56;
-            this.nbajamTextBox12.TabStop = false;
-            this.nbajamTextBox12.Text = "BLOCK:";
-            this.nbajamTextBox12.TextAlign = nbajamTextBox.nbajamTextBox.TextAlignOptions.Top;
-            this.nbajamTextBox12.TextJustify = nbajamTextBox.nbajamTextBox.TextJustifyOptions.Left;
-            this.nbajamTextBox12.TextOffsetX = 0;
-            this.nbajamTextBox12.TextOffsetY = 0;
-            this.nbajamTextBox12.TilesHigh = 1;
-            this.nbajamTextBox12.TilesWide = 3;
+            this.stats_stealText.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
+            this.stats_stealText.FontColor = nbajamTextBox.nbajamTextBox.FontColorOptions.Pallete_6;
+            this.stats_stealText.FontNumber = 1;
+            this.stats_stealText.Image = ((System.Drawing.Image)(resources.GetObject("stats_stealText.Image")));
+            this.stats_stealText.Location = new System.Drawing.Point(279, 432);
+            this.stats_stealText.Margin = new System.Windows.Forms.Padding(4);
+            this.stats_stealText.Name = "stats_stealText";
+            this.stats_stealText.ScaleFactor = 3;
+            this.stats_stealText.Size = new System.Drawing.Size(72, 24);
+            this.stats_stealText.TabIndex = 55;
+            this.stats_stealText.TabStop = false;
+            this.stats_stealText.Text = "STEAL:";
+            this.stats_stealText.TextAlign = nbajamTextBox.nbajamTextBox.TextAlignOptions.Top;
+            this.stats_stealText.TextJustify = nbajamTextBox.nbajamTextBox.TextJustifyOptions.Right;
+            this.stats_stealText.TextOffsetX = 0;
+            this.stats_stealText.TextOffsetY = 0;
+            this.stats_stealText.TilesHigh = 1;
+            this.stats_stealText.TilesWide = 3;
             // 
-            // nbajamTextBox8
+            // stats_dunkNum
             // 
-            this.nbajamTextBox8.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
-            this.nbajamTextBox8.FontColor = nbajamTextBox.nbajamTextBox.FontColorOptions.Pallete_6;
-            this.nbajamTextBox8.FontNumber = 1;
-            this.nbajamTextBox8.Image = ((System.Drawing.Image)(resources.GetObject("nbajamTextBox8.Image")));
-            this.nbajamTextBox8.Location = new System.Drawing.Point(86, 418);
-            this.nbajamTextBox8.Margin = new System.Windows.Forms.Padding(4);
-            this.nbajamTextBox8.Name = "nbajamTextBox8";
-            this.nbajamTextBox8.ScaleFactor = 3;
-            this.nbajamTextBox8.Size = new System.Drawing.Size(72, 24);
-            this.nbajamTextBox8.TabIndex = 64;
-            this.nbajamTextBox8.TabStop = false;
-            this.nbajamTextBox8.Text = "DUNK:";
-            this.nbajamTextBox8.TextAlign = nbajamTextBox.nbajamTextBox.TextAlignOptions.Top;
-            this.nbajamTextBox8.TextJustify = nbajamTextBox.nbajamTextBox.TextJustifyOptions.Manual;
-            this.nbajamTextBox8.TextOffsetX = 6;
-            this.nbajamTextBox8.TextOffsetY = 1;
-            this.nbajamTextBox8.TilesHigh = 1;
-            this.nbajamTextBox8.TilesWide = 3;
+            this.stats_dunkNum.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
+            this.stats_dunkNum.FontColor = nbajamTextBox.nbajamTextBox.FontColorOptions.Pallete_4;
+            this.stats_dunkNum.FontNumber = 1;
+            this.stats_dunkNum.Image = ((System.Drawing.Image)(resources.GetObject("stats_dunkNum.Image")));
+            this.stats_dunkNum.Location = new System.Drawing.Point(184, 462);
+            this.stats_dunkNum.Margin = new System.Windows.Forms.Padding(4);
+            this.stats_dunkNum.Name = "stats_dunkNum";
+            this.stats_dunkNum.ScaleFactor = 3;
+            this.stats_dunkNum.Size = new System.Drawing.Size(24, 24);
+            this.stats_dunkNum.TabIndex = 68;
+            this.stats_dunkNum.TabStop = false;
+            this.stats_dunkNum.Text = "0";
+            this.stats_dunkNum.TextAlign = nbajamTextBox.nbajamTextBox.TextAlignOptions.Top;
+            this.stats_dunkNum.TextJustify = nbajamTextBox.nbajamTextBox.TextJustifyOptions.Manual;
+            this.stats_dunkNum.TextOffsetX = 3;
+            this.stats_dunkNum.TextOffsetY = 1;
+            this.stats_dunkNum.TilesHigh = 1;
+            this.stats_dunkNum.TilesWide = 1;
+            this.stats_dunkNum.textChanged += new nbajamTextBox.TextChangedEventHandler(this.stats_speedNum_textChanged);
             // 
-            // nbajamTextBox11
+            // stats_powerNum
             // 
-            this.nbajamTextBox11.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
-            this.nbajamTextBox11.FontColor = nbajamTextBox.nbajamTextBox.FontColorOptions.Pallete_6;
-            this.nbajamTextBox11.FontNumber = 1;
-            this.nbajamTextBox11.Image = ((System.Drawing.Image)(resources.GetObject("nbajamTextBox11.Image")));
-            this.nbajamTextBox11.Location = new System.Drawing.Point(276, 388);
-            this.nbajamTextBox11.Margin = new System.Windows.Forms.Padding(4);
-            this.nbajamTextBox11.Name = "nbajamTextBox11";
-            this.nbajamTextBox11.ScaleFactor = 3;
-            this.nbajamTextBox11.Size = new System.Drawing.Size(72, 24);
-            this.nbajamTextBox11.TabIndex = 55;
-            this.nbajamTextBox11.TabStop = false;
-            this.nbajamTextBox11.Text = "STEAL:";
-            this.nbajamTextBox11.TextAlign = nbajamTextBox.nbajamTextBox.TextAlignOptions.Top;
-            this.nbajamTextBox11.TextJustify = nbajamTextBox.nbajamTextBox.TextJustifyOptions.Left;
-            this.nbajamTextBox11.TextOffsetX = 0;
-            this.nbajamTextBox11.TextOffsetY = 0;
-            this.nbajamTextBox11.TilesHigh = 1;
-            this.nbajamTextBox11.TilesWide = 3;
-            // 
-            // nbajamTextBox9
-            // 
-            this.nbajamTextBox9.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
-            this.nbajamTextBox9.FontColor = nbajamTextBox.nbajamTextBox.FontColorOptions.Pallete_6;
-            this.nbajamTextBox9.FontNumber = 1;
-            this.nbajamTextBox9.Image = ((System.Drawing.Image)(resources.GetObject("nbajamTextBox9.Image")));
-            this.nbajamTextBox9.Location = new System.Drawing.Point(86, 450);
-            this.nbajamTextBox9.Margin = new System.Windows.Forms.Padding(4);
-            this.nbajamTextBox9.Name = "nbajamTextBox9";
-            this.nbajamTextBox9.ScaleFactor = 3;
-            this.nbajamTextBox9.Size = new System.Drawing.Size(72, 24);
-            this.nbajamTextBox9.TabIndex = 65;
-            this.nbajamTextBox9.TabStop = false;
-            this.nbajamTextBox9.Text = "PASS:";
-            this.nbajamTextBox9.TextAlign = nbajamTextBox.nbajamTextBox.TextAlignOptions.Top;
-            this.nbajamTextBox9.TextJustify = nbajamTextBox.nbajamTextBox.TextJustifyOptions.Manual;
-            this.nbajamTextBox9.TextOffsetX = 6;
-            this.nbajamTextBox9.TextOffsetY = 1;
-            this.nbajamTextBox9.TilesHigh = 1;
-            this.nbajamTextBox9.TilesWide = 3;
+            this.stats_powerNum.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
+            this.stats_powerNum.FontColor = nbajamTextBox.nbajamTextBox.FontColorOptions.Pallete_4;
+            this.stats_powerNum.FontNumber = 1;
+            this.stats_powerNum.Image = ((System.Drawing.Image)(resources.GetObject("stats_powerNum.Image")));
+            this.stats_powerNum.Location = new System.Drawing.Point(372, 402);
+            this.stats_powerNum.Margin = new System.Windows.Forms.Padding(4);
+            this.stats_powerNum.Name = "stats_powerNum";
+            this.stats_powerNum.ScaleFactor = 3;
+            this.stats_powerNum.Size = new System.Drawing.Size(24, 24);
+            this.stats_powerNum.TabIndex = 66;
+            this.stats_powerNum.TabStop = false;
+            this.stats_powerNum.Text = "0";
+            this.stats_powerNum.TextAlign = nbajamTextBox.nbajamTextBox.TextAlignOptions.Top;
+            this.stats_powerNum.TextJustify = nbajamTextBox.nbajamTextBox.TextJustifyOptions.Manual;
+            this.stats_powerNum.TextOffsetX = 3;
+            this.stats_powerNum.TextOffsetY = 1;
+            this.stats_powerNum.TilesHigh = 1;
+            this.stats_powerNum.TilesWide = 1;
+            this.stats_powerNum.textChanged += new nbajamTextBox.TextChangedEventHandler(this.stats_speedNum_textChanged);
             // 
             // nbajamPictureBox1
             // 
             this.nbajamPictureBox1.DataSize = 0;
             this.nbajamPictureBox1.isFlipped = false;
-            this.nbajamPictureBox1.Location = new System.Drawing.Point(47, 41);
+            this.nbajamPictureBox1.Location = new System.Drawing.Point(89, 77);
             this.nbajamPictureBox1.Margin = new System.Windows.Forms.Padding(4);
             this.nbajamPictureBox1.Name = "nbajamPictureBox1";
             this.nbajamPictureBox1.PaletteSize = 0;
@@ -1326,6 +1309,69 @@
             this.nbajamPictureBox1.TabStop = false;
             this.nbajamPictureBox1.TilesHigh = 7;
             this.nbajamPictureBox1.TilesWide = 6;
+            // 
+            // stats_3ptsText
+            // 
+            this.stats_3ptsText.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
+            this.stats_3ptsText.FontColor = nbajamTextBox.nbajamTextBox.FontColorOptions.Pallete_6;
+            this.stats_3ptsText.FontNumber = 1;
+            this.stats_3ptsText.Image = ((System.Drawing.Image)(resources.GetObject("stats_3ptsText.Image")));
+            this.stats_3ptsText.Location = new System.Drawing.Point(89, 432);
+            this.stats_3ptsText.Margin = new System.Windows.Forms.Padding(4);
+            this.stats_3ptsText.Name = "stats_3ptsText";
+            this.stats_3ptsText.ScaleFactor = 3;
+            this.stats_3ptsText.Size = new System.Drawing.Size(72, 24);
+            this.stats_3ptsText.TabIndex = 63;
+            this.stats_3ptsText.TabStop = false;
+            this.stats_3ptsText.Text = "3PTS:";
+            this.stats_3ptsText.TextAlign = nbajamTextBox.nbajamTextBox.TextAlignOptions.Top;
+            this.stats_3ptsText.TextJustify = nbajamTextBox.nbajamTextBox.TextJustifyOptions.Manual;
+            this.stats_3ptsText.TextOffsetX = 6;
+            this.stats_3ptsText.TextOffsetY = 1;
+            this.stats_3ptsText.TilesHigh = 1;
+            this.stats_3ptsText.TilesWide = 3;
+            // 
+            // stats_dunkText
+            // 
+            this.stats_dunkText.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
+            this.stats_dunkText.FontColor = nbajamTextBox.nbajamTextBox.FontColorOptions.Pallete_6;
+            this.stats_dunkText.FontNumber = 1;
+            this.stats_dunkText.Image = ((System.Drawing.Image)(resources.GetObject("stats_dunkText.Image")));
+            this.stats_dunkText.Location = new System.Drawing.Point(89, 462);
+            this.stats_dunkText.Margin = new System.Windows.Forms.Padding(4);
+            this.stats_dunkText.Name = "stats_dunkText";
+            this.stats_dunkText.ScaleFactor = 3;
+            this.stats_dunkText.Size = new System.Drawing.Size(72, 24);
+            this.stats_dunkText.TabIndex = 64;
+            this.stats_dunkText.TabStop = false;
+            this.stats_dunkText.Text = "DUNK:";
+            this.stats_dunkText.TextAlign = nbajamTextBox.nbajamTextBox.TextAlignOptions.Top;
+            this.stats_dunkText.TextJustify = nbajamTextBox.nbajamTextBox.TextJustifyOptions.Manual;
+            this.stats_dunkText.TextOffsetX = 6;
+            this.stats_dunkText.TextOffsetY = 1;
+            this.stats_dunkText.TilesHigh = 1;
+            this.stats_dunkText.TilesWide = 3;
+            // 
+            // stats_passText
+            // 
+            this.stats_passText.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
+            this.stats_passText.FontColor = nbajamTextBox.nbajamTextBox.FontColorOptions.Pallete_6;
+            this.stats_passText.FontNumber = 1;
+            this.stats_passText.Image = ((System.Drawing.Image)(resources.GetObject("stats_passText.Image")));
+            this.stats_passText.Location = new System.Drawing.Point(89, 494);
+            this.stats_passText.Margin = new System.Windows.Forms.Padding(4);
+            this.stats_passText.Name = "stats_passText";
+            this.stats_passText.ScaleFactor = 3;
+            this.stats_passText.Size = new System.Drawing.Size(72, 24);
+            this.stats_passText.TabIndex = 65;
+            this.stats_passText.TabStop = false;
+            this.stats_passText.Text = "PASS:";
+            this.stats_passText.TextAlign = nbajamTextBox.nbajamTextBox.TextAlignOptions.Top;
+            this.stats_passText.TextJustify = nbajamTextBox.nbajamTextBox.TextJustifyOptions.Manual;
+            this.stats_passText.TextOffsetX = 6;
+            this.stats_passText.TextOffsetY = 1;
+            this.stats_passText.TilesHigh = 1;
+            this.stats_passText.TilesWide = 3;
             // 
             // label13
             // 
@@ -1384,38 +1430,6 @@
             this.listView1.Size = new System.Drawing.Size(329, 271);
             this.listView1.TabIndex = 75;
             this.listView1.UseCompatibleStateImageBehavior = false;
-            // 
-            // nbajamPictureBox2
-            // 
-            this.nbajamPictureBox2.DataSize = 0;
-            this.nbajamPictureBox2.isFlipped = false;
-            this.nbajamPictureBox2.Location = new System.Drawing.Point(276, 123);
-            this.nbajamPictureBox2.Margin = new System.Windows.Forms.Padding(4);
-            this.nbajamPictureBox2.Name = "nbajamPictureBox2";
-            this.nbajamPictureBox2.PaletteSize = 0;
-            this.nbajamPictureBox2.ScaleFactor = 2;
-            this.nbajamPictureBox2.Size = new System.Drawing.Size(96, 112);
-            this.nbajamPictureBox2.TabIndex = 71;
-            this.nbajamPictureBox2.TabStop = false;
-            this.nbajamPictureBox2.TilesHigh = 7;
-            this.nbajamPictureBox2.TilesWide = 6;
-            // 
-            // nbajamPictureBox3
-            // 
-            this.nbajamPictureBox3.DataSize = 0;
-            this.nbajamPictureBox3.isFlipped = false;
-            this.nbajamPictureBox3.Location = new System.Drawing.Point(380, 123);
-            this.nbajamPictureBox3.Margin = new System.Windows.Forms.Padding(4);
-            this.nbajamPictureBox3.Name = "nbajamPictureBox3";
-            this.nbajamPictureBox3.PaletteSize = 0;
-            this.nbajamPictureBox3.ScaleFactor = 1;
-            this.nbajamPictureBox3.Size = new System.Drawing.Size(48, 56);
-            this.nbajamPictureBox3.TabIndex = 72;
-            this.nbajamPictureBox3.TabStop = false;
-            this.nbajamPictureBox3.TilesHigh = 7;
-            this.nbajamPictureBox3.TilesWide = 6;
-            this.nbajamPictureBox3.Click += new System.EventHandler(this.nbajamPictureBox3_Click);
-            this.nbajamPictureBox3.MouseDown += new System.Windows.Forms.MouseEventHandler(this.nbajamPictureBox3_MouseDown);
             // 
             // nbajamTextBox3
             // 
@@ -1480,33 +1494,12 @@
             this.nbajamTextBox21.TilesHigh = 2;
             this.nbajamTextBox21.TilesWide = 6;
             // 
-            // nbajamTextBox20
-            // 
-            this.nbajamTextBox20.BackColor = System.Drawing.SystemColors.HotTrack;
-            this.nbajamTextBox20.FontColor = nbajamTextBox.nbajamTextBox.FontColorOptions.Pallete_3;
-            this.nbajamTextBox20.FontNumber = 0;
-            this.nbajamTextBox20.Image = ((System.Drawing.Image)(resources.GetObject("nbajamTextBox20.Image")));
-            this.nbajamTextBox20.Location = new System.Drawing.Point(170, 291);
-            this.nbajamTextBox20.Margin = new System.Windows.Forms.Padding(4);
-            this.nbajamTextBox20.Name = "nbajamTextBox20";
-            this.nbajamTextBox20.ScaleFactor = 3;
-            this.nbajamTextBox20.Size = new System.Drawing.Size(144, 48);
-            this.nbajamTextBox20.TabIndex = 65;
-            this.nbajamTextBox20.TabStop = false;
-            this.nbajamTextBox20.Text = "AIR";
-            this.nbajamTextBox20.TextAlign = nbajamTextBox.nbajamTextBox.TextAlignOptions.Manual;
-            this.nbajamTextBox20.TextJustify = nbajamTextBox.nbajamTextBox.TextJustifyOptions.Center;
-            this.nbajamTextBox20.TextOffsetX = 4;
-            this.nbajamTextBox20.TextOffsetY = 7;
-            this.nbajamTextBox20.TilesHigh = 2;
-            this.nbajamTextBox20.TilesWide = 6;
-            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Control;
-            this.ClientSize = new System.Drawing.Size(771, 1167);
+            this.ClientSize = new System.Drawing.Size(767, 604);
             this.Controls.Add(this.listView1);
             this.Controls.Add(this.nbajamTextBox21);
             this.Controls.Add(this.button16);
@@ -1533,6 +1526,7 @@
             this.Controls.Add(this.label14);
             this.Controls.Add(this.label12);
             this.Controls.Add(this.label16);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.MainMenuStrip = this.menuStrip1;
             this.Margin = new System.Windows.Forms.Padding(4);
             this.MaximizeBox = false;
@@ -1552,6 +1546,7 @@
             this.tabControl1.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
             this.tabPage1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.nbajamTextBox20)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.clutchUpDown)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.passUpDown)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.blockUpDown)).EndInit();
@@ -1563,30 +1558,29 @@
             this.panel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.nbajamTextBox1)).EndInit();
             this.panel2.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.nbajamTextBox4)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.nbajamTextBox5)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.nbajamTextBox10)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.nbajamTextBox18)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.nbajamTextBox17)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.nbajamTextBox19)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.nbajamTextBox16)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.nbajamTextBox6)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.nbajamTextBox15)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.nbajamTextBox14)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.nbajamTextBox13)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.nbajamTextBox7)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.nbajamTextBox12)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.nbajamTextBox8)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.nbajamTextBox11)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.nbajamTextBox9)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.nbajamPictureBox1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox6)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nbajamPictureBox2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.stats_blockNum)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.stats_powerText)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nbajamPictureBox3)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.stats_stealNum)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.stats_speedText)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.stats_clutchNum)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.stats_clutchText)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.stats_speedNum)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.stats_3ptsNum)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.stats_blockText)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.stats_passNum)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.stats_stealText)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.stats_dunkNum)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.stats_powerNum)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nbajamPictureBox1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.stats_3ptsText)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.stats_dunkText)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.stats_passText)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox6)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nbajamTextBox3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nbajamTextBox2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nbajamTextBox21)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.nbajamTextBox20)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1640,14 +1634,14 @@
         private nbajamTextBox.nbajamTextBox nbajamTextBox2;
         private nbajamTextBox.nbajamTextBox nbajamTextBox3;
         private System.Windows.Forms.PictureBox pictureBox5;
-        private nbajamTextBox.nbajamTextBox nbajamTextBox7;
-        private nbajamTextBox.nbajamTextBox nbajamTextBox10;
-        private nbajamTextBox.nbajamTextBox nbajamTextBox11;
-        private nbajamTextBox.nbajamTextBox nbajamTextBox12;
-        private nbajamTextBox.nbajamTextBox nbajamTextBox13;
-        private nbajamTextBox.nbajamTextBox nbajamTextBox17;
-        private nbajamTextBox.nbajamTextBox nbajamTextBox18;
-        private nbajamTextBox.nbajamTextBox nbajamTextBox19;
+        private nbajamTextBox.nbajamTextBox stats_3ptsNum;
+        private nbajamTextBox.nbajamTextBox stats_powerText;
+        private nbajamTextBox.nbajamTextBox stats_stealText;
+        private nbajamTextBox.nbajamTextBox stats_blockText;
+        private nbajamTextBox.nbajamTextBox stats_clutchText;
+        private nbajamTextBox.nbajamTextBox stats_stealNum;
+        private nbajamTextBox.nbajamTextBox stats_blockNum;
+        private nbajamTextBox.nbajamTextBox stats_clutchNum;
         public System.Windows.Forms.PictureBox pictureBox4;
         private System.Windows.Forms.Timer timer1;
         private System.Windows.Forms.Button button13;
@@ -1656,14 +1650,14 @@
         private System.Windows.Forms.TabPage tabPage1;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Panel panel2;
-        private nbajamTextBox.nbajamTextBox nbajamTextBox4;
-        private nbajamTextBox.nbajamTextBox nbajamTextBox5;
-        private nbajamTextBox.nbajamTextBox nbajamTextBox16;
-        private nbajamTextBox.nbajamTextBox nbajamTextBox6;
-        private nbajamTextBox.nbajamTextBox nbajamTextBox15;
-        private nbajamTextBox.nbajamTextBox nbajamTextBox14;
-        private nbajamTextBox.nbajamTextBox nbajamTextBox8;
-        private nbajamTextBox.nbajamTextBox nbajamTextBox9;
+        private nbajamTextBox.nbajamTextBox stats_speedText;
+        private nbajamTextBox.nbajamTextBox stats_speedNum;
+        private nbajamTextBox.nbajamTextBox stats_dunkNum;
+        private nbajamTextBox.nbajamTextBox stats_3ptsText;
+        private nbajamTextBox.nbajamTextBox stats_passNum;
+        private nbajamTextBox.nbajamTextBox stats_powerNum;
+        private nbajamTextBox.nbajamTextBox stats_dunkText;
+        private nbajamTextBox.nbajamTextBox stats_passText;
         private System.Windows.Forms.Label label19;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label13;
@@ -1688,7 +1682,6 @@
         private System.Windows.Forms.Button button16;
         private nbajamPictureBox.nbajamPictureBox nbajamPictureBox2;
         private nbajamPictureBox.nbajamPictureBox nbajamPictureBox3;
-        private global::playerPairing.playerPairing playerPairing1;
         private System.Windows.Forms.ListView listView1;
         private System.Windows.Forms.ColumnHeader columnHeader1;
         private System.Windows.Forms.Button button17;

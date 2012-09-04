@@ -313,16 +313,16 @@ namespace WindowsFormsApplication1
             nbajamPictureBox3.isPortrait = true;
             nbajamPictureBox3.loadImageData(full_data);
 
-            playerPairing1.setName1("LENNON");
-            playerPairing1.setName2("MCCARTNEY");
-            playerPairing1.setPortrait1(full_data);
-            playerPairing1.setPortrait2(full_data);
+            //playerPairing1.setName1("LENNON");
+           // playerPairing1.setName2("MCCARTNEY");
+            //playerPairing1.setPortrait1(full_data);
+            //playerPairing1.setPortrait2(full_data);
 
-            playerPairing2.isExpandedRoster = true;
-            playerPairing2.setName1("LENNON");
-            playerPairing2.setName2("MCCARTNEY");
-            playerPairing2.setPortrait1(full_data);
-            playerPairing2.setPortrait2(full_data);
+            //layerPairing2.isExpandedRoster = true;
+           // playerPairing2.setName1("LENNON");
+            //playerPairing2.setName2("MCCARTNEY");
+           // playerPairing2.setPortrait1(full_data);
+            //playerPairing2.setPortrait2(full_data);
 
             //nbajamPictureBox1.Invalidate();
             //    nbajamPictureBox1.Image = portraitBitmap;         
@@ -341,7 +341,7 @@ namespace WindowsFormsApplication1
 
 
             //initialzePalette defines a program-wide pallete - see function for details
-         //   initializePalette();
+            initializePalette();
             //initializeFont defines the program-wide font (character widths and pixelmap info)
          //   initializeFont();
             //initializePlayers doesn't do anything useful yet.
@@ -1868,13 +1868,9 @@ namespace WindowsFormsApplication1
         private void button9_Click(object sender, EventArgs e)
         {
             //player stat graphics display start at 0x930C8 ROM
-
             // 12b0c9 RAM
-
             //4ce79f - ROM where player names are stored IN ASCII
 
-            // string balls = "C:\\Users\\dext3r\\Desktop\\NBA Jam - Tournament Edition (U) [!].smc";
-            // byte[] buffer;
             byte[] stats = new byte[26];
             int count = 0;
             int start_address;
@@ -1896,6 +1892,7 @@ namespace WindowsFormsApplication1
             int[] speed_lookup = new int[11];
             int[] threes_lookup = new int[11];
 
+            //These are static values assigned to numerical values 0-10 (Only 0-9 shown in game; 10 is like "Mad Quick")
             speed_lookup[0] = 0x13F8;
             speed_lookup[1] = 0x1455;
             speed_lookup[2] = 0x14A7;
@@ -1908,6 +1905,7 @@ namespace WindowsFormsApplication1
             speed_lookup[9] = 0x1777;
             speed_lookup[10] = 0x17DE;
 
+            //These are static values assigned to numerical values 0-10 (Only 0-9 shown in game; 10 is like "Gimme the Hot Sauce")
             threes_lookup[0] = 0x02BC;
             threes_lookup[1] = 0x02EE;
             threes_lookup[2] = 0x0320;
@@ -1920,27 +1918,9 @@ namespace WindowsFormsApplication1
             threes_lookup[9] = 0x0492;
             threes_lookup[10] = 0x04E2;
 
-            /*  FileStream fileStream = new FileStream(balls, FileMode.Open, FileAccess.Read);
-
-              try
-              {
-                  int length = (int)fileStream.Length;  // get file length
-                  buffer = new byte[length];            // create buffer
-                  // actual number of bytes read
-                  int sum = 0;                          // total number of bytes read
-
-                  // read until Read method returns 0 (end of the stream has been reached)
-                  while ((count = fileStream.Read(buffer, sum, length - sum)) > 0)
-                      sum += count;  // sum is a buffer offset for next reading
-              }
-              finally
-              {
-                  fileStream.Close();
-              }
-              */
             start_address = Convert.ToInt32(textBox3.Text);
-
             count = 0;
+
             //   Console.WriteLine("STAT DATA:");
             for (int i = 0; i < Constants.playerStats_size; i++)
             {
@@ -1995,34 +1975,35 @@ namespace WindowsFormsApplication1
             }
             //3s
             // label10.Text = threeptRating.ToString();
+            
             threeptsUpDown.Value = threeptRating;
-            nbajamTextBox7.Text = threeptRating.ToString();
+            stats_3ptsNum.Text = threeptRating.ToString();
             //speed
             speedUpDown.Value = speedRating;
-            nbajamTextBox5.Text = speedRating.ToString();
+            stats_speedNum.Text = speedRating.ToString();
             //dunk
             // label11.Text = dunkRating.ToString();
             dunkUpDown.Value = dunkRating;
-            nbajamTextBox14.Text = dunkRating.ToString();
+            stats_dunkNum.Text = dunkRating.ToString();
             //pass
             //  label12.Text = passRating.ToString();
             passUpDown.Value = passRating;
-            nbajamTextBox15.Text = passRating.ToString();
+            stats_passNum.Text = passRating.ToString();
             //power
             powerUpDown.Value = powerRating;
-            nbajamTextBox16.Text = powerRating.ToString();
+            stats_powerNum.Text = powerRating.ToString();
             //steal
             //  label14.Text = stealRating.ToString();
             stealUpDown.Value = stealRating;
-            nbajamTextBox17.Text = stealRating.ToString();
+            stats_stealNum.Text = stealRating.ToString();
             //block
             //  label15.Text = blockRating.ToString();
             blockUpDown.Value = blockRating;
-            nbajamTextBox18.Text = blockRating.ToString();
+            stats_blockNum.Text = blockRating.ToString();
             //clutch
             //  label16.Text = clutchRating.ToString();
             clutchUpDown.Value = clutchRating;
-            nbajamTextBox19.Text = clutchRating.ToString();
+            stats_clutchNum.Text = clutchRating.ToString();
 
         } //end of function
 
@@ -2873,6 +2854,7 @@ namespace WindowsFormsApplication1
 
         }
 
+
         //Button 16? - "fuck shit up"
         //Seems to:
         /*
@@ -2940,6 +2922,47 @@ namespace WindowsFormsApplication1
         {
 
         }
+
+       
+        private void stats_speedNum_textChanged(object sender, nbajamTextBox.TextChangedEventArgs e)
+        {
+            Int16 stat_value = Convert.ToInt16(e.NewValue);
+
+            if (sender is nbajamTextBox.nbajamTextBox)
+            {
+                nbajamTextBox.nbajamTextBox dummy = (nbajamTextBox.nbajamTextBox)sender;
+                if (stat_value < 3) //0,1,2
+                {
+                    //Console.WriteLine("Made it to the event test: " + e.NewValue);
+                    dummy.FontColor = nbajamTextBox.nbajamTextBox.FontColorOptions.Pallete_4;
+                }
+                else if (stat_value > 2 && stat_value < 8)
+                    dummy.FontColor = nbajamTextBox.nbajamTextBox.FontColorOptions.Pallete_7;
+                else
+                    dummy.FontColor = nbajamTextBox.nbajamTextBox.FontColorOptions.Pallete_3;
+            }
+        }
+
+        private void stats_powerNum_textChanged(object sender, nbajamTextBox.TextChangedEventArgs e)
+        {
+            Int16 stat_value = Convert.ToInt16(e.NewValue);
+
+            if (sender is nbajamTextBox.nbajamTextBox)
+            {
+                nbajamTextBox.nbajamTextBox dummy = (nbajamTextBox.nbajamTextBox)sender;
+                if (stat_value < 3) //0,1,2
+                {
+                    //Console.WriteLine("Made it to the event test: " + e.NewValue);
+                    dummy.FontColor = nbajamTextBox.nbajamTextBox.FontColorOptions.Pallete_4;
+                }
+                else if (stat_value > 2 && stat_value < 8)
+                    dummy.FontColor = nbajamTextBox.nbajamTextBox.FontColorOptions.Pallete_7;
+                else
+                    dummy.FontColor = nbajamTextBox.nbajamTextBox.FontColorOptions.Pallete_3;
+            }
+        }
+
+      
         
     }
 
