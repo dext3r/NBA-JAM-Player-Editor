@@ -16,3 +16,12 @@ C:\Users\dext3r\Documents\Visual Studio 2010\Projects Under Source Control\Simpl
 C:\Users\dext3r\Documents\Visual Studio 2010\Projects Under Source Control\SimplePaletteQuantizer\obj\Debug\ResGen.write.1.tlog
 C:\Users\dext3r\Documents\Visual Studio 2010\Projects Under Source Control\SimplePaletteQuantizer\obj\Debug\SimplePaletteQuantizer.exe
 C:\Users\dext3r\Documents\Visual Studio 2010\Projects Under Source Control\SimplePaletteQuantizer\obj\Debug\SimplePaletteQuantizer.pdb
+C:\Users\bkaminski\Documents\GitHub\NBA-JAM-Player-Editor\SimplePaletteQuantizer\bin\Debug\SimplePaletteQuantizer.exe
+C:\Users\bkaminski\Documents\GitHub\NBA-JAM-Player-Editor\SimplePaletteQuantizer\bin\Debug\SimplePaletteQuantizer.pdb
+C:\Users\bkaminski\Documents\GitHub\NBA-JAM-Player-Editor\SimplePaletteQuantizer\obj\Debug\ResolveAssemblyReference.cache
+C:\Users\bkaminski\Documents\GitHub\NBA-JAM-Player-Editor\SimplePaletteQuantizer\obj\Debug\SimplePaletteQuantizer.MainForm.resources
+C:\Users\bkaminski\Documents\GitHub\NBA-JAM-Player-Editor\SimplePaletteQuantizer\obj\Debug\SimplePaletteQuantizer.Properties.Resources.resources
+C:\Users\bkaminski\Documents\GitHub\NBA-JAM-Player-Editor\SimplePaletteQuantizer\obj\Debug\ResGen.read.1.tlog
+C:\Users\bkaminski\Documents\GitHub\NBA-JAM-Player-Editor\SimplePaletteQuantizer\obj\Debug\ResGen.write.1.tlog
+C:\Users\bkaminski\Documents\GitHub\NBA-JAM-Player-Editor\SimplePaletteQuantizer\obj\Debug\SimplePaletteQuantizer.exe
+C:\Users\bkaminski\Documents\GitHub\NBA-JAM-Player-Editor\SimplePaletteQuantizer\obj\Debug\SimplePaletteQuantizer.pdb

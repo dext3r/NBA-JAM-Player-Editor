@@ -13,3 +13,8 @@ C:\Users\dext3r\Documents\Visual Studio 2010\Projects Under Source Control\nbaja
 C:\Users\dext3r\Documents\Visual Studio 2010\Projects Under Source Control\nbajamTextBox\obj\Debug\ResolveAssemblyReference.cache
 C:\Users\dext3r\Documents\Visual Studio 2010\Projects Under Source Control\nbajamTextBox\obj\Debug\nbajamTextBox.dll
 C:\Users\dext3r\Documents\Visual Studio 2010\Projects Under Source Control\nbajamTextBox\obj\Debug\nbajamTextBox.pdb
+C:\Users\bkaminski\Documents\GitHub\NBA-JAM-Player-Editor\nbajamTextBox\bin\Debug\nbajamTextBox.dll
+C:\Users\bkaminski\Documents\GitHub\NBA-JAM-Player-Editor\nbajamTextBox\bin\Debug\nbajamTextBox.pdb
+C:\Users\bkaminski\Documents\GitHub\NBA-JAM-Player-Editor\nbajamTextBox\obj\Debug\ResolveAssemblyReference.cache
+C:\Users\bkaminski\Documents\GitHub\NBA-JAM-Player-Editor\nbajamTextBox\obj\Debug\nbajamTextBox.dll
+C:\Users\bkaminski\Documents\GitHub\NBA-JAM-Player-Editor\nbajamTextBox\obj\Debug\nbajamTextBox.pdb

@@ -29,7 +29,6 @@ namespace nbajamPictureBox
 
         private Image sourceImage; //load form function method
 
-
         // heres how it goes down
         // load an image file
         // jampicturebox.image = SOURCE FILE
@@ -37,7 +36,6 @@ namespace nbajamPictureBox
         // the in main program, gets the data from the control and you can
         // do whatever the fuck you want with it
         // - thank you
-
 
         private int data_size = 0; // Length of raw data array
         private int palette_size = 0; // Number of colors in the image
@@ -47,7 +45,7 @@ namespace nbajamPictureBox
         private byte[,] backArray; // An array to hold raw pixel data
         private byte[,] new_back_array; // // An array which holds the image data by palette value
         private Color[] optimized_palette = new Color[32]; // Holds the converted image palette
-        private byte[] new_color_pal = new byte[64]; //32 color @ 2 bytes/col
+        private byte[] new_color_pal = new byte[64]; //32 color @ 2 bytes/color
         // private int[,] savedbackArray;
 
         private int tile_width = 6; // Width of the control in 8px*8px tiles
@@ -62,7 +60,6 @@ namespace nbajamPictureBox
 
         private bool redrawFlag = false;
         private bool flippedFlag= false;
-
 
         //methods
         //set/gets
@@ -568,6 +565,7 @@ namespace nbajamPictureBox
         }
 
         //load an image file (JPG,PNG,etc) to quantize, convert 5bpp etc
+        //The palette quantization here needs to be fixed...
         public void loadNewImage(Image input)
         {
             int pal_index = 1;

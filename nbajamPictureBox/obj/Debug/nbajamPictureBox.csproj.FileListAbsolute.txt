@@ -12,3 +12,10 @@ C:\Users\bkaminski\Documents\Visual Studio 2010\Projects\NBA JAM REMIXER\nbajamP
 C:\Users\bkaminski\Documents\Visual Studio 2010\Projects\NBA JAM REMIXER\nbajamPictureBox\obj\Debug\ResolveAssemblyReference.cache
 C:\Users\bkaminski\Documents\Visual Studio 2010\Projects\NBA JAM REMIXER\nbajamPictureBox\obj\Debug\nbajamPictureBox.dll
 C:\Users\bkaminski\Documents\Visual Studio 2010\Projects\NBA JAM REMIXER\nbajamPictureBox\obj\Debug\nbajamPictureBox.pdb
+C:\Users\bkaminski\Documents\GitHub\NBA-JAM-Player-Editor\nbajamPictureBox\bin\Debug\nbajamPictureBox.dll
+C:\Users\bkaminski\Documents\GitHub\NBA-JAM-Player-Editor\nbajamPictureBox\bin\Debug\nbajamPictureBox.pdb
+C:\Users\bkaminski\Documents\GitHub\NBA-JAM-Player-Editor\nbajamPictureBox\bin\Debug\SimplePaletteQuantizer.exe
+C:\Users\bkaminski\Documents\GitHub\NBA-JAM-Player-Editor\nbajamPictureBox\bin\Debug\SimplePaletteQuantizer.pdb
+C:\Users\bkaminski\Documents\GitHub\NBA-JAM-Player-Editor\nbajamPictureBox\obj\Debug\ResolveAssemblyReference.cache
+C:\Users\bkaminski\Documents\GitHub\NBA-JAM-Player-Editor\nbajamPictureBox\obj\Debug\nbajamPictureBox.dll
+C:\Users\bkaminski\Documents\GitHub\NBA-JAM-Player-Editor\nbajamPictureBox\obj\Debug\nbajamPictureBox.pdb

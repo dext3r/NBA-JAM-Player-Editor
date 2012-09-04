@@ -19,13 +19,16 @@ using SimplePaletteQuantizer.Quantizers.Uniform;
 //NOT MY CODE /\ /\ /\ /\ /\ /\
 //Awesome project from here: http://www.codeproject.com/KB/recipes/SimplePaletteQuantizer.aspx
 
+// 9/4/2012:    Started commenting chunks of code functionality and cleaning shit up
+//              TODO: Finish player editor - Edit stats, portrait - leave roster editor for next version
+//              improve palette quantization and transparent color scheme in nbajamPictureBox
 
 // 8/1/2011:    Start keeping notes because you don't remember shit
 //              Palette Quantizer seems to be OK, needs work. Loading procedure: Load ROM. Click Load Image, it writes it to the ROM.
 //              Will attempt the roster editor. Proposed idea is to use listview with custom listviewitem. under investigation.
 //              Added custom User Control - playerPairing - needs functionality code implemented
-//              Something might be fucked up with the project - might need to make again.
-//              Need to implement sqlite database
+//              Something might be fucked up with the project - might need to make again. - seems ok? dunno what this note is about - 9/4/2012
+//              Need to implement internal sqlite database
 
 
 namespace WindowsFormsApplication1
@@ -33,12 +36,18 @@ namespace WindowsFormsApplication1
     public partial class Form1 : Form
     {
         System.Drawing.Color[] nametag_pallete = new System.Drawing.Color[16]; // used as general palette - could move to Constants class
+
+        //Defines 60 unique characters for a font
         fontTile[] letters = new fontTile[60];
+        
+        //no clue what this is for
         int[,] backArray = new int[48, 16];  //array for nametag data
         int[,] backArray2 = new int[48, 16];  //array for nametag data
         List<playerData> nbajam_players = new List<playerData>();
         int timerthing = 0;
         int animator = 0;
+
+        //no clue wha this is
         public enum FontColorOptions { Pallete_0, Pallete_1, Pallete_2, Pallete_3, Pallete_4, Pallete_5, Pallete_6, Pallete_7, Pallete_8, Pallete_9, Pallete_10, Pallete_11, Pallete_12, Pallete_13, Pallete_14, Pallete_15 };
 
         byte[] fileBuffer;
@@ -46,6 +55,7 @@ namespace WindowsFormsApplication1
         /// <summary>
         /// Palette Quantizing stuff
         /// </summary>
+        /// this stuff has been deprecated into nbajampicturebox i think
         private Image sourceImage;
         private FileInfo sourceFileInfo;
         private IColorQuantizer the_quantizer = new PaletteQuantizer();
@@ -62,142 +72,145 @@ namespace WindowsFormsApplication1
             OpenFileDialog dlg = new OpenFileDialog();
             int Color = new UInt16();
 
-            
+
             // this file loading stuff shouldnt really be in the Click method ... ok for now though ...
 
-           /// string balls = "C:\\Users\\dext3r\\Desktop\\NBA Jam - Tournament Edition (U) [!].smc";
-            
-             //   Console.WriteLine("\n" + dlg.FileName);
-                int count; 
-                int start_address = new int();
-                int red, green, blue;
-                byte[] portrait = new byte[Constants.portraitBitmapSize];
-                byte[] palette = new byte[Constants.portraitPaletteSize];
-               // byte[] buffer;
-                byte[] layer = new byte[5];
-                byte[] pixelbuilder = new byte[5];
-                byte[] pixel_row = new byte[8];
-                byte[] teh_pixels = new byte[64];
-                System.Drawing.Bitmap palette_image = new System.Drawing.Bitmap(10, 10);
-                System.Drawing.Color[] palette_swatch = new System.Drawing.Color[32];
-                Bitmap paletteBitmap = new Bitmap(pictureBox2.Width,pictureBox2.Height);
-                Bitmap portraitBitmap = new Bitmap(48,56);
-                Bitmap[,] tile = new Bitmap[6,7];
-                Bitmap[] tiles = new Bitmap[42];
-                byte[] full_data = new byte[Constants.portraitBitmapSize + Constants.portraitPaletteSize];
-                int balls = 0;
+            /// string balls = "C:\\Users\\dext3r\\Desktop\\NBA Jam - Tournament Edition (U) [!].smc";
 
-                for (int i = 0; i < 42; i++)
-                {
-                        tiles[i] = new Bitmap(8, 8);
-                }
-                //transfer single tile to location in global bitmap somehow
+            //   Console.WriteLine("\n" + dlg.FileName);
+            int count;
+            int start_address = new int();
+            int red, green, blue;
+            byte[] portrait = new byte[Constants.portraitBitmapSize];
+            byte[] palette = new byte[Constants.portraitPaletteSize];
+            // byte[] buffer;
+            byte[] layer = new byte[5];
+            byte[] pixelbuilder = new byte[5];
+            byte[] pixel_row = new byte[8];
+            byte[] teh_pixels = new byte[64];
+            System.Drawing.Bitmap palette_image = new System.Drawing.Bitmap(10, 10);
+            System.Drawing.Color[] palette_swatch = new System.Drawing.Color[32];
+            Bitmap paletteBitmap = new Bitmap(pictureBox2.Width, pictureBox2.Height);
+            Bitmap portraitBitmap = new Bitmap(48, 56);
+            Bitmap[,] tile = new Bitmap[6, 7];
+            Bitmap[] tiles = new Bitmap[42];
+            byte[] full_data = new byte[Constants.portraitBitmapSize + Constants.portraitPaletteSize];
+            int balls = 0;
 
-             /*   FileStream fileStream = new FileStream(balls, FileMode.Open, FileAccess.Read);
-                try
-                {
-                    int length = (int)fileStream.Length;  // get file length
-                    buffer = new byte[length];            // create buffer
-                                              // actual number of bytes read
-                    int sum = 0;                          // total number of bytes read
+            for (int i = 0; i < 42; i++)
+            {
+                tiles[i] = new Bitmap(8, 8);
+            }
+            //transfer single tile to location in global bitmap somehow
 
-                    // read until Read method returns 0 (end of the stream has been reached)
-                    while ((count = fileStream.Read(buffer, sum, length - sum)) > 0)
-                        sum += count;  // sum is a buffer offset for next reading
-                }
-                finally
-                {
-                    fileStream.Close();
-                }
-               */
-                start_address = Convert.ToInt32(textBox1.Text);
-                count = 0;
+            /*   FileStream fileStream = new FileStream(balls, FileMode.Open, FileAccess.Read);
+               try
+               {
+                   int length = (int)fileStream.Length;  // get file length
+                   buffer = new byte[length];            // create buffer
+                                             // actual number of bytes read
+                   int sum = 0;                          // total number of bytes read
+
+                   // read until Read method returns 0 (end of the stream has been reached)
+                   while ((count = fileStream.Read(buffer, sum, length - sum)) > 0)
+                       sum += count;  // sum is a buffer offset for next reading
+               }
+               finally
+               {
+                   fileStream.Close();
+               }
+              */
+            start_address = Convert.ToInt32(textBox1.Text);
+            count = 0;
             balls = 0;
             //    Console.WriteLine("PORTRAIT DATA:");
-                for (int i = 0; i < Constants.portraitBitmapSize; i++)
-                {
-                    portrait[i] = fileBuffer[start_address];
-                    full_data[balls] = fileBuffer[start_address];
-               //     Console.Write(portrait[i].ToString("X2"));
-                    start_address++;
-                    count++;
-                    balls++;
-                }
+            for (int i = 0; i < Constants.portraitBitmapSize; i++)
+            {
+                portrait[i] = fileBuffer[start_address];
+                full_data[balls] = fileBuffer[start_address];
+                //     Console.Write(portrait[i].ToString("X2"));
+                start_address++;
+                count++;
+                balls++;
+            }
             //    Console.WriteLine("Count: " + count.ToString());
             //    Console.WriteLine();
-                count = 0;
+            count = 0;
             //    Console.WriteLine("PALETTE DATA:");
-                for (int j = 0; j < Constants.portraitPaletteSize; j++)
-                {
-                    palette[j] = fileBuffer[start_address];
-                    full_data[balls] = fileBuffer[start_address];
-             //       Console.Write(palette[j].ToString("X2"));
-                    start_address++;
-                    count++;
-                    balls++;
-                }
-             //   Console.WriteLine("Count: " + count.ToString());
-              //  Console.WriteLine();
-              
-                
-                int counto = 0;
-                int pixelcounter = 0;
-                //getting colors here
-                for (int i = 0; i < Constants.portraitPaletteSize; i = i + 2)
-                {  
-                   
-                    Color = palette[i + 1];
-                    Color = Color << 8;
-                    Color = Color + palette[i];
-            ///        Console.WriteLine("Color = " + Color.ToString());
+            for (int j = 0; j < Constants.portraitPaletteSize; j++)
+            {
+                palette[j] = fileBuffer[start_address];
+                full_data[balls] = fileBuffer[start_address];
+                //       Console.Write(palette[j].ToString("X2"));
+                start_address++;
+                count++;
+                balls++;
+            }
+            //   Console.WriteLine("Count: " + count.ToString());
+            //  Console.WriteLine();
 
-                    red = (Color % 32) * 8;
-                    green = ((Color / 32) % 32) * 8;
-                    blue = ((Color / 1024) % 32) * 8;
 
-          ///          Console.WriteLine("Red: " + red.ToString());
-          ///          Console.WriteLine("Green: " + green.ToString());
-          ///          Console.WriteLine("Blue: " + blue.ToString());
+            int counto = 0;
+            int pixelcounter = 0;
+            //getting colors here
+            for (int i = 0; i < Constants.portraitPaletteSize; i = i + 2)
+            {
 
-                    palette_swatch[counto] = System.Drawing.Color.FromArgb(red, green, blue);
-                    counto++;
-                }
-              
-                #region Palette Hack
+                Color = palette[i + 1];
+                Color = Color << 8;
+                Color = Color + palette[i];
+                ///        Console.WriteLine("Color = " + Color.ToString());
+
+                red = (Color % 32) * 8;
+                green = ((Color / 32) % 32) * 8;
+                blue = ((Color / 1024) % 32) * 8;
+
+                ///          Console.WriteLine("Red: " + red.ToString());
+                ///          Console.WriteLine("Green: " + green.ToString());
+                ///          Console.WriteLine("Blue: " + blue.ToString());
+
+                palette_swatch[counto] = System.Drawing.Color.FromArgb(red, green, blue);
+                counto++;
+            }
+
+            //This "Palette Hack" draws the pallet at the specified memory address to an image box
+            //This code sucks and should be eventually removed. 
+            #region Palette Hack
             //palette drawing hack
-                int offset_x=0, offset_y =0;
-                for (int f = 0; f < 16; f++)
+            int offset_x = 0, offset_y = 0;
+            for (int f = 0; f < 16; f++)
+            {
+                for (int i = 0; i < 14; i++)
                 {
-                    for (int i = 0; i < 14; i++)
+                    for (int j = 0; j < 8; j++)
                     {
-                        for (int j = 0; j < 8; j++)
-                        {                 
-                            paletteBitmap.SetPixel((offset_x+ j), (offset_y + i), palette_swatch[f]);
-                         }
-                     }
-
-                    offset_x = offset_x + 8;
-                 }
-
-                offset_x = 0;
-                offset_y = offset_y + 14;
-//2nd row of palette drawing
-                for (int f = 16; f < 32; f++)
-                {
-                    for (int i = 0; i < 14; i++)
-                    {
-                        for (int j = 0; j < 8; j++)
-                        {
-                            paletteBitmap.SetPixel((offset_x + j), (offset_y + i), palette_swatch[f]);
-                        }
+                        paletteBitmap.SetPixel((offset_x + j), (offset_y + i), palette_swatch[f]);
                     }
-
-                    offset_x = offset_x + 8;
                 }
 
-                pictureBox2.Image = paletteBitmap;
+                offset_x = offset_x + 8;
+            }
 
-                #endregion
+            offset_x = 0;
+            offset_y = offset_y + 14;
+            //2nd row of palette drawing
+            for (int f = 16; f < 32; f++)
+            {
+                for (int i = 0; i < 14; i++)
+                {
+                    for (int j = 0; j < 8; j++)
+                    {
+                        paletteBitmap.SetPixel((offset_x + j), (offset_y + i), palette_swatch[f]);
+                    }
+                }
+
+                offset_x = offset_x + 8;
+            }
+
+            pictureBox2.Image = paletteBitmap;
+
+            #endregion
+            #region Old Code - To Delete
             /*
                 int initial_offset = 0;
                 int secondary_offset = initial_offset + 32;
@@ -284,6 +297,7 @@ namespace WindowsFormsApplication1
             pictureBox1.Image = portraitBitmap;
 
             */
+            #endregion
             nbajamPictureBox1.DataSize = 1744;
             nbajamPictureBox1.PaletteSize = 32;
             nbajamPictureBox1.isPortrait = true;
@@ -311,39 +325,46 @@ namespace WindowsFormsApplication1
             playerPairing2.setPortrait2(full_data);
 
             //nbajamPictureBox1.Invalidate();
-        //    nbajamPictureBox1.Image = portraitBitmap;         
+            //    nbajamPictureBox1.Image = portraitBitmap;         
         }
 
         private void Form1_Load(object sender, EventArgs e)
         {
+            //Tell user no file selected.
             toolStripStatusLabel1.Text = "No file open.";
+
+            //Some junk to help debugging
             //textBox1.Text = "2232681";
             textBox1.Text = "2234425"; // ??
-         //   textBox2.Text = " 1363877"; //pippen
+            //   textBox2.Text = " 1363877"; //pippen
             textBox2.Text = "1398188";
-            initializePalette();
-            initializeFont();
-            initializePlayers();
+
+
+            //initialzePalette defines a program-wide pallete - see function for details
+         //   initializePalette();
+            //initializeFont defines the program-wide font (character widths and pixelmap info)
+         //   initializeFont();
+            //initializePlayers doesn't do anything useful yet.
+           initializePlayers();
+
 
             panel1.Visible = false;
-
             panel2.Visible = true;
             panel1.SendToBack();
             panel2.BringToFront();
-            
-         
-           
         }
 
         private void initializePlayers()
         {
             //ID,name,picture,nametag,stats,secret?
             nbajam_players.Add(new playerData(0, "BJ Armstrong", 2241401, 1398188, 1398188, false));
-            
+
         }
 
         private void initializeFont()
         {
+            //This defines the height and width for each character
+            //The array numbers are currently a mystery.
             letters[0] = new fontTile(4, 8);
             letters[1] = new fontTile(2, 8);
             letters[14] = new fontTile(2, 8);
@@ -374,29 +395,27 @@ namespace WindowsFormsApplication1
             letters[57] = new fontTile(4, 8);
             letters[58] = new fontTile(4, 8);
 
-            
-            //letters are defined in the following regions:
-
+            //Character graphics are defined in the following regions:
             #region Period
             letters[14].SetPixel(0, 0, 0);
             letters[14].SetPixel(1, 0, 0);
-          //  letters[14].SetPixel(2, 0, 0);
+            //  letters[14].SetPixel(2, 0, 0);
 
             letters[14].SetPixel(0, 1, 0);
             letters[14].SetPixel(1, 1, 0);
-         //   letters[14].SetPixel(2, 1, 0);
+            //   letters[14].SetPixel(2, 1, 0);
 
             letters[14].SetPixel(0, 2, 0);
             letters[14].SetPixel(1, 2, 0);
-          //  letters[14].SetPixel(2, 2, 0);
+            //  letters[14].SetPixel(2, 2, 0);
 
             letters[14].SetPixel(0, 3, 0);
             letters[14].SetPixel(1, 3, 0);
-           // letters[14].SetPixel(2, 3, 0);
+            // letters[14].SetPixel(2, 3, 0);
 
             letters[14].SetPixel(0, 4, 0);
             letters[14].SetPixel(1, 4, 0);
-          //  letters[14].SetPixel(2, 4, 0);
+            //  letters[14].SetPixel(2, 4, 0);
 
             letters[14].SetPixel(0, 5, 0);
             letters[14].SetPixel(1, 5, 0);
@@ -404,17 +423,17 @@ namespace WindowsFormsApplication1
 
             letters[14].SetPixel(0, 6, 3);
             letters[14].SetPixel(1, 6, 0);
-          //  letters[14].SetPixel(2, 6, 0);
+            //  letters[14].SetPixel(2, 6, 0);
 
             letters[14].SetPixel(0, 7, 0);
             letters[14].SetPixel(1, 7, 10);
-          // letters[14].SetPixel(2, 7, 10);
+            // letters[14].SetPixel(2, 7, 10);
             #endregion
-#region A
-            letters[33].SetPixel(0 ,0 ,0);
-            letters[33].SetPixel(1 ,0 ,3);
-            letters[33].SetPixel(2 ,0 ,0);
-            letters[33].SetPixel(3 ,0 ,0);
+            #region A
+            letters[33].SetPixel(0, 0, 0);
+            letters[33].SetPixel(1, 0, 3);
+            letters[33].SetPixel(2, 0, 0);
+            letters[33].SetPixel(3, 0, 0);
 
             letters[33].SetPixel(0, 1, 3);
             letters[33].SetPixel(1, 1, 3);
@@ -449,9 +468,9 @@ namespace WindowsFormsApplication1
             letters[33].SetPixel(0, 7, 0);
             letters[33].SetPixel(1, 7, 10);
             letters[33].SetPixel(2, 7, 0);
-            letters[33].SetPixel(3, 7, 10);    
-#endregion
-#region B
+            letters[33].SetPixel(3, 7, 10);
+            #endregion
+            #region B
             letters[34].SetPixel(0, 0, 3);
             letters[34].SetPixel(1, 0, 3);
             letters[34].SetPixel(2, 0, 0);
@@ -491,8 +510,8 @@ namespace WindowsFormsApplication1
             letters[34].SetPixel(1, 7, 10);
             letters[34].SetPixel(2, 7, 10);
             letters[34].SetPixel(3, 7, 0);
-#endregion
-#region C
+            #endregion
+            #region C
             letters[35].SetPixel(0, 0, 0);
             letters[35].SetPixel(1, 0, 3);
             letters[35].SetPixel(2, 0, 3);
@@ -532,8 +551,8 @@ namespace WindowsFormsApplication1
             letters[35].SetPixel(1, 7, 0);
             letters[35].SetPixel(2, 7, 10);
             letters[35].SetPixel(3, 7, 10);
-            #endregion  
-#region D
+            #endregion
+            #region D
             letters[36].SetPixel(0, 0, 3);
             letters[36].SetPixel(1, 0, 3);
             letters[36].SetPixel(2, 0, 0);
@@ -574,7 +593,7 @@ namespace WindowsFormsApplication1
             letters[36].SetPixel(2, 7, 10);
             letters[36].SetPixel(3, 7, 0);
             #endregion
-#region E
+            #region E
             letters[37].SetPixel(0, 0, 3);
             letters[37].SetPixel(1, 0, 3);
             letters[37].SetPixel(2, 0, 3);
@@ -615,7 +634,7 @@ namespace WindowsFormsApplication1
             letters[37].SetPixel(2, 7, 10);
             letters[37].SetPixel(3, 7, 10);
             #endregion
-#region F
+            #region F
             letters[38].SetPixel(0, 0, 3);
             letters[38].SetPixel(1, 0, 3);
             letters[38].SetPixel(2, 0, 3);
@@ -656,7 +675,7 @@ namespace WindowsFormsApplication1
             letters[38].SetPixel(2, 7, 0);
             letters[38].SetPixel(3, 7, 0);
             #endregion
-#region G
+            #region G
             letters[39].SetPixel(0, 0, 0);
             letters[39].SetPixel(1, 0, 3);
             letters[39].SetPixel(2, 0, 3);
@@ -697,7 +716,7 @@ namespace WindowsFormsApplication1
             letters[39].SetPixel(2, 7, 10);
             letters[39].SetPixel(3, 7, 10);
             #endregion
-#region H
+            #region H
             letters[40].SetPixel(0, 0, 3);
             letters[40].SetPixel(1, 0, 0);
             letters[40].SetPixel(2, 0, 3);
@@ -738,39 +757,39 @@ namespace WindowsFormsApplication1
             letters[40].SetPixel(2, 7, 0);
             letters[40].SetPixel(3, 7, 10);
             #endregion
-#region I
+            #region I
             letters[41].SetPixel(0, 0, 3);
             letters[41].SetPixel(1, 0, 0);
-       
+
 
             letters[41].SetPixel(0, 1, 3);
             letters[41].SetPixel(1, 1, 10);
-          
+
 
             letters[41].SetPixel(0, 2, 3);
             letters[41].SetPixel(1, 2, 10);
-        
+
             letters[41].SetPixel(0, 3, 3);
             letters[41].SetPixel(1, 3, 10);
-          
+
 
             letters[41].SetPixel(0, 4, 3);
             letters[41].SetPixel(1, 4, 10);
-          
+
 
             letters[41].SetPixel(0, 5, 3);
             letters[41].SetPixel(1, 5, 10);
-         
+
 
             letters[41].SetPixel(0, 6, 3);
             letters[41].SetPixel(1, 6, 10);
-         
+
 
             letters[41].SetPixel(0, 7, 0);
             letters[41].SetPixel(1, 7, 10);
-          
+
             #endregion
-#region J
+            #region J
             letters[42].SetPixel(0, 0, 0);
             letters[42].SetPixel(1, 0, 0);
             letters[42].SetPixel(2, 0, 3);
@@ -811,7 +830,7 @@ namespace WindowsFormsApplication1
             letters[42].SetPixel(2, 7, 10);
             letters[42].SetPixel(3, 7, 0);
             #endregion
-#region K
+            #region K
             letters[43].SetPixel(0, 0, 3);
             letters[43].SetPixel(1, 0, 0);
             letters[43].SetPixel(2, 0, 3);
@@ -852,7 +871,7 @@ namespace WindowsFormsApplication1
             letters[43].SetPixel(2, 7, 0);
             letters[43].SetPixel(3, 7, 10);
             #endregion
-#region L
+            #region L
             letters[44].SetPixel(0, 0, 3);
             letters[44].SetPixel(1, 0, 0);
             letters[44].SetPixel(2, 0, 0);
@@ -860,7 +879,7 @@ namespace WindowsFormsApplication1
 
             letters[44].SetPixel(0, 1, 3);
             letters[44].SetPixel(1, 1, 10);
-            letters[44].SetPixel(2, 1,0);
+            letters[44].SetPixel(2, 1, 0);
             letters[44].SetPixel(3, 1, 0);
 
             letters[44].SetPixel(0, 2, 3);
@@ -893,7 +912,7 @@ namespace WindowsFormsApplication1
             letters[44].SetPixel(2, 7, 10);
             letters[44].SetPixel(3, 7, 10);
             #endregion
-#region M
+            #region M
             letters[45].SetPixel(0, 0, 3);
             letters[45].SetPixel(1, 0, 3);
             letters[45].SetPixel(2, 0, 0);
@@ -950,7 +969,7 @@ namespace WindowsFormsApplication1
             letters[45].SetPixel(4, 7, 0);
             letters[45].SetPixel(5, 7, 10);
             #endregion
-#region N
+            #region N
             letters[46].SetPixel(0, 0, 3);
             letters[46].SetPixel(1, 0, 3);
             letters[46].SetPixel(2, 0, 0);
@@ -991,7 +1010,7 @@ namespace WindowsFormsApplication1
             letters[46].SetPixel(2, 7, 0);
             letters[46].SetPixel(3, 7, 10);
             #endregion
-#region O
+            #region O
             letters[47].SetPixel(0, 0, 0);
             letters[47].SetPixel(1, 0, 3);
             letters[47].SetPixel(2, 0, 0);
@@ -1032,7 +1051,7 @@ namespace WindowsFormsApplication1
             letters[47].SetPixel(2, 7, 10);
             letters[47].SetPixel(3, 7, 0);
             #endregion
-#region P
+            #region P
             letters[48].SetPixel(0, 0, 3);
             letters[48].SetPixel(1, 0, 3);
             letters[48].SetPixel(2, 0, 0);
@@ -1073,7 +1092,7 @@ namespace WindowsFormsApplication1
             letters[48].SetPixel(2, 7, 0);
             letters[48].SetPixel(3, 7, 0);
             #endregion
-#region Q
+            #region Q
             letters[49].SetPixel(0, 0, 0);
             letters[49].SetPixel(1, 0, 3);
             letters[49].SetPixel(2, 0, 0);
@@ -1114,7 +1133,7 @@ namespace WindowsFormsApplication1
             letters[49].SetPixel(2, 7, 10);
             letters[49].SetPixel(3, 7, 0);
             #endregion
-#region R
+            #region R
             letters[50].SetPixel(0, 0, 3);
             letters[50].SetPixel(1, 0, 3);
             letters[50].SetPixel(2, 0, 0);
@@ -1155,7 +1174,7 @@ namespace WindowsFormsApplication1
             letters[50].SetPixel(2, 7, 0);
             letters[50].SetPixel(3, 7, 10);
             #endregion
-#region S
+            #region S
             letters[51].SetPixel(0, 0, 0);
             letters[51].SetPixel(1, 0, 3);
             letters[51].SetPixel(2, 0, 3);
@@ -1196,7 +1215,7 @@ namespace WindowsFormsApplication1
             letters[51].SetPixel(2, 7, 10);
             letters[51].SetPixel(3, 7, 0);
             #endregion
-#region T
+            #region T
             letters[52].SetPixel(0, 0, 3);
             letters[52].SetPixel(1, 0, 3);
             letters[52].SetPixel(2, 0, 3);
@@ -1237,7 +1256,7 @@ namespace WindowsFormsApplication1
             letters[52].SetPixel(2, 7, 10);
             letters[52].SetPixel(3, 7, 0);
             #endregion
-#region U
+            #region U
             letters[53].SetPixel(0, 0, 3);
             letters[53].SetPixel(1, 0, 0);
             letters[53].SetPixel(2, 0, 3);
@@ -1278,7 +1297,7 @@ namespace WindowsFormsApplication1
             letters[53].SetPixel(2, 7, 10);
             letters[53].SetPixel(3, 7, 0);
             #endregion
-#region V
+            #region V
             letters[54].SetPixel(0, 0, 3);
             letters[54].SetPixel(1, 0, 0);
             letters[54].SetPixel(2, 0, 3);
@@ -1304,7 +1323,7 @@ namespace WindowsFormsApplication1
             letters[54].SetPixel(2, 4, 3);
             letters[54].SetPixel(3, 4, 10);
 
-            letters[54].SetPixel(0, 5,0);
+            letters[54].SetPixel(0, 5, 0);
             letters[54].SetPixel(1, 5, 3);
             letters[54].SetPixel(2, 5, 0);
             letters[54].SetPixel(3, 5, 10);
@@ -1319,7 +1338,7 @@ namespace WindowsFormsApplication1
             letters[54].SetPixel(2, 7, 10);
             letters[54].SetPixel(3, 7, 0);
             #endregion
-#region W
+            #region W
             letters[55].SetPixel(0, 0, 3);
             letters[55].SetPixel(1, 0, 0);
             letters[55].SetPixel(2, 0, 3);
@@ -1376,7 +1395,7 @@ namespace WindowsFormsApplication1
             letters[55].SetPixel(4, 7, 10);
             letters[55].SetPixel(5, 7, 0);
             #endregion
-#region X
+            #region X
             letters[56].SetPixel(0, 0, 3);
             letters[56].SetPixel(1, 0, 0);
             letters[56].SetPixel(2, 0, 3);
@@ -1417,7 +1436,7 @@ namespace WindowsFormsApplication1
             letters[56].SetPixel(2, 7, 0);
             letters[56].SetPixel(3, 7, 10);
             #endregion
-#region Y
+            #region Y
             letters[57].SetPixel(0, 0, 3);
             letters[57].SetPixel(1, 0, 0);
             letters[57].SetPixel(2, 0, 3);
@@ -1458,7 +1477,7 @@ namespace WindowsFormsApplication1
             letters[57].SetPixel(2, 7, 10);
             letters[57].SetPixel(3, 7, 0);
             #endregion
-#region Z
+            #region Z
             letters[58].SetPixel(0, 0, 3);
             letters[58].SetPixel(1, 0, 3);
             letters[58].SetPixel(2, 0, 3);
@@ -1499,11 +1518,11 @@ namespace WindowsFormsApplication1
             letters[58].SetPixel(2, 7, 10);
             letters[58].SetPixel(3, 7, 10);
             #endregion
-#region Space
-letters[0].SetPixel(0, 0, 0);
-letters[0].SetPixel(1, 0, 0);
-letters[0].SetPixel(2, 0, 0);
-letters[0].SetPixel(3, 0, 0);
+            #region Space
+            letters[0].SetPixel(0, 0, 0);
+            letters[0].SetPixel(1, 0, 0);
+            letters[0].SetPixel(2, 0, 0);
+            letters[0].SetPixel(3, 0, 0);
 
             letters[0].SetPixel(0, 1, 0);
             letters[0].SetPixel(1, 1, 0);
@@ -1540,33 +1559,33 @@ letters[0].SetPixel(3, 0, 0);
             letters[0].SetPixel(2, 7, 0);
             letters[0].SetPixel(3, 7, 0);
             #endregion
-#region !
+            #region !
             letters[1].SetPixel(0, 0, 3);
             letters[1].SetPixel(1, 0, 0);
-        
+
             letters[1].SetPixel(0, 1, 3);
             letters[1].SetPixel(1, 1, 10);
-         
+
             letters[1].SetPixel(0, 2, 3);
             letters[1].SetPixel(1, 2, 10);
-        
+
             letters[1].SetPixel(0, 3, 3);
             letters[1].SetPixel(1, 3, 10);
-         
+
 
             letters[1].SetPixel(0, 4, 3);
             letters[1].SetPixel(1, 4, 10);
-         
+
 
             letters[1].SetPixel(0, 5, 0);
             letters[1].SetPixel(1, 5, 10);
-          
+
             letters[1].SetPixel(0, 6, 3);
             letters[1].SetPixel(1, 6, 0);
-      
+
             letters[1].SetPixel(0, 7, 0);
             letters[1].SetPixel(1, 7, 10);
-          
+
             #endregion
         }
 
@@ -1589,21 +1608,24 @@ letters[0].SetPixel(3, 0, 0);
             nametag_pallete[13] = System.Drawing.Color.FromArgb(0, 104, 00);
             nametag_pallete[14] = System.Drawing.Color.FromArgb(192, 192, 192);
             nametag_pallete[15] = System.Drawing.Color.FromArgb(152, 152, 152);
-            
         }
 
+        //is this really needed? wtf is this
         private void test()
-        {
+        { 
             Console.WriteLine("Test");
         }
 
+        //cycle thru player portraits
         private void button2_Click(object sender, EventArgs e)
         {
+            
             int temp = Convert.ToInt32(textBox1.Text);
             temp = temp + 1744;
             textBox1.Text = temp.ToString();
         }
 
+        //cycle thru player portraits
         private void button3_Click(object sender, EventArgs e)
         {
             int temp = Convert.ToInt32(textBox1.Text);
@@ -1611,6 +1633,7 @@ letters[0].SetPixel(3, 0, 0);
             textBox1.Text = temp.ToString();
         }
 
+        //some dumb thing to test flipping pictures
         private void pictureBox1_Click(object sender, EventArgs e)
         {
             if (pictureBox1.Image != null)
@@ -1620,11 +1643,14 @@ letters[0].SetPixel(3, 0, 0);
                 pictureBox1.Image = rawr;
             }
         }
-
+        
+        //load the nametag graphic from the ROM
+        //this function should be rewritten to take an offset location and return an Image. 
+        //might have been coded elsewhere already. 
         private void button4_Click(object sender, EventArgs e)
         {
             //string balls = "C:\\Users\\dext3r\\Desktop\\NBA Jam - Tournament Edition (U) [!].smc";
-           // string balls = "C:\\Users\\dext3r\\Desktop\\nbajam.smc.smc";
+            // string balls = "C:\\Users\\dext3r\\Desktop\\nbajam.smc.smc";
             int start_address = 0;
             int count = 0;
             //byte[] buffer;
@@ -1643,63 +1669,47 @@ letters[0].SetPixel(3, 0, 0);
             for (int i = 0; i < 12; i++)
             {
                 //each tile has to be scaled based on the parent picturebox size...
-                tiles[i] = new Bitmap(nametag_corrected_width,nametag_corrected_height);
+                tiles[i] = new Bitmap(nametag_corrected_width, nametag_corrected_height);
             }
 
-
+            //this is just for drawing the nametag in the UI - either way the background will be (128,0,128) in the game
+            //ie alpha values ignored
             if (checkBox2.Checked)
             {
-
-                nametag_pallete[0] = System.Drawing.Color.FromArgb(255, 128,0, 128);  //color         
+                nametag_pallete[0] = System.Drawing.Color.FromArgb(255, 128, 0, 128);  //color         
             }
             else
             {
                 nametag_pallete[0] = System.Drawing.Color.FromArgb(0, 128, 0, 128);  //transparent    
             }
-         /*   FileStream fileStream = new FileStream(balls, FileMode.Open, FileAccess.Read);
-            try
-            {
-                int length = (int)fileStream.Length;  // get file length
-                buffer = new byte[length];            // create buffer
-                // actual number of bytes read
-                int sum = 0;                          // total number of bytes read
-
-                // read until Read method returns 0 (end of the stream has been reached)
-                while ((count = fileStream.Read(buffer, sum, length - sum)) > 0)
-                    sum += count;  // sum is a buffer offset for next reading
-            }
-            finally
-            {
-                fileStream.Close();
-            }
-            */
+     
             start_address = Convert.ToInt32(textBox2.Text);
 
             count = 0;
-       //     Console.WriteLine("NAMETAG DATA:");
+            //     Console.WriteLine("NAMETAG DATA:");
             for (int i = 0; i < Constants.nametagSize; i++)
             {
                 nametag[i] = fileBuffer[start_address];
-              //  Console.Write(nametag[i].ToString("X2"));
+                //  Console.Write(nametag[i].ToString("X2"));
                 start_address++;
                 count++;
             }
-    
+
             count = 0;
 
             byte[] tiletest = new byte[64];
-            int countur=0;
+            int countur = 0;
 
             for (int s = 0; s < nametag_total_tiles; s++)
             {
                 tiletest = getTile(countur, nametag);
-                tiles[s] = tile2bitmap(tiletest, nametag_pallete,nametag_corrected_width,nametag_corrected_height);
+                tiles[s] = tile2bitmap(tiletest, nametag_pallete, nametag_corrected_width, nametag_corrected_height);
                 countur = countur + 32;
             }
 
             countur = 0;
 
-            Rectangle rect = new Rectangle(0, 0, nametag_corrected_width ,nametag_corrected_height);
+            Rectangle rect = new Rectangle(0, 0, nametag_corrected_width, nametag_corrected_height);
             Bitmap temps = nametagBitmap;
             Bitmap bmap = (Bitmap)temps.Clone();
             Graphics gr = Graphics.FromImage(bmap);
@@ -1712,29 +1722,29 @@ letters[0].SetPixel(3, 0, 0);
                     rect.Y = i * nametag_corrected_height;
                     //Console.WriteLine(j.ToString() + "," + i.ToString() + "[" + tilecounter.ToString() + "]");
                     tiles[countur].RotateFlip(RotateFlipType.RotateNoneFlipX);
-                    
+
                     gr.DrawImage(tiles[countur], rect);
-                
+
                     countur++;
                 }
             }
 
             nametagBitmap = (Bitmap)bmap.Clone();
-        
+
             pictureBox3.Image = nametagBitmap;
-      
-               
+
+
         }
 
         private byte[] getTile(int address, byte[] buffer)
         {
-            byte[] tile= new byte[64];
+            byte[] tile = new byte[64];
             byte[] temp = new byte[4];
             int offset = address;
             int counter = 0;
-            
+
             //flatten the layers here
-            for(int i=0;i<8;i++)
+            for (int i = 0; i < 8; i++)
             {
                 for (int a = 0; a < 8; a++)
                 {
@@ -1742,19 +1752,19 @@ letters[0].SetPixel(3, 0, 0);
                     temp[0] = (byte)((buffer[offset] >> a) & 1);
                     temp[1] = (byte)((buffer[offset + 1] >> a) & 1);
                     temp[2] = (byte)((buffer[offset + 16] >> a) & 1);
-                    temp[3] = (byte)((buffer[offset + 17] >> a) & 1);     
+                    temp[3] = (byte)((buffer[offset + 17] >> a) & 1);
                     //this OR operation 'sandwiches' the layers into one color palette value
                     tile[counter] = (byte)((temp[0]) | (temp[1] << 1 | (temp[2] << 2) | (temp[3] << 3)));
                     counter++;
                 }
-                
+
                 offset = offset + 2;
             }
 
             return tile;
         }
 
-        private byte[] get4bpp(int address,int startx,int starty)
+        private byte[] get4bpp(int address, int startx, int starty)
         {
             int offset = address;
             byte[] layers = new byte[4];
@@ -1768,7 +1778,7 @@ letters[0].SetPixel(3, 0, 0);
             {
                 for (int i = 0; i < 8; i++)
                 {
-                    pixels[i] = (byte)backArray2[startx+i, starty+y];
+                    pixels[i] = (byte)backArray2[startx + i, starty + y];
 
                     temp[0] = (byte)((pixels[i] >> 0) & 1);
                     temp[1] = (byte)((pixels[i] >> 1) & 1);
@@ -1798,30 +1808,30 @@ letters[0].SetPixel(3, 0, 0);
         }
 
 
-        private Bitmap  tile2bitmap(byte[] tile_data, Color[] palette, int tile_size_X, int tile_size_Y)
+        private Bitmap tile2bitmap(byte[] tile_data, Color[] palette, int tile_size_X, int tile_size_Y)
         {
             //tile_size_X,tile_size_Y are tile sizes generated from size of the pictureBox
 
-            int counter = 0 ;
+            int counter = 0;
             int pixelX = tile_size_X / 8;
             int pixelY = tile_size_Y / 8;
 
-            Bitmap tilebitmap = new Bitmap(tile_size_X, tile_size_Y); 
-           
+            Bitmap tilebitmap = new Bitmap(tile_size_X, tile_size_Y);
+
             //adjust pixel size based on bitmap size. 
-            for(int y=0;y<8;y++) //8 here is the original tile height
+            for (int y = 0; y < 8; y++) //8 here is the original tile height
             {
-                for(int x =0;x<8;x++) //8 here is the original tile width
+                for (int x = 0; x < 8; x++) //8 here is the original tile width
                 {
                     for (int q = 0; q < pixelX; q++)
                     {
                         tilebitmap.SetPixel((x * (pixelX)) + q, (y * pixelY), palette[tile_data[counter]]);
-                        for(int r =0;r<pixelY;r++)
+                        for (int r = 0; r < pixelY; r++)
                         {
-                            tilebitmap.SetPixel((x * (pixelX))+q, (y * pixelY) + r, palette[tile_data[counter]]);
+                            tilebitmap.SetPixel((x * (pixelX)) + q, (y * pixelY) + r, palette[tile_data[counter]]);
                         }
                     }
-                  counter++;
+                    counter++;
                 }
             }
             return tilebitmap;
@@ -1830,17 +1840,17 @@ letters[0].SetPixel(3, 0, 0);
         private void button5_Click(object sender, EventArgs e)
         {
             int temp = Convert.ToInt32(textBox2.Text);
-           temp = temp + 384;
-           // temp = temp + 1;
+            temp = temp + 384;
+            // temp = temp + 1;
             textBox2.Text = temp.ToString();
             button4_Click(sender, e);
         }
 
         private void button6_Click(object sender, EventArgs e)
         {
-         int temp = Convert.ToInt32(textBox2.Text);
-        temp = temp - 384;
-        // temp = temp - 1;
+            int temp = Convert.ToInt32(textBox2.Text);
+            temp = temp - 384;
+            // temp = temp - 1;
             textBox2.Text = temp.ToString();
             button4_Click(sender, e);
         }
@@ -1863,8 +1873,8 @@ letters[0].SetPixel(3, 0, 0);
 
             //4ce79f - ROM where player names are stored IN ASCII
 
-           // string balls = "C:\\Users\\dext3r\\Desktop\\NBA Jam - Tournament Edition (U) [!].smc";
-           // byte[] buffer;
+            // string balls = "C:\\Users\\dext3r\\Desktop\\NBA Jam - Tournament Edition (U) [!].smc";
+            // byte[] buffer;
             byte[] stats = new byte[26];
             int count = 0;
             int start_address;
@@ -1896,7 +1906,7 @@ letters[0].SetPixel(3, 0, 0);
             speed_lookup[7] = 0x1644;
             speed_lookup[8] = 0x1711;
             speed_lookup[9] = 0x1777;
-            speed_lookup[10] =0x17DE;
+            speed_lookup[10] = 0x17DE;
 
             threes_lookup[0] = 0x02BC;
             threes_lookup[1] = 0x02EE;
@@ -1908,42 +1918,42 @@ letters[0].SetPixel(3, 0, 0);
             threes_lookup[7] = 0x044C;
             threes_lookup[8] = 0x0460;
             threes_lookup[9] = 0x0492;
-            threes_lookup[10] =0x04E2;
+            threes_lookup[10] = 0x04E2;
 
-          /*  FileStream fileStream = new FileStream(balls, FileMode.Open, FileAccess.Read);
+            /*  FileStream fileStream = new FileStream(balls, FileMode.Open, FileAccess.Read);
 
-            try
-            {
-                int length = (int)fileStream.Length;  // get file length
-                buffer = new byte[length];            // create buffer
-                // actual number of bytes read
-                int sum = 0;                          // total number of bytes read
+              try
+              {
+                  int length = (int)fileStream.Length;  // get file length
+                  buffer = new byte[length];            // create buffer
+                  // actual number of bytes read
+                  int sum = 0;                          // total number of bytes read
 
-                // read until Read method returns 0 (end of the stream has been reached)
-                while ((count = fileStream.Read(buffer, sum, length - sum)) > 0)
-                    sum += count;  // sum is a buffer offset for next reading
-            }
-            finally
-            {
-                fileStream.Close();
-            }
-            */
+                  // read until Read method returns 0 (end of the stream has been reached)
+                  while ((count = fileStream.Read(buffer, sum, length - sum)) > 0)
+                      sum += count;  // sum is a buffer offset for next reading
+              }
+              finally
+              {
+                  fileStream.Close();
+              }
+              */
             start_address = Convert.ToInt32(textBox3.Text);
 
             count = 0;
-         //   Console.WriteLine("STAT DATA:");
+            //   Console.WriteLine("STAT DATA:");
             for (int i = 0; i < Constants.playerStats_size; i++)
             {
                 stats[i] = fileBuffer[start_address];
-           //     Console.Write(stats[i].ToString("X2")+ " ");
+                //     Console.Write(stats[i].ToString("X2")+ " ");
                 start_address++;
                 count++;
             }
-       //     Console.WriteLine();
-            playerValue = (stats[1]  << 8) | stats[0];
+            //     Console.WriteLine();
+            playerValue = (stats[1] << 8) | stats[0];
             bodySize = (stats[3] << 8) | stats[2];
             speedRating = (stats[5] << 8) | stats[4];
-            threeptRating = (stats[7] << 8) | stats [6];
+            threeptRating = (stats[7] << 8) | stats[6];
             dunkRating = (stats[9] << 8) | stats[8];
             blockRating = (stats[11] << 8) | stats[10];
             stealRating = (stats[13] << 8) | stats[12];
@@ -1954,63 +1964,63 @@ letters[0].SetPixel(3, 0, 0);
             skinPointer = (stats[23] << 8) | stats[22];
             headPointer = (stats[25] << 8) | stats[24];
 
-  
-           /* Console.WriteLine("Player Value: " + playerValue.ToString("X4"));
-            Console.WriteLine("Body Size: " + bodySize.ToString("X4"));
-            Console.WriteLine("Speed Rating: " + speedRating.ToString("X4"));
-            Console.WriteLine("3PT Rating: " + threeptRating.ToString("X4"));
-            Console.WriteLine("Dunk Rating: " + dunkRating.ToString("X4")); 
-            Console.WriteLine("Block Rating: " + blockRating.ToString("X4"));
-            Console.WriteLine("Steal Rating: " + stealRating.ToString("X4"));
-            Console.WriteLine("AI Level: " + AILevel.ToString("X4"));
-            Console.WriteLine("Pass Rating: " + passRating.ToString("X4"));
-            Console.WriteLine("Power Rating: " + powerRating.ToString("X4"));
-            Console.WriteLine("Clutch Rating: " + clutchRating.ToString("X4"));
-            Console.WriteLine("Skin Pointer: " + skinPointer.ToString("X4"));
-            Console.WriteLine("Head Pointer: " + headPointer.ToString("X4"));
-            */
+
+            /* Console.WriteLine("Player Value: " + playerValue.ToString("X4"));
+             Console.WriteLine("Body Size: " + bodySize.ToString("X4"));
+             Console.WriteLine("Speed Rating: " + speedRating.ToString("X4"));
+             Console.WriteLine("3PT Rating: " + threeptRating.ToString("X4"));
+             Console.WriteLine("Dunk Rating: " + dunkRating.ToString("X4")); 
+             Console.WriteLine("Block Rating: " + blockRating.ToString("X4"));
+             Console.WriteLine("Steal Rating: " + stealRating.ToString("X4"));
+             Console.WriteLine("AI Level: " + AILevel.ToString("X4"));
+             Console.WriteLine("Pass Rating: " + passRating.ToString("X4"));
+             Console.WriteLine("Power Rating: " + powerRating.ToString("X4"));
+             Console.WriteLine("Clutch Rating: " + clutchRating.ToString("X4"));
+             Console.WriteLine("Skin Pointer: " + skinPointer.ToString("X4"));
+             Console.WriteLine("Head Pointer: " + headPointer.ToString("X4"));
+             */
 
             //speed and 3 pt funky lookup
             for (int i = 0; i < 11; i++)
             {
-                if(speed_lookup[i] == speedRating)
+                if (speed_lookup[i] == speedRating)
                     speedRating = i;
             }
 
 
             for (int j = 0; j < 11; j++)
             {
-                if(threes_lookup[j] == threeptRating)
+                if (threes_lookup[j] == threeptRating)
                     threeptRating = j;
             }
             //3s
-           // label10.Text = threeptRating.ToString();
+            // label10.Text = threeptRating.ToString();
             threeptsUpDown.Value = threeptRating;
             nbajamTextBox7.Text = threeptRating.ToString();
             //speed
             speedUpDown.Value = speedRating;
             nbajamTextBox5.Text = speedRating.ToString();
             //dunk
-           // label11.Text = dunkRating.ToString();
+            // label11.Text = dunkRating.ToString();
             dunkUpDown.Value = dunkRating;
             nbajamTextBox14.Text = dunkRating.ToString();
             //pass
-          //  label12.Text = passRating.ToString();
+            //  label12.Text = passRating.ToString();
             passUpDown.Value = passRating;
             nbajamTextBox15.Text = passRating.ToString();
             //power
             powerUpDown.Value = powerRating;
             nbajamTextBox16.Text = powerRating.ToString();
             //steal
-          //  label14.Text = stealRating.ToString();
+            //  label14.Text = stealRating.ToString();
             stealUpDown.Value = stealRating;
             nbajamTextBox17.Text = stealRating.ToString();
             //block
-          //  label15.Text = blockRating.ToString();
+            //  label15.Text = blockRating.ToString();
             blockUpDown.Value = blockRating;
             nbajamTextBox18.Text = blockRating.ToString();
             //clutch
-          //  label16.Text = clutchRating.ToString();
+            //  label16.Text = clutchRating.ToString();
             clutchUpDown.Value = clutchRating;
             nbajamTextBox19.Text = clutchRating.ToString();
 
@@ -2032,16 +2042,16 @@ letters[0].SetPixel(3, 0, 0);
             button9_Click(sender, e);
         }
 
-        private byte[] getTileFromArray(int[,] backgroundArray,int startx,int starty)
+        private byte[] getTileFromArray(int[,] backgroundArray, int startx, int starty)
         {
             byte[] tile = new byte[64];
-            int counter =0;
+            int counter = 0;
 
             for (int i = 0; i < 8; i++)
             {
                 for (int j = 0; j < 8; j++)
                 {
-                    tile[counter] = (byte)backgroundArray[startx+j,starty+i];
+                    tile[counter] = (byte)backgroundArray[startx + j, starty + i];
                     counter++;
                 }
             }
@@ -2052,17 +2062,17 @@ letters[0].SetPixel(3, 0, 0);
         private void button10_Click(object sender, EventArgs e)
         {
             //int[,] backArray = new int[48, 16];
-            
+
             //Declaration of jagged array.
             //This creates 12 tiletests, each tiletest is an array of 64 bytes.
             byte[][] tiletest = new byte[12][];
 
             string balls;
-            int locationx=0;
-            int locationy=0;
+            int locationx = 0;
+            int locationy = 0;
             balls = textBox4.Text;
             int z;
-            int f=0;
+            int f = 0;
             int[] textname;
             int text_size = 0;
 
@@ -2075,7 +2085,7 @@ letters[0].SetPixel(3, 0, 0);
 
             textname = new int[textBox4.Text.Length];
 
-      //      Console.WriteLine("Text:");
+            //      Console.WriteLine("Text:");
 
             //counts the characters and creats aarrays 
             //dont care yet
@@ -2083,13 +2093,13 @@ letters[0].SetPixel(3, 0, 0);
             {
                 z = (int)(c - 32); //65 = A
                 //this offsets the array for searching
-         //       Console.WriteLine(Convert.ToInt16(z).ToString());
+                //       Console.WriteLine(Convert.ToInt16(z).ToString());
                 textname[f] = z;
                 f++;
             }
 
 
-            for (int i = 0; i < nametag_total_tiles ; i++)
+            for (int i = 0; i < nametag_total_tiles; i++)
             {
                 //each tile has to be scaled based on the parent picturebox size...
                 tiles[i] = new Bitmap(nametag_corrected_width, nametag_corrected_height);
@@ -2103,27 +2113,27 @@ letters[0].SetPixel(3, 0, 0);
                 text_size = text_size + letters[fu].Width;
             }
             text_size = (48 - (text_size)) / 2;
-          
-            locationx = text_size;
-            locationy = 7 ;
 
-        //  locationx = 0;
-        //  locationy = 0;
+            locationx = text_size;
+            locationy = 7;
+
+            //  locationx = 0;
+            //  locationy = 0;
 
             foreach (int fu in textname)
             {
-                for(int y = 0; y<letters[fu].Height;y++)
+                for (int y = 0; y < letters[fu].Height; y++)
                 {
-                    for(int x =0;x<letters[fu].Width;x++)
+                    for (int x = 0; x < letters[fu].Width; x++)
                     {
-                        if((locationx+x  < 48))
-                         backArray[locationx+x,locationy+y] = letters[fu].getPixel(x,y);
+                        if ((locationx + x < 48))
+                            backArray[locationx + x, locationy + y] = letters[fu].getPixel(x, y);
                     }
                 }
                 locationx = locationx + letters[fu].Width;
             }
 
-           
+
 
             int rodcounter = 0;
 
@@ -2147,13 +2157,13 @@ letters[0].SetPixel(3, 0, 0);
             }
             for (int s = 0; s < nametag_total_tiles; s++)
             {
-               
-                   // tiletest[s] = getTileFromArray(backArray, 0, 0); 
-                   tiles[s] = tile2bitmap(tiletest[s], nametag_pallete, nametag_corrected_width, nametag_corrected_height);
-     
+
+                // tiletest[s] = getTileFromArray(backArray, 0, 0); 
+                tiles[s] = tile2bitmap(tiletest[s], nametag_pallete, nametag_corrected_width, nametag_corrected_height);
+
             }
             //48*16 = 6 tiles * 2 tiles
-           //grab a tile from the back array
+            //grab a tile from the back array
             int countur = 0;
 
             Rectangle rect = new Rectangle(0, 0, nametag_corrected_width, nametag_corrected_height);
@@ -2168,7 +2178,7 @@ letters[0].SetPixel(3, 0, 0);
                     rect.X = j * nametag_corrected_width;
                     rect.Y = i * nametag_corrected_height;
                     //Console.WriteLine(j.ToString() + "," + i.ToString() + "[" + tilecounter.ToString() + "]");
-                   // tiles[countur].RotateFlip(RotateFlipType.RotateNoneFlipX);
+                    // tiles[countur].RotateFlip(RotateFlipType.RotateNoneFlipX);
 
                     gr.DrawImage(tiles[countur], rect);
 
@@ -2179,58 +2189,58 @@ letters[0].SetPixel(3, 0, 0);
             nametagBitmap = (Bitmap)bmap.Clone();
 
             pictureBox4.Image = nametagBitmap;
-          //  nbajamTextBox1.Image = nametagBitmap;
+            //  nbajamTextBox1.Image = nametagBitmap;
 
             for (int q = 0; q < 16; q++)
             {
                 for (int v = 0; v < 48; v++)
                 {
                     backArray2[v, q] = backArray[v, q]; //just copies this to a global variable to use in the save prodcedure. stupid as hell. 
-                    backArray[v,q] = 0; //clears background array. 
-                    
+                    backArray[v, q] = 0; //clears background array. 
+
                 }
             }
-            
+
             button11.Enabled = true;
 
-        
+
         }
 
         private void button11_Click(object sender, EventArgs e)
         {
             //save dat shit
-            byte[] nametag_4bpp = new byte[Constants.nametagSize]; 
+            byte[] nametag_4bpp = new byte[Constants.nametagSize];
             byte[] tile = new byte[32];
-            int counter=0;
-            int offset=0;
-         //   string balls = "C:\\Users\\dext3r\\Desktop\\dicks.sfc";
-         //   string balls2= "C:\\Users\\dext3r\\Desktop\\pokey.sfc";
-            int locationx=0;
-            int locationy=0;
+            int counter = 0;
+            int offset = 0;
+            //   string balls = "C:\\Users\\dext3r\\Desktop\\dicks.sfc";
+            //   string balls2= "C:\\Users\\dext3r\\Desktop\\pokey.sfc";
+            int locationx = 0;
+            int locationy = 0;
             int count = 0;
             byte[] buffer;
             int nameOffset = Convert.ToInt32(textBox2.Text);
-      //      FileStream fileStream = new FileStream(balls, FileMode.Open, FileAccess.Read);
-      //      FileStream fileStream2 = new FileStream(balls2, FileMode.OpenOrCreate, FileAccess.Write);
-        /*    try
-            {
+            //      FileStream fileStream = new FileStream(balls, FileMode.Open, FileAccess.Read);
+            //      FileStream fileStream2 = new FileStream(balls2, FileMode.OpenOrCreate, FileAccess.Write);
+            /*    try
+                {
 
             
                 
-                int length = (int)fileStream.Length;  // get file length
-                buffer = new byte[length];            // create buffer
-                // actual number of bytes read
-                   int sum = 0;                          // total number of bytes read
-                //
-                // read until Read method returns 0 (end of the stream has been reached)
-                    while ((count = fileStream.Read(buffer, sum, length - sum)) > 0)
-                      sum += count;  // sum is a buffer offset for next reading
-            }
-            finally 
-            {
-                fileStream.Close();
-            }
-          */
+                    int length = (int)fileStream.Length;  // get file length
+                    buffer = new byte[length];            // create buffer
+                    // actual number of bytes read
+                       int sum = 0;                          // total number of bytes read
+                    //
+                    // read until Read method returns 0 (end of the stream has been reached)
+                        while ((count = fileStream.Read(buffer, sum, length - sum)) > 0)
+                          sum += count;  // sum is a buffer offset for next reading
+                }
+                finally 
+                {
+                    fileStream.Close();
+                }
+              */
 
 
             #region Debug: Prints Array --- WHICH ARRAY??? MORE DESCRIPTIVE
@@ -2241,12 +2251,12 @@ letters[0].SetPixel(3, 0, 0);
                     Console.Write(backArray2[v, q].ToString("X"));
 
                 }
-                    Console.WriteLine();
+                Console.WriteLine();
             }
             #endregion
 
 
-            for (int z = 0; z< 2; z++)
+            for (int z = 0; z < 2; z++)
             {
                 for (int j = 0; j < 6; j++)
                 {
@@ -2261,7 +2271,7 @@ letters[0].SetPixel(3, 0, 0);
 
                         offset = offset + 2;
                         counter = counter + 4;
-                        }
+                    }
                     locationx = locationx + 8;
                     counter = 0;
                     offset = offset + 16;
@@ -2271,20 +2281,20 @@ letters[0].SetPixel(3, 0, 0);
             }
 
 
-         /*   tile = get4bpp(0, 0,8);
-            counter = 0;
-            offset = offset + 16;
-            for (int i = 0; i < 8; i++)
-            {
-                nametag_4bpp[offset] = tile[(counter)];
-                nametag_4bpp[offset + 1] = tile[(counter + 1)];
-                nametag_4bpp[offset + 16] = tile[(counter + 2)];
-                nametag_4bpp[offset + 17] = tile[(counter + 3)];
+            /*   tile = get4bpp(0, 0,8);
+               counter = 0;
+               offset = offset + 16;
+               for (int i = 0; i < 8; i++)
+               {
+                   nametag_4bpp[offset] = tile[(counter)];
+                   nametag_4bpp[offset + 1] = tile[(counter + 1)];
+                   nametag_4bpp[offset + 16] = tile[(counter + 2)];
+                   nametag_4bpp[offset + 17] = tile[(counter + 3)];
 
-                offset = offset + 2;
-                counter = counter + 4;
-            }
-             */
+                   offset = offset + 2;
+                   counter = counter + 4;
+               }
+                */
             //0,8,16,24,32,40
 
 
@@ -2293,12 +2303,12 @@ letters[0].SetPixel(3, 0, 0);
             for (int i = 0; i < Constants.nametagSize; i++)
             {
                 fileBuffer[nameOffset] = nametag_4bpp[i];
-               nameOffset++;
+                nameOffset++;
             }
 
-//            fileStream2.Seek(0, 0);
-//            fileStream2.Write(fileBuffer, 0, fileBuffer.Length);
-//            fileStream2.Close();
+            //            fileStream2.Seek(0, 0);
+            //            fileStream2.Write(fileBuffer, 0, fileBuffer.Length);
+            //            fileStream2.Close();
         }
 
         private void textBox4_TextChanged(object sender, EventArgs e)
@@ -2314,7 +2324,7 @@ letters[0].SetPixel(3, 0, 0);
             int count;
 
             DialogResult result = dlg.ShowDialog();
-           
+
             if (result == DialogResult.OK)
             {
                 FileStream fileStream = new FileStream(dlg.FileName, FileMode.Open, FileAccess.Read);
@@ -2330,7 +2340,7 @@ letters[0].SetPixel(3, 0, 0);
                         sum += count;  // sum is a buffer offset for next reading
                 }
                 finally
-                {  
+                {
                     toolStripStatusLabel1.Text = dlg.FileName;
                     fileStream.Close();
                 }
@@ -2388,22 +2398,22 @@ letters[0].SetPixel(3, 0, 0);
             //pictureBox4.BackColor = System.Drawing.Color.FromArgb(255, 128, 0, 128); 
             nbajamTextBox1.Text = "Spaget!";
             nbajamTextBox1.setFontColorbyIndex(14);
-            
-           timer1.Start();
 
-            
-           //bajamTextBox1.BackColor = System.Drawing.Color.FromArgb(255, 128, 0, 0); 
+            timer1.Start();
+
+
+            //bajamTextBox1.BackColor = System.Drawing.Color.FromArgb(255, 128, 0, 0); 
         }
 
         private void timer1_Tick(object sender, EventArgs e)
         {
 
             nbajamTextBox1.TextJustify = nbajamTextBox.nbajamTextBox.TextJustifyOptions.Manual;
-           nbajamTextBox1.setFontColorbyIndex(timerthing);
-          nbajamTextBox1.setOffsetX(animator);
+            nbajamTextBox1.setFontColorbyIndex(timerthing);
+            nbajamTextBox1.setOffsetX(animator);
             timerthing++;
-           animator+=1;
-            if (animator == 8*nbajamTextBox1.TilesWide)
+            animator += 1;
+            if (animator == 8 * nbajamTextBox1.TilesWide)
                 animator = 0;
             if (timerthing == 15)
                 timerthing = 0;
@@ -2437,56 +2447,58 @@ letters[0].SetPixel(3, 0, 0);
 
         private void listBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
+            /*
             switch (listBox1.SelectedIndex)
             {
                 case 0:
                     nbajamTextBox1.Text = "chicago bulls";
-                     nbajamTextBox1.FontColor = nbajamTextBox.nbajamTextBox.FontColorOptions.Pallete_7;
+                    nbajamTextBox1.FontColor = nbajamTextBox.nbajamTextBox.FontColorOptions.Pallete_7;
                     nbajamTextBox1.BackColor = Color.FromKnownColor(KnownColor.Maroon);
                     pictureBox5.BackColor = Color.FromKnownColor(KnownColor.Black);
                     break;
                 case 1:
                     nbajamTextBox1.Text = "dallas mavericks";
-                      nbajamTextBox1.FontColor = nbajamTextBox.nbajamTextBox.FontColorOptions.Pallete_14;
+                    nbajamTextBox1.FontColor = nbajamTextBox.nbajamTextBox.FontColorOptions.Pallete_14;
                     nbajamTextBox1.BackColor = Color.FromKnownColor(KnownColor.MediumBlue);
-                    pictureBox5.BackColor = Color.FromKnownColor(KnownColor.ForestGreen );
+                    pictureBox5.BackColor = Color.FromKnownColor(KnownColor.ForestGreen);
 
                     break;
-                case 2:  
+                case 2:
                     nbajamTextBox1.Text = "seattle supersonics";
                     nbajamTextBox1.FontColor = nbajamTextBox.nbajamTextBox.FontColorOptions.Pallete_8;
                     nbajamTextBox1.BackColor = Color.FromKnownColor(KnownColor.DarkGreen);
                     pictureBox5.BackColor = Color.FromKnownColor(KnownColor.Gold);
                     break;
-            }
-           
-              
+            }*/
+
+
         }
 
         private void tabControl1_SelectedIndexChanged(object sender, EventArgs e)
         {
-            switch (tabControl1.SelectedIndex)
+            /* Don't do any of this shit yet
+             * switch (tabControl1.SelectedIndex)
             {
                 case 0:
-            
+
                     panel1.Visible = false;
                     panel2.Visible = true;
 
                     panel2.BringToFront();
                     panel1.SendToBack();
-                  //  panel1.Visible = false;
-                    
+                    //  panel1.Visible = false;
+
                     break;
-                case 1: 
+                case 1:
                     panel1.BringToFront();
                     panel2.SendToBack();
-                 panel1.Visible = true;
-                  panel2.Visible = false;
+                    panel1.Visible = true;
+                    panel2.Visible = false;
                     break;
                 case 2:
                     MessageBox.Show("Not Implemented Yet!");
                     break;
-            }
+            }*/
         }
 
         private void label2_Click(object sender, EventArgs e)
@@ -2526,15 +2538,15 @@ letters[0].SetPixel(3, 0, 0);
 
         private void button15_Click(object sender, EventArgs e)
         {
-            int pal_index=1;
+            int pal_index = 1;
             byte[] new_color_pal = new byte[64]; //32 color @ 2 bytes/col
             int q = 0;
- 
+
             if (dialogOpenFile.ShowDialog() == DialogResult.OK)
             {
                 sourceFileInfo = new FileInfo(dialogOpenFile.FileName);
                 sourceImage = Image.FromFile(dialogOpenFile.FileName);
-          
+
                 //prepare the quantizer
                 the_quantizer.Clear();
 
@@ -2547,36 +2559,36 @@ letters[0].SetPixel(3, 0, 0);
                 foreach (Color color in yourColorList)
                 {
                     optimized_palette[pal_index] = color;
-                      pal_index++;
+                    pal_index++;
                     Console.WriteLine("Win Color: " + color.ToString());
                     Console.WriteLine(toSNESColor(color).ToString("X4"));
-                }   
-                
-                
-                //swap pal 5 and 0, cuz we be hackin all night long
-           //     Color temp = optimized_palette[0];
-            //    optimized_palette[0] = optimized_palette[5];
-            //    optimized_palette[5] = temp;
-
-
-                 foreach (Color color in optimized_palette)
-                {
-                   
-                
-                        new_color_pal[q] = (byte)(toSNESColor(color));
-                        new_color_pal[q+1] = (byte)(toSNESColor(color) >> 8);
-                        Console.WriteLine("Snes: " + new_color_pal[q].ToString("X2") + new_color_pal[q + 1].ToString("X2"));
-                        q = q + 2;
-                    
                 }
-           
+
+
+                //swap pal 5 and 0, cuz we be hackin all night long
+                //     Color temp = optimized_palette[0];
+                //    optimized_palette[0] = optimized_palette[5];
+                //    optimized_palette[5] = temp;
+
+
+                foreach (Color color in optimized_palette)
+                {
+
+
+                    new_color_pal[q] = (byte)(toSNESColor(color));
+                    new_color_pal[q + 1] = (byte)(toSNESColor(color) >> 8);
+                    Console.WriteLine("Snes: " + new_color_pal[q].ToString("X2") + new_color_pal[q + 1].ToString("X2"));
+                    q = q + 2;
+
+                }
+
 
                 //load array with palette values
                 for (int y = 0; y < 56; y++)
                 {
                     for (int x = 0; x < 48; x++)
                     {
-                       new_back_array[x,y]= (byte)colorIndexLookup(gayness.GetPixel(x, y));
+                        new_back_array[x, y] = (byte)colorIndexLookup(gayness.GetPixel(x, y));
                     }
                 }
 
@@ -2585,7 +2597,7 @@ letters[0].SetPixel(3, 0, 0);
                 {
                     for (int x_tiles2 = 0; x_tiles2 < 48; x_tiles2++)
                     {
-                        Console.Write("{0:X2}", new_back_array[x_tiles2, y_tiles2]);          
+                        Console.Write("{0:X2}", new_back_array[x_tiles2, y_tiles2]);
                     }
                     Console.WriteLine();
                 }
@@ -2593,20 +2605,20 @@ letters[0].SetPixel(3, 0, 0);
                 byte[] localByteArray = new byte[1680];
 
                 localByteArray = getLinearArray();
-               int nameOffset = Convert.ToInt32(textBox1.Text);
+                int nameOffset = Convert.ToInt32(textBox1.Text);
 
 
-               for (int i = 0; i < 1680; i++)
+                for (int i = 0; i < 1680; i++)
                 {
                     fileBuffer[nameOffset] = localByteArray[i];
                     nameOffset++;
                 }
 
-               for (int ugh = 0; ugh < 64; ugh++)
-               {
-                   fileBuffer[nameOffset] = new_color_pal[ugh];
-                   nameOffset++;
-               }
+                for (int ugh = 0; ugh < 64; ugh++)
+                {
+                    fileBuffer[nameOffset] = new_color_pal[ugh];
+                    nameOffset++;
+                }
             }
         }
 
@@ -2621,7 +2633,7 @@ letters[0].SetPixel(3, 0, 0);
             int offset = 0;
             int sec_offset = 32;
 
-            for (int z = 0; z <7; z++)
+            for (int z = 0; z < 7; z++)
             {
                 for (int j = 0; j < 6; j++)
                 {
@@ -2650,7 +2662,7 @@ letters[0].SetPixel(3, 0, 0);
 
             return flat_5bpp_array;
         }
-        
+
         //returns byte[40] array
         private byte[] get5bpp(int address, int startx, int starty)
         {
@@ -2699,16 +2711,16 @@ letters[0].SetPixel(3, 0, 0);
             return tile;
 
         }
-    
+
 
         private int colorIndexLookup(Color input)
         {
-            int the_one=0;
+            int the_one = 0;
 
             for (int x = 0; x < 32; x++)
             {
                 if (input == optimized_palette[x])
-                the_one = x;
+                    the_one = x;
             }
 
             return the_one;
@@ -2718,7 +2730,7 @@ letters[0].SetPixel(3, 0, 0);
         private UInt16 toSNESColor(Color inputColor)
         {
             UInt16 output = 0;
-            int r,g,b;
+            int r, g, b;
 
             r = (int)inputColor.R / 8;
             g = (int)inputColor.G / 8;
@@ -2772,7 +2784,7 @@ letters[0].SetPixel(3, 0, 0);
                     sourceOffset += sourceData.Stride;
                 }
 
-            //    editTargetInfo.Text = string.Format("Quantized: {0} colors (duration {1})", 256, duration); // TODO
+                //    editTargetInfo.Text = string.Format("Quantized: {0} colors (duration {1})", 256, duration); // TODO
             }
             catch
             {
@@ -2850,7 +2862,7 @@ letters[0].SetPixel(3, 0, 0);
             }
 
             // spits some duration statistics (those actually slow the processing quite a bit, turn them off to make it quicker)
-           // editSourceInfo.Text = string.Format("Original: {0} colors ({1} x {2})", activeQuantizer.GetColorCount(), image.Width, image.Height);
+            // editSourceInfo.Text = string.Format("Original: {0} colors ({1} x {2})", activeQuantizer.GetColorCount(), image.Width, image.Height);
 
             // returns the quantized image
             return result;
@@ -2861,6 +2873,15 @@ letters[0].SetPixel(3, 0, 0);
 
         }
 
+        //Button 16? - "fuck shit up"
+        //Seems to:
+        /*
+         * 1. load an image into an nbajamPictureBox (which auto quantizes the palette down to 31 colors + transparent)
+         * 2. create an array to hold the picture data and pallete info
+         * 3. call the methods from nbajamPictureBox to load the linear array of portrait data and pallete info
+         * 4. load the info at the location specified by textbox1.text (portrait location offset)
+  
+         */
         private void button16_Click(object sender, EventArgs e)
         {
             if (dialogOpenFile.ShowDialog() == DialogResult.OK)
@@ -2922,90 +2943,102 @@ letters[0].SetPixel(3, 0, 0);
         
     }
 
+    /*
+    * Constants is a simple class to hold various game specific constants - like the array size of the player information.
+    */
+        static class Constants
+        {
 
-    static class Constants
-    {
-        public const int portraitBitmapSize = 1680;
-        public const int portraitPaletteSize = 64;
+            public const int portraitBitmapSize = 1680; // Number of bytes needed to hold a player portrait
+            public const int portraitPaletteSize = 64;  // Number of bytes needed to hold the portrait pallete info
 
-        public const int num_nametag_tilesX = 6;
-        public const int num_nametag_tilesY = 2;
-        public const int nametagSize = 384; // could probably shorten this buffer in the future
+            public const int num_nametag_tilesX = 6;    // Width (in 8x8 tiles) of the player "nametag" - 6*8 = 48 pixels wide
+            public const int num_nametag_tilesY = 2;    // Height (in 8x8 tiles) of the player "nametag" - 2*8 = 16 pixels tall
+            public const int nametagSize = 384;         // Number of bytes required to hold the "nametag" graphic information.
 
-        public const int playerStats_size = 26; // 0x1A bytes
+            public const int playerStats_size = 26;     // Number of bytes required to hold the player stat information (0x1A bytes)
+        }
+
+        /*
+         * fontTile is a simple class that lets you define a {Width} and {Height} for an font character 'tile' and
+         * also stores an {x,y} pixel map for the character's graphics.
+         * 
+         * Note: colors are not defined in the fontTitle itself - the values stored in the pixel map are arbitrary as far as
+         * the fontTile is concerned. It is up to the renderer to determine what the {value} means (ie what color should be displayed).
+         */
+        public class fontTile
+        {
+            public int Width;
+            public int Height;
+            private int[,] pixels;
+
+            public fontTile(int x, int y)
+            {
+                Width = x;
+                Height = y;
+                pixels = new int[x, y];
+            }
+
+            public void SetPixel(int x, int y, int value)
+            {
+                pixels[x, y] = value;
+            }
+
+            public int getPixel(int x, int y)
+            {
+                return pixels[x, y];
+            }
+
+        }
+
+        /* 
+         *  player Data seems to hold a bunch of internal player info - not really implemented yet
+         */
+        public class playerData
+        {
+            private int ID;
+            private String internalName;
+            private int portraitLocation;
+            private int nametagLocation;
+            private int statsLocation;
+            private bool secretPlayer;
+
+            public playerData(int addID, String addName, int addPortrait, int addNametag, int addStats, bool addSecret)
+            {
+                ID = addID;
+                internalName = addName;
+                portraitLocation = addPortrait;
+                nametagLocation = addNametag;
+                statsLocation = addStats;
+                secretPlayer = addSecret;
+            }
+
+            public String getName()
+            {
+                return internalName;
+            }
+
+            public int getPortrait()
+            {
+                return portraitLocation;
+            }
+
+            public int getNametag()
+            {
+                return nametagLocation;
+            }
+
+            public int getStats()
+            {
+                return statsLocation;
+            }
+
+            public bool isSecretPlayer()
+            {
+                return secretPlayer;
+            }
+
+
+        }
     }
 
-    public class fontTile
-    {
-        public int Width;
-        public int Height;
-        private int[,] pixels; 
-
-
-        public fontTile(int x, int y)
-        {
-            Width = x;
-            Height = y;
-            pixels = new int[x, y];
-        }
-
-        public void SetPixel(int x, int y, int value)
-        {
-            pixels[x, y] = value;
-        }
-
-        public int getPixel(int x, int y)
-        {
-            return pixels[x, y];
-        }
-
-    }
-
-
-    public class playerData
-    {
-        private int ID;
-        private String internalName;
-        private int portraitLocation;
-        private int nametagLocation;
-        private int statsLocation;
-        private bool secretPlayer;
-
-        public playerData(int addID, String addName, int addPortrait, int addNametag, int addStats,bool addSecret)
-        {
-            ID = addID;
-            internalName = addName;
-            portraitLocation = addPortrait;
-            nametagLocation = addNametag;
-            statsLocation = addStats;
-            secretPlayer = addSecret;
-        }
-
-        public String getName()
-        {
-            return internalName;
-        }
-
-        public int getPortrait()
-        {
-            return portraitLocation;
-        }
-
-        public int getNametag()
-        {
-            return nametagLocation;
-        }
-
-        public int getStats()
-        {
-            return statsLocation;
-        }
-
-        public bool isSecretPlayer()
-        {
-            return secretPlayer;
-        }
-
-
-    }
-}
