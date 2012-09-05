@@ -3537,7 +3537,8 @@ namespace WindowsFormsApplication1
             {
     
                 nbajamPictureBox1.loadNewImage(Image.FromFile(dialogOpenFile.FileName));
-               
+
+                //nbajamPictureBox1.ScaleFactor = 4;
 
                 byte[] localByteArray = new byte[1680];
                 byte[] localPalette = new byte[64];
@@ -3548,9 +3549,12 @@ namespace WindowsFormsApplication1
                 localPalette = nbajamPictureBox1.getPortraitPalette();
              //   localPalette = nbajamPictureBox3.getPortraitPalette();
                 
+                playerData jammers = nbajam_players.ElementAt(comboBox1.SelectedIndex);
+                int nameOffset = jammers.getPortrait();
 
-                int nameOffset = Convert.ToInt32(textBox1.Text);
+              
 
+             /* This writes the image into the buffer*/
                 for (int i = 0; i < 1680; i++)
                 {
                     fileBuffer[nameOffset] = localByteArray[i];

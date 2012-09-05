@@ -568,6 +568,12 @@ namespace nbajamPictureBox
         //The palette quantization here needs to be fixed... 9/4/2012
         public void loadNewImage(Image input)
         {
+            Size exactSize = new Size(48,56);
+            if(input.Size != exactSize)
+            {
+                MessageBox.Show("Image needs to be 48x56 pixels!");
+                return;
+            }
             int pal_index = 1;
             int q = 0;
 
