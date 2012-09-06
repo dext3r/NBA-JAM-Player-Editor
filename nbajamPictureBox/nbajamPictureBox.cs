@@ -49,7 +49,7 @@ namespace nbajamPictureBox
        // private IColorQuantizer quantizer2 = new PopularityQuantizer();
 
         private ConcurrentDictionary<Color, Int64> errorCache;
-        private IColorQuantizer the_quantizer;
+       // private IColorQuantizer the_quantizer;
         private IColorCache activeColorCache;
         private Image sourceImage; //load form function method
 
@@ -308,6 +308,8 @@ namespace nbajamPictureBox
             int palette_count = 0;
 
             single_tile = new byte[8, 8];
+           // if (hasPalette)
+            //    data_size = 1744;
 
             raw_data_bytes = new byte[data_size];
             // backArray = new byte[8,8];
@@ -319,7 +321,7 @@ namespace nbajamPictureBox
                     raw_data_bytes[i] = data[i];
                     bytesCopied++;
                 }
-
+  
                 // If image is a portrait, load the color palette automatically
 
                 // ?? lol why only if portrait? load a palette automatically
@@ -510,7 +512,7 @@ namespace nbajamPictureBox
             {
                 before = DateTime.Now;
                 Int32 colorCount = 31; //GetColorCount();
-                List<Color> palette = the_quantizer.GetPalette(colorCount);
+             //   List<Color> palette = the_quantizer.GetPalette(colorCount);
 
                 // sets our newly calculated palette to the target image
                 ColorPalette imagePalette = result.Palette;
@@ -518,11 +520,11 @@ namespace nbajamPictureBox
 
                 imagePalette.Entries[0] = System.Drawing.Color.FromArgb(255, 255, 0, 255);
 
-                for (Int32 index = 1; index-1 < palette.Count; index++)
+            /*    for (Int32 index = 1; index-1 < palette.Count; index++)
                 {
                    imagePalette.Entries[index] = palette[index-1];
                 }
-
+                */
                 result.Palette = imagePalette;
 
             }
@@ -593,17 +595,20 @@ namespace nbajamPictureBox
         //The palette quantization here needs to be fixed... 9/4/2012
         public void loadNewImage(Image input)
         {
-            IColorQuantizer the_quantizer = new WuColorQuantizer();
-            Int32 parallelTaskCount = the_quantizer.AllowParallel ? 0 : 1;
+            WuColorQuantizer the_quantizerZ = new WuColorQuantizer();
+            List<Color> yourColorList = new List<Color>();
+            Bitmap gayness;
+            
+            Int32 parallelTaskCount = the_quantizerZ.AllowParallel ? 8 : 1;
             TaskScheduler uiScheduler = TaskScheduler.FromCurrentSynchronizationContext();
             Int32 colorCount = 32;
-           
 
+            Image targetImageZ;
+            targetImageZ = null;
+ 
             errorCache = new ConcurrentDictionary<Color, Int64>();
 
-            Size exactSize = new Size(48,56);
-
-            if(input.Size != exactSize)
+            if (input.Size != new Size(48, 56))
             {
                 MessageBox.Show("Image needs to be 48x56 pixels!");
                 return;
@@ -614,32 +619,86 @@ namespace nbajamPictureBox
             sourceImage = input; //copy the image, dont really need. TODO: Change
 
             //the_quantizer.Clear(); //clear the quantizer
+            //GETQUANTIZEDIMAGE IS OLD HAT SHIT
             //this.Image = this.GetQuantizedImage(sourceImage);
             // quantization process
             errorCache.Clear();
-             ImageBuffer image = new ImageBuffer((Bitmap)sourceImage,ImageLockMode.ReadWrite);
-             the_quantizer.Prepare(image);
 
-            // applies current UI selection
-            if (the_quantizer is BaseColorCacheQuantizer)
-            {
-                BaseColorCacheQuantizer quantizer = (BaseColorCacheQuantizer)the_quantizer;
-                quantizer.ChangeCacheProvider(activeColorCache);
-            }
-
-            Task quantization = Task.Factory.StartNew(() =>
-                this.Image = ImageBuffer.QuantizeImage(sourceImage, the_quantizer, null, colorCount, parallelTaskCount),
-                TaskCreationOptions.LongRunning);
             
+         //  Task quantization = Task.Factory.StartNew(() =>
+            targetImageZ = ImageBuffer.QuantizeImage(sourceImage, the_quantizerZ, colorCount, parallelTaskCount);//, 
+           //     TaskCreationOptions.LongRunning);
+          // Task.Factory.StartNew
+           // System.Diagnostics.Debug.WriteLine(TaskScheduler.Current.ToString());
+         
             // finishes after running
-            quantization.ContinueWith(task =>
-            {
-     
-            }, uiScheduler);
+         // / quantization.ContinueWith((i) =>
+          // {   
+            //   System.Diagnostics.Debug.WriteLine(i.Status.ToString());
+               this.Image = targetImageZ;
+               
+               gayness = new Bitmap(this.Image); // uber temporary hack thing to basically let us redraw the image using palette values
+          
 
-            Bitmap gayness = (Bitmap)this.Image; // uber temporary hack thing to basically let us redraw the image using palette values
+               //the_quantizerZ.GetPalette(31); <- this doesnt work for some reason. 
+               // \/ --- this hack may work instead?
+               for (int z = 0; z < 31; z++)
+               {
+                   yourColorList.Add(System.Drawing.Color.FromArgb(255,the_quantizerZ.reds[z],the_quantizerZ.greens[z],the_quantizerZ.blues[z]));
+               }
+                       
+               //Puts the transparent color at index 0 (Reason? Anything at index 0 is transparent to SNES)
+               optimized_palette[0] = System.Drawing.Color.FromArgb(255, 255, 0, 255);
+
+               //Put the rest of the colors into the palette array
+               /* This CANT be right....why is it loading the optimized palette from existing palette?
+               for (Int32 index = 1; index < yourColorList.Count; index++)
+               {
+                   optimized_palette[index] = palette[index];
+               } 
+               ///  DO \/ THIS \/ INSTEAD?
+                */
+               foreach (Color color in yourColorList)
+               {
+                   optimized_palette[pal_index] = color;
+                   pal_index++;
+               }
+
+               /* DEBUG: PRINT THE COLOR PALETTE*/
+                 foreach (Color color in optimized_palette )
+               {
+                   System.Diagnostics.Debug.WriteLine(color.ToString());
+               }
+
+               //converts the palette to a SNES palette
+               foreach (Color color in optimized_palette)
+               {
+                   new_color_pal[q] = (byte)(RGBtoSNES(color));
+                   new_color_pal[q + 1] = (byte)(RGBtoSNES(color) >> 8);
+                   // Console.WriteLine("Snes: " + new_color_pal[q].ToString("X2") + new_color_pal[q + 1].ToString("X2"));
+                   q = q + 2;
+               }
+
+               for (int y = 0; y < (8 * tile_height); y++)
+               {
+                   for (int x = 0; x < (8 * tile_width); x++)
+                   {
+                       new_back_array[x, y] = (byte)colorIndexLookup(gayness.GetPixel(x, y)); // uber temporary hack thing to basically let us redraw the image using palette values
+                   }
+               }
+
+               //this.Image = gayness;
+              redrawFlag = true;
+              this.Invalidate();
+              
+
+               
+
+          // }, uiScheduler);
+        
+         /*   Bitmap gayness = (Bitmap)this.Image; // uber temporary hack thing to basically let us redraw the image using palette values
            
-            List<Color> yourColorList = the_quantizer.GetPalette(31); // Get a list of the optimized color palette...
+            List<Color> yourColorList = the_quantizerZ.GetPalette(31); // Get a list of the optimized color palette...
             ///... and copy it into an array?
             ///
 
@@ -671,7 +730,7 @@ namespace nbajamPictureBox
                 {
                     new_back_array[x, y] = (byte)colorIndexLookup(gayness.GetPixel(x, y)); // uber temporary hack thing to basically let us redraw the image using palette values
                 }
-            }
+            }*/
         }
 
         private int colorIndexLookup(Color input)
@@ -679,6 +738,7 @@ namespace nbajamPictureBox
             int the_color = 0;
 
             for (int x = 0; x < 32; x++)
+
             {
                 if (input == optimized_palette[x])
                     the_color = x;
@@ -690,7 +750,7 @@ namespace nbajamPictureBox
         // maybe add something to return all the linear array IF PORTRAIT = picture+pallete? or who gives a fuck
         public byte[] get5bppLinearArray()
         {
-            byte[] flat_5bpp_array = new byte[tile_height * tile_width * 40]; //fix this kinda...i mean 40 is here because we know 5bpp but what if not 5bpp?
+            byte[] flat_5bpp_array = new byte[tile_height * tile_width * 40]; //fix this kinda...i mean 40 is here because we know 5bpp but what if not 5bpp? (5bpp * 8px = 40)
             byte[] tile = new byte[40];
 
             int locationx = 0;

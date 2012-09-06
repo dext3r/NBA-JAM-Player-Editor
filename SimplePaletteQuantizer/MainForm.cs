@@ -89,6 +89,9 @@ namespace SimplePaletteQuantizer
             SwitchControls(false);
             DateTime before = DateTime.Now;
 
+           // System.Diagnostics.Debug.WriteLine(activeQuantizer);
+
+            
             // quantization process
             Task quantization = Task.Factory.StartNew(() => 
                 targetImage = ImageBuffer.QuantizeImage(sourceImage, activeQuantizer, activeDitherer, colorCount, parallelTaskCount), 
@@ -98,39 +101,7 @@ namespace SimplePaletteQuantizer
             quantization.ContinueWith(task =>
             {
                 // detects operation duration
-                TimeSpan duration = DateTime.Now - before;
-                TimeSpan perPixel = new TimeSpan(duration.Ticks / (sourceImage.Width * sourceImage.Height));
-                
-                // detects error and color count
-                Int32 originalColorCount = activeQuantizer.GetColorCount();
-                String nrmsdString = string.Empty;
-
-                // calculates NRMSD error, if requested
-                if (checkShowError.Checked)
-                {
-                    Double nrmsd = ImageBuffer.CalculateImageNormalizedMeanError(sourceImage, targetImage, parallelTaskCount);
-                    nrmsdString = string.Format(" (NRMSD = {0:0.#####})", nrmsd);
-                }
-
-                // spits some duration statistics (those actually slow the processing quite a bit, turn them off to make it quicker)
-                editSourceInfo.Text = string.Format("Original: {0} colors ({1} x {2})", originalColorCount, sourceImage.Width, sourceImage.Height);
-                editTargetInfo.Text = string.Format("Quantized: {0} colors{1}", colorCount, nrmsdString);
-
-                // new GIF and PNG sizes
-                Int32 newGifSize, newPngSize;
-
-                // retrieves a GIF image based on our HSB-quantized one
-                GetConvertedImage(targetImage, ImageFormat.Gif, out newGifSize);
-
-                // retrieves a PNG image based on our HSB-quantized one
-                GetConvertedImage(targetImage, ImageFormat.Png, out newPngSize);
-
-                // spits out the statistics
-                Text = string.Format("Simple palette quantizer (duration 0:{0:00}.{1:0000000}, per pixel 0.{2:0000000})", duration.Seconds, duration.Ticks, perPixel.Ticks);
-                editProjectedGifSize.Text = projectedGifSize.ToString();
-                editProjectedPngSize.Text = sourceFileInfo.Length.ToString();
-                editNewGifSize.Text = newGifSize.ToString();
-                editNewPngSize.Text = newPngSize.ToString();
+           
                 pictureTarget.Image = targetImage;
 
                 // enables controls again
@@ -202,6 +173,7 @@ namespace SimplePaletteQuantizer
             // applies current UI selection
             if (activeQuantizer is BaseColorCacheQuantizer)
             {
+                System.Diagnostics.Debug.WriteLine(activeQuantizer.ToString() + " is a BaseColorCacheQuantizer");
                 BaseColorCacheQuantizer quantizer = (BaseColorCacheQuantizer) activeQuantizer;
                 quantizer.ChangeCacheProvider(activeColorCache);
             }
@@ -476,5 +448,49 @@ namespace SimplePaletteQuantizer
         }
 
         #endregion
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            Image sourceImageZ;
+            Image targetImageZ;
+
+           // ConcurrentDictionary<Color, Int64> errorCache = new ConcurrentDictionary<Color,Int64>();
+            MedianCutQuantizer the_quantizer = new MedianCutQuantizer();
+            OpenFileDialog dialogOpenFile1 = new OpenFileDialog();
+
+            EuclideanDistanceColorCache euc = new EuclideanDistanceColorCache();
+            the_quantizer.ChangeCacheProvider(euc);
+
+          
+
+            Int32 parallelTaskCount = the_quantizer.AllowParallel ? 8 : 1; //activeQuantizer.AllowParallel ? 8 : 1;
+            TaskScheduler uiScheduler = TaskScheduler.FromCurrentSynchronizationContext();
+            Int32 colorCount = 31;
+
+            if (dialogOpenFile1.ShowDialog() == DialogResult.OK)
+            {
+                sourceImageZ = Image.FromFile(dialogOpenFile1.FileName);
+                targetImageZ = null;
+               // errorCache.Clear();
+
+                Task quantization = Task.Factory.StartNew(() =>
+                targetImageZ = ImageBuffer.QuantizeImage(sourceImageZ, the_quantizer, null, colorCount, parallelTaskCount),
+                TaskCreationOptions.LongRunning);
+
+                // finishes after running
+                quantization.ContinueWith(task =>
+                {
+                     pictureTarget.Image = targetImageZ;
+                    the_quantizer.GetPalette(31);
+                }, uiScheduler);
+
+               
+            }
+        }
+
+        private void panelControls_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
     }
 }

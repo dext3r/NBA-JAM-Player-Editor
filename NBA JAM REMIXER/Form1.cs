@@ -3530,11 +3530,9 @@ namespace WindowsFormsApplication1
          */
         private void button16_Click(object sender, EventArgs e)
         {
-
-          
             if (dialogOpenFile.ShowDialog() == DialogResult.OK)
             {
-    
+
                 nbajamPictureBox1.loadNewImage(Image.FromFile(dialogOpenFile.FileName));
 
                 //nbajamPictureBox1.ScaleFactor = 4;
@@ -3543,17 +3541,17 @@ namespace WindowsFormsApplication1
                 byte[] localPalette = new byte[64];
 
                 localByteArray = nbajamPictureBox1.get5bppLinearArray();
-          //      localByteArray = nbajamPictureBox3.get5bppLinearArray();
+                //      localByteArray = nbajamPictureBox3.get5bppLinearArray();
 
                 localPalette = nbajamPictureBox1.getPortraitPalette();
-             //   localPalette = nbajamPictureBox3.getPortraitPalette();
-                
+                //   localPalette = nbajamPictureBox3.getPortraitPalette();
+
                 playerData jammers = nbajam_players.ElementAt(comboBox1.SelectedIndex);
                 int nameOffset = jammers.getPortrait();
 
-              
 
-             /* This writes the image into the buffer*/
+
+                /* This writes the image into the buffer*/
                 for (int i = 0; i < 1680; i++)
                 {
                     fileBuffer[nameOffset] = localByteArray[i];
@@ -3567,7 +3565,6 @@ namespace WindowsFormsApplication1
                 }
             }
         }
-
         private void panel2_Paint(object sender, PaintEventArgs e)
         {
 

@@ -28,9 +28,9 @@ namespace SimplePaletteQuantizer.Quantizers.XiaolinWu
 
         #region | Fields |
 
-        private Int32[] reds;
-        private Int32[] greens;
-        private Int32[] blues;
+        public Int32[] reds;
+        public Int32[] greens;
+        public Int32[] blues;
         private Int32[] sums;
         private Int32[] indices;
 
@@ -407,6 +407,9 @@ namespace SimplePaletteQuantizer.Quantizers.XiaolinWu
         /// </summary>
         protected override void OnAddColor(Color color, Int32 key, Int32 x, Int32 y)
         {
+           // if (color.Equals(System.Drawing.Color.FromArgb(255,0,255)))
+           //     return;
+
             Int32 indexRed = (color.R >> 3) + 1;
             Int32 indexGreen = (color.G >> 3) + 1;
             Int32 indexBlue = (color.B >> 3) + 1;

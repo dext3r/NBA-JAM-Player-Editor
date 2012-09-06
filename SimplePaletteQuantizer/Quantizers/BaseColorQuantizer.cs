@@ -198,6 +198,7 @@ namespace SimplePaletteQuantizer.Quantizers
         {
             Int32 key;
             color = QuantizationHelper.ConvertAlpha(color, out key);
+             //if (!color.Equals(System.Drawing.Color.FromArgb(255,0,255)))
             OnAddColor(color, key, x, y);
         }
 
