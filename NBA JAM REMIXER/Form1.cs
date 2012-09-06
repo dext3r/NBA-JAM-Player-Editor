@@ -10,12 +10,7 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 //NOT MY CODE \/ \/ \/ \/ \/ \/ 
-using SimplePaletteQuantizer.Quantizers;
-using SimplePaletteQuantizer.Quantizers.HSB;
-using SimplePaletteQuantizer.Quantizers.Median;
-using SimplePaletteQuantizer.Quantizers.Octree;
-using SimplePaletteQuantizer.Quantizers.Popularity;
-using SimplePaletteQuantizer.Quantizers.Uniform;
+
 //NOT MY CODE /\ /\ /\ /\ /\ /\
 //Awesome project from here: http://www.codeproject.com/KB/recipes/SimplePaletteQuantizer.aspx
 
@@ -58,7 +53,7 @@ namespace WindowsFormsApplication1
         /// this stuff has been deprecated into nbajampicturebox i think
         private Image sourceImage;
         private FileInfo sourceFileInfo;
-        private IColorQuantizer the_quantizer = new PaletteQuantizer();
+      // private IColorQuantizer the_quantizer = new PaletteQuantizer();
         private Color[] optimized_palette = new Color[32];
         private byte[,] new_back_array = new byte[48, 56];
 
@@ -324,7 +319,7 @@ namespace WindowsFormsApplication1
             // playerPairing2.setPortrait1(full_data);
             //playerPairing2.setPortrait2(full_data);
 
-            //nbajamPictureBox1.Invalidate();
+            nbajamPictureBox1.Invalidate();
             //    nbajamPictureBox1.Image = portraitBitmap; 
         }
 
@@ -3196,22 +3191,22 @@ namespace WindowsFormsApplication1
                 sourceImage = Image.FromFile(dialogOpenFile.FileName);
 
                 //prepare the quantizer
-                the_quantizer.Clear();
+                //the_quantizer.Clear();
 
                 Image targetImage = GetQuantizedImage(sourceImage);
                 Bitmap gayness = (Bitmap)targetImage;
                 pictureBox6.Image = targetImage;
 
-                List<Color> yourColorList = the_quantizer.GetPalette(31);
+                //List<Color> yourColorList = the_quantizer.GetPalette(31);
 
-                foreach (Color color in yourColorList)
+               /* foreach (Color color in yourColorList)
                 {
                     optimized_palette[pal_index] = color;
                     pal_index++;
                     Console.WriteLine("Win Color: " + color.ToString());
                     Console.WriteLine(toSNESColor(color).ToString("X4"));
                 }
-
+                */
 
                 //swap pal 5 and 0, cuz we be hackin all night long
                 //     Color temp = optimized_palette[0];
@@ -3424,7 +3419,7 @@ namespace WindowsFormsApplication1
                     foreach (Color color in sourceBuffer.Select(argb => Color.FromArgb(argb)))
                     {
                         before = DateTime.Now;
-                        the_quantizer.AddColor(color);
+                        //the_quantizer.AddColor(color);
                         duration += DateTime.Now - before;
                     }
 
@@ -3447,19 +3442,19 @@ namespace WindowsFormsApplication1
             {
                 before = DateTime.Now;
                 Int32 colorCount = 32; //GetColorCount();
-                List<Color> palette = the_quantizer.GetPalette(colorCount);
+           //     List<Color> palette = the_quantizer.GetPalette(colorCount);
 
                 // sets our newly calculated palette to the target image
                 ColorPalette imagePalette = result.Palette;
                 duration += DateTime.Now - before;
 
-                for (Int32 index = 0; index < palette.Count; index++)
+            /*    for (Int32 index = 0; index < palette.Count; index++)
                 {
                     imagePalette.Entries[index] = palette[index];
                 }
 
                 result.Palette = imagePalette;
-
+                */
             }
             catch (Exception)
             {
@@ -3490,7 +3485,7 @@ namespace WindowsFormsApplication1
                     {
                         Color color = Color.FromArgb(sourceBuffer[index]);
                         before = DateTime.Now;
-                        targetBuffer[index] = (Byte)the_quantizer.GetPaletteIndex(color);
+                       // targetBuffer[index] = (Byte)the_quantizer.GetPaletteIndex(color);
                         duration += DateTime.Now - before;
                     }
 
@@ -3529,10 +3524,14 @@ namespace WindowsFormsApplication1
          * 2. create an array to hold the picture data and pallete info
          * 3. call the methods from nbajamPictureBox to load the linear array of portrait data and pallete info
          * 4. load the info at the location specified by textbox1.text (portrait location offset)
-  
+        
+         * 9/5/2012: what this should do: pop up file select dialog. pick file. load file, display in new window
+         * with option to change quantization algorithm before proceding NOPE - STUIPD. can only use one quantizer for fixed color pallete?
          */
         private void button16_Click(object sender, EventArgs e)
         {
+
+          
             if (dialogOpenFile.ShowDialog() == DialogResult.OK)
             {
     

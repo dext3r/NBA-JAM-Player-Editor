@@ -23,3 +23,8 @@ C:\Users\dext3r\Documents\GitHub\NBA-JAM-Player-Editor\nbajamTextBox\bin\Debug\n
 C:\Users\dext3r\Documents\GitHub\NBA-JAM-Player-Editor\nbajamTextBox\obj\Debug\ResolveAssemblyReference.cache
 C:\Users\dext3r\Documents\GitHub\NBA-JAM-Player-Editor\nbajamTextBox\obj\Debug\nbajamTextBox.dll
 C:\Users\dext3r\Documents\GitHub\NBA-JAM-Player-Editor\nbajamTextBox\obj\Debug\nbajamTextBox.pdb
+C:\Users\dext3r\Documents\GitHub\DURP\NBA-JAM-Player-Editor\nbajamTextBox\bin\Debug\nbajamTextBox.dll
+C:\Users\dext3r\Documents\GitHub\DURP\NBA-JAM-Player-Editor\nbajamTextBox\bin\Debug\nbajamTextBox.pdb
+C:\Users\dext3r\Documents\GitHub\DURP\NBA-JAM-Player-Editor\nbajamTextBox\obj\Debug\ResolveAssemblyReference.cache
+C:\Users\dext3r\Documents\GitHub\DURP\NBA-JAM-Player-Editor\nbajamTextBox\obj\Debug\nbajamTextBox.dll
+C:\Users\dext3r\Documents\GitHub\DURP\NBA-JAM-Player-Editor\nbajamTextBox\obj\Debug\nbajamTextBox.pdb

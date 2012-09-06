@@ -1,32 +1,56 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.Concurrent;
 using System.ComponentModel;
 using System.Drawing;
 using System.Drawing.Imaging;
 using System.Data;
 using System.Linq;
 using System.Text;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Runtime.InteropServices;
-//NOT MY CODE \/ \/ \/ \/ \/ \/
+using SimplePaletteQuantizer.ColorCaches;
+using SimplePaletteQuantizer.ColorCaches.Common;
+using SimplePaletteQuantizer.ColorCaches.EuclideanDistance;
+using SimplePaletteQuantizer.ColorCaches.LocalitySensitiveHash;
+using SimplePaletteQuantizer.ColorCaches.Octree;
+using SimplePaletteQuantizer.Ditherers;
+using SimplePaletteQuantizer.Ditherers.ErrorDiffusion;
+using SimplePaletteQuantizer.Ditherers.Ordered;
+using SimplePaletteQuantizer.Helpers;
+using SimplePaletteQuantizer.Properties;
 using SimplePaletteQuantizer.Quantizers;
-using SimplePaletteQuantizer.Quantizers.HSB;
-using SimplePaletteQuantizer.Quantizers.Median;
+using SimplePaletteQuantizer.Quantizers.DistinctSelection;
+using SimplePaletteQuantizer.Quantizers.MedianCut;
+using SimplePaletteQuantizer.Quantizers.NeuQuant;
 using SimplePaletteQuantizer.Quantizers.Octree;
+using SimplePaletteQuantizer.Quantizers.OptimalPalette;
 using SimplePaletteQuantizer.Quantizers.Popularity;
 using SimplePaletteQuantizer.Quantizers.Uniform;
+using SimplePaletteQuantizer.Quantizers.XiaolinWu;
+//NOT MY CODE \/ \/ \/ \/ \/ \/
+//using SimplePaletteQuantizer.Quantizers;
+//using SimplePaletteQuantizer.Quantizers.HSB;
+/*using SimplePaletteQuantizer.Quantizers.Median;
+using SimplePaletteQuantizer.Quantizers.Octree;
+using SimplePaletteQuantizer.Quantizers.Popularity;
+using SimplePaletteQuantizer.Quantizers.Uniform;*/
 //NOT MY CODE /\ /\ /\ /\ /\ /\
 //Awesome project from here: http://www.codeproject.com/KB/recipes/SimplePaletteQuantizer.aspx
 
 
-
 namespace nbajamPictureBox
 {
+    //9/5/2012 - change to Wu's Quantizer, 31 color
     public partial class nbajamPictureBox : PictureBox
     {
-        private IColorQuantizer the_quantizer = new PaletteQuantizer(); // Color quantizer object
-        private IColorQuantizer quantizer2 = new PopularityQuantizer();
+      //  private IColorQuantizer the_quantizer = new PaletteQuantizer(); // Color quantizer object
+       // private IColorQuantizer quantizer2 = new PopularityQuantizer();
 
+        private ConcurrentDictionary<Color, Int64> errorCache;
+        private IColorQuantizer the_quantizer;
+        private IColorCache activeColorCache;
         private Image sourceImage; //load form function method
 
         // heres how it goes down
@@ -36,9 +60,12 @@ namespace nbajamPictureBox
         // the in main program, gets the data from the control and you can
         // do whatever the fuck you want with it
         // - thank you
-
+       
         private int data_size = 0; // Length of raw data array
         private int palette_size = 0; // Number of colors in the image
+
+
+        //"behind the scenes" variables - straight up, untouched data in 5bpp format!
         private byte[] raw_data_bytes; // Array of byte data which holds image data
         private Color[] palette; // The color palette for the image
 
@@ -74,7 +101,6 @@ namespace nbajamPictureBox
                 flippedFlag = value;
             }
         }
-
         public int DataSize
         {
             get
@@ -309,7 +335,6 @@ namespace nbajamPictureBox
                     //offset j to get the last 64 bytes of the data buffer
                     for (int j = 0x690; j < (64 + 0x690); j = j + 2)
                     {
-
                         rgb_color = raw_data_bytes[j + 1];
                         rgb_color = rgb_color << 8;
                         rgb_color = rgb_color + raw_data_bytes[j];
@@ -461,7 +486,7 @@ namespace nbajamPictureBox
                         // make a mask
                         // AND the bytes
                         if(color != System.Drawing.Color.FromArgb(255,255,0,255))
-                                 the_quantizer.AddColor(color);
+                              //   .the_quantizerthe_quantizer.AddColor(color);
 
                         duration += DateTime.Now - before;
                     }
@@ -495,7 +520,7 @@ namespace nbajamPictureBox
 
                 for (Int32 index = 1; index-1 < palette.Count; index++)
                 {
-                    imagePalette.Entries[index] = palette[index-1];
+                   imagePalette.Entries[index] = palette[index-1];
                 }
 
                 result.Palette = imagePalette;
@@ -534,8 +559,8 @@ namespace nbajamPictureBox
 
                       if (color == System.Drawing.Color.FromArgb(255, 255, 0, 255))
                            targetBuffer[index] = 0;
-                       else
-                          targetBuffer[index] = (Byte)(the_quantizer.GetPaletteIndex(color)+1);
+                       //else
+                        //  targetBuffer[index] = (Byte)(the_quantizer.GetPaletteIndex(color)+1);
                    
                         
                         before = DateTime.Now;
@@ -568,7 +593,16 @@ namespace nbajamPictureBox
         //The palette quantization here needs to be fixed... 9/4/2012
         public void loadNewImage(Image input)
         {
+            IColorQuantizer the_quantizer = new WuColorQuantizer();
+            Int32 parallelTaskCount = the_quantizer.AllowParallel ? 0 : 1;
+            TaskScheduler uiScheduler = TaskScheduler.FromCurrentSynchronizationContext();
+            Int32 colorCount = 32;
+           
+
+            errorCache = new ConcurrentDictionary<Color, Int64>();
+
             Size exactSize = new Size(48,56);
+
             if(input.Size != exactSize)
             {
                 MessageBox.Show("Image needs to be 48x56 pixels!");
@@ -579,8 +613,29 @@ namespace nbajamPictureBox
 
             sourceImage = input; //copy the image, dont really need. TODO: Change
 
-            the_quantizer.Clear(); //clear the quantizer
-            this.Image = this.GetQuantizedImage(sourceImage);
+            //the_quantizer.Clear(); //clear the quantizer
+            //this.Image = this.GetQuantizedImage(sourceImage);
+            // quantization process
+            errorCache.Clear();
+             ImageBuffer image = new ImageBuffer((Bitmap)sourceImage,ImageLockMode.ReadWrite);
+             the_quantizer.Prepare(image);
+
+            // applies current UI selection
+            if (the_quantizer is BaseColorCacheQuantizer)
+            {
+                BaseColorCacheQuantizer quantizer = (BaseColorCacheQuantizer)the_quantizer;
+                quantizer.ChangeCacheProvider(activeColorCache);
+            }
+
+            Task quantization = Task.Factory.StartNew(() =>
+                this.Image = ImageBuffer.QuantizeImage(sourceImage, the_quantizer, null, colorCount, parallelTaskCount),
+                TaskCreationOptions.LongRunning);
+            
+            // finishes after running
+            quantization.ContinueWith(task =>
+            {
+     
+            }, uiScheduler);
 
             Bitmap gayness = (Bitmap)this.Image; // uber temporary hack thing to basically let us redraw the image using palette values
            
@@ -590,16 +645,16 @@ namespace nbajamPictureBox
 
             optimized_palette[0] = System.Drawing.Color.FromArgb(255,255, 0, 255);
 
-         //   for (Int32 index = 1; index < yourColorList.Count; index++)
-         //   {
-         //       optimized_palette[index] = palette[index];
-         //   }
+            for (Int32 index = 1; index < yourColorList.Count; index++)
+            {
+               optimized_palette[index] = palette[index];
+            }
 
             foreach (Color color in yourColorList)
             {
                 optimized_palette[pal_index] = color;
                 pal_index++;
-             }
+           }
 
             //converts the palette to a SNES palette
             foreach (Color color in optimized_palette)

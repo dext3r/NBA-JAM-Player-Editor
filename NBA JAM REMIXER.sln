@@ -13,9 +13,9 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "nbajamPictureBox", "nbajamP
 		{37812A22-91F3-4220-891E-5C26DA64A975} = {37812A22-91F3-4220-891E-5C26DA64A975}
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SimplePaletteQuantizer", "SimplePaletteQuantizer\SimplePaletteQuantizer.csproj", "{37812A22-91F3-4220-891E-5C26DA64A975}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "playerPairing", "playerPairing\playerPairing.csproj", "{EE1B0270-3A08-4A7C-8DCD-6BEF85BD3AEE}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SimplePaletteQuantizer", "SimplePaletteQuantizer\SimplePaletteQuantizer.csproj", "{37812A22-91F3-4220-891E-5C26DA64A975}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -57,16 +57,6 @@ Global
 		{825474FB-B548-4D10-99CE-969EE1348683}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
 		{825474FB-B548-4D10-99CE-969EE1348683}.Release|Mixed Platforms.Build.0 = Release|Any CPU
 		{825474FB-B548-4D10-99CE-969EE1348683}.Release|x86.ActiveCfg = Release|Any CPU
-		{37812A22-91F3-4220-891E-5C26DA64A975}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{37812A22-91F3-4220-891E-5C26DA64A975}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{37812A22-91F3-4220-891E-5C26DA64A975}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
-		{37812A22-91F3-4220-891E-5C26DA64A975}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
-		{37812A22-91F3-4220-891E-5C26DA64A975}.Debug|x86.ActiveCfg = Debug|Any CPU
-		{37812A22-91F3-4220-891E-5C26DA64A975}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{37812A22-91F3-4220-891E-5C26DA64A975}.Release|Any CPU.Build.0 = Release|Any CPU
-		{37812A22-91F3-4220-891E-5C26DA64A975}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
-		{37812A22-91F3-4220-891E-5C26DA64A975}.Release|Mixed Platforms.Build.0 = Release|Any CPU
-		{37812A22-91F3-4220-891E-5C26DA64A975}.Release|x86.ActiveCfg = Release|Any CPU
 		{EE1B0270-3A08-4A7C-8DCD-6BEF85BD3AEE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{EE1B0270-3A08-4A7C-8DCD-6BEF85BD3AEE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{EE1B0270-3A08-4A7C-8DCD-6BEF85BD3AEE}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
@@ -77,6 +67,16 @@ Global
 		{EE1B0270-3A08-4A7C-8DCD-6BEF85BD3AEE}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
 		{EE1B0270-3A08-4A7C-8DCD-6BEF85BD3AEE}.Release|Mixed Platforms.Build.0 = Release|Any CPU
 		{EE1B0270-3A08-4A7C-8DCD-6BEF85BD3AEE}.Release|x86.ActiveCfg = Release|Any CPU
+		{37812A22-91F3-4220-891E-5C26DA64A975}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{37812A22-91F3-4220-891E-5C26DA64A975}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{37812A22-91F3-4220-891E-5C26DA64A975}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{37812A22-91F3-4220-891E-5C26DA64A975}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{37812A22-91F3-4220-891E-5C26DA64A975}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{37812A22-91F3-4220-891E-5C26DA64A975}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{37812A22-91F3-4220-891E-5C26DA64A975}.Release|Any CPU.Build.0 = Release|Any CPU
+		{37812A22-91F3-4220-891E-5C26DA64A975}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{37812A22-91F3-4220-891E-5C26DA64A975}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{37812A22-91F3-4220-891E-5C26DA64A975}.Release|x86.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

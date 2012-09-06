@@ -26,3 +26,10 @@ C:\Users\dext3r\Documents\GitHub\NBA-JAM-Player-Editor\nbajamPictureBox\bin\Debu
 C:\Users\dext3r\Documents\GitHub\NBA-JAM-Player-Editor\nbajamPictureBox\obj\Debug\ResolveAssemblyReference.cache
 C:\Users\dext3r\Documents\GitHub\NBA-JAM-Player-Editor\nbajamPictureBox\obj\Debug\nbajamPictureBox.dll
 C:\Users\dext3r\Documents\GitHub\NBA-JAM-Player-Editor\nbajamPictureBox\obj\Debug\nbajamPictureBox.pdb
+C:\Users\dext3r\Documents\GitHub\DURP\NBA-JAM-Player-Editor\nbajamPictureBox\bin\Debug\nbajamPictureBox.dll
+C:\Users\dext3r\Documents\GitHub\DURP\NBA-JAM-Player-Editor\nbajamPictureBox\bin\Debug\nbajamPictureBox.pdb
+C:\Users\dext3r\Documents\GitHub\DURP\NBA-JAM-Player-Editor\nbajamPictureBox\obj\Debug\ResolveAssemblyReference.cache
+C:\Users\dext3r\Documents\GitHub\DURP\NBA-JAM-Player-Editor\nbajamPictureBox\obj\Debug\nbajamPictureBox.dll
+C:\Users\dext3r\Documents\GitHub\DURP\NBA-JAM-Player-Editor\nbajamPictureBox\obj\Debug\nbajamPictureBox.pdb
+C:\Users\dext3r\Documents\GitHub\DURP\NBA-JAM-Player-Editor\nbajamPictureBox\bin\Debug\SimplePaletteQuantizer.exe
+C:\Users\dext3r\Documents\GitHub\DURP\NBA-JAM-Player-Editor\nbajamPictureBox\bin\Debug\SimplePaletteQuantizer.pdb

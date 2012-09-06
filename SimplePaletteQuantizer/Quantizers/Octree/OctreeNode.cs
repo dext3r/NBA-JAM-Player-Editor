@@ -1,11 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Drawing;
+using System.Linq;
 
 namespace SimplePaletteQuantizer.Quantizers.Octree
 {
     internal class OctreeNode
     {
+        #region | Fields |
+
         private static readonly Byte[] Mask = new Byte[] { 0x80, 0x40, 0x20, 0x10, 0x08, 0x04, 0x02, 0x01 };
 
         private Int32 red;
@@ -16,6 +19,10 @@ namespace SimplePaletteQuantizer.Quantizers.Octree
         private Int32 paletteIndex;
 
         private readonly OctreeNode[] nodes;
+
+        #endregion
+
+        #region | Constructors |
 
         /// <summary>
         /// Initializes a new instance of the <see cref="OctreeNode"/> class.
@@ -29,6 +36,8 @@ namespace SimplePaletteQuantizer.Quantizers.Octree
                 parent.AddLevelNode(level, this);
             }
         }
+
+        #endregion
 
         #region | Calculated properties |
 
@@ -54,16 +63,9 @@ namespace SimplePaletteQuantizer.Quantizers.Octree
                 // determines a color of the leaf
                 if (IsLeaf)
                 {
-                    if (pixelCount == 1)
-                    {
-                        // if a pixel count for this color is 1 than this node contains our color already
-                        result = Color.FromArgb(255, red, green, blue);
-                    }
-                    else
-                    {
-                        // otherwise calculates the average color (without rounding)
-                        result = Color.FromArgb(255, red/pixelCount, green/pixelCount, blue/pixelCount);
-                    }
+                    result = pixelCount == 1 ? 
+                        Color.FromArgb(255, red, green, blue) : 
+                        Color.FromArgb(255, red/pixelCount, green/pixelCount, blue/pixelCount);
                 }
                 else
                 {
@@ -185,7 +187,11 @@ namespace SimplePaletteQuantizer.Quantizers.Octree
             else // otherwise continue in to the lower depths
             {
                 Int32 index = GetColorIndexAtLevel(color, level);
-                result = nodes[index].GetPaletteIndex(color, level + 1);
+
+                result = nodes[index] != null ? nodes[index].GetPaletteIndex(color, level + 1) : nodes.
+                    Where(node => node != null).
+                    First().
+                    GetPaletteIndex(color, level + 1);
             }
 
             return result;
@@ -195,7 +201,7 @@ namespace SimplePaletteQuantizer.Quantizers.Octree
         /// Removes the leaves by summing all it's color components and pixel presence.
         /// </summary>
         /// <returns></returns>
-        public Int32 RemoveLeaves()
+        public Int32 RemoveLeaves(Int32 level, Int32 activeColorCount, Int32 targetColorCount, OctreeQuantizer parent)
         {
             Int32 result = 0;
 
@@ -213,9 +219,6 @@ namespace SimplePaletteQuantizer.Quantizers.Octree
 
                     // and pixel presence
                     pixelCount += node.pixelCount;
-
-                    // then deactivates the node 
-                    nodes[index] = null;
 
                     // increases the count of reduced nodes
                     result++;

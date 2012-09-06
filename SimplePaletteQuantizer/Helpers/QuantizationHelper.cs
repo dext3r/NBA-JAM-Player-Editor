@@ -1,11 +1,11 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Drawing;
 
 namespace SimplePaletteQuantizer.Helpers
 {
     public class QuantizationHelper
     {
+        private const int Alpha = 255 << 24;
         private static readonly Color BackgroundColor;
         private static readonly Double[] Factors;
 
@@ -37,6 +37,15 @@ namespace SimplePaletteQuantizer.Helpers
         /// <returns>The non-alpha blended color (RGB).</returns>
         internal static Color ConvertAlpha(Color color)
         {
+            Int32 argb;
+            return ConvertAlpha(color, out argb);
+        }
+
+        /// <summary>
+        /// Converts the alpha blended color to a non-alpha blended color.
+        /// </summary>
+        internal static Color ConvertAlpha(Color color, out Int32 argb)
+        {
             Color result = color;
 
             if (color.A < 255)
@@ -47,62 +56,16 @@ namespace SimplePaletteQuantizer.Helpers
                 Int32 red = (Int32) (color.R*colorFactor + BackgroundColor.R*backgroundFactor);
                 Int32 green = (Int32) (color.G*colorFactor + BackgroundColor.G*backgroundFactor);
                 Int32 blue = (Int32) (color.B*colorFactor + BackgroundColor.B*backgroundFactor);
-                result = Color.FromArgb(255, red, green, blue);
+                argb = red << 16 | green << 8 | blue;
+                Color.FromArgb(red, green, blue);
+                result = Color.FromArgb(Alpha | argb);
+            }
+            else
+            {
+                argb = color.R << 16 | color.G << 8 | color.B;
             }
 
             return result;
-        }
-
-        /// <summary>
-        /// Finds the closest color match in a given palette using Euclidean distance.
-        /// </summary>
-        /// <param name="color">The color to be matched.</param>
-        /// <param name="palette">The palette to search in.</param>
-        /// <returns>The palette index of the closest match.</returns>
-        internal static Int32 GetNearestColor(Color color, IList<Color> palette)
-        {
-            // initializes the best difference, set it for worst possible, it can only get better
-            Int32 bestIndex = 0;
-            Int32 leastDifference = Int32.MaxValue;
-
-            // goes thru all the colors in the palette, looking for the best match
-            for (Int32 index = 0; index < palette.Count; index++)
-            {
-                Color targetColor = palette[index];
-
-                // calculates a difference for all the color components
-                Int32 deltaA = color.A - targetColor.A;
-                Int32 deltaR = color.R - targetColor.R;
-                Int32 deltaG = color.G - targetColor.G;
-                Int32 deltaB = color.B - targetColor.B;
-
-                // calculates a power of two
-                Int32 factorA = deltaA * deltaA;
-                Int32 factorR = deltaR * deltaR;
-                Int32 factorG = deltaG * deltaG;
-                Int32 factorB = deltaB * deltaB;
-
-                // calculates the Euclidean distance, a square-root is not need 
-                // as we're only comparing distance, not measuring it
-                Int32 difference = factorA + factorR + factorG + factorB;
-
-                // if a difference is zero, we're good because it won't get better
-                if (difference == 0)
-                {
-                    bestIndex = index;
-                    break;
-                }
-
-                // if a difference is the best so far, stores it as our best candidate
-                if (difference < leastDifference)
-                {
-                    leastDifference = difference;
-                    bestIndex = index;
-                }
-            }
-
-            // returns the palette index of the most similar color
-            return bestIndex;
         }
     }
 }

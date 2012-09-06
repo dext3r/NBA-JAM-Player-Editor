@@ -1,7 +1,10 @@
 ﻿using System;
+using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
+using SimplePaletteQuantizer.ColorCaches;
+using SimplePaletteQuantizer.ColorCaches.Octree;
 using SimplePaletteQuantizer.Helpers;
 
 namespace SimplePaletteQuantizer.Quantizers.Popularity
@@ -25,21 +28,14 @@ namespace SimplePaletteQuantizer.Quantizers.Popularity
     /// uniform sub-division schemes, because the method for dividing the color space does utilize 
     /// any information about the image.
     /// </summary>
-    public class PopularityQuantizer : IColorQuantizer
+    public class PopularityQuantizer : BaseColorCacheQuantizer
     {
-        private readonly List<Color> palette;
-        private readonly Dictionary<Color, Int32> cache;
-        private readonly Dictionary<Int32, PopularityColorSlot> colorMap;
+        #region | Fields |
 
-        /// <summary>
-        /// Initializes a new instance of the <see cref="PopularityQuantizer"/> class.
-        /// </summary>
-        public PopularityQuantizer()
-        {
-            palette = new List<Color>();
-            cache = new Dictionary<Color, Int32>();
-            colorMap = new Dictionary<Int32, PopularityColorSlot>();
-        }
+        private List<Color> palette;
+        private ConcurrentDictionary<Int32, PopularityColorSlot> colorMap;
+
+        #endregion
 
         #region | Methods |
 
@@ -56,42 +52,51 @@ namespace SimplePaletteQuantizer.Quantizers.Popularity
 
         #endregion
 
-        #region << IColorQuantizer >>
+        #region << BaseColorCacheQuantizer >>
 
         /// <summary>
-        /// Adds the color to quantizer.
+        /// See <see cref="BaseColorQuantizer.OnPrepare"/> for more details.
         /// </summary>
-        /// <param name="color">The color to be added.</param>
-        public void AddColor(Color color)
+        protected override void OnPrepare(ImageBuffer image)
         {
-            PopularityColorSlot slot;
-            color = QuantizationHelper.ConvertAlpha(color);
-            Int32 index = GetColorIndex(color);
+            base.OnPrepare(image);
 
-            if (colorMap.TryGetValue(index, out slot))
-            {
-                slot.AddValue(color);
-            }
-            else
-            {
-                colorMap[index] = new PopularityColorSlot(color);
-            }
+            palette = new List<Color>();
+            colorMap = new ConcurrentDictionary<Int32, PopularityColorSlot>();
         }
 
         /// <summary>
-        /// Gets the palette with specified count of the colors.
+        /// See <see cref="BaseColorQuantizer.OnAddColor"/> for more details.
         /// </summary>
-        /// <param name="colorCount">The color count.</param>
-        /// <returns></returns>
-        public List<Color> GetPalette(Int32 colorCount)
+        protected override void OnAddColor(Color color, Int32 key, Int32 x, Int32 y)
         {
-            Random random = new Random();
+            base.OnAddColor(color, key, x, y);
+            Int32 index = GetColorIndex(color);
+            colorMap.AddOrUpdate(index, colorKey => new PopularityColorSlot(color), (colorKey, slot) => slot.AddValue(color));
+        }
+
+        /// <summary>
+        /// See <see cref="BaseColorCacheQuantizer.OnCreateDefaultCache"/> for more details.
+        /// </summary>
+        protected override IColorCache OnCreateDefaultCache()
+        {
+            // use OctreeColorCache best performance/quality
+            return new OctreeColorCache();
+        }
+
+        /// <summary>
+        /// See <see cref="BaseColorCacheQuantizer.OnGetPaletteToCache"/> for more details.
+        /// </summary>
+        protected override List<Color> OnGetPaletteToCache(Int32 colorCount)
+        {
+            // use fast random class
+            FastRandom random = new FastRandom(0);
 
             // NOTE: I've added a little randomization here, as it was performing terribly otherwise.
             // sorts out the list by a pixel presence, takes top N slots, and calculates 
             // the average color from them, thus our new palette.
             IEnumerable<Color> colors = colorMap.
-                 OrderBy(entry => random.NextDouble()).
+                 OrderBy(entry => random.Next(colorMap.Count)).
                  OrderByDescending(entry => entry.Value.PixelCount).
                  Take(colorCount).
                  Select(entry => entry.Value.GetAverage());
@@ -101,45 +106,16 @@ namespace SimplePaletteQuantizer.Quantizers.Popularity
             return palette;
         }
 
-        /// <summary>
-        /// Gets the index of the palette for specific color.
-        /// </summary>
-        /// <param name="color">The color.</param>
-        /// <returns></returns>
-        public Int32 GetPaletteIndex(Color color)
-        {
-            Int32 result;
-            color = QuantizationHelper.ConvertAlpha(color);
+        #endregion
 
-            // checks whether color was already requested, in that case returns an index from a cache
-            if (!cache.TryGetValue(color, out result))
-            {
-                // otherwise finds the nearest color
-                result = QuantizationHelper.GetNearestColor(color, palette);
-                cache[color] = result;
-            }
-
-            // returns a palette index
-            return result; 
-        }
+        #region << IColorQuantizer >>
 
         /// <summary>
-        /// Gets the color count.
+        /// See <see cref="IColorQuantizer.AllowParallel"/> for more details.
         /// </summary>
-        /// <returns></returns>
-        public Int32 GetColorCount()
+        public override Boolean AllowParallel
         {
-            return colorMap.Count;
-        }
-
-        /// <summary>
-        /// Clears this instance.
-        /// </summary>
-        public void Clear()
-        {
-            cache.Clear();
-            palette.Clear();
-            colorMap.Clear();
+            get { return true; }
         }
 
         #endregion

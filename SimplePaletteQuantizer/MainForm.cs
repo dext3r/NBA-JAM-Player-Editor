@@ -1,29 +1,62 @@
 ﻿using System;
+using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Drawing.Imaging;
 using System.IO;
-using System.Linq;
-using System.Runtime.InteropServices;
+using System.Threading.Tasks;
 using System.Windows.Forms;
+using SimplePaletteQuantizer.ColorCaches;
+using SimplePaletteQuantizer.ColorCaches.Common;
+using SimplePaletteQuantizer.ColorCaches.EuclideanDistance;
+using SimplePaletteQuantizer.ColorCaches.LocalitySensitiveHash;
+using SimplePaletteQuantizer.ColorCaches.Octree;
+using SimplePaletteQuantizer.Ditherers;
+using SimplePaletteQuantizer.Ditherers.ErrorDiffusion;
+using SimplePaletteQuantizer.Ditherers.Ordered;
+using SimplePaletteQuantizer.Helpers;
+using SimplePaletteQuantizer.Properties;
 using SimplePaletteQuantizer.Quantizers;
-using SimplePaletteQuantizer.Quantizers.HSB;
-using SimplePaletteQuantizer.Quantizers.Median;
+using SimplePaletteQuantizer.Quantizers.DistinctSelection;
+using SimplePaletteQuantizer.Quantizers.MedianCut;
+using SimplePaletteQuantizer.Quantizers.NeuQuant;
 using SimplePaletteQuantizer.Quantizers.Octree;
+using SimplePaletteQuantizer.Quantizers.OptimalPalette;
 using SimplePaletteQuantizer.Quantizers.Popularity;
 using SimplePaletteQuantizer.Quantizers.Uniform;
+using SimplePaletteQuantizer.Quantizers.XiaolinWu;
 
 namespace SimplePaletteQuantizer
 {
     public partial class MainForm : Form
     {
-        private Image gifImage;
+        #region | Fields |
+
+        private Image previewGifImage;
+        private Image previewSourceImage;
+
         private Image sourceImage;
+        private Image targetImage;
+
+        private Boolean imageLoaded;
         private Boolean turnOnEvents;
         private Int32 projectedGifSize;
         private FileInfo sourceFileInfo;
+
+        private ColorModel activeColorModel;
+        private IColorCache activeColorCache;
+        private IColorDitherer activeDitherer;
         private IColorQuantizer activeQuantizer;
+
+        private List<ColorModel> colorModelList;
+        private List<IColorCache> colorCacheList;
+        private List<IColorDitherer> dithererList;
         private List<IColorQuantizer> quantizerList;
+        private ConcurrentDictionary<Color, Int64> errorCache;
+
+        #endregion
+
+        #region | Constructors |
 
         /// <summary>
         /// Initializes a new instance of the <see cref="MainForm"/> class.
@@ -33,25 +66,55 @@ namespace SimplePaletteQuantizer
             InitializeComponent();
         }
 
+        #endregion
+
         #region | Update methods |
 
         private void UpdateImages()
         {
-            // prepares quantizer
-            activeQuantizer.Clear();
+            // only perform if image was already loaded
+            if (!imageLoaded) return;
 
-            // updates source image
-            UpdateSourceImage();
+            // prepares quantizer
+            errorCache.Clear();
 
             // tries to retrieve an image based on HSB quantization
+            Int32 parallelTaskCount = activeQuantizer.AllowParallel ? Convert.ToInt32(listParallel.Text) : 1;
+            TaskScheduler uiScheduler = TaskScheduler.FromCurrentSynchronizationContext();
+            Int32 colorCount = GetColorCount();
 
-            try
+            // disables all the controls and starts running
+            sourceImage = Image.FromFile(dialogOpenFile.FileName);
+            Text = Resources.Running;
+            SwitchControls(false);
+            DateTime before = DateTime.Now;
+
+            // quantization process
+            Task quantization = Task.Factory.StartNew(() => 
+                targetImage = ImageBuffer.QuantizeImage(sourceImage, activeQuantizer, activeDitherer, colorCount, parallelTaskCount), 
+                TaskCreationOptions.LongRunning);
+
+            // finishes after running
+            quantization.ContinueWith(task =>
             {
-                DateTime before = DateTime.Now;
-                Image targetImage = GetQuantizedImage(sourceImage);
+                // detects operation duration
                 TimeSpan duration = DateTime.Now - before;
-                TimeSpan perPixel = new TimeSpan(duration.Ticks/(sourceImage.Width*sourceImage.Height));
-                pictureTarget.Image = targetImage;
+                TimeSpan perPixel = new TimeSpan(duration.Ticks / (sourceImage.Width * sourceImage.Height));
+                
+                // detects error and color count
+                Int32 originalColorCount = activeQuantizer.GetColorCount();
+                String nrmsdString = string.Empty;
+
+                // calculates NRMSD error, if requested
+                if (checkShowError.Checked)
+                {
+                    Double nrmsd = ImageBuffer.CalculateImageNormalizedMeanError(sourceImage, targetImage, parallelTaskCount);
+                    nrmsdString = string.Format(" (NRMSD = {0:0.#####})", nrmsd);
+                }
+
+                // spits some duration statistics (those actually slow the processing quite a bit, turn them off to make it quicker)
+                editSourceInfo.Text = string.Format("Original: {0} colors ({1} x {2})", originalColorCount, sourceImage.Width, sourceImage.Height);
+                editTargetInfo.Text = string.Format("Quantized: {0} colors{1}", colorCount, nrmsdString);
 
                 // new GIF and PNG sizes
                 Int32 newGifSize, newPngSize;
@@ -63,16 +126,17 @@ namespace SimplePaletteQuantizer
                 GetConvertedImage(targetImage, ImageFormat.Png, out newPngSize);
 
                 // spits out the statistics
-                Text = string.Format("Simple palette quantizer (duration {0}, per pixel {1})", duration, perPixel);
+                Text = string.Format("Simple palette quantizer (duration 0:{0:00}.{1:0000000}, per pixel 0.{2:0000000})", duration.Seconds, duration.Ticks, perPixel.Ticks);
                 editProjectedGifSize.Text = projectedGifSize.ToString();
                 editProjectedPngSize.Text = sourceFileInfo.Length.ToString();
                 editNewGifSize.Text = newGifSize.ToString();
                 editNewPngSize.Text = newPngSize.ToString();
-            }
-            catch (NotSupportedException ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
+                pictureTarget.Image = targetImage;
+
+                // enables controls again
+                SwitchControls(true);
+
+            }, uiScheduler);
         }
 
         private void UpdateSourceImage()
@@ -80,15 +144,37 @@ namespace SimplePaletteQuantizer
             switch (listSource.SelectedIndex)
             {
                 case 0:
-                    pictureSource.Image = sourceImage;
+                    pictureSource.Image = previewSourceImage;
                     break;
 
                 case 1:
-                    pictureSource.Image = gifImage;
+                    pictureSource.Image = previewGifImage;
                     break;
 
                 default:
                     throw new NotSupportedException("Not expected!");
+            }
+        }
+
+        #endregion
+
+        #region | Functions |
+
+        private Int32 GetColorCount()
+        {
+            switch (listColors.SelectedIndex)
+            {
+                case 0: return 2;
+                case 1: return 4;
+                case 2: return 8;
+                case 3: return 16;
+                case 4: return 31;
+                case 5: return 64;
+                case 6: return 128;
+                case 7: return 256;
+
+                default:
+                    throw new NotSupportedException("Only 2, 4, 8, 16, 32, 64, 128 and 256 colors are supported.");
             }
         }
 
@@ -101,9 +187,28 @@ namespace SimplePaletteQuantizer
             activeQuantizer = quantizerList[listMethod.SelectedIndex];
 
             // turns off the color option for the uniform quantizer, as it doesn't make sense
-            listColors.Enabled = turnOnEvents && listMethod.SelectedIndex != 1;
+            listColors.Enabled = listMethod.SelectedIndex != 1 && listMethod.SelectedIndex != 6 && listMethod.SelectedIndex != 7;
 
-            if (listMethod.SelectedIndex == 1)
+            // enables the color cache option; where available
+            listColorCache.Enabled = activeQuantizer is BaseColorCacheQuantizer;
+            // listColorModel.Enabled = listColorCache.Enabled && turnOnEvents && activeColorCache is BaseColorCache && ((BaseColorCache)activeColorCache).IsColorModelSupported;
+
+            // enables dithering when applicable
+            listDitherer.Enabled = listMethod.SelectedIndex != 5;
+
+            // enabled parallelism when supported
+            listParallel.Enabled = activeQuantizer.AllowParallel;
+
+            // applies current UI selection
+            if (activeQuantizer is BaseColorCacheQuantizer)
+            {
+                BaseColorCacheQuantizer quantizer = (BaseColorCacheQuantizer) activeQuantizer;
+                quantizer.ChangeCacheProvider(activeColorCache);
+            }
+
+            if (listMethod.SelectedIndex == 1 ||
+                listMethod.SelectedIndex == 6 ||
+                listMethod.SelectedIndex == 7)
             {
                 turnOnEvents = false;
                 listColors.SelectedIndex = 7;
@@ -111,17 +216,87 @@ namespace SimplePaletteQuantizer
             }
         }
 
+        private void ChangeDitherer()
+        {
+            activeDitherer = dithererList[listDitherer.SelectedIndex];
+        }
+
+        private void ChangeColorCache()
+        {
+            activeColorCache = colorCacheList[listColorCache.SelectedIndex];
+
+            // enables the color model option; where available
+            // listColorModel.Enabled = turnOnEvents && activeColorCache is BaseColorCache && ((BaseColorCache)activeColorCache).IsColorModelSupported;
+
+            // applies current UI selection
+            if (activeQuantizer is BaseColorCacheQuantizer)
+            {
+                BaseColorCacheQuantizer quantizer = (BaseColorCacheQuantizer) activeQuantizer;
+                quantizer.ChangeCacheProvider(activeColorCache);
+            }
+
+            // applies current UI selection
+            if (activeColorCache is BaseColorCache)
+            {
+                BaseColorCache colorCache = (BaseColorCache)activeColorCache;
+                colorCache.ChangeColorModel(activeColorModel);
+            }
+        }
+
+        private void ChangeColorModel()
+        {
+            activeColorModel = colorModelList[listColorModel.SelectedIndex];
+
+            // applies current UI selection
+            if (activeColorCache is BaseColorCache)
+            {
+                BaseColorCache  colorCache = (BaseColorCache) activeColorCache;
+                colorCache.ChangeColorModel(activeColorModel);
+            }
+        }
+
         private void EnableChoices()
         {
+            Boolean allowColors = listMethod.SelectedIndex != 1 && listMethod.SelectedIndex != 6 && listMethod.SelectedIndex != 7;
+
+            buttonUpdate.Enabled = true;
+            checkShowError.Enabled = true;
+
             listSource.Enabled = true;
             listMethod.Enabled = true;
-            listColors.Enabled = listMethod.SelectedIndex != 1;
+
+            listColorCache.Enabled = activeQuantizer is BaseColorCacheQuantizer;
+            // listColorModel.Enabled = activeColorCache is BaseColorCache && allowColors;
+            listColors.Enabled = allowColors;
+
+            listDitherer.Enabled = listMethod.SelectedIndex != 5;
+            listParallel.Enabled = activeQuantizer.AllowParallel;
+        }
+
+        private void SwitchControls(Boolean enabled)
+        {
+            // left panel
+            panelSourceInfo.Enabled = enabled;
+            panelFilename.Enabled = enabled;
+            panelDirectory.Enabled = enabled;
+            panelSource.Enabled = enabled;
+
+            // right panel
+            panelTargetInfo.Enabled = enabled;
+            panelMethod.Enabled = enabled;
+            panelColorCache.Enabled = enabled;
+            panelDithering.Enabled = enabled;
+
+            // bottom panel
+            panelControls.Enabled = enabled;
         }
 
         private void GenerateProjectedGif()
         {
             // retrieves a projected GIF image (automatic C# conversion)
-            gifImage = GetConvertedImage(sourceImage, ImageFormat.Gif, out projectedGifSize);
+            Int32 projectedSize;
+            previewGifImage = GetConvertedImage(sourceImage, ImageFormat.Gif, out projectedSize);
+            projectedGifSize = projectedSize;
         }
 
         private static Image GetConvertedImage(Image image, ImageFormat newFormat, out Int32 imageSize)
@@ -132,7 +307,6 @@ namespace SimplePaletteQuantizer
             using (MemoryStream stream = new MemoryStream())
             {
                 image.Save(stream, newFormat);
-                stream.Flush();
                 stream.Seek(0, SeekOrigin.Begin);
                 imageSize = (Int32)stream.Length;
                 result = Image.FromStream(stream);
@@ -141,164 +315,57 @@ namespace SimplePaletteQuantizer
             return result;
         }
 
-        private Int32 GetColorCount()
-        {
-            switch (listColors.SelectedIndex)
-            {
-                case 0: return 2;
-                case 1: return 4;
-                case 2: return 8;
-                case 3: return 16;
-                case 4: return 32;
-                case 5: return 64;
-                case 6: return 128;
-                case 7: return 256;
-
-                default:
-                    throw new NotSupportedException("Only 2, 4, 8, 16, 32, 64, 128 and 256 colors are supported.");
-            }
-        }
-
-        private Image GetQuantizedImage(Image image)
-        {
-            // checks whether a source image is valid
-            if (image == null)
-            {
-                const String message = "Cannot quantize a null image.";
-                throw new ArgumentNullException(message);
-            }
-
-            // locks the source image data
-            Bitmap bitmap = (Bitmap)image;
-            Rectangle bounds = Rectangle.FromLTRB(0, 0, bitmap.Width, bitmap.Height);
-            BitmapData sourceData = bitmap.LockBits(bounds, ImageLockMode.ReadOnly, PixelFormat.Format32bppArgb);
-
-            // prepares time statistics variables
-            TimeSpan duration = new TimeSpan(0);
-            DateTime before;
-
-            try
-            {
-                // initalizes the pixel read buffer
-                Int32[] sourceBuffer = new Int32[image.Width];
-
-                // sets the offset to the first pixel in the image
-                Int64 sourceOffset = sourceData.Scan0.ToInt64();
-
-                for (Int32 row = 0; row < image.Height; row++)
-                {
-                    // copies the whole row of pixels to the buffer
-                    Marshal.Copy(new IntPtr(sourceOffset), sourceBuffer, 0, image.Width);
-
-                    // scans all the colors in the buffer
-                    foreach (Color color in sourceBuffer.Select(argb => Color.FromArgb(argb)))
-                    {
-                        before = DateTime.Now;
-                        activeQuantizer.AddColor(color);
-                        duration += DateTime.Now - before;
-                    }
-
-                    // increases a source offset by a row
-                    sourceOffset += sourceData.Stride;
-                }
-
-                editTargetInfo.Text = string.Format("Quantized: {0} colors (duration {1})", 256, duration); // TODO
-            }
-            catch
-            {
-                bitmap.UnlockBits(sourceData);
-                throw;
-            }
-
-            Bitmap result = new Bitmap(image.Width, image.Height, PixelFormat.Format8bppIndexed);
-
-            // calculates the palette
-            try
-            {
-                before = DateTime.Now;
-                Int32 colorCount = GetColorCount();
-                List<Color> palette = activeQuantizer.GetPalette(colorCount);
-
-                // sets our newly calculated palette to the target image
-                ColorPalette imagePalette = result.Palette;
-                duration += DateTime.Now - before;
-
-                for (Int32 index = 0; index < palette.Count; index++)
-                {
-                    imagePalette.Entries[index] = palette[index];
-                }
-
-                result.Palette = imagePalette;
-
-            }
-            catch (Exception)
-            {
-                bitmap.UnlockBits(sourceData);
-                throw;
-            }
-
-            // locks the target image data
-            BitmapData targetData = result.LockBits(bounds, ImageLockMode.WriteOnly, PixelFormat.Format8bppIndexed);
-
-            try
-            {
-                // initializes read/write buffers
-                Byte[] targetBuffer = new Byte[result.Width];
-                Int32[] sourceBuffer = new Int32[image.Width];
-
-                // sets the offsets on the beginning of both source and target image
-                Int64 sourceOffset = sourceData.Scan0.ToInt64();
-                Int64 targetOffset = targetData.Scan0.ToInt64();
-
-                for (Int32 row = 0; row < image.Height; row++)
-                {
-                    // reads the pixel row from the source image
-                    Marshal.Copy(new IntPtr(sourceOffset), sourceBuffer, 0, image.Width);
-
-                    // goes thru all the pixels, reads the color on the source image, and writes calculated palette index on the target
-                    for (Int32 index = 0; index < image.Width; index++)
-                    {
-                        Color color = Color.FromArgb(sourceBuffer[index]);
-                        before = DateTime.Now;
-                        targetBuffer[index] = (Byte)activeQuantizer.GetPaletteIndex(color);
-                        duration += DateTime.Now - before;
-                    }
-
-                    // writes the pixel row to the target image
-                    Marshal.Copy(targetBuffer, 0, new IntPtr(targetOffset), result.Width);
-
-                    // increases the offsets (on both images) by a row
-                    sourceOffset += sourceData.Stride;
-                    targetOffset += targetData.Stride;
-                }
-            }
-            finally
-            {
-                // releases the locks on both images
-                bitmap.UnlockBits(sourceData);
-                result.UnlockBits(targetData);
-            }
-
-            // spits some duration statistics (those actually slow the processing quite a bit, turn them off to make it quicker)
-            editSourceInfo.Text = string.Format("Original: {0} colors ({1} x {2})", activeQuantizer.GetColorCount(), image.Width, image.Height);
-
-            // returns the quantized image
-            return result;
-        }
-
         #endregion
 
         #region << Events >>
 
-        private void MainForm_Load(object sender, EventArgs e)
+        private void MainFormLoad(object sender, EventArgs e)
         {
+            errorCache = new ConcurrentDictionary<Color, Int64>();
+
             quantizerList = new List<IColorQuantizer>
             {
-                new PaletteQuantizer(),
+                new DistinctSelectionQuantizer(),
                 new UniformQuantizer(),
                 new PopularityQuantizer(),
                 new MedianCutQuantizer(),
-                new OctreeQuantizer()
+                new OctreeQuantizer(),
+                new WuColorQuantizer(),
+                new NeuralColorQuantizer(),
+                new OptimalPaletteQuantizer()
+            };
+
+            dithererList = new List<IColorDitherer>
+            {
+                null,
+                null,
+                new BayerDitherer4(),
+                new BayerDitherer8(),
+                new ClusteredDotDitherer(),
+                new DotHalfToneDitherer(),
+                null,
+                new FanDitherer(),
+                new ShiauDitherer(),
+                new SierraDitherer(),
+                new StuckiDitherer(),
+                new BurkesDitherer(),
+                new AtkinsonDithering(),
+                new TwoRowSierraDitherer(),
+                new FloydSteinbergDitherer(),
+                new JarvisJudiceNinkeDitherer()
+            };
+
+            colorCacheList = new List<IColorCache>
+            {
+                new EuclideanDistanceColorCache(),
+                new LshColorCache(),
+                new OctreeColorCache()
+            };
+
+            colorModelList = new List<ColorModel>
+            {
+                ColorModel.RedGreenBlue,
+                ColorModel.LabColorSpace,
             };
 
             turnOnEvents = false;
@@ -306,19 +373,36 @@ namespace SimplePaletteQuantizer
             listSource.SelectedIndex = 0;
             listMethod.SelectedIndex = 0;
             listColors.SelectedIndex = 7;
+            listColorCache.SelectedIndex = 0;
+            listColorModel.SelectedIndex = 0;
+            listDitherer.SelectedIndex = 0;
+            listParallel.SelectedIndex = 3;
 
             ChangeQuantizer();
+            ChangeColorCache();
+            ChangeColorModel();
 
             turnOnEvents = true;
+        }
+
+        private void MainFormResize(object sender, EventArgs e)
+        {
+            panelRight.Width = panelMain.Width / 2;
         }
 
         private void ButtonBrowseClick(object sender, EventArgs e)
         {
             if (dialogOpenFile.ShowDialog() == DialogResult.OK)
             {
+                editFilename.Text = Path.GetFileName(dialogOpenFile.FileName);
+                editDirectory.Text = Path.GetDirectoryName(dialogOpenFile.FileName);
+                previewSourceImage = Image.FromFile(dialogOpenFile.FileName);
                 sourceFileInfo = new FileInfo(dialogOpenFile.FileName);
                 sourceImage = Image.FromFile(dialogOpenFile.FileName);
+                imageLoaded = true;
+
                 GenerateProjectedGif();
+                UpdateSourceImage();
                 EnableChoices();
                 UpdateImages();
             }
@@ -338,29 +422,59 @@ namespace SimplePaletteQuantizer
             }
         }
 
-        private void listColors_SelectedIndexChanged(object sender, EventArgs e)
+        private void ListDithererSelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (turnOnEvents)
+            {
+                ChangeDitherer();
+                UpdateImages();
+            }
+        }
+
+        private void ListColorsSelectedIndexChanged(object sender, EventArgs e)
         {
             if (turnOnEvents) UpdateImages();
         }
 
-        #endregion
-
-        private void MainForm_Resize(object sender, EventArgs e)
+        private void CheckShowErrorCheckedChanged(object sender, EventArgs e)
         {
-
+            UpdateImages();
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void ListColorCacheSelectedIndexChanged(object sender, EventArgs e)
         {
-            List<Color> yourColorList = quantizerList[0].GetPalette(32);
-
-            foreach (Color color in yourColorList)
+            if (turnOnEvents)
             {
-               Console.WriteLine(color.ToString());
-               Console.WriteLine(pictureTarget.Size.ToString());
-
-                // add it to your CSV structure used for save operation here*/
+                ChangeColorCache();
+                UpdateImages();
             }
         }
+
+        private void ListColorModelSelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (turnOnEvents)
+            {
+                ChangeColorModel();
+                UpdateImages();
+            }
+        }
+
+        private void ListParallelSelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (turnOnEvents)
+            {
+                UpdateImages();
+            }
+        }
+
+        private void ButtonUpdateClick(object sender, EventArgs e)
+        {
+            if (turnOnEvents)
+            {
+                UpdateImages();
+            }
+        }
+
+        #endregion
     }
 }

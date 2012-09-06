@@ -104,10 +104,6 @@
       <Project>{EE1B0270-3A08-4A7C-8DCD-6BEF85BD3AEE}</Project>
       <Name>playerPairing</Name>
     </ProjectReference>
-    <ProjectReference Include="..\SimplePaletteQuantizer\SimplePaletteQuantizer.csproj">
-      <Project>{37812A22-91F3-4220-891E-5C26DA64A975}</Project>
-      <Name>SimplePaletteQuantizer</Name>
-    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include=".NETFramework,Version=v4.0,Profile=Client">

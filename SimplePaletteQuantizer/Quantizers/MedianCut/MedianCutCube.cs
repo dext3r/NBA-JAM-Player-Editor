@@ -2,24 +2,37 @@
 using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
+using SimplePaletteQuantizer.ColorCaches.Common;
+using SimplePaletteQuantizer.Helpers;
 
-namespace SimplePaletteQuantizer.Quantizers.Median
+namespace SimplePaletteQuantizer.Quantizers.MedianCut
 {
     internal class MedianCutCube
     {
+        #region | Fields |
+
         // red bounds
-        private Byte redLowBound;
-        private Byte redHighBound;
+        private Int32 redLowBound;
+        private Int32 redHighBound;
 
         // green bounds
-        private Byte greenLowBound;
-        private Byte greenHighBound;
+        private Int32 greenLowBound;
+        private Int32 greenHighBound;
 
         // blue bounds
-        private Byte blueLowBound;
-        private Byte blueHighBound;
+        private Int32 blueLowBound;
+        private Int32 blueHighBound;
 
-        private readonly List<Color> colorList;
+        private readonly ICollection<Int32> colorList;
+
+        #endregion
+
+        #region | Properties |
+
+        /// <summary>
+        /// Gets the color model.
+        /// </summary>
+        public ColorModel ColorModel { get; private set; }
 
         /// <summary>
         /// Gets or sets the index of the palette.
@@ -27,15 +40,22 @@ namespace SimplePaletteQuantizer.Quantizers.Median
         /// <value>The index of the palette.</value>
         public Int32 PaletteIndex { get; private set; }
 
+        #endregion
+
+        #region | Constructors |
+
         /// <summary>
         /// Initializes a new instance of the <see cref="MedianCutCube"/> class.
         /// </summary>
         /// <param name="colors">The colors.</param>
-        public MedianCutCube(List<Color> colors)
+        public MedianCutCube(ICollection<Int32> colors)
         {
+            ColorModel = ColorModel.RedGreenBlue;
             colorList = colors;
             Shrink();
         }
+
+        #endregion
 
         #region | Calculated properties |
 
@@ -76,16 +96,19 @@ namespace SimplePaletteQuantizer.Quantizers.Median
             {
                 Int32 red = 0, green = 0, blue = 0;
 
-                colorList.ForEach(value =>
+                foreach (Int32 argb in colorList)
                 {
-                    red += value.R;
-                    green += value.G;
-                    blue += value.B;
-                });
+                    Color color = Color.FromArgb(argb);
+                    red += ColorModelHelper.GetComponentA(ColorModel, color);
+                    green += ColorModelHelper.GetComponentB(ColorModel, color);
+                    blue += ColorModelHelper.GetComponentC(ColorModel, color);
+                }
 
                 red = colorList.Count == 0 ? 0 : red / colorList.Count;
                 green = colorList.Count == 0 ? 0 : green / colorList.Count;
                 blue = colorList.Count == 0 ? 0 : blue / colorList.Count;
+
+                // ColorModelHelper.HSBtoRGB(Convert.ToInt32(red/ColorModelHelper.HueFactor), green / 255.0f, blue / 255.0f);
 
                 Color result = Color.FromArgb(255, red, green, blue);
                 return result;
@@ -104,14 +127,20 @@ namespace SimplePaletteQuantizer.Quantizers.Median
             redLowBound = greenLowBound = blueLowBound = 255;
             redHighBound = greenHighBound = blueHighBound = 0;
 
-            foreach (Color color in colorList)
+            foreach (Int32 argb in colorList)
             {
-                if (color.R < redLowBound) redLowBound = color.R;
-                if (color.R > redHighBound) redHighBound = color.R;
-                if (color.G < greenLowBound) greenLowBound = color.G;
-                if (color.G > greenHighBound) greenHighBound = color.G;
-                if (color.B < blueLowBound) blueLowBound = color.B;
-                if (color.B > blueHighBound) blueHighBound = color.B;
+                Color color = Color.FromArgb(argb);
+
+                Int32 red = ColorModelHelper.GetComponentA(ColorModel, color);
+                Int32 green = ColorModelHelper.GetComponentB(ColorModel, color);
+                Int32 blue = ColorModelHelper.GetComponentC(ColorModel, color);
+
+                if (red < redLowBound) redLowBound = red;
+                if (red > redHighBound) redHighBound = red;
+                if (green < greenLowBound) greenLowBound = green;
+                if (green > greenHighBound) greenHighBound = green;
+                if (blue < blueLowBound) blueLowBound = blue;
+                if (blue > blueHighBound) blueHighBound = blue;
             }
         }
 
@@ -123,23 +152,23 @@ namespace SimplePaletteQuantizer.Quantizers.Median
         /// <param name="secondMedianCutCube">The second created cube.</param>
         public void SplitAtMedian(Byte componentIndex, out MedianCutCube firstMedianCutCube, out MedianCutCube secondMedianCutCube)
         {
-            List<Color> colors;
+            List<Int32> colors;
 
             switch (componentIndex)
             {
                 // red colors
                 case 0:
-                    colors = colorList.OrderBy(color => color.R).ToList();
+                    colors = colorList.OrderBy(argb => ColorModelHelper.GetComponentA(ColorModel, Color.FromArgb(argb))).ToList();
                     break;
 
                 // green colors
                 case 1:
-                    colors = colorList.OrderBy(color => color.G).ToList();
+                    colors = colorList.OrderBy(argb => ColorModelHelper.GetComponentB(ColorModel, Color.FromArgb(argb))).ToList();
                     break;
 
                 // blue colors
                 case 2:
-                    colors = colorList.OrderBy(color => color.B).ToList();
+                    colors = colorList.OrderBy(argb => ColorModelHelper.GetComponentC(ColorModel, Color.FromArgb(argb))).ToList();
                     break;
 
                 default:
@@ -171,9 +200,13 @@ namespace SimplePaletteQuantizer.Quantizers.Median
         /// <returns>if true a color is in the space of this cube, otherwise returns false.</returns>
         public Boolean IsColorIn(Color color)
         {
-            return (color.R >= redLowBound && color.R <= redHighBound) &&
-                   (color.G >= greenLowBound && color.G <= greenHighBound) &&
-                   (color.B >= blueLowBound && color.B <= blueHighBound);
+            Int32 red = ColorModelHelper.GetComponentA(ColorModel, color);
+            Int32 green = ColorModelHelper.GetComponentB(ColorModel, color);
+            Int32 blue = ColorModelHelper.GetComponentC(ColorModel, color);
+
+            return (red >= redLowBound && red <= redHighBound) &&
+                   (green >= greenLowBound && green <= greenHighBound) &&
+                   (blue >= blueLowBound && blue <= blueHighBound);
         }
 
         #endregion

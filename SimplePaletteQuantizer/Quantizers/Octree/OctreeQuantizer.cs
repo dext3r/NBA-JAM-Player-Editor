@@ -25,28 +25,15 @@ namespace SimplePaletteQuantizer.Quantizers.Octree
     /// exceeds K, the tree has to reduced. That would mean that leaves at the largest depth 
     /// are substituted by their predecessor.
     /// </summary>
-    public class OctreeQuantizer : IColorQuantizer
+    public class OctreeQuantizer : BaseColorQuantizer
     {
+        #region | Fields |
+
         private OctreeNode root;
-        private readonly List<OctreeNode>[] levels;
+        private Int32 lastColorCount;
+        private List<OctreeNode>[] levels;
 
-        /// <summary>
-        /// Initializes a new instance of the <see cref="Octree"/> class.
-        /// </summary>
-        public OctreeQuantizer()
-        {
-            // initializes the octree level lists
-            levels = new List<OctreeNode>[7];
-
-            // creates the octree level lists
-            for (Int32 level = 0; level < 7; level++)
-            {
-                levels[level] = new List<OctreeNode>();
-            }
-
-            // creates a root node
-            root = new OctreeNode(0, this);
-        }
+        #endregion
 
         #region | Calculated properties |
 
@@ -75,27 +62,39 @@ namespace SimplePaletteQuantizer.Quantizers.Octree
 
         #endregion
 
-        #region << IColorQuantizer >>
+        #region << BaseColorQuantizer >>
 
         /// <summary>
-        /// Adds the color to quantizer.
+        /// See <see cref="BaseColorQuantizer.OnPrepare"/> for more details.
         /// </summary>
-        /// <param name="color">The color to be added.</param>
-        public void AddColor(Color color)
+        protected override void OnPrepare(ImageBuffer image)
         {
-            color = QuantizationHelper.ConvertAlpha(color);
+            base.OnPrepare(image);
+
+            OnFinish();
+        }
+
+        /// <summary>
+        /// See <see cref="BaseColorQuantizer.OnAddColor"/> for more details.
+        /// </summary>
+        protected override void OnAddColor(Color color, Int32 key, Int32 x, Int32 y)
+        {
             root.AddColor(color, 0, this);
         }
 
         /// <summary>
-        /// Gets the palette with specified count of the colors.
+        /// See <see cref="BaseColorQuantizer.OnGetPalette"/> for more details.
         /// </summary>
-        /// <param name="colorCount">The color count.</param>
-        /// <returns></returns>
-        public List<Color> GetPalette(Int32 colorCount)
+        protected override List<Color> OnGetPalette(Int32 colorCount)
         {
+            // use optimized palette, if any
+            List<Color> optimizedPalette = base.OnGetPalette(colorCount);
+            if (optimizedPalette != null) return optimizedPalette;
+
+            // otherwise let's get to build one
             List<Color> result = new List<Color>();
             Int32 leafCount = Leaves.Count();
+            lastColorCount = leafCount;
             Int32 paletteIndex = 0;
 
             // goes thru all the levels starting at the deepest, and goes upto a root level
@@ -105,32 +104,36 @@ namespace SimplePaletteQuantizer.Quantizers.Octree
                 if (levels[level].Count > 0)
                 {
                     // orders the level node list by pixel presence (those with least pixels are at the top)
-                    IEnumerable<OctreeNode> sortedNodeList = levels[level].
-                        OrderBy(node => node.ActiveNodesPixelCount);
+                    IEnumerable<OctreeNode> sortedNodeList = levels[level].OrderBy(node => node.ActiveNodesPixelCount);
 
                     // removes the nodes unless the count of the leaves is lower or equal than our requested color count
                     foreach (OctreeNode node in sortedNodeList)
                     {
                         // removes a node
-                        leafCount -= node.RemoveLeaves();
-                        
+                        leafCount -= node.RemoveLeaves(level, leafCount, colorCount, this);
+
                         // if the count of leaves is lower then our requested count terminate the loop
                         if (leafCount <= colorCount) break;
                     }
 
                     // if the count of leaves is lower then our requested count terminate the level loop as well
                     if (leafCount <= colorCount) break;
-                    
+
                     // otherwise clear whole level, as it is not needed anymore
                     levels[level].Clear();
                 }
             }
 
             // goes through all the leaves that are left in the tree (there should now be less or equal than requested)
-            foreach (OctreeNode node in Leaves)
+            foreach (OctreeNode node in Leaves.OrderByDescending(node => node.ActiveNodesPixelCount))
             {
-                // adds then to a palette
-                result.Add(node.Color);
+                if (paletteIndex >= colorCount) break;
+
+                // adds the leaf color to a palette
+                if (node.IsLeaf)
+                {
+                    result.Add(node.Color);
+                }
 
                 // and marks the node with a palette index
                 node.SetPaletteIndex(paletteIndex++);
@@ -147,41 +150,53 @@ namespace SimplePaletteQuantizer.Quantizers.Octree
         }
 
         /// <summary>
-        /// Gets the index of the palette for specific color.
+        /// See <see cref="BaseColorQuantizer.OnGetPaletteIndex"/> for more details.
         /// </summary>
-        /// <param name="color">The color.</param>
-        /// <returns></returns>
-        public Int32 GetPaletteIndex(Color color)
+        protected override void OnGetPaletteIndex(Color color, Int32 key, Int32 x, Int32 y, out Int32 paletteIndex)
         {
-            color = QuantizationHelper.ConvertAlpha(color);
-
             // retrieves a palette index
-            return root.GetPaletteIndex(color, 0);
+            paletteIndex = root.GetPaletteIndex(color, 0);
         }
 
         /// <summary>
-        /// Gets the color count.
+        /// See <see cref="BaseColorQuantizer.OnGetColorCount"/> for more details.
         /// </summary>
-        /// <returns></returns>
-        public Int32 GetColorCount()
+        protected override Int32 OnGetColorCount()
         {
             // calculates the number of leaves, by parsing the whole tree
-            return Leaves.Count();
+            return lastColorCount;
         }
 
         /// <summary>
-        /// Clears this instance.
+        /// See <see cref="BaseColorQuantizer.OnFinish"/> for more details.
         /// </summary>
-        public void Clear()
+        protected override void OnFinish()
         {
-            // clears all the node list levels
-            foreach (List<OctreeNode> level in levels)
+            base.OnFinish();
+
+            // initializes the octree level lists
+            levels = new List<OctreeNode>[7];
+
+            // creates the octree level lists
+            for (Int32 level = 0; level < 7; level++)
             {
-                level.Clear();
+                levels[level] = new List<OctreeNode>();
             }
 
-            // creates a new root node (thus throwing away the old tree)
+            // creates a root node
             root = new OctreeNode(0, this);
+        }
+
+        #endregion
+
+        #region << IColorQuantizer >>
+
+        /// <summary>
+        /// See <see cref="IColorQuantizer.AllowParallel"/> for more details.
+        /// </summary>
+        public override Boolean AllowParallel
+        {
+            get { return false; }
         }
 
         #endregion

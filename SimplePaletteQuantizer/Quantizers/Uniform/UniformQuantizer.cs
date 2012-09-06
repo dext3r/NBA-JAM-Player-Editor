@@ -28,31 +28,34 @@ namespace SimplePaletteQuantizer.Quantizers.Uniform
     /// logarithmic scale instead of linear. This will produce slightly better results because 
     /// the human eye cannot distinguish dark colors as well as bright ones.
     /// </summary>
-    public class UniformQuantizer : IColorQuantizer
+    public class UniformQuantizer : BaseColorQuantizer
     {
-        private readonly UniformColorSlot[] redSlots;
-        private readonly UniformColorSlot[] greenSlots;
-        private readonly UniformColorSlot[] blueSlots;
+        #region | Fields |
+
+        private UniformColorSlot[] redSlots;
+        private UniformColorSlot[] greenSlots;
+        private UniformColorSlot[] blueSlots;
+
+        #endregion
+
+        #region << BaseColorQuantizer >>
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="UniformQuantizer"/> class.
+        /// See <see cref="BaseColorQuantizer.OnPrepare"/> for more details.
         /// </summary>
-        public UniformQuantizer()
+        protected override void OnPrepare(ImageBuffer image)
         {
             redSlots = new UniformColorSlot[8];
             greenSlots = new UniformColorSlot[8];
             blueSlots = new UniformColorSlot[4];
         }
 
-        #region << IColorQuantizer >>
-
         /// <summary>
-        /// Adds the color to quantizer.
+        /// See <see cref="BaseColorQuantizer.AddColor"/> for more details.
         /// </summary>
-        /// <param name="color">The color to be added.</param>
-        public void AddColor(Color color)
+        protected override void OnAddColor(Color color, Int32 key, Int32 x, Int32 y)
         {
-            color = QuantizationHelper.ConvertAlpha(color);
+            base.OnAddColor(color, key, x, y);
 
             Int32 redIndex = color.R >> 5;
             Int32 greenIndex = color.G >> 5;
@@ -64,12 +67,15 @@ namespace SimplePaletteQuantizer.Quantizers.Uniform
         }
 
         /// <summary>
-        /// Gets the palette with specified count of the colors.
+        /// See <see cref="BaseColorQuantizer.OnGetPalette"/> for more details.
         /// </summary>
-        /// <param name="colorCount">The color count.</param>
-        /// <returns></returns>
-        public List<Color> GetPalette(Int32 colorCount)
+        protected override List<Color> OnGetPalette(Int32 colorCount)
         {
+            // use optimized palette, if any
+            List<Color> optimizedPalette = base.OnGetPalette(colorCount);
+            if (optimizedPalette != null) return optimizedPalette;
+
+            // otherwise synthetize one
             List<Color> result = new List<Color>();
 
             // NOTE: I was considering either Lambda, or For loop (which should be the fastest), 
@@ -86,41 +92,31 @@ namespace SimplePaletteQuantizer.Quantizers.Uniform
                 result.Add(color);
             }
 
+            // returns our new palette
             return result;
         }
 
         /// <summary>
-        /// Gets the index of the palette for specific color.
+        /// See <see cref="BaseColorQuantizer.OnGetPaletteIndex"/> for more details.
         /// </summary>
-        /// <param name="color">The color.</param>
-        /// <returns></returns>
-        public Int32 GetPaletteIndex(Color color)
+        protected override void OnGetPaletteIndex(Color color, Int32 key, Int32 x, Int32 y, out Int32 paletteIndex)
         {
-            color = QuantizationHelper.ConvertAlpha(color);
             Int32 redIndex = color.R >> 5;
             Int32 greenIndex = color.G >> 5;
             Int32 blueIndex = color.B >> 6;
-            return (redIndex << 5) + (greenIndex << 2) + blueIndex;
+            paletteIndex = (redIndex << 5) + (greenIndex << 2) + blueIndex;
         }
 
-        /// <summary>
-        /// Gets the color count.
-        /// </summary>
-        /// <returns></returns>
-        public Int32 GetColorCount()
-        {
-            // returns the count in red slots, as it should be the same in red, blue or green
-            return 256;
-        }
+        #endregion
+
+        #region << IColorQuantizer >>
 
         /// <summary>
-        /// Clears this instance.
+        /// See <see cref="IColorQuantizer.AllowParallel"/> for more details.
         /// </summary>
-        public void Clear()
+        public override Boolean AllowParallel
         {
-            Array.Clear(redSlots, 0, 8);
-            Array.Clear(greenSlots, 0, 8);
-            Array.Clear(blueSlots, 0, 4);
+            get { return true; }
         }
 
         #endregion

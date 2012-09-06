@@ -1,10 +1,11 @@
 ﻿using System;
+using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Drawing;
-using System.Linq;
+using SimplePaletteQuantizer.ColorCaches;
 using SimplePaletteQuantizer.Helpers;
 
-namespace SimplePaletteQuantizer.Quantizers.Median
+namespace SimplePaletteQuantizer.Quantizers.MedianCut
 {
     /// <summary>
     /// The premise behind median cut algorithms is to have every entry in the color map represent 
@@ -23,21 +24,13 @@ namespace SimplePaletteQuantizer.Quantizers.Median
     /// algorithms consistently produce good results while having memory and time complexity no 
     /// worse than popularity algorithms[1].
     /// </summary>
-    public class MedianCutQuantizer : IColorQuantizer
+    public class MedianCutQuantizer : BaseColorCacheQuantizer
     {
-        private readonly List<Color> colorList;
-        private readonly List<MedianCutCube> cubeList;
-        private readonly Dictionary<Color, Int32> cache;
+        #region | Fields |
 
-        /// <summary>
-        /// Initializes a new instance of the <see cref="MedianCutQuantizer"/> class.
-        /// </summary>
-        public MedianCutQuantizer()
-        {
-            cache = new Dictionary<Color, Int32>();
-            cubeList = new List<MedianCutCube>();
-            colorList = new List<Color>();
-        }
+        private ConcurrentBag<MedianCutCube> cubeList;
+
+        #endregion
 
         #region | Methods |
 
@@ -53,7 +46,7 @@ namespace SimplePaletteQuantizer.Quantizers.Median
             foreach (MedianCutCube cube in cubeList)
             {
                 // if another new cubes should be over the top; don't do it and just stop here
-                // if (newCubes.Count >= colorCount) break;
+                if (newCubes.Count >= colorCount) break;
                 
                 MedianCutCube newMedianCutCubeA, newMedianCutCubeB;
 
@@ -73,40 +66,50 @@ namespace SimplePaletteQuantizer.Quantizers.Median
 
                 // adds newly created cubes to our list; but one by one and if there's enough cubes stops the process
                 newCubes.Add(newMedianCutCubeA);
-                // if (newCubes.Count >= colorCount) break;
+                if (newCubes.Count >= colorCount) break;
                 newCubes.Add(newMedianCutCubeB);
             }
 
             // clears the old cubes
-            cubeList.Clear();
+            cubeList = new ConcurrentBag<MedianCutCube>();
 
             // adds the new cubes to the official cube list
-            cubeList.AddRange(newCubes);
+            foreach (MedianCutCube medianCutCube in newCubes)
+            {
+                cubeList.Add(medianCutCube);
+            }
         }
 
         #endregion
 
-        #region << IColorQuantizer >>
+        #region << BaseColorCacheQuantizer >>
 
         /// <summary>
-        /// Adds the color to quantizer.
+        /// See <see cref="IColorQuantizer.Prepare"/> for more details.
         /// </summary>
-        /// <param name="color">The color to be added.</param>
-        public void AddColor(Color color)
+        protected override void OnPrepare(ImageBuffer image)
         {
-            color = QuantizationHelper.ConvertAlpha(color);
-            colorList.Add(color);
+            base.OnPrepare(image);
+
+            OnFinish();
         }
 
         /// <summary>
-        /// Gets the palette with specified count of the colors.
+        /// See <see cref="BaseColorCacheQuantizer.OnCreateDefaultCache"/> for more details.
         /// </summary>
-        /// <param name="colorCount">The color count.</param>
-        /// <returns></returns>
-        public List<Color> GetPalette(Int32 colorCount)
+        protected override IColorCache OnCreateDefaultCache()
+        {
+            // use native median cut palette index method; if there's no 
+            return null;
+        }
+
+        /// <summary>
+        /// See <see cref="BaseColorCacheQuantizer.OnGetPaletteToCache"/> for more details.
+        /// </summary>
+        protected override List<Color> OnGetPaletteToCache(Int32 colorCount)
         {
             // creates the initial cube covering all the pixels in the image
-            MedianCutCube initalMedianCutCube = new MedianCutCube(colorList);
+            MedianCutCube initalMedianCutCube = new MedianCutCube(UniqueColors.Keys);
             cubeList.Add(initalMedianCutCube);
 
             // finds the minimum iterations needed to achieve the cube count (color count) we need
@@ -134,47 +137,43 @@ namespace SimplePaletteQuantizer.Quantizers.Median
         }
 
         /// <summary>
-        /// Gets the index of the palette for specific color.
+        /// See <see cref="BaseColorQuantizer.OnFinish"/> for more details.
         /// </summary>
-        /// <param name="color">The color.</param>
-        /// <returns></returns>
-        public Int32 GetPaletteIndex(Color color)
+        protected override void OnFinish()
         {
-            Int32 result;
+            base.OnFinish();
+
+            cubeList = new ConcurrentBag<MedianCutCube>();
+        }
+
+        #endregion
+
+        #region << IColorQuantizer >>
+
+        /// <summary>
+        /// See <see cref="IColorQuantizer.AllowParallel"/> for more details.
+        /// </summary>
+        public override Boolean AllowParallel
+        {
+            get { return true; }
+        }
+
+        /// <summary>
+        /// See <see cref="IColorQuantizer.GetPaletteIndex"/> for more details.
+        /// </summary>
+        public void GetPaletteIndex(Color color, out Int32 paletteIndex)
+        {
+            paletteIndex = 0;
             color = QuantizationHelper.ConvertAlpha(color);
 
-            if (!cache.TryGetValue(color, out result))
+            foreach (MedianCutCube cube in cubeList)
             {
-                foreach (MedianCutCube cube in cubeList)
+                if (cube.IsColorIn(color))
                 {
-                    if (cube.IsColorIn(color))
-                    {
-                        result = cube.PaletteIndex;
-                        // break;
-                    }
+                    paletteIndex = cube.PaletteIndex;
+                    break;
                 }
             }
-
-            return result;
-        }
-
-        /// <summary>
-        /// Gets the color count.
-        /// </summary>
-        /// <returns></returns>
-        public Int32 GetColorCount()
-        {
-            return colorList.Distinct().Count();
-        }
-
-        /// <summary>
-        /// Clears this instance.
-        /// </summary>
-        public void Clear()
-        {
-            cache.Clear();
-            cubeList.Clear();
-            colorList.Clear();
         }
 
         #endregion
