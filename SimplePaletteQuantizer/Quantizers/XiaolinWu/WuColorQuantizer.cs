@@ -407,24 +407,40 @@ namespace SimplePaletteQuantizer.Quantizers.XiaolinWu
         /// </summary>
         protected override void OnAddColor(Color color, Int32 key, Int32 x, Int32 y)
         {
-           // if (color.Equals(System.Drawing.Color.FromArgb(255,0,255)))
-           //     return;
+          /*  if (color.Equals(System.Drawing.Color.FromArgb(255, 0, 255)))
+            {
+                System.Diagnostics.Debug.WriteLine("Found Chroma Key at: " + pixelIndex.ToString());
+                pixels[pixelIndex] = color.ToArgb();
+                pixelIndex++;
+                //  return;
+            }*/
+          //  else
+           // {
+                Int32 indexRed = (color.R >> 3) + 1;
+                Int32 indexGreen = (color.G >> 3) + 1;
+                Int32 indexBlue = (color.B >> 3) + 1;
 
-            Int32 indexRed = (color.R >> 3) + 1;
-            Int32 indexGreen = (color.G >> 3) + 1;
-            Int32 indexBlue = (color.B >> 3) + 1;
+                weights[indexRed, indexGreen, indexBlue]++;
+                momentsRed[indexRed, indexGreen, indexBlue] += color.R;
+                momentsGreen[indexRed, indexGreen, indexBlue] += color.G;
+                momentsBlue[indexRed, indexGreen, indexBlue] += color.B;
+                moments[indexRed, indexGreen, indexBlue] += table[color.R] + table[color.G] + table[color.B];
 
-            weights[indexRed, indexGreen, indexBlue]++;
-            momentsRed[indexRed, indexGreen, indexBlue] += color.R;
-            momentsGreen[indexRed, indexGreen, indexBlue] += color.G;
-            momentsBlue[indexRed, indexGreen, indexBlue] += color.B;
-            moments[indexRed, indexGreen, indexBlue] += table[color.R] + table[color.G] + table[color.B];
+              //  if (color.Equals(System.Drawing.Color.FromArgb(255, 0, 255)))
+                //{
+                  //  quantizedPixels[pixelIndex] = ColorTranslator.ToOle(color);
+                    //System.Diagnostics.Debug.WriteLine("Set quantized pixel to " + quantizedPixels[pixelIndex].ToString() + " at " + pixelIndex.ToString());
+              //  }
+            //   else
+         //    {
+                    quantizedPixels[pixelIndex] = (indexRed << 10) + (indexRed << 6) + indexRed + (indexGreen << 5) + indexGreen + indexBlue;
+           //     }
+                pixels[pixelIndex] = color.ToArgb();
+                pixelIndex++;
+ //           }
 
-            quantizedPixels[pixelIndex] = (indexRed << 10) + (indexRed << 6) + indexRed + (indexGreen << 5) + indexGreen + indexBlue;
-            pixels[pixelIndex] = color.ToArgb();
-            pixelIndex++;
+            return;
         }
-
         /// <summary>
         /// See <see cref="BaseColorQuantizer.OnGetPalette"/> for more details.
         /// </summary>
@@ -536,10 +552,14 @@ namespace SimplePaletteQuantizer.Quantizers.XiaolinWu
                     }
                 }
 
+                System.Diagnostics.Debug.WriteLine("BEFORE ADD COLOR: Red @ Best Match: " + reds[bestMatch].ToString() + ", G @ BM: " + greens[bestMatch].ToString() + ", B @BM: " + blues[bestMatch].ToString());
+
                 reds[bestMatch] += color.R;
                 greens[bestMatch] += color.G;
                 blues[bestMatch] += color.B;
                 sums[bestMatch]++;
+
+                System.Diagnostics.Debug.WriteLine("AFTER ADD COLOR: Red @ Best Match: " + reds[bestMatch].ToString() + ", G @ BM: " + greens[bestMatch].ToString() + ", B @BM: " + blues[bestMatch].ToString());
 
                 indices[index] = bestMatch;
             }

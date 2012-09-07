@@ -182,6 +182,12 @@ namespace nbajamPictureBox
 
             InitializeComponent();
         }
+
+        protected override void OnInvalidated(InvalidateEventArgs e)
+        {
+            base.OnInvalidated(e);
+            redrawFlag = true;
+        }
         //Base control class OnPaint override
         protected override void OnPaint(PaintEventArgs pe)
         {
@@ -613,8 +619,9 @@ namespace nbajamPictureBox
                 MessageBox.Show("Image needs to be 48x56 pixels!");
                 return;
             }
-            int pal_index = 1;
+            int pal_index = 0;
             int q = 0;
+            int location_of_trans_color = 0;
 
             sourceImage = input; //copy the image, dont really need. TODO: Change
 
@@ -642,13 +649,13 @@ namespace nbajamPictureBox
 
                //the_quantizerZ.GetPalette(31); <- this doesnt work for some reason. 
                // \/ --- this hack may work instead?
-               for (int z = 0; z < 31; z++)
+               for (int z = 0; z < 32; z++)
                {
                    yourColorList.Add(System.Drawing.Color.FromArgb(255,the_quantizerZ.reds[z],the_quantizerZ.greens[z],the_quantizerZ.blues[z]));
                }
                        
                //Puts the transparent color at index 0 (Reason? Anything at index 0 is transparent to SNES)
-               optimized_palette[0] = System.Drawing.Color.FromArgb(255, 255, 0, 255);
+             //  optimized_palette[0] = System.Drawing.Color.FromArgb(255, 255, 0, 255);
 
                //Put the rest of the colors into the palette array
                /* This CANT be right....why is it loading the optimized palette from existing palette?
@@ -663,6 +670,25 @@ namespace nbajamPictureBox
                    optimized_palette[pal_index] = color;
                    pal_index++;
                }
+
+               //find where the transparent color is in the pallete
+               for (int boobs = 0; boobs < 32; boobs++)
+               {
+                   if (optimized_palette[boobs].Equals(Color.FromArgb(255, 255, 0, 255)))
+                   {
+                       location_of_trans_color = boobs;
+                       break;
+                   }
+               }
+
+                //store the color at 0
+               Color savedColor = optimized_palette[0];
+               
+                //Move the color to where trans color was
+               optimized_palette[location_of_trans_color] = savedColor;
+               optimized_palette[0] = Color.FromArgb(255, 255, 0, 255);
+
+              
 
                /* DEBUG: PRINT THE COLOR PALETTE*/
                  foreach (Color color in optimized_palette )
@@ -679,6 +705,7 @@ namespace nbajamPictureBox
                    q = q + 2;
                }
 
+           
                for (int y = 0; y < (8 * tile_height); y++)
                {
                    for (int x = 0; x < (8 * tile_width); x++)

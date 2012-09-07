@@ -636,7 +636,7 @@ namespace WindowsFormsApplication1
             nbajam_players.Add(new playerData(9, "Antonio Davis", 2280176, 736074, 2080175, false));
             nbajam_players.Add(new playerData(10, "Armon Gilliam", 2482016, 619024, 2080877, false));
             nbajam_players.Add(new playerData(11, "Asif Chaudhri (Chow-Chow)", 2461088, 746442, 2080903, false));
-            nbajam_players.Add(new playerData(12, "B.J. Armstrong", 2241401, 746826, 2079291, false));
+            nbajam_players.Add(new playerData(12, "B.J. Armstrong", 2241401, 1398188, 2079291, false));
             nbajam_players.Add(new playerData(13, "Benny", 2447504, 743754, 2082359, false));
             nbajam_players.Add(new playerData(14, "Bill Clinton", 2454480, 745290, 2082463, false));
             nbajam_players.Add(new playerData(15, "Bill Curley", 455632, 392295, 2079837, false));
@@ -3073,13 +3073,14 @@ namespace WindowsFormsApplication1
 
         private void button14_Click(object sender, EventArgs e)
         {
-            MessageBox.Show(nbajamTextBox20.getLinearArraySize().ToString());
+        //    MessageBox.Show(nbajamTextBox20.getLinearArraySize().ToString());
             byte[] localByteArray = new byte[nbajamTextBox20.getLinearArraySize()];
 
             localByteArray = nbajamTextBox20.getLinearArray();
-            int nameOffset = Convert.ToInt32(textBox2.Text);
-
-
+            
+            playerData jammers = nbajam_players.ElementAt(comboBox1.SelectedIndex);
+            int nameOffset = jammers.getNametag();
+ 
             for (int i = 0; i < Constants.nametagSize; i++)
             {
                 fileBuffer[nameOffset] = localByteArray[i];
@@ -3534,11 +3535,13 @@ namespace WindowsFormsApplication1
             {
 
                 nbajamPictureBox1.loadNewImage(Image.FromFile(dialogOpenFile.FileName));
-
+                
+                
                 //nbajamPictureBox1.ScaleFactor = 4;
 
                 byte[] localByteArray = new byte[1680];
                 byte[] localPalette = new byte[64];
+                byte[] localCombined = new byte[1680+64];
 
                 localByteArray = nbajamPictureBox1.get5bppLinearArray();
                 //      localByteArray = nbajamPictureBox3.get5bppLinearArray();
@@ -3549,20 +3552,33 @@ namespace WindowsFormsApplication1
                 playerData jammers = nbajam_players.ElementAt(comboBox1.SelectedIndex);
                 int nameOffset = jammers.getPortrait();
 
-
-
                 /* This writes the image into the buffer*/
                 for (int i = 0; i < 1680; i++)
                 {
                     fileBuffer[nameOffset] = localByteArray[i];
+                    localCombined[i] = localByteArray[i];
                     nameOffset++;
                 }
 
                 for (int ugh = 0; ugh < 64; ugh++)
                 {
                     fileBuffer[nameOffset] = localPalette[ugh];
+                    localCombined[1680+ugh] = localPalette[ugh];
                     nameOffset++;
                 }
+
+                
+
+                playerData jammers2 = nbajam_players.ElementAt(comboBox1.SelectedIndex);
+                int nameOffset2 = jammers.getPortrait();
+
+                nbajamPictureBox1.DataSize = 1744;
+                nbajamPictureBox1.PaletteSize = 32;
+                nbajamPictureBox1.isPortrait = true;
+                nbajamPictureBox1.loadImageData(localCombined);
+
+      
+                nbajamPictureBox1.Invalidate();
             }
         }
         private void panel2_Paint(object sender, PaintEventArgs e)
